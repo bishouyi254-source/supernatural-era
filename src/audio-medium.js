@@ -1,0 +1,9 @@
+import {ruleContest} from './rules.js';
+// Rule evaluation is per actor and channel, never a remote global effect.
+// The canonical preacher recording retains an unverified claim; no invented trigger.
+export const companyAudio=()=>({id:'C24-PREACHER-RECORDING',recordType:'CLAIMED_CURSED_AUDIO',publisher:'CLAIMED-PREACHER',sourceId:null,claimId:'C24-AUDIO',rule:null,observations:[]});
+export function resolveAudioExposure(m,event){if(!event||typeof event.id!=='string'||typeof event.actor!=='string'||!['TEXT','SOUND'].includes(event.channel))throw Error('无效媒介接触');if(m.observations.some(o=>o.id===event.id))return null;let matched=false,result='NO_EXPOSURE',effects=[];const exposed=event.channel==='SOUND'&&event.present===true;
+ if(exposed&&m.recordType==='CLAIMED_CURSED_AUDIO'){if(!m.rule||m.sourceId===null){matched=null;result='UNVERIFIED';}else {matched=m.rule.condition==='HEAR_AT_SITE'&&event.site===m.rule.site;if(matched){result=ruleContest(event.counterWeight||0,m.rule.weight);if(result==='failed')effects=[m.rule.effect];}else result='CONDITION_NOT_MET';}}
+ const o={id:event.id,actor:event.actor,mediumId:m.id,channel:event.channel,site:event.site,present:!!event.present,exposed,triggerMatched:matched,ruleResult:result,effects};m.observations.push(o);return o;
+}
+export function validAudio(s){const m=s.contractCase?.audio;if(m===undefined)return true;return m.id==='C24-PREACHER-RECORDING'&&m.recordType==='CLAIMED_CURSED_AUDIO'&&m.sourceId===null&&m.rule===null&&m.claimId==='C24-AUDIO'&&Array.isArray(m.observations)&&m.observations.length<=1&&new Set(m.observations.map(x=>x.id)).size===m.observations.length&&m.observations.every(o=>o.id==='C24-AUDIO-TEXT-REVIEW'&&o.actor==='player'&&o.mediumId===m.id&&o.channel==='TEXT'&&['COMPANY','REALITY_ARCHIVE'].includes(o.site)&&o.present===true&&o.exposed===false&&o.triggerMatched===false&&o.ruleResult==='NO_EXPOSURE'&&Array.isArray(o.effects)&&o.effects.length===0);}

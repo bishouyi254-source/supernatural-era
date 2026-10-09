@@ -1,0 +1,40 @@
+import {newSocialUX,validSocialUX} from './social-ux.js';
+import {hostState,growthFor} from './spirits.js';
+import {masteryStable,node,graphState} from './evolution-model.js';
+export const socialNodes=['询问','路过的','我想活着','你想多了','严力的短信','又骗了你','有人在说我？','倒计时','较量','活下去的办法','报复','人为','俱乐部的规矩','其实我是好人','小强俱乐部','附加条件','打钱','新的负责人'];
+export const socialPeople={wang:'王小强',yan:'严力',informant:'陆闻（原创情报联系人）',trader:'陈砚（原创渠道交易者）',volatile:'程默（原创高危驭鬼者）'};
+export const affiliations=['NONE','KNOWN','GUEST','TRADING_CONTACT','COOPERATIVE','MEMBER','HOSTILE'];
+export const offers={rumor:{claim:'黄岗村出现异常死亡，具体规律未知。',root:'village-call',price:30,motive:'出售转述',source:'陆闻'},repost:{claim:'另一条转述同样提及村庄异常。',root:'village-call',price:20,motive:'转售',source:'民间转载'},independent:{claim:'道路联络员接获当地异常死亡报告。',root:'road-contact',price:50,motive:'交换情报',source:'独立道路联系人'},false:{claim:'加入俱乐部就能保证长期不复苏。',root:'broker-promise',price:10,motive:'招揽',source:'未核实中介'}};
+export function newSocial(){return {format:1,ux:newSocialUX(),started:false,startUnits:null,lastTick:0,inside:false,affiliation:'NONE',declined:false,rulesRead:false,reviewed:false,yanContact:false,yanConsulted:false,knowledge:[],samples:[],canonNodes:[],anchors:[],officialChanged:false,villageSignal:false,officialRead:false,villageKnown:false,preparation:{intent:null,contact:false,resources:false,risk:false,retreat:false},claims:[],bought:[],verified:[],exposures:[],spread:[],sales:[],trade:{checked:false,sourceChecked:false,sealedBought:false,candidate:false,stock:{gold:1,medium:1,record:1},assetStock:1},knownBy:{wang:[],yan:[],informant:[],trader:[],volatile:[]},conflict:{active:false,stage:0,probed:false,leverage:null,flags:[],result:null,records:[]},controller:{dead:false,revival:82,spirits:[{id:'npc-volatile-echo',sourceId:'echo',burden:30,structure:'CARRIED'}],structuralSpirits:[],reaction:'尚未观察'},residuals:[],human:{active:false,discovered:false,evidence:[],distributionStopped:false,isolated:false,warned:false,referred:false,operatorExposed:false,operatorCaught:false,spread:0,status:'UNKNOWN'},history:[]};}
+export const attachSocial=s=>({...s,social:s.social?{...s.social,ux:s.social.ux||newSocialUX()}:newSocial()});
+export function survivalProfile(s){const h=hostState(s),x=s.social||newSocial(),highest=Math.max(0,...s.spirits.map(g=>g.revivalProgress)),recent=x.samples.slice(-8),uses=recent.filter(r=>r.used).length,rate=s.spirits.reduce((n,g)=>Math.max(n,growthFor(s,g)),0),stable=s.spirits.length&&s.spirits.every(g=>masteryStable(s,g.id)),form=s.evolution.host.form;
+ let goal='保持安全联系，核查外部异常；不要求驾驭厉鬼。';
+ if(form>=2)goal='核查结构核心、锚点完整度与自我连续性。';
+ else if(stable)goal='观察主导稳定性与整合压力，维持已验证条件。';
+ else if(s.spirits.length>=3)goal='检查多鬼网络关键依赖与孤立节点。';
+ else if(s.spirits.length===2)goal='验证双鬼关系的长期趋势，不凭一次平衡判定永远安全。';
+ else if(s.spirits.length===1)goal=x.knowledge.includes('BALANCE_THEORY')?'调查兼容候选与承载条件；多鬼平衡只是方法之一。':'减少非必要调用，寻找有来源的生存方法。';
+ const pressure=highest>=95||h.burdenRatio>1||s.evolution.host.integrity<40?'临界':highest>=80||uses>=4?'严峻':highest>=60||rate>=1?'持续压力':s.spirits.length?'需持续观察':'外部风险';
+ return {highest,uses,rate,goal,pressure,reliability:recent.length>=8?'中': '低',forecast:!s.spirits.length?'没有体内复苏；外部规律仍会致命。':uses>=4?'近期频繁调用，预计恶化加快（估计）。':rate>0?'非调用增长仍存在；趋势需持续观察（估计）。':'近期调用较少，当前增长较慢；不代表累计复苏下降（估计）。',structure:form>=2?s.evolution.host.integrity:null,critical:s.spirits.length>=3?graphState(s).critical:[]};}
+export function candidateReview(s){const h=hostState(s);return {investigated:s.social.trade.sourceChecked,capacity:h.hostCapacity-h.effectiveBurden,balanced:h.balanceBias<30&&!s.relations.some(r=>r.conflictAtoB||r.conflictBtoA),ready:false,note:'内部身份与负荷未确认，不能正式驾驭；仅保留待核实候选，不自动植入。'};}
+export function validSocial(s){if(s.social===undefined)return true;try{const x=s.social,integer=(v,max=1e9)=>Number.isInteger(v)&&v>=0&&v<=max,arr=(a,max,p)=>Array.isArray(a)&&a.length<=max&&a.every(p),str=v=>typeof v==='string'&&v.length<=2000,unique=(a,max,p)=>arr(a,max,p)&&new Set(a).size===a.length,known=id=>s.spirits.some(g=>g.id===id)||/^player-/.test(id);
+ if(x.format!==1||!affiliations.includes(x.affiliation)||!integer(x.lastTick)||x.lastTick>s.tick||![null,'PREPARE','WAIT','DECLINE'].includes(x.preparation.intent))return false;
+ for(const k of ['started','inside','declined','rulesRead','reviewed','yanContact','yanConsulted','officialChanged','villageSignal','officialRead','villageKnown'])if(typeof x[k]!=='boolean')return false;
+ if(x.startUnits!==null&&(!integer(x.startUnits)||x.startUnits>(s.dachang.timeUnits??0)))return false;
+ if(x.started&&(!integer(x.startUnits)||!s.dachang.started)||!x.started&&x.inside||x.inside&&!x.rulesRead||x.villageKnown&&!x.villageSignal)return false;
+ if(!unique(x.canonNodes,18,n=>integer(n,81)&&n>=64)||x.canonNodes.some((n,i)=>n!==i+64)||!unique(x.anchors,8,v=>/^CA-130[1-8]$/.test(v)))return false;
+ if(!unique(x.knowledge,4,v=>['REVIVAL_RISK','BALANCE_THEORY','ALIEN','PERFECT'].includes(v))||!unique(x.bought,4,v=>Object.hasOwn(offers,v))||!unique(x.verified,4,v=>Object.hasOwn(offers,v)))return false;
+ if(!arr(x.claims,5,c=>Object.hasOwn(offers,c.id)&&c.root===offers[c.id].root&&c.claim===offers[c.id].claim&&['SUSPECTED','SUPPORTED','DISPROVEN'].includes(c.level)&&integer(c.tick)&&c.tick<=s.tick))return false;
+ if(new Set(x.claims.map(c=>c.id)).size!==x.claims.length||x.claims.length!==x.bought.length||x.claims.some(c=>!x.bought.includes(c.id)||c.level==='DISPROVEN'&&(c.id!=='false'||!x.verified.includes(c.id))))return false;
+ if(!arr(x.samples,20,r=>integer(r.tick)&&r.tick<=s.tick&&typeof r.used==='boolean'&&r.values&&Object.values(r.values).every(v=>Number.isFinite(v)&&v>=0&&v<=100)))return false;
+ if(!arr(x.history,80,str)||!unique(x.sales,10,str)||!arr(x.exposures,60,e=>str(e.fact)&&str(e.source)&&integer(e.tick)&&e.tick<=s.tick&&unique(e.audiences,5,p=>Object.hasOwn(socialPeople,p)))||!arr(x.spread,60,e=>str(e.fact)&&integer(e.due)&&Object.hasOwn(socialPeople,e.target)&&typeof e.done==='boolean'))return false;
+ if(Object.keys(x.knownBy).length!==5||!Object.keys(socialPeople).every(p=>unique(x.knownBy[p],100,str)))return false;
+ for(const k of ['contact','resources','risk','retreat'])if(typeof x.preparation[k]!=='boolean')return false;
+ const t=x.trade;if(['checked','sourceChecked','sealedBought','candidate'].some(k=>typeof t[k]!=='boolean')||!integer(t.assetStock,1)||Object.keys(t.stock).length!==3||!['gold','medium','record'].every(k=>integer(t.stock[k],1))||t.sealedBought&&(!t.checked||t.assetStock!==0)||t.candidate&&(!t.sealedBought||!t.sourceChecked))return false;
+ const c=x.conflict;if(typeof c.active!=='boolean'||!integer(c.stage,5)||typeof c.probed!=='boolean'||![null,'CASE','INFO','NONE'].includes(c.leverage)||!unique(c.flags,5,f=>['SOCIAL_DEFEAT','RESOURCE_LOSS','EXPOSURE','CONTROLLER_CRISIS','SUPERNATURAL_ESCALATION'].includes(f))||!arr(c.records,20,r=>str(r.result)&&integer(r.tick)&&r.tick<=s.tick&&arr(r.flags,5,str)))return false;
+ const n=x.controller;if(typeof n.dead!=='boolean'||!Number.isFinite(n.revival)||n.revival<0||n.revival>100||!arr(n.spirits,2,g=>g.sourceId==='echo'&&g.structure==='CARRIED'&&integer(g.burden))||!arr(n.structuralSpirits,2,str)||!str(n.reaction))return false;
+ if(!arr(x.residuals,5,r=>r.id==='social-controller-release'&&r.sourceId==='echo'&&r.ruleId==='rule:echo'&&['ACTIVE','ISOLATED','REFERRED'].includes(r.status)&&integer(r.tick)&&r.tick<=s.tick)||n.dead&&(!x.residuals.length||c.active))return false;
+ const u=x.human;if(['active','discovered','distributionStopped','isolated','warned','referred','operatorExposed','operatorCaught'].some(k=>typeof u[k]!=='boolean')||!integer(u.spread,30)||!unique(u.evidence,4,e=>['AUDIO','SILENT','LOG','ROUTE'].includes(e))||!['UNKNOWN','ACTIVE','PAUSED','PROPAGATION_STOPPED','REFERRED'].includes(u.status)||u.active&&!u.discovered||u.isolated&&!u.distributionStopped||u.referred&&(!u.isolated||!u.warned)||u.status==='REFERRED'&&!u.referred)return false;
+ if(!validSocialUX(x.ux,s))return false;
+ return true;
+ }catch{return false;}}

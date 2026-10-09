@@ -1,0 +1,2 @@
+// One durable state key. No result is presented until the complete candidate is saved.
+export function commitSnapshot(previous,candidate,write,valid){if(candidate===previous)return {state:previous,committed:false,reason:'NO_ACTION'};if(!valid(candidate))return {state:previous,committed:false,reason:'INVALID'};try{write(JSON.stringify(candidate));return {state:candidate,committed:true,reason:null};}catch{return {state:previous,committed:false,reason:'STORAGE_FAILED'};}}
