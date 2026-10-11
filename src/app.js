@@ -1,3 +1,4 @@
+import {installPublishedSidebar} from './published-sidebar.js';
 import {readResonance} from './resonance-model.js';
 import {installResonance} from './resonance-launcher.js';
 import {installGameCodex} from './codex/live.js';
@@ -251,8 +252,9 @@ function workspaceView() {
 }
 
 let liveBackpack=null;
-const codexUI=installGameCodex({getState:()=>liveBackpack?readLive(localStorage).state:state,navigate:page=>{tab=page==='背包与装备'?'拼图背包':page;render();window.scrollTo(0,0);}});
+const codexUI=installGameCodex({getState:()=>liveBackpack?readLive(localStorage).state:state,navigate:page=>{if(page==='同步共鸣'){resonanceUI.open();return;}if(page==='厉鬼图鉴'){document.getElementById('game-codex-launcher').click();return;}tab=page==='背包与装备'?'拼图背包':page;render();window.scrollTo(0,0);}});
 const resonanceUI=installResonance({refreshGame:()=>{const current=readResonance(localStorage);state=current.state;notice=current.error||notice;render();},navigate:page=>{if(page==='厉鬼图鉴'){document.getElementById('game-codex-launcher').click();return;}tab=page;render();window.scrollTo(0,0);},onCommitted:next=>{state=next;}});
+const publishedSidebar=installPublishedSidebar({navigate:page=>{if(page==='厉鬼图鉴'){document.getElementById('game-codex-launcher').click();return;}if(page==='同步共鸣'){resonanceUI.open();return;}tab=page;render();window.scrollTo(0,0);}});
 function render() {
  if(liveBackpack){liveBackpack.destroy();liveBackpack=null;try{state=readLive(localStorage).state;}catch{notice='存档无法读取，原始内容未覆盖。';}}
  codexUI.refresh();

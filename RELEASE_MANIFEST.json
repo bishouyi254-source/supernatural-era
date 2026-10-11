@@ -1,8 +1,9 @@
 {
   "version": "0.24.3",
-  "edition": "resonance-step5",
-  "base_commit": "0923ffbd522138502b4d675476ce531ebf6292b8",
+  "edition": "published-workshop-sidebar-review",
+  "base_commit": "40f9335ce9319367b9832be2a4a8d92674d2fd76",
   "saveFormat": 2,
+  "published": true,
   "files": [
     {
       "path": ".nojekyll",
@@ -1056,8 +1057,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 73584,
-      "sha256": "48435de4ab2ca593b74f77b14eba83f1085ec6f4a4b8d33569a727546f9f4648"
+      "bytes": 74444,
+      "sha256": "b618eacabb4f6e3b7206099e368a97c9bc4e2e23d6df5497609f083fee080081"
     },
     {
       "path": "src/audio-medium.js",
@@ -1161,8 +1162,8 @@
     },
     {
       "path": "src/codex/live.js",
-      "bytes": 7084,
-      "sha256": "69cab45b75694c141b56be8cade34bc9c13d870e1608d1547734749d6fd7c3a2"
+      "bytes": 7238,
+      "sha256": "7988dd2a7c0c07feb5bc303bbdd71a26f42f8d39539356c884bca12e08c59a12"
     },
     {
       "path": "src/codex/model.js",
@@ -1365,6 +1366,16 @@
       "sha256": "b0093f280c94d202f7c8919b48ef87dab5f9d88d85e08f33451562d7ace07393"
     },
     {
+      "path": "src/published-sidebar.css",
+      "bytes": 6545,
+      "sha256": "e169ab0a517f58653968244bc7373b016eafa766862115a38f3ef987df8a2bc7"
+    },
+    {
+      "path": "src/published-sidebar.js",
+      "bytes": 2776,
+      "sha256": "0e51abf3d8fc9a0f0c08ed19d802720fc193f1730c283368cb01d4713925a05e"
+    },
+    {
       "path": "src/regional-guide.js",
       "bytes": 11440,
       "sha256": "85043a23203f605fca5a2a7dc1f2094c925f0269d7a07a204af5ccbd697601a0"
@@ -1386,8 +1397,8 @@
     },
     {
       "path": "src/resonance-launcher.js",
-      "bytes": 1780,
-      "sha256": "a9ca1d3c95b734fc19d105ab0ba4f7ab70f6428445d5ebc44fe2a2878475b825"
+      "bytes": 2219,
+      "sha256": "fe3f45515a75ccfaf46345e52beaab5c254426758490ef109aab00077c8c3714"
     },
     {
       "path": "src/resonance-model.js",

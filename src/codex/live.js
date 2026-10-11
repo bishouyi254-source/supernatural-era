@@ -1,3 +1,4 @@
+import {mountPublishedSidebar} from '../published-sidebar.js';
 import {mountCodex} from './controller.js';
 import {gameRecords,SAVE_KEY,savePreference,loadPreferences,readGameArchive} from './live-adapter.js';
 import {validate,upgrade} from '../engine.js';
@@ -24,7 +25,8 @@ export function mountLive(root,{getState,storage=localStorage,navigate=()=>{},cl
  const back=document.createElement('button');back.textContent='返回游戏';back.addEventListener('click',close);root.querySelector('.cx-sidebar-foot').prepend(back);
  const mobileBack=back.cloneNode(true);mobileBack.className='cx-live-back';mobileBack.addEventListener('click',close);root.querySelector('.cx-header').append(mobileBack);
  root.querySelector('.cx-brand').href='index.html';root.querySelector('.cx-brand').addEventListener('click',e=>{e.preventDefault();close();});
- return {refresh(){view.refresh();root.querySelector('.cx-host>strong').textContent=getState()?.name||'尚未载入角色';status();},destroy:()=>view.destroy()};
+ const sidebar=root.querySelector('.cx-sidebar');mountPublishedSidebar(sidebar,{active:'厉鬼图鉴',navigate});
+ return {refresh(){view.refresh();status();mountPublishedSidebar(sidebar,{active:'厉鬼图鉴',navigate});},destroy:()=>view.destroy()};
 }
 export function installGameCodex({getState,navigate}){
  let host=null,view=null,previous=null;
