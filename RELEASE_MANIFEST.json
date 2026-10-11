@@ -1,7 +1,7 @@
 {
   "version": "0.24.3",
   "edition": "resonance-step5",
-  "base_commit": "16ea0d763eee44036e592bb8026a6ffd7f9ef905",
+  "base_commit": "0923ffbd522138502b4d675476ce531ebf6292b8",
   "saveFormat": 2,
   "files": [
     {
@@ -1386,8 +1386,8 @@
     },
     {
       "path": "src/resonance-launcher.js",
-      "bytes": 1770,
-      "sha256": "4cc6cad677815fb744ddd1c3a9f543f7bdb2220d4ba6cbdbfdc8a28b20f03dfc"
+      "bytes": 1780,
+      "sha256": "a9ca1d3c95b734fc19d105ab0ba4f7ab70f6428445d5ebc44fe2a2878475b825"
     },
     {
       "path": "src/resonance-model.js",
