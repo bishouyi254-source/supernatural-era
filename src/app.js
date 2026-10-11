@@ -1,3 +1,5 @@
+import {readResonance} from './resonance-model.js';
+import {installResonance} from './resonance-launcher.js';
 import {installGameCodex} from './codex/live.js';
 import {mountLiveBackpack} from './backpack/live.js';
 import {readLive} from './backpack/live-model.js';
@@ -250,6 +252,7 @@ function workspaceView() {
 
 let liveBackpack=null;
 const codexUI=installGameCodex({getState:()=>liveBackpack?readLive(localStorage).state:state,navigate:page=>{tab=page==='背包与装备'?'拼图背包':page;render();window.scrollTo(0,0);}});
+const resonanceUI=installResonance({refreshGame:()=>{const current=readResonance(localStorage);state=current.state;notice=current.error||notice;render();},navigate:page=>{if(page==='厉鬼图鉴'){document.getElementById('game-codex-launcher').click();return;}tab=page;render();window.scrollTo(0,0);},onCommitted:next=>{state=next;}});
 function render() {
  if(liveBackpack){liveBackpack.destroy();liveBackpack=null;try{state=readLive(localStorage).state;}catch{notice='存档无法读取，原始内容未覆盖。';}}
  codexUI.refresh();
@@ -258,7 +261,7 @@ function render() {
  document.querySelectorAll('link[data-backpack-style]').forEach(link=>{if(link.sheet)link.sheet.disabled=!isBackpack;});
  if(isBackpack){
   const root=document.querySelector('#app');root.removeAttribute('data-loop');root.dataset.view=tab;root.dataset.page=tab;
-  liveBackpack=mountLiveBackpack(root,{navigate(target){if(target==='厉鬼图鉴'){document.getElementById('game-codex-launcher').click();return;}tab=({'驾驭厉鬼':'技能工坊','物资背包':'背包与装备','档案记录':'历史','厉鬼图鉴':'灵异档案','同步共鸣':'技能工坊'})[target]||'首页';render();window.scrollTo(0,0);if(target==='同步共鸣')document.getElementById('relations')?.scrollIntoView();}});
+  liveBackpack=mountLiveBackpack(root,{navigate(target){if(target==='同步共鸣'){resonanceUI.open();return;}if(target==='厉鬼图鉴'){document.getElementById('game-codex-launcher').click();return;}tab=({'驾驭厉鬼':'技能工坊','物资背包':'背包与装备','档案记录':'历史','厉鬼图鉴':'灵异档案','同步共鸣':'技能工坊'})[target]||'首页';render();window.scrollTo(0,0);if(target==='同步共鸣')document.getElementById('relations')?.scrollIntoView();}});
   return;
  }
 
