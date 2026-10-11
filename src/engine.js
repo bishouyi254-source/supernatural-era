@@ -1,3 +1,4 @@
+import {actionReceipt,validReceipt} from './action-feedback.js';
 import {attachCase24,case24Ready,case24Available,applyCase24,advanceCase24,validCase24} from './contract-case.js';
 import {validCalendar} from './world-time.js';
 import {validWorldRegistry} from './world-registry.js';
@@ -68,7 +69,7 @@ function baseAvailable(s) {
   if(s.systems.second&&['restricted','matched','unstable'].includes(s.systems.second.stage))return [...system,...(s.scene==='hub'?['rest',...chapterAvailable(s).filter(a=>a==='chapter:supply')]:['retreat'])];
   const city=cityAvailable(s);if(s.city.active)return city;
   system.push(...doorAvailable(s),...investigationAvailable(s),...busAvailable(s),...city,...advancedAvailable(s),...v1Available(s));
-  if (s.scene === 'hub') return [...system,...journeyAvailable(s),...(!s.journey.active?chapterAvailable(s):[]), ...(chapterState(s).completed ? Object.keys(events).filter(id => eventUnlocked(s,id)&&!s.outcomes[id]).map(id => 'enter:' + id) : []), ...(!s.journey.active?['rest']:[]), ...(s.spirits[0] && s.energy > 0&&!s.journey.active ? ['practice',...s.spirits.filter(g=>!s.systems.combinations.some(c=>c.disabledId===g.id)).map(g=>'practice:'+g.id)] : [])];
+  if (s.scene === 'hub') return [...(s.investigation.records.some(r=>['Contained','Resolved'].includes(r.result))&&!s.school.started&&!s.outcomes.echo?['enter:echo']:[]),...system,...journeyAvailable(s),...(!s.journey.active?chapterAvailable(s):[]), ...(chapterState(s).completed ? Object.keys(events).filter(id => eventUnlocked(s,id)&&!s.outcomes[id]).map(id => 'enter:' + id) : []), ...(!s.journey.active?['rest']:[]), ...(s.spirits[0] && s.energy > 0&&!s.journey.active ? ['practice',...s.spirits.filter(g=>!s.systems.combinations.some(c=>c.disabledId===g.id)).map(g=>'practice:'+g.id)] : [])];
   const k = knowledge(s, s.scene);
   if (s.phase === '限制') return [...system,...(!s.spirits[0] ? ['capture'] :canSecond(s)?['second:begin']:[]), 'seal',...(!Object.hasOwn(s.systems.aids,s.scene)&&Object.keys(s.systems.aids).length<2?['aid']:[]),'retreat'];
   return [...events[s.scene].clues.filter(c => !k.clues.includes(c.id)).map(c => 'clue:' + c.id),
@@ -78,6 +79,7 @@ function baseAvailable(s) {
     ...(k.hypotheses.true === 'confirmed' && s.bags > 0 ? ['restrict'] : []), 'retreat'];
 }
 export function available(input){
+ if(input.investigation?.active&&input.systems.death==='alive'&&!input.crisis)return investigationAvailable(upgrade(input));
  const s=upgrade(input);if(case24Ready(s))return case24Available(s);if(transitReady(s)&&!s.bus.transit.completed)return transitAvailable(s);const ia=identityAvailable(s);if(identityBusy(s)&&s.systems.death==='alive'&&!s.crisis&&!advancedBusy(s))return ia;const pa=postwarAvailable(s);if(postwarBusy(s)&&pa.length)return [...pa,...ia];const fa=finaleAvailable(s);if(fa.length)return [...fa,...pa];const ha=hungryAvailable(s);if(hungryReady(s)&&s.hungry.startUnits!==null&&s.systems.death==='alive'&&!s.crisis&&!advancedBusy(s)&&ha.length)return ha;if(crisisBusy(s)&&s.systems.death==='alive'&&!s.crisis&&!advancedBusy(s))return crisisAvailable(s);if(mirrorBusy(s)&&s.systems.death==='alive'&&!s.crisis&&!advancedBusy(s))return mirrorAvailable(s);if(regionalBusy(s)&&s.systems.death==='alive'&&!s.crisis&&!advancedBusy(s))return regionalAvailable(s);if(reunionBusy(s)&&s.systems.death==='alive'&&!s.crisis&&!advancedBusy(s))return reunionAvailable(s);if(villageBusy(s)&&s.systems.death==='alive'&&!s.crisis&&!advancedBusy(s))return [...villageAvailable(s),...dualAvailable(s)];if(socialBusy(s)&&s.systems.death==='alive'&&!s.crisis&&!advancedBusy(s))return socialAvailable(s);if(s.mall.active&&s.systems.death==='alive'&&!s.crisis&&!advancedBusy(s))return mallAvailable(s);if(s.school.active&&s.systems.death==='alive'&&!s.crisis&&!advancedBusy(s))return schoolAvailable(s);if(s.doorCase.active&&s.systems.death==='alive'&&!s.crisis&&!advancedBusy(s))return doorAvailable(s);if(s.systems.death==='pending'&&s.evolution.host.form===3)return ['death:commit',...evolutionAvailable(s)];if(s.evolution.host.continuity==='失去自我')return s.systems.death==='pending'?['death:commit']:[];let actions=advancedBusy(s)&&s.systems.death==='alive'?evolutionAvailable(s):[...baseAvailable(s),...evolutionAvailable(s)];
  if(advancedBusy(s)&&!s.evolution.encounter?.active&&!s.evolution.cascade&&s.systems.death==='alive'&&s.life>0)actions.push('rest');
  if(s.evolution.host.shellDestroyed&&s.evolution.host.integrity>5&&s.energy<3&&!s.evolution.encounter?.active&&!s.evolution.cascade&&s.systems.death==='alive')actions.push('evo:host:focus');
@@ -85,7 +87,7 @@ export function available(input){
 }
 export function act(input, action) {
   if (!available(input).includes(action)) return input;
-  const s = clone(upgrade(input)); const log = text => s.journal.push(text);
+  const before=upgrade(input), s = clone(before); const log = text => s.journal.push(text);
   s.tick++; let usedId = null, stimulusId = null;
   const wasMirrorCrisis=mirrorCrisis(s);
   const wasRegionalCrisis=regionalCrisis(s);
@@ -205,11 +207,14 @@ export function act(input, action) {
   advanceReunion(s,action,reunionWindow);
 
   postRegional(s);
-  s.revision++; s.journal = s.journal.slice(-100); return s;
+  s.revision++;
+  s.actionReceipt=actionReceipt(before,s,action);
+  s.journal = s.journal.slice(-100); return s;
 }
 function systemAction(a){return ['second:','release:','abandon:','reaction:','death:','balance:','study:'].some(p=>a.startsWith(p));}
 
 export function validate(s) {
+  if(!s||!validReceipt(s))return false;
   if(!s||!Array.isArray(s.spirits)||!Array.isArray(s.relations))return false;
   if(!validCase24(s)||!validCalendar(s)||!validWorldRegistry(s)||!validContracts(s)||!validXArchives(s)||!validIdentityCase(s)||!validPostwar(s)||!validFinale(s)||!validHungry(s)||!validCityCrisis(s)||!validMirror(s)||!validRegional(s)||!validReunion(s)||!validDual(s)||!validVillage(s)||!validSocial(s)||!validMall(s)||!validDachang(s)||!validSchool(s)||!validDoorCase(s)||!validInvestigation(s)||!validEvolution(s))return false;
   if (s && (Object.hasOwn(s, 'pressure') || Object.hasOwn(s, 'ghost') || Object.hasOwn(s, 'totalRevival'))) return false;

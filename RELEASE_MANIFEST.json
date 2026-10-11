@@ -1,5 +1,6 @@
 {
-  "version": "0.24.1",
+  "version": "0.24.3",
+  "base_commit": "a342b473583d918980672d09468873d65c2ab356",
   "files": [
     {
       "path": ".nojekyll",
@@ -7,9 +8,174 @@
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
-      "path": "README.md",
-      "bytes": 607,
-      "sha256": "356b9a4064a6acd2af9f374afb49d2ae37d17a5f3c6b0d0854394a98a1458be4"
+      "path": "assets/backpack/art-a.png",
+      "bytes": 39961,
+      "sha256": "5664331b25b0e98a0b287e5fa9d6cc2a25ad4366e8709c618104cdf09b296497"
+    },
+    {
+      "path": "assets/backpack/art-b.png",
+      "bytes": 35730,
+      "sha256": "27a4d1d28d9ce63d936175229b12d30182f75f061adc3106ca61ce5a47768969"
+    },
+    {
+      "path": "assets/backpack/art-c.png",
+      "bytes": 35305,
+      "sha256": "e5d1bb2e35d16feaad9d921b08d082b31dc517a9c4665b9653adad86fba1c0cd"
+    },
+    {
+      "path": "assets/backpack/art-d.png",
+      "bytes": 37249,
+      "sha256": "be8d5be2aa73b8659879e77c4d43dc938df0fdca45a5c22910dfaef6e4790707"
+    },
+    {
+      "path": "assets/backpack/art-divine.png",
+      "bytes": 41779,
+      "sha256": "8205b96054b597da381ef0029388f308b6a19b0374bf881cdee9db497ea3187d"
+    },
+    {
+      "path": "assets/backpack/art-s.png",
+      "bytes": 36495,
+      "sha256": "d6e59e279d4cb7703a2f4134d3e4ed07c2c92a3ebd68d9ba8fb07b044c0ed5e8"
+    },
+    {
+      "path": "assets/backpack/burden.png",
+      "bytes": 4662,
+      "sha256": "7fbd331c9b81ce27eb382a0a68545e37e7f615c1a1a029d1569e2cfbeba3f568"
+    },
+    {
+      "path": "assets/backpack/button-dark.png",
+      "bytes": 7287,
+      "sha256": "74922e37c44b6f8524dcf1944120a0fbbe7a4155120aaa60f5c3a973fff211a0"
+    },
+    {
+      "path": "assets/backpack/button-red.png",
+      "bytes": 3586,
+      "sha256": "db96470e275fd66f04e8abe7dd909072a4627496eeb1df6cfa265f88ef011b45"
+    },
+    {
+      "path": "assets/backpack/development.png",
+      "bytes": 4863,
+      "sha256": "7a78114fb6fa786154547f04d2fcc207ab5cebd52e3b2bd1ac190ea1f605b043"
+    },
+    {
+      "path": "assets/backpack/frame-a.png",
+      "bytes": 8466,
+      "sha256": "f4629c37f113e2b75a7e01431a790e6d5b06db4d34ece7657d3b547618990f57"
+    },
+    {
+      "path": "assets/backpack/frame-b.png",
+      "bytes": 9219,
+      "sha256": "658e535c41582d5beacdc4b462a10316648daf85e2ccd5afc10830d994151222"
+    },
+    {
+      "path": "assets/backpack/frame-c.png",
+      "bytes": 9491,
+      "sha256": "5e9c40fb3da28b3052ecf1ab13fe50c4f0b8be39d28b54304f73427815abce61"
+    },
+    {
+      "path": "assets/backpack/frame-d.png",
+      "bytes": 9090,
+      "sha256": "dfd8e612b7b7402e6823db36e691f75140dcf4d84f169f1bac8d7c908b7e73d5"
+    },
+    {
+      "path": "assets/backpack/frame-divine.png",
+      "bytes": 9349,
+      "sha256": "62610bd103dee4ea973e75f6288a782028a4dcfd29308ef02328d33ca2ebe6d4"
+    },
+    {
+      "path": "assets/backpack/frame-s.png",
+      "bytes": 7742,
+      "sha256": "bb62525ab872203de07ebb99c0225315f940e00403cfe9a1fef3d6ace26c316c"
+    },
+    {
+      "path": "assets/backpack/grade-a.png",
+      "bytes": 5450,
+      "sha256": "0093644c1fd039caacc103f23ad8aecc1c76afd3eff202fe606c48bb752f0ce0"
+    },
+    {
+      "path": "assets/backpack/grade-b.png",
+      "bytes": 6672,
+      "sha256": "338adb14eabe632f65e1dbe03eadd512f317fa29e00e8345d79ed6b1c351d0d0"
+    },
+    {
+      "path": "assets/backpack/grade-c.png",
+      "bytes": 6561,
+      "sha256": "9015e54e978e78aedcc1a430c386efb522dfe712fd0b2d56ae8ac0efbddb56dc"
+    },
+    {
+      "path": "assets/backpack/grade-d.png",
+      "bytes": 6759,
+      "sha256": "35f97ab4e1cffb7c583f470eba99b3423a874163e8b334a4a302dddb5626f535"
+    },
+    {
+      "path": "assets/backpack/grade-divine.png",
+      "bytes": 6834,
+      "sha256": "8bd0c0930587216c9998410bc82168ed968135244f528c807c91626cab47082b"
+    },
+    {
+      "path": "assets/backpack/grade-s.png",
+      "bytes": 5761,
+      "sha256": "774aba26afaa7c6925d5c1a154a0a1eeffefae30c7c12a90c26380ae8d6eb4c0"
+    },
+    {
+      "path": "assets/backpack/host.png",
+      "bytes": 125326,
+      "sha256": "0273b1b19d6d82cda1a03b806cd963d84e9d9298f17351673c7a5a0d3a6106fd"
+    },
+    {
+      "path": "assets/backpack/lock.png",
+      "bytes": 3718,
+      "sha256": "868a25fbae414e9e6a6d46b743f8ae9072ffb8f137c13f5ff6559fb264c77b2e"
+    },
+    {
+      "path": "assets/backpack/medium.png",
+      "bytes": 5164,
+      "sha256": "a2bb42d32d5339eba904dae6d4645c00602f21d916a6d2838566074ea3e0c4e4"
+    },
+    {
+      "path": "assets/backpack/nav-bag.png",
+      "bytes": 9592,
+      "sha256": "466d423767e53fd3d9fe61b4260886fc375a08f955b2a6605c9d2bfecf9367b4"
+    },
+    {
+      "path": "assets/backpack/nav-book.png",
+      "bytes": 7461,
+      "sha256": "a323871d55a49915b8503ed444e0417010cea90e757f4e68667dd5de4957bdba"
+    },
+    {
+      "path": "assets/backpack/nav-record.png",
+      "bytes": 6887,
+      "sha256": "4f4c5bc48e0132d9d2e38a7716656ad822d512f4464c86d833b34e857bfd4171"
+    },
+    {
+      "path": "assets/backpack/nav-sync.png",
+      "bytes": 8825,
+      "sha256": "c55508ee9eb1f4246ad510508f5c7344e073335932c3f7fb72b9733b581b15c7"
+    },
+    {
+      "path": "assets/backpack/panel.png",
+      "bytes": 20989,
+      "sha256": "34ecd34d7c7c4858f6ae3e13b860279871920461bec004b22cac952723d210f7"
+    },
+    {
+      "path": "assets/backpack/resonance.png",
+      "bytes": 4826,
+      "sha256": "4238a4e308584898ae6e7382c45e86c50bf9b686d09752aa7c1955c2bd0ef020"
+    },
+    {
+      "path": "assets/backpack/revival.png",
+      "bytes": 5147,
+      "sha256": "20fb97abdb72214cf6bae3fd8809d71efb5bd749e687241d17ac5e204ea61cfe"
+    },
+    {
+      "path": "assets/backpack/risk.png",
+      "bytes": 3725,
+      "sha256": "aa7dfbd58528e306810fe23594638bb3016069a350684f9353895d48011260c6"
+    },
+    {
+      "path": "assets/backpack/selected.png",
+      "bytes": 13547,
+      "sha256": "a2cf4c4b64753dcbf4a984093ba4854f199522dfb1254bbb5307ea055afbe221"
     },
     {
       "path": "assets/city-wraith-v1.png",
@@ -27,14 +193,374 @@
       "sha256": "d7bdb1cee215b689e23c2f95672a6084c790542170648267a55114103d756a08"
     },
     {
+      "path": "assets/ink-panel-workshop.svg",
+      "bytes": 1436,
+      "sha256": "a3a580ed1c350a6f607b0bcd215887813399526b90b2c161caad3f073710735c"
+    },
+    {
       "path": "assets/ink-panel.svg",
       "bytes": 1425,
       "sha256": "7a47ae2cbe666774e3e41fb32cf0adc17b40d940d80e1959d52c33022327949a"
     },
     {
+      "path": "assets/workshop-action-bind.png",
+      "bytes": 1470,
+      "sha256": "17b6fb78c4ee80a418af23f32848d8947127c50d6b4542abb3e1d59d6b16a581"
+    },
+    {
+      "path": "assets/workshop-action-death.png",
+      "bytes": 1546,
+      "sha256": "c9ee157b511a6186bc1a40cbc6a4f77f1672928250003bf86548968e2719019d"
+    },
+    {
+      "path": "assets/workshop-action-equip.png",
+      "bytes": 1681,
+      "sha256": "9a8eecb0c95a598c5f5a902317ae1128acf087c413590fd5b7e4e3e9492fc23e"
+    },
+    {
+      "path": "assets/workshop-action-swap.png",
+      "bytes": 1303,
+      "sha256": "529ad851eec3203b30c051183c60d3cfffd589ddcea79304d54d2388d2f936fa"
+    },
+    {
+      "path": "assets/workshop-action-tree.png",
+      "bytes": 1145,
+      "sha256": "2f770c0285df73dd8c5f36f43fbb4bbd109735285b48ad969fdb2549c8e6bfbd"
+    },
+    {
+      "path": "assets/workshop-card-frame-reference.png",
+      "bytes": 152704,
+      "sha256": "b36a4a8ea6c42a38ddde1dec05612821d46c3ea430f1f369845ee7ee691662dc"
+    },
+    {
+      "path": "assets/workshop-cassette-art-v1.png",
+      "bytes": 2239658,
+      "sha256": "2270e4614fbd5666b83c22e13ca80330450c8d51a9337f37a3d35103a20dfa2b"
+    },
+    {
+      "path": "assets/workshop-corridor-v3.png",
+      "bytes": 2560602,
+      "sha256": "e23b2a4dd747ed5dc14c43d4d57bf3770f2e8cc4f16b8015dbcb792436df6abe"
+    },
+    {
+      "path": "assets/workshop-frame-cta.png",
+      "bytes": 86297,
+      "sha256": "01eab65c06d9b10153035b39ad753ae4759d4b121876be3595cc1b5620d3264d"
+    },
+    {
+      "path": "assets/workshop-frame-detail.png",
+      "bytes": 32545,
+      "sha256": "60cfb3226c8deebbc8c65729548012bcc7a27f07080dbc0408c586c626485e2e"
+    },
+    {
+      "path": "assets/workshop-frame-host.png",
+      "bytes": 14377,
+      "sha256": "76ae5001f948b7354c0be31f8aee6a972d42f3abd533717e469cc44757d03d66"
+    },
+    {
+      "path": "assets/workshop-frame-mosaic.png",
+      "bytes": 32081,
+      "sha256": "f8d4afc54d5db2723300f714d264d25e11beeda512de682c65fda6d26939f482"
+    },
+    {
+      "path": "assets/workshop-frame-nav-active.png",
+      "bytes": 9207,
+      "sha256": "c9e748d749c9f8065df4fa1f7a65edd31c2cb6b7ae29c30aaf7067cac1cbd107"
+    },
+    {
+      "path": "assets/workshop-frame-reference.png",
+      "bytes": 16425,
+      "sha256": "553e01ac6c4406770d4e8bc0aec83f8864dd7d68856540213efe7868b47d6b51"
+    },
+    {
+      "path": "assets/workshop-hero-v3.png",
+      "bytes": 2518242,
+      "sha256": "8616b0bc580af1fd2f08e12724cf9b3b6ed7907c55f2a47fda5e2d1668961c36"
+    },
+    {
+      "path": "assets/workshop-host-v1.png",
+      "bytes": 2414233,
+      "sha256": "54ae694ad892feb1b822888d0a981019e64b4ed7410f32632bb470e9d1c30d5e"
+    },
+    {
+      "path": "assets/workshop-nav-archive.png",
+      "bytes": 4711,
+      "sha256": "4085cbb01ec3f7e3fe7f62a72df6460400405fd875b1cd721dfb84d836ca479d"
+    },
+    {
+      "path": "assets/workshop-nav-bag.png",
+      "bytes": 3698,
+      "sha256": "3a698f542ebb34004dab78c3892a3b44cbc489eeeb89d9333ebf16b44a5d2993"
+    },
+    {
+      "path": "assets/workshop-nav-equip.png",
+      "bytes": 4725,
+      "sha256": "7eb83998590f4554af208c7dc162681af9dd9de98cf23cd4fa74e9dc4dab2d55"
+    },
+    {
+      "path": "assets/workshop-nav-record.png",
+      "bytes": 3265,
+      "sha256": "2d5edfa931a192a8a6e7b9f0ff38046bc4106db6d81680c6fd11b4fb2af5cd27"
+    },
+    {
+      "path": "assets/workshop-nav-sync.png",
+      "bytes": 4713,
+      "sha256": "3a571ca4d003efc19c43468136d13ee95b1dc95f20702186d2fb62e18ec80bc3"
+    },
+    {
+      "path": "assets/workshop-plan-ref-domain.png",
+      "bytes": 24117,
+      "sha256": "afbaf7bc73ac8d3b4dd67be110c012f11c885a8ba92af9ec9d3b3ea9b3f17c0d"
+    },
+    {
+      "path": "assets/workshop-plan-ref-rule.png",
+      "bytes": 23457,
+      "sha256": "0a1628023df9c26367a7092cd827d9b63889574f7c71cc49b942d56d58ab6586"
+    },
+    {
+      "path": "assets/workshop-plan-ref-suppression.png",
+      "bytes": 23328,
+      "sha256": "5734c4bfe7e525774ef25df0cd60615fdd2cc2937752ffdb3008d4938ad7a2f5"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/card-blood-art-crop.png",
+      "bytes": 23787,
+      "sha256": "478c7e1f763ae97fc0f5a44914a3475404bf17f929d59a7cc4e0e847aa7ff78b"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/card-blood-art-tight.png",
+      "bytes": 21344,
+      "sha256": "2b1bfe86e267be0213f514eec4f5a8a0d7e8678d7ca55b1b6f8e174de31fb1a8"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/card-blood-full.png",
+      "bytes": 45627,
+      "sha256": "e6884d6dc8b10527e7cfc13ec88006acb304cebb3c8c5cbd958eb0f58e7c45cf"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/card-eye-art-crop.png",
+      "bytes": 26401,
+      "sha256": "19d9dc3f79326ea820300fd5db37e13a13d23c991712f4751c4639cc1b7f85aa"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/card-eye-art-tight.png",
+      "bytes": 23286,
+      "sha256": "c304f3fadd8e21ffe67a4800c2226e13b45d68635cbc1c41a9778b0783946ad0"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/card-eye-full.png",
+      "bytes": 51833,
+      "sha256": "81154d6740da5c3783534704ea85d58fca7902d460ebf0d674ab742845ca9dac"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/card-faceless-art-crop.png",
+      "bytes": 28340,
+      "sha256": "9dd4267acc46d39d63ed0bd0b3e7810beab805ff13c4c09d4c1e2a036a5b469e"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/card-faceless-art-tight.png",
+      "bytes": 25112,
+      "sha256": "7378732ed7880e819af888062f32350cc50837a4fe9a2b88056dc1ecdf7a15e3"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/card-faceless-full.png",
+      "bytes": 52277,
+      "sha256": "01f1f39e9f99989a62f93b481eaa57a10f0935020b74a8261087e76b684c7855"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/card-fire-art-crop.png",
+      "bytes": 25140,
+      "sha256": "3042375ea3a86cdec67cb16f4472bed56ea333927de760f85d996e3656cc2e65"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/card-fire-art-tight.png",
+      "bytes": 21830,
+      "sha256": "7d18aaeb25e6335715056a070b6e33198cb0260caad9eaa48473017f0a00eb77"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/card-fire-full.png",
+      "bytes": 48094,
+      "sha256": "8e80787dcea364aaaf8c7b4484b9bb6d19a1e0386f571240430046a938e5b179"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/card-hand-art-crop.png",
+      "bytes": 25401,
+      "sha256": "38c8428454c04875043f5066424d8fc8b0ff01f1d82585ed8aad25ac1462f5d7"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/card-hand-art-tight.png",
+      "bytes": 22179,
+      "sha256": "e309daa24b7309850c84038aea966bf16265b2d5b44b3082622d17b15d59e936"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/card-hand-full.png",
+      "bytes": 48899,
+      "sha256": "c0e9d32ff2bc1ffd8203d8487e2bd96ee9cb2adf4765dee8464486901ab4d43c"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/card-shadow-art-crop.png",
+      "bytes": 25806,
+      "sha256": "bbb9393540fe45e0cb2118c4edf80d10da70bb42ea0b367ec7b8c729b252ced0"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/card-shadow-art-tight.png",
+      "bytes": 22889,
+      "sha256": "c42d166de49839f63f3482dd8b34e7a479afaeca0c80cc03b211aaadd01c9cc6"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/card-shadow-full.png",
+      "bytes": 50132,
+      "sha256": "db1f28816d988d5efe08259c5cafaa55d64eb787b04632c02d43ee9521d4c443"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/card-soul-lock-art-crop.png",
+      "bytes": 27359,
+      "sha256": "346cfd4ed73794f70558a5d252942f2b4ca60c19ba0ae8ccab49d8890c2cc7b5"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/card-soul-lock-art-tight.png",
+      "bytes": 24637,
+      "sha256": "f22f21038dedd4fb43047d2a9363d397d790f26bc7ef785bbb42488c0b1430e2"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/card-soul-lock-full.png",
+      "bytes": 52265,
+      "sha256": "77038b450185d0b0ca67299c27576854da4df05476134dae6952dbad01c42843"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/node-blood-art.png",
+      "bytes": 20324,
+      "sha256": "f063caeea6226a926f6ed92c1f00d82b51a63759386fdcd200df69cab194643c"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/node-blood.png",
+      "bytes": 26721,
+      "sha256": "976152c7637b07b87dd9360816baa3e2262317a57cd47b407ab5a730298576b4"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/node-eye-core-art.png",
+      "bytes": 27086,
+      "sha256": "592c160eb41f7cffcc30468a56d3fc521d0058211f03db7be8300497fd72a71c"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/node-eye-core.png",
+      "bytes": 34608,
+      "sha256": "d8f24ba4cf4fbc8ab404ccd231d588cda68ab1233af36ba4d77b037e24bccdb9"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/node-fire-art.png",
+      "bytes": 20902,
+      "sha256": "a4aac2b151024477566b60185ef9de21b659f57f000233ef1cd645b06a9b7358"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/node-fire.png",
+      "bytes": 26947,
+      "sha256": "62b8a537aa4797f01b3c5ebb60e9b7e90da65123b7c10bc94de4f57208a963fa"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/node-hand-art.png",
+      "bytes": 22226,
+      "sha256": "c8b7e98d522ea2384c159de020079061ddd82cf308dbace626fa57605dc1083a"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/node-hand.png",
+      "bytes": 29103,
+      "sha256": "d56d0f4c72c04e7deeae2e503959428e4e859bfe17327efd6a1c11f52ae996d5"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/node-shadow-art.png",
+      "bytes": 22492,
+      "sha256": "5418c7fb38c28ca7ecdd71a35fd3e2f50ca513837e9bc692ffddff0b12fea1c7"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/node-shadow.png",
+      "bytes": 28191,
+      "sha256": "5b87c69f65b2ea127deb49a0cfbce463834c3a6b21854ce7f51f4f05854952fa"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/panel-cost.png",
+      "bytes": 80713,
+      "sha256": "ae0fa61268c1d71feb1a59b04999fcb61eabd011f0f015de69b3a703c5cf328b"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/panel-effect.png",
+      "bytes": 68532,
+      "sha256": "c8fa65251c6329524f2176ca550b80ae52d33f693528809873d5ded67e3424d7"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/panel-status.png",
+      "bytes": 113734,
+      "sha256": "d7164486e8d99110a7cdaf0310b43addc7998d2f440ca4993e894b0a927fc340"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/skill-eye.png",
+      "bytes": 40205,
+      "sha256": "551a362353f6a79a352af9d134faf5082743983151ccdbdf76abfe3877be9a16"
+    },
+    {
+      "path": "assets/workshop-reference-extracted/skill-tree.png",
+      "bytes": 56475,
+      "sha256": "7cb8b22eabed50fbd6fb131e1cb857ec8f494fe533a428e30712f45e4a6f2626"
+    },
+    {
+      "path": "assets/workshop-status-corruption.png",
+      "bytes": 7640,
+      "sha256": "34c4dc610dfedfafa1e951827be526daa46414dcf9d43e4d6ab4457ad4bdfdab"
+    },
+    {
+      "path": "assets/workshop-status-domain.png",
+      "bytes": 8422,
+      "sha256": "1197348e46e3f9e1e20413ebdabd2bdc486560c6529ebf29b38d58b830d94f19"
+    },
+    {
+      "path": "assets/workshop-status-revival.png",
+      "bytes": 6807,
+      "sha256": "db18a1b267c65efce4925cf84f690a1ea0c2e9fe72558b507ef8b8b49a59420c"
+    },
+    {
+      "path": "assets/workshop-status-stability.png",
+      "bytes": 7482,
+      "sha256": "fe358fcaaff77d53424966fc54f6d1d8f6c9315e64cb5c8251f0656794acb086"
+    },
+    {
+      "path": "assets/workshop-status-suppression.png",
+      "bytes": 7897,
+      "sha256": "8761f61840f6975fff14af9dabf81a61ab0c1a976992479e952ae2a8e3e9c5d8"
+    },
+    {
+      "path": "assets/workshop-status-sync.png",
+      "bytes": 8730,
+      "sha256": "ef886c8c9fe8d124985a5200daf182a4a88fad872842ab4dff8a3fd554d77bd2"
+    },
+    {
+      "path": "assets/workshop-title-reference-crop.png",
+      "bytes": 73911,
+      "sha256": "7509e6c4c759a63e2ddd0621ba3a7c8ed7bd27609d59b55ec29ec6a2ae78f849"
+    },
+    {
+      "path": "assets/workshop-vacant-seal.svg",
+      "bytes": 629,
+      "sha256": "6b8012247615b0f8bb6613c6117cbaee27603b9115fddf87c47d0c7c3595eb0a"
+    },
+    {
+      "path": "backpack-live.html",
+      "bytes": 943,
+      "sha256": "724743fcc7b01da5ad34443e5fdeec5c2d7578af626e9e4726e02ecf49d64f86"
+    },
+    {
       "path": "index.html",
-      "bytes": 701,
-      "sha256": "1d6dd32d01f46bef3d49f1cfb2e2c4456d8fc23c0383145be464ec737afdd03b"
+      "bytes": 943,
+      "sha256": "c2cded86ff356af4313c048dbc29074311b742bbcf6fb88aab4a8f484e3e64e4"
+    },
+    {
+      "path": "README.md",
+      "bytes": 838,
+      "sha256": "63434d3b6ea4f8ed8adfa7dfc96558bc669422dbc28f509e5c9521dcd9a9537a"
+    },
+    {
+      "path": "src/action-feedback.js",
+      "bytes": 2754,
+      "sha256": "6340a95d2474e1df7e5d1b3c09f6bfa52c8aef07c61a84dee345e7c94208b76d"
     },
     {
       "path": "src/advanced.js",
@@ -43,13 +569,48 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 64159,
-      "sha256": "f36ea3dde8eebf63a1e76ce015faa4ec11b0cd07c7ca95c13d7195b6b3e11217"
+      "bytes": 72788,
+      "sha256": "5df7eee923c8a245544c236f2d1e937266140b00f99d56106a9a0bab27a37202"
     },
     {
       "path": "src/audio-medium.js",
       "bytes": 1961,
       "sha256": "6d4ee180c6e05080ae7415c1dbf7652f3c2a6619fca7705800041129346106cd"
+    },
+    {
+      "path": "src/backpack/backpack.css",
+      "bytes": 14151,
+      "sha256": "e4a3276af4a1cbee052739d79e45ff8bb1b8349c2d268097ffa52de6618c27be"
+    },
+    {
+      "path": "src/backpack/backpack.js",
+      "bytes": 14235,
+      "sha256": "56768348a131b0cd18e0a2f3be6637120fa94b6c96461448450d81f4b5415c47"
+    },
+    {
+      "path": "src/backpack/live-model.js",
+      "bytes": 2366,
+      "sha256": "2ee1883eaa855058f646e3bf7d955ff7dcd9a47366a8cdeac362c791940506d8"
+    },
+    {
+      "path": "src/backpack/live-ui.js",
+      "bytes": 6349,
+      "sha256": "56f18908e50c59c610b745cb4566a1543a2313559c59a2316bf207a69de0a2a3"
+    },
+    {
+      "path": "src/backpack/live.css",
+      "bytes": 466,
+      "sha256": "a7bf42560dee3801b3ea0943ef5e1efa1d9e33526230a2a90a7bdedc655b1a99"
+    },
+    {
+      "path": "src/backpack/live.js",
+      "bytes": 3041,
+      "sha256": "274b1401585708b86b42f1eaa50b62370635911b991aaf159cf9275072f2fc53"
+    },
+    {
+      "path": "src/backpack/model.js",
+      "bytes": 2530,
+      "sha256": "5bf2b3c6e62688e97b71d4de9b7d96c3e87cb4ae9c9f0e2c836635833f49d421"
     },
     {
       "path": "src/bus-saves.js",
@@ -88,8 +649,8 @@
     },
     {
       "path": "src/combat.js",
-      "bytes": 6635,
-      "sha256": "2393dddc77ef762e9cc29b36a3b23a04db2fa0ceb51360a84771d34158a140f4"
+      "bytes": 7601,
+      "sha256": "62f8f4e56216e67e4e5562edc1ad3ec5079a2c968018002130b7655582a7e440"
     },
     {
       "path": "src/content.js",
@@ -128,8 +689,8 @@
     },
     {
       "path": "src/engine.js",
-      "bytes": 25835,
-      "sha256": "09c13213acf5dacfc9bdfad3587d8b225b791ca18c668923ce3ee8ec079df02f"
+      "bytes": 26274,
+      "sha256": "1268297d42788656397a203acc67ea320b77386965b04785cb9f8b0ce7869274"
     },
     {
       "path": "src/event-rules.js",
@@ -145,6 +706,11 @@
       "path": "src/evolution.js",
       "bytes": 19296,
       "sha256": "37a27d78e2dbbf39399a6c808cf71e02391603f902df5ed8328f93778c76316f"
+    },
+    {
+      "path": "src/exploration-scene.js",
+      "bytes": 6288,
+      "sha256": "1288d9207e3cffc185daf6854bd3080edf06fd422d8ec4e2ca8785382a5c92ab"
     },
     {
       "path": "src/finale-causality.js",
@@ -165,6 +731,11 @@
       "path": "src/finale.js",
       "bytes": 12850,
       "sha256": "6d62499cce88be28f30f9c53e8c219d59cbd6ddf82d1faa8748e0386f54627ef"
+    },
+    {
+      "path": "src/gameplay-guide.js",
+      "bytes": 12028,
+      "sha256": "201dc6f55c88041453c85a4d5da815297bef7c7498aa8a9b1d52a5df52253904"
     },
     {
       "path": "src/hungry-model.js",
@@ -213,8 +784,8 @@
     },
     {
       "path": "src/investigation.js",
-      "bytes": 14155,
-      "sha256": "7a557c39a61a2b29a4f2f45fe337df40c075747f7db162d255b53f62308ab319"
+      "bytes": 14172,
+      "sha256": "b488b5364cb1fa8fdc7356191baaa109f778b4a25bc0d5098156b1a38272fb0e"
     },
     {
       "path": "src/journey.js",
@@ -302,6 +873,11 @@
       "sha256": "06141db9765b401576fb76136a078bfe9f7da883f918e9edd10bd09e7f369f44"
     },
     {
+      "path": "src/rpg-workshop.js",
+      "bytes": 20743,
+      "sha256": "9ebf1e5684e42f50a1fdf63dbf5f83a689d48f620e4f5fcd2e501849238416b0"
+    },
+    {
       "path": "src/rules.js",
       "bytes": 2476,
       "sha256": "cb4e886abbef75d1e5afe6c760369274ef95f3c0885e210ba35c1e12c9321a65"
@@ -343,8 +919,8 @@
     },
     {
       "path": "src/style.css",
-      "bytes": 29244,
-      "sha256": "cf5619d5fc2b533b27b4c7252accc65593ff492f8253cc8c9eff42718689b87e"
+      "bytes": 88874,
+      "sha256": "9583c8cfd0cf4036f82df12f8289efd16369d75ba01b307579add4fbf2049dfe"
     },
     {
       "path": "src/transit-model.js",
@@ -355,6 +931,11 @@
       "path": "src/transit.js",
       "bytes": 14522,
       "sha256": "72e30bac1bbd3b7d86c1200efe57943f301daa61a7e7c679472871385abb4161"
+    },
+    {
+      "path": "src/ui-loop.js",
+      "bytes": 9911,
+      "sha256": "bafd0c3fe970d7e94dc5e28c5191578a822c021b146c4ddd61413187ab85ba44"
     },
     {
       "path": "src/v1.js",
@@ -368,8 +949,8 @@
     },
     {
       "path": "src/views-cd.js",
-      "bytes": 8501,
-      "sha256": "724f06376cf5c7393eaf4bcd04c002bdfc47236004a7449f14cbf0a510fe379c"
+      "bytes": 8657,
+      "sha256": "8b4965395036284b2b61e12ca35e266a4796f4ff60b95799a7dca2c4d78de36d"
     },
     {
       "path": "src/views-city-crisis.js",
@@ -410,6 +991,11 @@
       "path": "src/views-finale.js",
       "bytes": 15101,
       "sha256": "c11733024e6d5aa18cf0edec4d8af12aabf9f1ec53db69ce888015e2c229d64a"
+    },
+    {
+      "path": "src/views-gameplay.js",
+      "bytes": 8857,
+      "sha256": "64a8802f53735cb242724af2dbb9000820b4fe99b45ea60b32bf640536a0b91a"
     },
     {
       "path": "src/views-hungry.js",
@@ -485,6 +1071,16 @@
       "path": "src/village.js",
       "bytes": 24844,
       "sha256": "d81a78bfde571356ef29e5a3393f5289fca2765684d18d5df11716b640a87769"
+    },
+    {
+      "path": "src/workshop-layout.js",
+      "bytes": 1440,
+      "sha256": "fdf17c8bb7e3b8cb18f1f1c2757370d54e8f55e08679e3c1972425b5bf66c9ca"
+    },
+    {
+      "path": "src/workshop-responsive.css",
+      "bytes": 13552,
+      "sha256": "e8244a8dbbde3b44c0b59c324dc5c31993fc41f9d942a3bd5732f241b3ef99b3"
     },
     {
       "path": "src/world-registry.js",

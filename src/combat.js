@@ -4,6 +4,10 @@ import {activeIds,v1Ward,knowledgeState} from './v1.js';
 export function newCombat(id,s){return {eventId:id,ruleId:'rule:'+id,sourceId:'source:'+id,clock:0,playerGauge:100,sourceGauge:0,turn:0,position:'safe',wardWeight:0,wardMedium:null,cooldowns:{},logs:[],snapshot:{life:s?.life||100,ward:0,combat:{position:'safe',playerGauge:100,sourceGauge:0,cooldowns:{}}}};}
 export function combatAvailable(s){const c=s.combat;if(!c)return [];
  const out=['combat:observe','combat:avoid','combat:force','combat:risk','combat:retreat'];
+ for(const g of s.spirits.filter(g=>['watch','echo','shadow'].includes(g.sourceId)&&activeIds(s).includes(g.id)&&!s.systems.combinations.some(x=>x.disabledId===g.id)&&!c.cooldowns[g.id])){
+  if(g.development>=25&&s.energy>=1)out.push('combat:focus:'+g.id);
+  if(g.development>=50&&s.energy>=2)out.push('combat:cover:'+g.id);
+ }
  if(s.energy>0)out.push(...s.spirits.filter(g=>activeIds(s).includes(g.id)&&!s.systems.combinations.some(x=>x.disabledId===g.id)&&!(c.cooldowns[g.id]>0)).map(g=>'combat:ability:'+g.id));
  if(s.systems.combinations.some(x=>x.ids.every(id=>activeIds(s).includes(id)))&&s.energy>=2&&!c.cooldowns.combo)out.push('combat:combo');
  if(s.systems.items.barrier>0)out.push('combat:item');
@@ -23,7 +27,13 @@ export function applyCombat(s,action){const c=s.combat,r=ruleFor(c.eventId,event
  if(k==='force'){c.position='exposed';log('玩家','普通力量无法消灭厉鬼，源头没有气血或击杀经验。');}
  if(k==='risk'){c.position='exposed';log('玩家',events[c.eventId].riskText);}
  if(k.startsWith('ability:')){const g=s.spirits.find(v=>v.id===k.slice(8)),own=ruleFor(g.sourceId,events[g.sourceId]);s.energy--;used=[g.id];develop(g,3);c.wardWeight=v1Ward(s,g,c.eventId);c.wardMedium=own.medium;c.cooldowns[g.id]=2;log('玩家',g.name+'对抗媒介，开发度＋3；自身独立复苏照常结算。');}
- if(k==='combo'){s.energy-=2;used=s.systems.combinations[0].ids;used.forEach(id=>develop(s.spirits.find(g=>g.id===id),2));c.wardWeight=4;c.wardMedium='all';c.cooldowns.combo=3;log('拼图','嵌套媒介阻断：两只鬼分别承担调用代价，次鬼独立按钮已被组合取代。');}
+ if(k.startsWith('focus:')||k.startsWith('cover:')){
+  const cover=k.startsWith('cover:'),g=s.spirits.find(g=>g.id===k.slice(6)),own=ruleFor(g.sourceId,events[g.sourceId]);
+  s.energy-=cover?2:1;used=[g.id];develop(g,3);c.wardWeight=Math.min(10,v1Ward(s,g,c.eventId)+(cover?0:1));c.wardMedium=own.medium;c.cooldowns[g.id]=3;
+  if(cover)c.position='safe';
+  log('玩家',g.name+(cover?'收束掩护：撤出触发区域，保留同媒介防护；能量－2。':'集中压制：同媒介权重＋1；能量－1。')+'开发＋3，调用复苏独立结算；不关押或消灭源头。');
+ }
+ if(k==='combo'){s.energy-=2;used=s.systems.combinations.find(x=>x.ids.every(id=>activeIds(s).includes(id))).ids;used.forEach(id=>develop(s.spirits.find(g=>g.id===id),2));c.wardWeight=4;c.wardMedium='all';c.cooldowns.combo=3;log('拼图','嵌套媒介阻断：两只鬼分别承担调用代价，次鬼独立按钮已被组合取代。');}
  if(k==='item'){s.systems.items.barrier--;c.wardWeight=5;c.wardMedium='all';log('物品','隔离符膜消耗×1，仅保护一次触发，不返还。');}
  if(k.startsWith('aid:')){const id=k.slice(4),a=s.systems.aids[id];a.remaining--;a.used++;c.wardWeight=3;c.wardMedium=ruleFor(id,events[id]).medium;log('援助',events[id].spirit+'援助调用，次数－1；未植入身体，不虚构负荷与复苏。');}
  if(k==='restrict'){s.bags--;s.restricted[c.eventId]=true;s.phase='限制';log('限制',events[c.eventId].restriction+'隔离袋×1已消耗，厉鬼被限制而非死亡。');s.combat=null;return {used};}

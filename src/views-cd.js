@@ -7,6 +7,8 @@ export function cdLabel(a,s){
  const map={'combat:start':'进入正式规则遭遇','combat:observe':'调查与复核证据','combat:avoid':'避开触发媒介','combat:force':'普通力量试探（不能杀死厉鬼）','combat:risk':'主动接触媒介（危险）','combat:retreat':'退出规则遭遇','combat:item':'隔离符膜（消耗1）','combat:restrict':'执行限制（隔离袋－1）','combat:combo':'调用嵌套媒介（能量－2）','second:begin':'第二鬼：开始匹配方案','second:match:mutual':'匹配：相互压制','second:match:partition':'匹配：宿主分区','second:match:medium':'匹配：外部媒介（植入时消耗符膜1）','second:implant':'植入：保留独立能力','second:combine':'结合：转为组合规则','second:stabilize':'完成失衡观察（能量－1）','second:remove':'放弃第二鬼并封存（隔离袋－1）','second:exit':'取消第二鬼方案','balance:medium':'修正平衡偏移（符膜－1）','reaction:item':'消耗符膜，拦截致死并撤离','death:commit':'提交死亡（该角色不能普通复活）'};
  if(map[a])return map[a];
  const name=id=>s.spirits.find(g=>g.id===id)?.name||id;
+ if(a.startsWith('combat:focus:'))return '集中压制：'+name(a.slice(13));
+ if(a.startsWith('combat:cover:'))return '收束掩护：'+name(a.slice(13));
  if(a.startsWith('combat:ability:'))return '灵异：'+name(a.slice(15));
  if(a.startsWith('practice:'))return '调用练习：'+name(a.slice(9));
  if(a.startsWith('study:'))return '档案开发：'+name(a.slice(6))+'（一次＋5）';

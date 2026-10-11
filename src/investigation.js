@@ -61,7 +61,7 @@ export function applyInvestigation(s,a){const x=s.investigation;let used=null;
 // One world advancement per accepted engine action, including actions after departure.
 export function advanceInvestigation(s,action){const x=s.investigation;if(!x.started||x.source==='CONTAINED')return;x.elapsed++;
  if(x.elapsed>=2&&!x.broadcast&&x.medium==='ACTIVE'){x.broadcast=true;x.heard=x.active;s.journal.push('广播中响起现场人员的姓名。听到声音本身没有立即造成伤害。');}
- const lu=x.npcs[0];if(x.elapsed===4&&lu.state==='ALIVE'&&!x.evacuated&&x.medium==='ACTIVE'){lu.state='MARKED';lu.mark={remaining:4};if(x.active){evidence(s,'mark');x.search[x.zone]='CHANGED';}}
+ const lu=x.npcs[0];if(x.elapsed===4&&lu.state==='ALIVE'&&!x.evacuated&&x.medium==='ACTIVE'){lu.state='MARKED';lu.mark={remaining:4};if(x.active&&x.zone==='hall'){evidence(s,'mark');x.search[x.zone]='CHANGED';}}
  for(const n of x.npcs)if(n.state==='MARKED'&&x.medium==='ACTIVE'&&!(n.id==='lu'&&x.protected)){n.mark.remaining=Math.max(0,n.mark.remaining-1);if(!n.mark.remaining){n.state='DEAD_COMMITTED';if(x.active)s.journal.push(n.name+'的标记后果已经提交；普通重启不会使其复活。');}}
  if(x.playerMark&&x.playerMark.remaining>0&&x.medium==='ACTIVE'&&action!=='inv:respond'){x.playerMark.remaining=Math.max(0,x.playerMark.remaining-1);if(!x.playerMark.remaining){s.life=0;s.systems.death='pending';x.active=false;s.journal.push('延迟规律导致致死，进入已有反应窗口；事件事实和伤亡不回滚。');}}
  if(x.active)for(const n of x.npcs)x.npcKnowledge[n.id]=n.state;
