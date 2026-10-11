@@ -1,3 +1,4 @@
+import {installGameCodex} from './codex/live.js';
 import {mountLiveBackpack} from './backpack/live.js';
 import {readLive} from './backpack/live-model.js';
 import {captureWorkshopUI,restoreWorkshopUI} from './workshop-layout.js';
@@ -248,14 +249,16 @@ function workspaceView() {
 }
 
 let liveBackpack=null;
+const codexUI=installGameCodex({getState:()=>liveBackpack?readLive(localStorage).state:state,navigate:page=>{tab=page==='背包与装备'?'拼图背包':page;render();window.scrollTo(0,0);}});
 function render() {
  if(liveBackpack){liveBackpack.destroy();liveBackpack=null;try{state=readLive(localStorage).state;}catch{notice='存档无法读取，原始内容未覆盖。';}}
+ codexUI.refresh();
  const isBackpack=tab==='拼图背包';
  document.querySelectorAll('link[data-game-style]').forEach(link=>{if(link.sheet)link.sheet.disabled=isBackpack;});
  document.querySelectorAll('link[data-backpack-style]').forEach(link=>{if(link.sheet)link.sheet.disabled=!isBackpack;});
  if(isBackpack){
   const root=document.querySelector('#app');root.removeAttribute('data-loop');root.dataset.view=tab;root.dataset.page=tab;
-  liveBackpack=mountLiveBackpack(root,{navigate(target){tab=({'驾驭厉鬼':'技能工坊','物资背包':'背包与装备','档案记录':'历史','厉鬼图鉴':'灵异档案','同步共鸣':'技能工坊'})[target]||'首页';render();window.scrollTo(0,0);if(target==='同步共鸣')document.getElementById('relations')?.scrollIntoView();}});
+  liveBackpack=mountLiveBackpack(root,{navigate(target){if(target==='厉鬼图鉴'){document.getElementById('game-codex-launcher').click();return;}tab=({'驾驭厉鬼':'技能工坊','物资背包':'背包与装备','档案记录':'历史','厉鬼图鉴':'灵异档案','同步共鸣':'技能工坊'})[target]||'首页';render();window.scrollTo(0,0);if(target==='同步共鸣')document.getElementById('relations')?.scrollIntoView();}});
   return;
  }
 
@@ -384,6 +387,8 @@ function render() {
  bindScene({getState:()=>state,legal:()=>available(state),label,storage:localStorage,root:document.querySelector('#app')});
  restoreWorkshopUI(document.querySelector('#app'),workshopUI);
 }
+const codexRoute=location.hash.startsWith('#codex-route=')?decodeURIComponent(location.hash.slice(13)):null;
+if(['地图','技能工坊','背包与装备','双鬼结构','灵异档案'].includes(codexRoute)){tab=codexRoute==='背包与装备'?'拼图背包':codexRoute;history.replaceState(null,'',location.pathname+location.search);}
 render();
 
 

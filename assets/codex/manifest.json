@@ -1,0 +1,291 @@
+{
+  "stage": 3,
+  "storage": "none",
+  "sourceStatus": "User supplied v2 atlas, earlier atlas and final PC reference; inspected in chat",
+  "sources": [
+    {
+      "file": "codex-clipboard-51f614c4-2afb-4cfb-a43b-eea329638f94.png",
+      "sha256": "58a677c1fcc576b530b60b68ff4809efbf3ef38d0b254a2e6b023be558cec6ee",
+      "size": [
+        1672,
+        941
+      ]
+    },
+    {
+      "file": "codex-clipboard-81c9083d-aa9c-47e4-be76-884c59bfb2b3.png",
+      "sha256": "bcb535eb44dcff4a0a5261c5ed424203bbc4199eede4d2d95a1eb23f361462aa",
+      "size": [
+        1672,
+        941
+      ]
+    },
+    {
+      "file": "codex-clipboard-b861a7eb-8a4c-44da-b489-489f0ef07b46.png",
+      "sha256": "577ea94645d939d9760bd8ccf358df777a02389ec5b6f79678a84bcda7285513",
+      "size": [
+        1672,
+        941
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "file": "city-strip.png",
+      "kind": "raster extraction",
+      "source": "codex-clipboard-81c9083d-aa9c-47e4-be76-884c59bfb2b3.png",
+      "crop": [
+        1268,
+        518,
+        1647,
+        590
+      ],
+      "size": [
+        379,
+        72
+      ],
+      "usage": "Decorative city background only, never an interactive surface",
+      "bakedText": false
+    },
+    {
+      "file": "portrait-red-demo.png",
+      "kind": "raster extraction",
+      "source": "codex-clipboard-51f614c4-2afb-4cfb-a43b-eea329638f94.png",
+      "crop": [
+        1525,
+        190,
+        1641,
+        362
+      ],
+      "size": [
+        116,
+        172
+      ],
+      "usage": "Small illustrative demo portrait, no name/rules/grade attached",
+      "bakedText": false
+    },
+    {
+      "file": "frame-god.svg",
+      "kind": "editable SVG frame",
+      "origin": "Rebuilt from approved atlas; no baked badge or text"
+    },
+    {
+      "file": "frame-s.svg",
+      "kind": "editable SVG frame",
+      "origin": "Rebuilt from approved atlas; no baked badge or text"
+    },
+    {
+      "file": "frame-a.svg",
+      "kind": "editable SVG frame",
+      "origin": "Rebuilt from approved atlas; no baked badge or text"
+    },
+    {
+      "file": "frame-b.svg",
+      "kind": "editable SVG frame",
+      "origin": "Rebuilt from approved atlas; no baked badge or text"
+    },
+    {
+      "file": "frame-c.svg",
+      "kind": "editable SVG frame",
+      "origin": "Rebuilt from approved atlas; no baked badge or text"
+    },
+    {
+      "file": "frame-d.svg",
+      "kind": "editable SVG frame",
+      "origin": "Rebuilt from approved atlas; no baked badge or text"
+    },
+    {
+      "file": "frame-unknown.svg",
+      "kind": "editable SVG frame",
+      "origin": "Rebuilt from approved atlas; no baked badge or text"
+    },
+    {
+      "file": "panel.svg",
+      "kind": "editable SVG panel",
+      "origin": "Rebuilt; quiet text-safe center"
+    },
+    {
+      "file": "button.svg",
+      "kind": "editable SVG button",
+      "origin": "Rebuilt; text is DOM"
+    },
+    {
+      "file": "divider.svg",
+      "kind": "editable SVG divider",
+      "origin": "Rebuilt"
+    },
+    {
+      "file": "unknown.svg",
+      "kind": "editable SVG unknown mask",
+      "origin": "Rebuilt; no hidden identity art"
+    },
+    {
+      "file": "icons.svg",
+      "kind": "editable SVG icon sprite",
+      "origin": "11 independent symbols; rebuilt from atlas roles"
+    },
+    {
+      "file": "portrait-red-detail-demo.png",
+      "kind": "raster extraction",
+      "source": "image(20261011-014917).png",
+      "crop": [
+        1146,
+        213,
+        1374,
+        486
+      ],
+      "size": [
+        228,
+        273
+      ],
+      "bakedText": false,
+      "usage": "Earlier supplied matching style reference portrait; illustration-only DEMO"
+    }
+  ],
+  "gaps": [
+    "Composite boards contain baked-in Chinese text, example plot fields and backgrounds; they are not transparent standalone component artwork.",
+    "Card frames, badges, tags, unknown masks, icons, panel and buttons rebuilt as editable SVG/CSS.",
+    "Extracted portrait is a small raster demo slot, not a full-resolution or verified canonical ghost portrait.",
+    "DEMO fixture art attribution is demonstration-only and does not identify formal ghosts."
+  ],
+  "reused": [
+    "assets/fonts/MaShanZheng-Regular.ttf (SIL OFL)",
+    "assets/workshop-reference-extracted/*-art-tight.png (existing isolated demo art)"
+  ],
+  "components": {
+    "badges": "components.js badge() + six rank CSS variants",
+    "tags": "components.js stateTag(); discovered/contacted/unknown/risk",
+    "card": "components.js card(); no fixed specimen text",
+    "detail": "components.js detail()",
+    "unknown": "projectRecord() hides identity and rules; unknown.svg has no secret artwork",
+    "buttons": "data-preview opens component-only dialog, no game action",
+    "progress": "progress(); unknown shows 0/???"
+  },
+  "styleRevision": "Unified with existing backpack/workshop visual assets, 2026-10-10",
+  "sharedAssets": [
+    {
+      "file": "shared/button-dark.png",
+      "sha256": "74922e37c44b6f8524dcf1944120a0fbbe7a4155120aaa60f5c3a973fff211a0",
+      "origin": "Existing backpack/workshop asset reused unchanged"
+    },
+    {
+      "file": "shared/button-red.png",
+      "sha256": "db96470e275fd66f04e8abe7dd909072a4627496eeb1df6cfa265f88ef011b45",
+      "origin": "Existing backpack/workshop asset reused unchanged"
+    },
+    {
+      "file": "shared/frame-a.png",
+      "sha256": "f4629c37f113e2b75a7e01431a790e6d5b06db4d34ece7657d3b547618990f57",
+      "origin": "Existing backpack/workshop asset reused unchanged"
+    },
+    {
+      "file": "shared/frame-b.png",
+      "sha256": "658e535c41582d5beacdc4b462a10316648daf85e2ccd5afc10830d994151222",
+      "origin": "Existing backpack/workshop asset reused unchanged"
+    },
+    {
+      "file": "shared/frame-c.png",
+      "sha256": "5e9c40fb3da28b3052ecf1ab13fe50c4f0b8be39d28b54304f73427815abce61",
+      "origin": "Existing backpack/workshop asset reused unchanged"
+    },
+    {
+      "file": "shared/frame-d.png",
+      "sha256": "dfd8e612b7b7402e6823db36e691f75140dcf4d84f169f1bac8d7c908b7e73d5",
+      "origin": "Existing backpack/workshop asset reused unchanged"
+    },
+    {
+      "file": "shared/frame-detail.png",
+      "sha256": "60cfb3226c8deebbc8c65729548012bcc7a27f07080dbc0408c586c626485e2e",
+      "origin": "Existing backpack/workshop asset reused unchanged"
+    },
+    {
+      "file": "shared/frame-divine.png",
+      "sha256": "62610bd103dee4ea973e75f6288a782028a4dcfd29308ef02328d33ca2ebe6d4",
+      "origin": "Existing backpack/workshop asset reused unchanged"
+    },
+    {
+      "file": "shared/frame-nav-active.png",
+      "sha256": "c9e748d749c9f8065df4fa1f7a65edd31c2cb6b7ae29c30aaf7067cac1cbd107",
+      "origin": "Existing backpack/workshop asset reused unchanged"
+    },
+    {
+      "file": "shared/frame-s.png",
+      "sha256": "bb62525ab872203de07ebb99c0225315f940e00403cfe9a1fef3d6ace26c316c",
+      "origin": "Existing backpack/workshop asset reused unchanged"
+    },
+    {
+      "file": "shared/grade-a.png",
+      "sha256": "0093644c1fd039caacc103f23ad8aecc1c76afd3eff202fe606c48bb752f0ce0",
+      "origin": "Existing backpack/workshop asset reused unchanged"
+    },
+    {
+      "file": "shared/grade-b.png",
+      "sha256": "338adb14eabe632f65e1dbe03eadd512f317fa29e00e8345d79ed6b1c351d0d0",
+      "origin": "Existing backpack/workshop asset reused unchanged"
+    },
+    {
+      "file": "shared/grade-c.png",
+      "sha256": "9015e54e978e78aedcc1a430c386efb522dfe712fd0b2d56ae8ac0efbddb56dc",
+      "origin": "Existing backpack/workshop asset reused unchanged"
+    },
+    {
+      "file": "shared/grade-d.png",
+      "sha256": "35f97ab4e1cffb7c583f470eba99b3423a874163e8b334a4a302dddb5626f535",
+      "origin": "Existing backpack/workshop asset reused unchanged"
+    },
+    {
+      "file": "shared/grade-divine.png",
+      "sha256": "8bd0c0930587216c9998410bc82168ed968135244f528c807c91626cab47082b",
+      "origin": "Existing backpack/workshop asset reused unchanged"
+    },
+    {
+      "file": "shared/grade-s.png",
+      "sha256": "774aba26afaa7c6925d5c1a154a0a1eeffefae30c7c12a90c26380ae8d6eb4c0",
+      "origin": "Existing backpack/workshop asset reused unchanged"
+    },
+    {
+      "file": "shared/host.png",
+      "sha256": "0273b1b19d6d82cda1a03b806cd963d84e9d9298f17351673c7a5a0d3a6106fd",
+      "origin": "Existing backpack/workshop asset reused unchanged"
+    },
+    {
+      "file": "shared/ink-panel.svg",
+      "sha256": "a3a580ed1c350a6f607b0bcd215887813399526b90b2c161caad3f073710735c",
+      "origin": "Existing backpack/workshop asset reused unchanged"
+    },
+    {
+      "file": "shared/lock.png",
+      "sha256": "868a25fbae414e9e6a6d46b743f8ae9072ffb8f137c13f5ff6559fb264c77b2e",
+      "origin": "Existing backpack/workshop asset reused unchanged"
+    },
+    {
+      "file": "shared/nav-bag.png",
+      "sha256": "466d423767e53fd3d9fe61b4260886fc375a08f955b2a6605c9d2bfecf9367b4",
+      "origin": "Existing backpack/workshop asset reused unchanged"
+    },
+    {
+      "file": "shared/nav-book.png",
+      "sha256": "a323871d55a49915b8503ed444e0417010cea90e757f4e68667dd5de4957bdba",
+      "origin": "Existing backpack/workshop asset reused unchanged"
+    },
+    {
+      "file": "shared/nav-equip.png",
+      "sha256": "7eb83998590f4554af208c7dc162681af9dd9de98cf23cd4fa74e9dc4dab2d55",
+      "origin": "Existing backpack/workshop asset reused unchanged"
+    },
+    {
+      "file": "shared/nav-record.png",
+      "sha256": "4f4c5bc48e0132d9d2e38a7716656ad822d512f4464c86d833b34e857bfd4171",
+      "origin": "Existing backpack/workshop asset reused unchanged"
+    },
+    {
+      "file": "shared/nav-sync.png",
+      "sha256": "c55508ee9eb1f4246ad510508f5c7344e073335932c3f7fb72b9733b581b15c7",
+      "origin": "Existing backpack/workshop asset reused unchanged"
+    },
+    {
+      "file": "shared/panel.png",
+      "sha256": "34ecd34d7c7c4858f6ae3e13b860279871920461bec004b22cac952723d210f7",
+      "origin": "Existing backpack/workshop asset reused unchanged"
+    }
+  ]
+}
