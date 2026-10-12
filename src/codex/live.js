@@ -29,14 +29,40 @@ export function mountLive(root,{getState,storage=localStorage,navigate=()=>{},cl
  return {refresh(){view.refresh();status();mountPublishedSidebar(sidebar,{active:'厉鬼图鉴',navigate});},destroy:()=>view.destroy()};
 }
 export function installGameCodex({getState,navigate}){
- let host=null,view=null,previous=null;
+ let host=null,view=null,previous=null,lastSnapshot=null,warmPending=false;
  const link=document.createElement('link');link.rel='stylesheet';link.href='src/codex/launcher.css';document.head.append(link);
  const font=document.createElement('style');font.textContent="@font-face{font-family:CodexBrush;src:url('assets/fonts/MaShanZheng-Regular.ttf')}";document.head.append(font);
  const launcher=document.createElement('button');launcher.id='game-codex-launcher';launcher.textContent='厉鬼图鉴';launcher.setAttribute('aria-label','打开厉鬼图鉴');document.body.append(launcher);
  document.addEventListener('click',e=>{const b=e.target.closest('button[data-scroll-target="spirit-detail"]');if(b&&b.textContent.trim()==='厉鬼图鉴'){e.preventDefault();e.stopImmediatePropagation();launcher.click();}},true);
- const close=()=>{view?.destroy();host?.remove();host=null;view=null;document.querySelector('#app')?.removeAttribute('inert');launcher.removeAttribute('inert');document.body.style.overflow=previous??'';launcher.focus();};
- launcher.addEventListener('click',()=>{if(host)return;previous=document.body.style.overflow;document.body.style.overflow='hidden';document.querySelector('#app')?.setAttribute('inert','');host=document.createElement('div');host.id='game-codex-overlay';host.setAttribute('role','dialog');host.setAttribute('aria-modal','true');host.setAttribute('aria-label','厉鬼图鉴');launcher.setAttribute('inert','');document.body.append(host);const shadow=host.attachShadow({mode:'open'});shadow.innerHTML='<link rel="stylesheet" href="src/codex/codex.css"><style>:host{--paper:#eeeae4;--muted:#b5bdc7;--red:#a91422;--ink:#08090b;color:#eeeae4;font:15px/1.5 "Microsoft YaHei",sans-serif;color-scheme:dark}</style><div id="codex-root"></div>';view=mountLive(shadow.querySelector('#codex-root'),{getState,close,navigate:page=>{close();navigate(page);}});shadow.querySelector('input').focus();shadow.addEventListener('keydown',e=>{if(e.key==='Escape'&&!shadow.querySelector('dialog').open)close();});});
- return {refresh(){launcher.hidden=!getState();view?.refresh();}};
+ const isOpen=()=>host?.dataset.open==='true';
+ function conceal(){host.dataset.open='false';host.setAttribute('inert','');host.setAttribute('aria-hidden','true');}
+ const close=()=>{if(!isOpen())return;conceal();document.body.removeAttribute('data-system-panel');document.querySelector('#app')?.removeAttribute('inert');launcher.removeAttribute('inert');document.body.style.overflow=previous??'';launcher.focus({preventScroll:true});};
+ function prepare(){
+  if(host||!getState())return;
+  host=document.createElement('div');host.id='game-codex-overlay';conceal();
+  host.setAttribute('role','dialog');host.setAttribute('aria-modal','true');host.setAttribute('aria-label','厉鬼图鉴');document.body.append(host);
+  const shadow=host.attachShadow({mode:'open'});
+  shadow.innerHTML='<link rel="stylesheet" href="src/codex/codex.css"><style>:host{--paper:#eeeae4;--muted:#b5bdc7;--red:#a91422;--ink:#08090b;color:#eeeae4;font:15px/1.5 "Microsoft YaHei",sans-serif;color-scheme:dark}</style><div id="codex-root"></div>';
+  view=mountLive(shadow.querySelector('#codex-root'),{getState,close,navigate:page=>{close();navigate(page);}});
+  lastSnapshot=localStorage.getItem(SAVE_KEY);
+  // Decode only the evidence-scoped images already rendered by the adapter.
+  for(const img of shadow.querySelectorAll('img'))img.decode?.().catch(()=>{});
+  document.fonts.load('24px CodexBrush').catch(()=>{});
+  shadow.addEventListener('keydown',e=>{if(e.key==='Escape'&&!shadow.querySelector('dialog').open){e.preventDefault();close();}});
+ }
+ function scheduleWarm(){
+  if(host||warmPending||!getState())return;warmPending=true;
+  const run=()=>{warmPending=false;prepare();};
+  if('requestIdleCallback' in window)requestIdleCallback(run);else setTimeout(run,100);
+ }
+ launcher.addEventListener('click',()=>{
+  if(isOpen()||!getState())return;prepare();
+  const raw=localStorage.getItem(SAVE_KEY);if(raw!==lastSnapshot){view.refresh();lastSnapshot=raw;}
+  previous=document.body.style.overflow;document.body.style.overflow='hidden';document.querySelector('#app')?.setAttribute('inert','');document.body.dataset.systemPanel='codex';launcher.setAttribute('inert','');
+  host.dataset.open='true';host.removeAttribute('inert');host.removeAttribute('aria-hidden');host.shadowRoot.querySelector('input').focus({preventScroll:true});
+ });
+ scheduleWarm();
+ return {refresh(){launcher.hidden=!getState();const raw=localStorage.getItem(SAVE_KEY);if(isOpen()&&raw!==lastSnapshot){view.refresh();lastSnapshot=raw;}scheduleWarm();}};
 }
 // Separate live entry reads the same origin's save; never migrates/writes it on open.
 export function startStandalone(root){

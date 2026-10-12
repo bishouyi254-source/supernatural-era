@@ -1,3 +1,7 @@
 #game-codex-launcher{position:fixed;right:18px;bottom:82px;z-index:75;border:1px solid #ff5963;background:#400911;color:#fff;padding:10px 18px;font:20px CodexBrush,'Microsoft YaHei',sans-serif;box-shadow:0 0 12px #a9142255}
 #game-codex-launcher[hidden]{display:none}
 #game-codex-overlay{position:fixed;inset:0;z-index:150;background:#050607;overflow:auto}
+
+/* Keep cached layout while excluding a closed codex from focus, input and accessibility. */
+#game-codex-overlay{contain:layout style paint}
+#game-codex-overlay[data-open="false"]{visibility:hidden;pointer-events:none}

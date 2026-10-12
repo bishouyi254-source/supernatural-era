@@ -1,10 +1,10 @@
 {
   "version": "0.24.3",
-  "edition": "world-map-live-candidate",
-  "base_commit": "9591ba3bae81dc67ccdc1b3713572264aa8371af",
+  "edition": "ui-switch-release",
+  "base_commit": "d9ebc443a6c48455ce24f29fbe2736ff5a1e1416",
   "saveFormat": 2,
-  "published": false,
-  "scope": "Map selection UI and navigation to existing lawful scene/record pages. No new game events or automatic entry actions.",
+  "published": true,
+  "scope": "Unify system sidebars and retain filters; prewarm evidence-scoped codex and retain its layout; no changes to game rules or save format. Hide map navigation in equipment, backpack, codex and resonance.",
   "files": [
     {
       "path": ".nojekyll",
@@ -1238,8 +1238,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 943,
-      "sha256": "c2cded86ff356af4313c048dbc29074311b742bbcf6fb88aab4a8f484e3e64e4"
+      "bytes": 1080,
+      "sha256": "818e25630218cf0fdaf73c94b4b71e987a3a6f4f171823409a2912d256fcdea7"
     },
     {
       "path": "resonance/assets/approved/avatar.svg",
@@ -1498,8 +1498,8 @@
     },
     {
       "path": "resonance/index.html",
-      "bytes": 7009,
-      "sha256": "364b11d000ff7bc9f3782ee9f73d6794a8903a5de440f654e122c91a54acabe9"
+      "bytes": 7091,
+      "sha256": "f4da1346b8b1d219b75c79530bb158febf7a7543b577e1e87e1cddd2a40152fa"
     },
     {
       "path": "resonance/rework-data.js",
@@ -1508,13 +1508,13 @@
     },
     {
       "path": "resonance/rework.css",
-      "bytes": 26072,
-      "sha256": "3d8fec54c13aa039befa9dad54fa7b43608ff4071a607a8d7a72a52857d987e8"
+      "bytes": 26075,
+      "sha256": "18a474feeef5f450f756fdf9930a22b49aeace7028f9cee8dd1a7d7c9840f117"
     },
     {
       "path": "resonance/rework.js",
-      "bytes": 30962,
-      "sha256": "97e8e473942b310f2fd84d2b946ad507e58f44c0bbbfac833b8dd5743adcf7ab"
+      "bytes": 31181,
+      "sha256": "6c69fe9922b42ab7734c345e1bcb856b75c28e023f968298ffcb50997b7a3ec0"
     },
     {
       "path": "src/action-feedback.js",
@@ -1528,8 +1528,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 74986,
-      "sha256": "66bf6a3d83a5cd9fbfdeb84832fb9ba16f1847bf0041ce62d5c0b466e009a0fa"
+      "bytes": 75520,
+      "sha256": "0f714b1bc8ba43064f154f7e96931f7591780b978f99bea9294ebd865ba1fc8e"
     },
     {
       "path": "src/audio-medium.js",
@@ -1563,8 +1563,8 @@
     },
     {
       "path": "src/backpack/live.js",
-      "bytes": 3041,
-      "sha256": "274b1401585708b86b42f1eaa50b62370635911b991aaf159cf9275072f2fc53"
+      "bytes": 3129,
+      "sha256": "8301003b229937a43c91ab4fa279c66c284d01ee87ed55b373c2dd983fd4c673"
     },
     {
       "path": "src/backpack/model.js",
@@ -1623,8 +1623,8 @@
     },
     {
       "path": "src/codex/launcher.css",
-      "bytes": 359,
-      "sha256": "8a9d735c18ca85873a170d3bc774f2f3d048bca9b356990d06be5e67851a465c"
+      "bytes": 583,
+      "sha256": "3ec2dc8c675e6d56221197dd59bf32186b3cc3515de2362591edb21b139d8f28"
     },
     {
       "path": "src/codex/live-adapter.js",
@@ -1633,8 +1633,8 @@
     },
     {
       "path": "src/codex/live.js",
-      "bytes": 7238,
-      "sha256": "7988dd2a7c0c07feb5bc303bbdd71a26f42f8d39539356c884bca12e08c59a12"
+      "bytes": 8528,
+      "sha256": "6a409d25d24356aa9f9bcf29e3af1d5a0ae23c33c6ff5730fbb9f324c4060acd"
     },
     {
       "path": "src/codex/model.js",
@@ -1838,13 +1838,13 @@
     },
     {
       "path": "src/published-sidebar.css",
-      "bytes": 6545,
-      "sha256": "e169ab0a517f58653968244bc7373b016eafa766862115a38f3ef987df8a2bc7"
+      "bytes": 9062,
+      "sha256": "6ed882b9f814bdda52bcf1c3bef738511f0514fa132b9c4433ea33da21500c42"
     },
     {
       "path": "src/published-sidebar.js",
-      "bytes": 3253,
-      "sha256": "9050bce179b78bf7c3b483338930e832db9d074f452babf8c74ed88c40d67ff7"
+      "bytes": 3965,
+      "sha256": "9ae6bdea623bb9285d5390c53918a32c5f8f8ba8eacf33f241726aaef3ea1f90"
     },
     {
       "path": "src/regional-guide.js",
@@ -1868,8 +1868,8 @@
     },
     {
       "path": "src/resonance-launcher.js",
-      "bytes": 2219,
-      "sha256": "fe3f45515a75ccfaf46345e52beaab5c254426758490ef109aab00077c8c3714"
+      "bytes": 2860,
+      "sha256": "f40705549569a6f473176672d7fc7e5b813d5f33fe1954aee40c0f54f7f407b9"
     },
     {
       "path": "src/resonance-model.js",
@@ -1888,8 +1888,8 @@
     },
     {
       "path": "src/rpg-workshop.js",
-      "bytes": 20743,
-      "sha256": "9ebf1e5684e42f50a1fdf63dbf5f83a689d48f620e4f5fcd2e501849238416b0"
+      "bytes": 20831,
+      "sha256": "e631f4288183aab97ec76f84e564f1027fe125bf6f1e6b75d30fcfaa266eebd0"
     },
     {
       "path": "src/rules.js",
@@ -2118,13 +2118,13 @@
     },
     {
       "path": "src/world-map/launcher.js",
-      "bytes": 1500,
-      "sha256": "ca4a7adfc630cf78429ad005b74731426d2157530ce5a6eb78fd893c302ea1bf"
+      "bytes": 1509,
+      "sha256": "e90dd9321b2fe0fc96bed067394086db5d31f77f878484787f633fca465f6908"
     },
     {
       "path": "src/world-map/live-adapter.js",
-      "bytes": 4259,
-      "sha256": "6d6d42c082983816f0e7defdb2521598b1d29a8bab16c78ed20b99c9e8919d2c"
+      "bytes": 4297,
+      "sha256": "9ab77a9c61a695cc315ff9b822ce9a7294d14968f23ed30cf1831e8053048b40"
     },
     {
       "path": "src/world-map/live.js",

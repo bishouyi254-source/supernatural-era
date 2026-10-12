@@ -161,7 +161,7 @@ graph.addEventListener('pointermove',e=>{
 function endPointer(e){if(drag?.moved||pinch){suppressClick=true;setTimeout(()=>suppressClick=false,250);}pointers.delete(e.pointerId);if(pointers.size<2)pinch=null;drag=null;graph.classList.remove('dragging');}
 graph.addEventListener('pointerup',endPointer);graph.addEventListener('pointercancel',endPointer);
 graph.addEventListener('keydown',e=>{if(e.target!==graph)return;if(e.key==='+'||e.key==='='){e.preventDefault();zoomBy(1.2);}if(e.key==='-'){e.preventDefault();zoomBy(1/1.2);}});graph.setAttribute('tabindex','0');
-let resizeTimer;new ResizeObserver(()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>{fit(state.branch);renderGraph();},80);}).observe($('graph-viewport'));
+let resizeTimer,lastViewportWidth=0,lastViewportHeight=0;new ResizeObserver(([entry])=>{clearTimeout(resizeTimer);const {width,height}=entry.contentRect;if(!width||!height||width===lastViewportWidth&&height===lastViewportHeight)return;lastViewportWidth=width;lastViewportHeight=height;resizeTimer=setTimeout(()=>{fit(state.branch);renderGraph();},80);}).observe($('graph-viewport'));
 // Live adapter reads the existing validated archive; no demo injection API.
 renderAll();requestAnimationFrame(()=>{fit();renderGraph();});
 

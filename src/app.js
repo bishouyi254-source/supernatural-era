@@ -252,21 +252,21 @@ function workspaceView() {
  const e=events[state.scene];return '<article><span class="stamp">'+esc(e?.source||'个人路线')+'</span><h2>'+esc(state.crisis?'复苏危机':e?.title||'街区安全屋')+'</h2><p>'+esc(e?.intro||'从地图选择街区调查。')+'</p>'+buttons(available(state))+'</article>';
 }
 
-let liveBackpack=null;
-const worldMapUI=installWorldMap({getState:()=>liveBackpack?readLive(localStorage).state:state,navigate:page=>{if(page==='厉鬼图鉴'){document.getElementById('game-codex-launcher').click();return;}if(page==='同步共鸣'){resonanceUI.open();return;}tab=page;render();window.scrollTo(0,0);}});
-const codexUI=installGameCodex({getState:()=>liveBackpack?readLive(localStorage).state:state,navigate:page=>{if(page==='地图'){worldMapUI.open();return;}if(page==='同步共鸣'){resonanceUI.open();return;}if(page==='厉鬼图鉴'){document.getElementById('game-codex-launcher').click();return;}tab=page==='背包与装备'?'拼图背包':page;render();window.scrollTo(0,0);}});
+let liveBackpack=null,backpackRoot=null,backpackToken=null;
+const worldMapUI=installWorldMap({getState:()=>tab==='拼图背包'?readLive(localStorage).state:state,navigate:page=>{if(page==='厉鬼图鉴'){document.getElementById('game-codex-launcher').click();return;}if(page==='同步共鸣'){resonanceUI.open();return;}tab=page;render();window.scrollTo(0,0);}});
+const codexUI=installGameCodex({getState:()=>tab==='拼图背包'?readLive(localStorage).state:state,navigate:page=>{if(page==='地图'){worldMapUI.open();return;}if(page==='同步共鸣'){resonanceUI.open();return;}if(page==='厉鬼图鉴'){document.getElementById('game-codex-launcher').click();return;}tab=page==='背包与装备'?'拼图背包':page;render();window.scrollTo(0,0);}});
 const resonanceUI=installResonance({refreshGame:()=>{const current=readResonance(localStorage);state=current.state;notice=current.error||notice;render();},navigate:page=>{if(page==='地图'){worldMapUI.open();return;}if(page==='厉鬼图鉴'){document.getElementById('game-codex-launcher').click();return;}tab=page;render();window.scrollTo(0,0);},onCommitted:next=>{state=next;}});
 const publishedSidebar=installPublishedSidebar({navigate:page=>{if(page==='地图'){worldMapUI.open();return;}if(page==='厉鬼图鉴'){document.getElementById('game-codex-launcher').click();return;}if(page==='同步共鸣'){resonanceUI.open();return;}tab=page;render();window.scrollTo(0,0);}});
 function render() {
- if(liveBackpack){liveBackpack.destroy();liveBackpack=null;try{state=readLive(localStorage).state;}catch{notice='存档无法读取，原始内容未覆盖。';}}
+ if(liveBackpack){try{state=readLive(localStorage).state;}catch{notice='存档无法读取，原始内容未覆盖。';}if(tab!=='拼图背包')backpackRoot.remove();}
  codexUI.refresh();
  const isBackpack=tab==='拼图背包';
  document.querySelectorAll('link[data-game-style]').forEach(link=>{if(link.sheet)link.sheet.disabled=isBackpack;});
  document.querySelectorAll('link[data-backpack-style]').forEach(link=>{if(link.sheet)link.sheet.disabled=!isBackpack;});
  if(isBackpack){
   const root=document.querySelector('#app');root.removeAttribute('data-loop');root.dataset.view=tab;root.dataset.page=tab;
-  liveBackpack=mountLiveBackpack(root,{navigate(target){if(target==='地图'){worldMapUI.open();return;}if(target==='同步共鸣'){resonanceUI.open();return;}if(target==='厉鬼图鉴'){document.getElementById('game-codex-launcher').click();return;}tab=({'驾驭厉鬼':'技能工坊','物资背包':'背包与装备','档案记录':'历史','厉鬼图鉴':'灵异档案','同步共鸣':'技能工坊'})[target]||'首页';render();window.scrollTo(0,0);if(target==='同步共鸣')document.getElementById('relations')?.scrollIntoView();}});
-  return;
+  if(!liveBackpack){backpackRoot=document.createElement('div');backpackRoot.id='live-backpack-root';root.replaceChildren(backpackRoot);liveBackpack=mountLiveBackpack(backpackRoot,{onRefresh(){publishedSidebar.refresh();},navigate(target){if(target==='地图'){worldMapUI.open();return;}if(target==='同步共鸣'){resonanceUI.open();return;}if(target==='厉鬼图鉴'){document.getElementById('game-codex-launcher').click();return;}tab=({'驾驭厉鬼':'技能工坊','物资背包':'背包与装备','档案记录':'历史','厉鬼图鉴':'灵异档案','同步共鸣':'技能工坊'})[target]||'首页';render();window.scrollTo(0,0);if(target==='同步共鸣')document.getElementById('relations')?.scrollIntoView();}});backpackToken=localStorage.getItem(key);}else{root.replaceChildren(backpackRoot);const raw=localStorage.getItem(key);if(raw!==backpackToken){liveBackpack.refresh();backpackToken=raw;}}
+  publishedSidebar.refresh();resonanceUI.preload();return;
  }
 
  const workshopUI=captureWorkshopUI(document.querySelector('#app'));
@@ -392,6 +392,7 @@ function render() {
     } catch { notice = '导入失败：文件格式、版本或状态无效，当前进度未修改。'; render(); }
   };
  bindScene({getState:()=>state,legal:()=>available(state),label,storage:localStorage,root:document.querySelector('#app')});
+ publishedSidebar.refresh();if(state)resonanceUI.preload();
  restoreWorkshopUI(document.querySelector('#app'),workshopUI);
 }
 const codexRoute=location.hash.startsWith('#codex-route=')?decodeURIComponent(location.hash.slice(13)):null;
