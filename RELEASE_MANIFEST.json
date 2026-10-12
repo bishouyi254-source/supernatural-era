@@ -1,10 +1,10 @@
-{
+﻿{
   "version": "0.24.3",
-  "edition": "ui-switch-release",
-  "base_commit": "d9ebc443a6c48455ce24f29fbe2736ff5a1e1416",
+  "edition": "combat-stage4-compact-reference",
+  "base_commit": "bdc7e27203e4379a0df1cc8c403f87c8390c764f",
   "saveFormat": 2,
   "published": true,
-  "scope": "Unify system sidebars and retain filters; prewarm evidence-scoped codex and retain its layout; no changes to game rules or save format. Hide map navigation in equipment, backpack, codex and resonance.",
+  "scope": "Compact reference battle console with text-only skills and filters for every carried ghost; preserve real engine, save format and existing website systems.",
   "files": [
     {
       "path": ".nojekyll",
@@ -395,6 +395,171 @@
       "path": "assets/codex/unknown.svg",
       "bytes": 294,
       "sha256": "ed564a230dac83175591df3b293f0ee4533fad59b4086dc21ca6266c0a4a2fb1"
+    },
+    {
+      "path": "assets/combat-ui/png/art/cassette_rule.png",
+      "bytes": 11005,
+      "sha256": "a2f0909c2d4ac0bfdfaf2501cff22b755689361f1176735ae08ff7193969b8f8"
+    },
+    {
+      "path": "assets/combat-ui/png/art/door_rule.png",
+      "bytes": 12069,
+      "sha256": "e78bba546bb095e168bfa82d349acad2d852793e3526b70f95e5c7173f50263b"
+    },
+    {
+      "path": "assets/combat-ui/png/art/eye_rule.png",
+      "bytes": 11450,
+      "sha256": "7808f325bb8916306c89f8c19a9223689a8a99ff1e3207def3ac362d83f212b8"
+    },
+    {
+      "path": "assets/combat-ui/png/art/hand_rule.png",
+      "bytes": 11377,
+      "sha256": "90522de44c7b4e1db76c59c1757aa6523ed7ae5ffd0ff768885b8dfcf4db87be"
+    },
+    {
+      "path": "assets/combat-ui/png/art/resonance_rule.png",
+      "bytes": 11753,
+      "sha256": "64efc592316854f6b49d7f8f5197592a2fd585809c17e408d0ed9ec3760de37a"
+    },
+    {
+      "path": "assets/combat-ui/png/effects/suppress_circle_glow.png",
+      "bytes": 25154,
+      "sha256": "871de4c5b0bb5d148de9e01b8f63e85b90ba6f67bd61e86c3c86cadfcd8d4837"
+    },
+    {
+      "path": "assets/combat-ui/png/effects/suppression_feedback_glow.png",
+      "bytes": 33079,
+      "sha256": "7161d74c1be8281f8019a923e572dd25b9f862fad78941702d135914987dd611"
+    },
+    {
+      "path": "assets/combat-ui/png/sprites/ghost_old_man_masked_preview.png",
+      "bytes": 142791,
+      "sha256": "8ef087f5b5a1514540b358d045c337fab8d3e5a9efe97a806858180b0717ddd0"
+    },
+    {
+      "path": "assets/combat-ui/png/sprites/player_chibi_masked_preview.png",
+      "bytes": 76526,
+      "sha256": "dd5f095119b997e0158ebf7ed7320ba564fbaf83a9f6657792ad077d103232d3"
+    },
+    {
+      "path": "assets/combat-ui/scene_reference_atmosphere.png",
+      "bytes": 565565,
+      "sha256": "1ad539d232d086f959483d03924f5bc514151fb7f2ac9ba11d6fdbed9a9eeb38"
+    },
+    {
+      "path": "assets/combat-ui/svg/controls/button_primary_default.svg",
+      "bytes": 1294,
+      "sha256": "ae4f49c8e39b773ef10a7b4d4cc71a3e3ac58a3db53a2f22c0857dd689938f5c"
+    },
+    {
+      "path": "assets/combat-ui/svg/controls/button_secondary_default.svg",
+      "bytes": 1296,
+      "sha256": "56c740794e4e6aea9605b462f7405030e468c0402d06f9fdd72d9dd4a3b23fc4"
+    },
+    {
+      "path": "assets/combat-ui/svg/controls/tab_selected.svg",
+      "bytes": 985,
+      "sha256": "f54619490067f4901e3642e30c9b47abcc85f11cd9eed61239fc14d71ce308ba"
+    },
+    {
+      "path": "assets/combat-ui/svg/effects/fx_suppress_link.svg",
+      "bytes": 929,
+      "sha256": "e7af258002aa3dc22a94303a84f876573447c8e276956b381cd6a6b981caf70d"
+    },
+    {
+      "path": "assets/combat-ui/svg/effects/fx_suppress_ring.svg",
+      "bytes": 987,
+      "sha256": "b2e28e08b7182bd27ca2c8a5aa9b3d1865bc273923b8c365a58f1353cf33f8d5"
+    },
+    {
+      "path": "assets/combat-ui/svg/frames/skill_card_cooldown.svg",
+      "bytes": 1225,
+      "sha256": "9467f49b6e54203b1623baf9d24ac7624eab960a7f96500d01be6a658ad199bb"
+    },
+    {
+      "path": "assets/combat-ui/svg/frames/skill_card_idle.svg",
+      "bytes": 1225,
+      "sha256": "c557b8d51818de7ecc6f2b8a3bd2d07588a92efe5943fc181ef0d5e18be7553e"
+    },
+    {
+      "path": "assets/combat-ui/svg/frames/skill_card_locked.svg",
+      "bytes": 1302,
+      "sha256": "e699079547259519fa2dff6146cdc296ccf5dcff4911ced657f1fb2d9ae6fabc"
+    },
+    {
+      "path": "assets/combat-ui/svg/frames/skill_card_selected.svg",
+      "bytes": 1357,
+      "sha256": "6901c412069bc9c4b2eb04e9ee4c66b6a411418eb5709c16c7030039684ac2cd"
+    },
+    {
+      "path": "assets/combat-ui/svg/icons/icon_blade.svg",
+      "bytes": 873,
+      "sha256": "3b10c05150704a1ea64ba48088d57e60eff0e1d780c8905a4db4a877124ad009"
+    },
+    {
+      "path": "assets/combat-ui/svg/icons/icon_briefcase.svg",
+      "bytes": 916,
+      "sha256": "dc9c9ff0fd7266c143a6fb207a01cbfe6a146ee8285842c9d720c1ac7440e206"
+    },
+    {
+      "path": "assets/combat-ui/svg/icons/icon_cassette.svg",
+      "bytes": 1008,
+      "sha256": "4a0b67503030f03ca1ce959230e1a2f0cc9d4fae49fc9803e360fcbe62130223"
+    },
+    {
+      "path": "assets/combat-ui/svg/icons/icon_eye.svg",
+      "bytes": 941,
+      "sha256": "56ef96dbe423ecbcd686d23a37a8b08f924eb16d72c0d4a2e09e3501f4191521"
+    },
+    {
+      "path": "assets/combat-ui/svg/icons/icon_hand.svg",
+      "bytes": 961,
+      "sha256": "bc07356e0d6069be7d206c69401babde652b19ba9a314058de8d6cdf9fd1ff65"
+    },
+    {
+      "path": "assets/combat-ui/svg/icons/icon_retreat.svg",
+      "bytes": 925,
+      "sha256": "87cbc9ffc0525c003c92e777e200fa48ed7dd4bd1fc56af98c7805e1171595a8"
+    },
+    {
+      "path": "assets/combat-ui/svg/icons/icon_rule_book.svg",
+      "bytes": 934,
+      "sha256": "82c364a3c902da52951eeb5f4ec22250e30313751961d5379b2e226eda787e5f"
+    },
+    {
+      "path": "assets/combat-ui/svg/icons/icon_status.svg",
+      "bytes": 920,
+      "sha256": "70b83602c8610134aa9d2e254f6c32743328532e24770b200a8c935e3354bde8"
+    },
+    {
+      "path": "assets/combat-ui/svg/icons/icon_warning.svg",
+      "bytes": 868,
+      "sha256": "8204d8c2b8f21273d8c041683da4432281843cd4fe8a5c51bd2eda54cdebdc49"
+    },
+    {
+      "path": "assets/combat-ui/svg/panels/battle_state.svg",
+      "bytes": 1094,
+      "sha256": "f5c5c53b51d9ed990969d2766f14f5a16a0ef710e97202c8aac71ae20602db9f"
+    },
+    {
+      "path": "assets/combat-ui/svg/panels/combat_header.svg",
+      "bytes": 1105,
+      "sha256": "d837fbd487599e06a4af5c6bd9cc6de9de46ec485fd64319c10e131cdbaafa40"
+    },
+    {
+      "path": "assets/combat-ui/svg/panels/ghost_hud.svg",
+      "bytes": 1104,
+      "sha256": "a5a2f5b014accd64a55937dc91d96fcd11b0b9717bd13e130872b2425a517f57"
+    },
+    {
+      "path": "assets/combat-ui/svg/panels/player_hud.svg",
+      "bytes": 1104,
+      "sha256": "93271015d4faf120a3a1031223c53ecf1a6d475dcabb120a853b97c3795f8941"
+    },
+    {
+      "path": "assets/combat-ui/svg/panels/skill_detail.svg",
+      "bytes": 1104,
+      "sha256": "f56cf0c3fefed3053fb6b7ba70b44ff6aacf56538e9c528d9c5561b918c812be"
     },
     {
       "path": "assets/fonts/MaShanZheng-Regular.ttf",
@@ -922,6 +1087,11 @@
       "sha256": "2270e4614fbd5666b83c22e13ca80330450c8d51a9337f37a3d35103a20dfa2b"
     },
     {
+      "path": "assets/workshop-corridor-refined.png",
+      "bytes": 2445780,
+      "sha256": "ba92d100b360a9fdd166eafbac90fd2e5f1a6f76227657e89c3ea2ffd7218cc5"
+    },
+    {
       "path": "assets/workshop-corridor-v3.png",
       "bytes": 2560602,
       "sha256": "e23b2a4dd747ed5dc14c43d4d57bf3770f2e8cc4f16b8015dbcb792436df6abe"
@@ -1238,8 +1408,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 1080,
-      "sha256": "818e25630218cf0fdaf73c94b4b71e987a3a6f4f171823409a2912d256fcdea7"
+      "bytes": 1194,
+      "sha256": "2cd973fd710651232c3d81c34534e3a79bda1379e81f5d4f03378317b9707dbb"
     },
     {
       "path": "resonance/assets/approved/avatar.svg",
@@ -1528,8 +1698,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 75520,
-      "sha256": "0f714b1bc8ba43064f154f7e96931f7591780b978f99bea9294ebd865ba1fc8e"
+      "bytes": 76943,
+      "sha256": "ab5dc2b7c5ada128970316b2ebe83e619a5aefd309176343570d79ef11ec6293"
     },
     {
       "path": "src/audio-medium.js",
@@ -1640,6 +1810,26 @@
       "path": "src/codex/model.js",
       "bytes": 3142,
       "sha256": "b9e0cb5639c2811879c83b7f3fbb4ad98fa6874a1ceefb6c9a59560514d5c392"
+    },
+    {
+      "path": "src/combat-stage4-adapter.js",
+      "bytes": 6436,
+      "sha256": "24c91d740e6b720a3ccd794523a2cdd632200a0e73a08da3f957a05cb85cff48"
+    },
+    {
+      "path": "src/combat-stage4-ui.js",
+      "bytes": 15157,
+      "sha256": "d951b26bf9ce83f0a74c28a16f6c2b197643fff1500ced6466b34cff17467fed"
+    },
+    {
+      "path": "src/combat-stage4.css",
+      "bytes": 19470,
+      "sha256": "2766515b7be9023dc794d9f26cb569e05c7a003ecdf68b46f8772d61d529ffa7"
+    },
+    {
+      "path": "src/combat-visual-refit.css",
+      "bytes": 21566,
+      "sha256": "b826d5e4a025294f803ff77cb1d8ab6a792c08fd0113a19ce845c1e415086588"
     },
     {
       "path": "src/combat.js",

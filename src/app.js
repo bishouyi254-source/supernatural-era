@@ -1,3 +1,6 @@
+import {mountCombatUI} from './combat-stage4-ui.js';
+import {buildRealCombatData} from './combat-stage4-adapter.js';
+let mountedCombatUI=null;
 import {installWorldMap} from './world-map/launcher.js';
 import {installPublishedSidebar} from './published-sidebar.js';
 import {readResonance} from './resonance-model.js';
@@ -186,6 +189,7 @@ function homeView() {
 function socialRiskPrompt(a){const id=a==='social:domain'?state.spirits.find(g=>g.sourceId==='eye')?.id:a.startsWith('social:asset:probe:')?a.slice(19):a.startsWith('social:cast:')?a.slice(12):null,g=state.spirits.find(g=>g.id===id);return g?g.name+'当前复苏 '+g.revivalProgress+'%【'+revivalStage(g.revivalProgress)+'】；本次调用按当前条件增长约 '+(growthFor(state,g,true)+(a==='social:domain'?6+state.v1.eye.layer*2:0)).toFixed(2)+'%，消耗能量1并留下目击，可能引起其他驭鬼者反应。是否实际调用？':'当面威胁可能引起对方灵异回应和失控，历史披露会保留。是否继续？';}
 function hgConfirmation(){return hgPreview&&available(state).includes(hgPreview)?'<article class="danger" role="region" aria-label="高风险操作确认"><h2>确认本次高风险操作</h2><p>'+esc(hgPreview.startsWith('dual:stress:')?'高强度验证消耗能量2、身体4、对应鬼额外复苏4，另按实际调用增长；可能破坏平衡，是否执行？':villageRiskPrompt(state,hgPreview))+'</p><p>查看与取消不推进时间、不扣资源。</p><button data-hg-confirm>确认执行本次操作</button><button data-hg-cancel>取消，保持当前状态</button></article>':'';}
 function workspaceView() {
+ if(state?.combat&&['首页','现场'].includes(tab))return '<div class="real-combat-root" id="real-combat-root" aria-label="战斗中"></div>';
  if(loopEnabled(state)){
   if(tab==='调查板')return investigationBoard(state,label);
   if(tab==='出战准备')return preparationView(state,label);
@@ -258,6 +262,7 @@ const codexUI=installGameCodex({getState:()=>tab==='拼图背包'?readLive(local
 const resonanceUI=installResonance({refreshGame:()=>{const current=readResonance(localStorage);state=current.state;notice=current.error||notice;render();},navigate:page=>{if(page==='地图'){worldMapUI.open();return;}if(page==='厉鬼图鉴'){document.getElementById('game-codex-launcher').click();return;}tab=page;render();window.scrollTo(0,0);},onCommitted:next=>{state=next;}});
 const publishedSidebar=installPublishedSidebar({navigate:page=>{if(page==='地图'){worldMapUI.open();return;}if(page==='厉鬼图鉴'){document.getElementById('game-codex-launcher').click();return;}if(page==='同步共鸣'){resonanceUI.open();return;}tab=page;render();window.scrollTo(0,0);}});
 function render() {
+ if(mountedCombatUI){mountedCombatUI.destroy();mountedCombatUI=null;}
  if(liveBackpack){try{state=readLive(localStorage).state;}catch{notice='存档无法读取，原始内容未覆盖。';}if(tab!=='拼图背包')backpackRoot.remove();}
  codexUI.refresh();
  const isBackpack=tab==='拼图背包';
@@ -391,6 +396,29 @@ function render() {
       pendingImport=imported;render();
     } catch { notice = '导入失败：文件格式、版本或状态无效，当前进度未修改。'; render(); }
   };
+ const realBattleMount=document.getElementById('real-combat-root');
+ if(realBattleMount&&state?.combat){
+  mountedCombatUI=mountCombatUI(realBattleMount,{
+   mode:'live',initialData:buildRealCombatData(state),
+   onAction:({skillId})=>{
+    if(!state?.combat||!available(state).includes(skillId)){
+     notice='条件已变化：行动未执行、没有扣除资源。';render();return {message:notice};
+    }
+    const before=state;
+    state=act(state,skillId);
+    if(state===before){notice='引擎拒绝了当前行动，状态未改变。';render();return {message:notice};}
+    persist();tab='现场';render();return {message:'真实规则行动已结算并保存。'};
+   },
+   onRetreat:()=>{
+    if(!state?.combat||!available(state).includes('combat:retreat')){
+     notice='当前不允许撤离；不会改变存档。';render();return {message:notice};
+    }
+    const before=state;state=act(state,'combat:retreat');
+    if(state!==before)persist();
+    tab='现场';render();return {message:'撤离已由真实引擎执行并保存。'};
+   }
+  });
+ }
  bindScene({getState:()=>state,legal:()=>available(state),label,storage:localStorage,root:document.querySelector('#app')});
  publishedSidebar.refresh();if(state)resonanceUI.preload();
  restoreWorkshopUI(document.querySelector('#app'),workshopUI);

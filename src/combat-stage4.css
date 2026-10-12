@@ -1,0 +1,209 @@
+.real-combat-root{color-scheme:dark;--bg:#09080c;--panel:#110c13;--ink:#f5e6e7;--muted:#bda4a9;--red:#ff4559;--red-dark:#8c1729;--stroke:#813441;--blue:#39aaf5;--purple:#bf73e9;--green:#38c58b;font-family:"Noto Sans CJK SC","Microsoft YaHei","PingFang SC",Arial,sans-serif}
+.real-combat-root *{box-sizing:border-box}
+.real-combat-root{margin:0;background:linear-gradient(120deg,#08080c,#140b10 45%,#05070a);color:var(--ink)}
+.real-combat-root button,.real-combat-root input{font:inherit}
+.real-combat-root button{color:inherit;cursor:pointer}
+.real-combat-root button:disabled{cursor:not-allowed;filter:grayscale(.55);opacity:.53}
+.real-combat-root button:focus-visible,.real-combat-root input:focus-visible{outline:2px solid #ffd2c4;outline-offset:2px}
+.real-combat-root h1,.real-combat-root h2,.real-combat-root h3,.real-combat-root p{margin:0}
+.real-combat-root .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.real-combat-root{width:100%;min-height:100dvh}
+.real-combat-root .combat-app{min-height:100dvh;max-width:2048px;margin:0 auto;background:#09090dbb;display:flex;flex-direction:column;gap:0;box-shadow:0 0 90px #000}
+.real-combat-root .combat-top{height:59px;flex-shrink:0;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;padding:4px clamp(14px,2vw,34px);border-bottom:1px solid #88303b;background-image:var(--frame),linear-gradient(180deg,#180d15,#08080d);background-size:100% 100%;background-position:center;position:relative;z-index:2}
+.real-combat-root .heading{display:flex;gap:clamp(10px,1.5vw,24px);align-items:center;white-space:nowrap}
+.real-combat-root .battle-name{font-size:20px;font-weight:800;letter-spacing:.08em}
+.real-combat-root .mission-name{font-size:17px;color:#efd2d0}
+.real-combat-root .round-line{display:flex;gap:22px;align-items:center;font-size:16px;white-space:nowrap}
+.real-combat-root .round-line .phase{color:#ff6c71;font-weight:800;letter-spacing:.03em}
+.real-combat-root .header-tools{display:flex;justify-content:flex-end;gap:10px;align-items:center;font-size:12px}
+.real-combat-root .quiet-button{background:#171018;border:1px solid #70404c;border-radius:3px;padding:8px 10px;white-space:nowrap}
+.real-combat-root .quiet-button:hover{background:#40202a}
+.real-combat-root .demo-pill{border:1px solid #71434e;color:#dcb3b9;background:#190d14;padding:7px 9px;white-space:nowrap}
+.real-combat-root .battle-stage{height:clamp(345px,55vh,620px);min-height:345px;position:relative;overflow:hidden;border-bottom:2px solid #88333c;background:radial-gradient(ellipse at 50% 80%,#6a1a2840,transparent 70%),#160d12}
+.real-combat-root .battle-stage::before{content:"";position:absolute;inset:0;background-image:linear-gradient(180deg,#06060814,#03020514 55%,#10060a6c),var(--scene);background-size:100% 100%,cover;background-position:center;opacity:.92;filter:contrast(1.15) saturate(.9)}
+.real-combat-root .battle-stage::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 54%,transparent 28%,#0303059c 115%)}
+.real-combat-root .stage-caption{position:absolute;z-index:5;top:12px;left:18%;right:18%;min-height:40px;display:flex;align-items:center;justify-content:center;gap:clamp(12px,2.2vw,42px);background-image:var(--bar),linear-gradient(90deg,transparent,#0b080cda 10%,#0b080ce6 90%,transparent);background-size:100% 100%;padding:7px 18px;font-size:clamp(11px,.88vw,15px);border-bottom:1px solid #853743;white-space:nowrap}
+.real-combat-root .stage-caption b{color:#ff6b72}
+.real-combat-root .stage-caption .risk{color:#f6a0a5;display:flex;align-items:center;gap:5px}
+.real-combat-root .risk img{width:18px;height:18px}
+.real-combat-root .stage-spotlight{position:absolute;z-index:1;width:40%;height:55%;left:30%;top:24%;background:radial-gradient(ellipse at center,#71152540,transparent 72%);filter:blur(15px)}
+.real-combat-root .figure{position:absolute;z-index:3;bottom:126px;width:27%;height:clamp(190px,27vh,300px);display:flex;align-items:flex-end;justify-content:center;pointer-events:none}
+.real-combat-root .figure img{max-width:94%;height:100%;object-fit:contain;filter:drop-shadow(0 8px 16px #070002) drop-shadow(0 0 14px #8b172e88)}
+.real-combat-root .fighter-left{left:7.1%}
+.real-combat-root .fighter-right{right:7.1%}
+.real-combat-root .battle-line{position:absolute;z-index:2;width:44%;height:125px;left:28%;top:33%;opacity:.87;pointer-events:none}
+.real-combat-root .battle-line img{width:100%;height:100%;object-fit:fill}
+.real-combat-root .battle-feedback{position:absolute;top:49%;left:50%;transform:translateX(-50%);z-index:5;max-width:33%;padding:10px 16px;background:linear-gradient(110deg,#4b101ccf,#0e0810d9);border:1px solid #ce3851;box-shadow:0 0 25px #ad203753,inset 0 0 25px #8e234037;font-size:clamp(12px,1.12vw,20px);font-weight:800;text-align:center;line-height:1.45;text-shadow:0 0 8px #d73e51;pointer-events:none}
+.real-combat-root .battle-hud{position:absolute;z-index:5;bottom:14px;width:min(24%,342px);min-height:109px;padding:9px 13px 7px;background-image:var(--hud),linear-gradient(115deg,#120d13e9,#160b12dd);background-size:100% 100%;border:1px solid #84323c;box-shadow:0 0 15px #090308,inset 0 0 12px #371018}
+.real-combat-root .player-hud{left:5%}
+.real-combat-root .ghost-hud{right:5%}
+.real-combat-root .battle-hud h2{display:flex;align-items:center;justify-content:space-between;font-size:18px;color:#ffe0de;margin-bottom:4px}
+.real-combat-root .battle-hud h2 span{font-size:12px;color:#f28a92}
+.real-combat-root .stat-row{display:grid;grid-template-columns:54px 1fr 66px;gap:8px;align-items:center;font-size:12px;min-height:20px}
+.real-combat-root .meter{height:9px;display:block;border-radius:10px;background:#10121a;overflow:hidden;border:1px solid #54404e;position:relative}
+.real-combat-root .meter>span{height:100%;display:block;background:var(--green)}
+.real-combat-root .meter.energy>span{background:var(--blue)}
+.real-combat-root .meter.burden>span{background:var(--purple)}
+.real-combat-root .stat-num{text-align:right;font-size:11px;color:#e7c9ce;font-variant-numeric:tabular-nums}
+.real-combat-root .hud-note{margin-top:5px;padding-top:5px;border-top:1px solid #552935;color:#caacb1;font-size:11px}
+.real-combat-root .hud-note strong{color:#f18a93}
+.real-combat-root .ghost-line{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;font-size:12px;min-height:22px}
+.real-combat-root .ghost-line>b{color:#f6a2a9;text-align:right;max-width:68%}
+.real-combat-root .battle-console{display:grid;grid-template-columns:minmax(0,58%) minmax(0,42%);min-height:315px;flex:1;background:radial-gradient(ellipse at 50% 0,#34151e,#0b0b11 74%);border-top:1px solid #301319;gap:0}
+.real-combat-root .skills-panel{min-width:0;padding:13px 12px 10px 18px;border-right:1px solid #582632}
+.real-combat-root .console-title{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:9px}
+.real-combat-root .console-title h2{font-size:clamp(16px,1.4vw,23px);font-weight:800;white-space:nowrap}
+.real-combat-root .capacity{color:#bfa4ad;font-size:12px}
+.real-combat-root .skills-toolbar{border-bottom:1px solid #65333c;margin-bottom:8px}
+.real-combat-root .skill-tabs{display:flex;gap:5px;overflow-x:auto;white-space:nowrap;padding-bottom:7px;scrollbar-width:thin}
+.real-combat-root .skill-tab{border:1px solid #45404a;background:#18171d;border-radius:6px;padding:7px 15px;color:#e4cbd1;font-size:13px;flex-shrink:0}
+.real-combat-root .skill-tab.active{background:#8c2531;border-color:#f44b5a;box-shadow:0 0 12px #df2f4075;color:white}
+.real-combat-root .skill-tab:hover{border-color:#ef6270}
+.real-combat-root .secondary-toolbar{display:flex;gap:10px;align-items:center;justify-content:space-between;margin:0 0 9px}
+.real-combat-root .secondary-toolbar label{max-width:250px;flex:1}
+.real-combat-root .secondary-toolbar input{width:100%;min-width:0;background:#0b0b10;border:1px solid #634049;color:#efe9ec;border-radius:4px;padding:7px 10px;font-size:12px}
+.real-combat-root .secondary-toolbar input::placeholder{color:#937d85}
+.real-combat-root .sort-button{flex-shrink:0;background:#201921;border:1px solid #5a3f47;border-radius:4px;padding:7px 10px;font-size:12px;color:#e2c6cb}
+.real-combat-root .hint{font-size:11px;color:#b7a3a8;white-space:nowrap}
+.real-combat-root .scroll-frame{min-width:0;position:relative}
+.real-combat-root .scroll-frame::after{content:"";position:absolute;right:0;top:0;bottom:12px;width:25px;pointer-events:none;background:linear-gradient(90deg,transparent,#0f0d13aa)}
+.real-combat-root .skill-scroll{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-color:#813844 #100b10;scrollbar-width:thin;padding:4px 8px 10px 4px;min-height:205px}
+.real-combat-root .skill-card{scroll-snap-align:start;width:139px;min-width:139px;height:195px;flex-shrink:0;padding:9px 10px;display:flex;flex-direction:column;align-items:stretch;gap:5px;background:var(--card) center/100% 100% no-repeat;text-align:left;border:0;position:relative}
+.real-combat-root .skill-card:hover{filter:brightness(1.22)}
+.real-combat-root .skill-card.selected{filter:drop-shadow(0 0 8px #d44252a8)}
+.real-combat-root .skill-card.not-ready{opacity:.69}
+.real-combat-root .skill-art{height:91px;overflow:hidden;border:1px solid #704149;background:#0f0b12}
+.real-combat-root .skill-art img{width:100%;height:100%;object-fit:cover}
+.real-combat-root .skill-card b{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.real-combat-root .skill-card small{font-size:10px;color:#ceb5bb;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.real-combat-root .card-meta{font-size:11px;display:flex;align-items:center;gap:5px;color:#7ed6ff}
+.real-combat-root .card-meta img{width:16px;height:16px}
+.real-combat-root .card-state{font-size:10px;align-self:flex-end;margin-top:auto;padding:2px 5px;border:1px solid #7d3840;border-radius:4px}
+.real-combat-root .card-state.good{background:#093b31;color:#60ebbc;border-color:#167451}
+.real-combat-root .card-state.bad{background:#381b22;color:#fa9c9c}
+.real-combat-root .empty{padding:22px;color:#b99caa;font-size:13px;min-height:100px;display:flex;align-items:center;justify-content:center;text-align:center}
+.real-combat-root .skill-inspector{min-width:0;min-height:305px;margin:10px 13px 12px 6px;padding:14px 15px 12px;border:1px solid #80313d;background-image:var(--detail),linear-gradient(135deg,#1c0e18,#0c0c13);background-size:100% 100%;display:flex;flex-direction:column;gap:8px}
+.real-combat-root .skill-info{display:grid;grid-template-columns:90px minmax(0,1fr);gap:11px;align-items:start}
+.real-combat-root .skill-info>img{width:90px;height:89px;object-fit:cover;border:1px solid #9c4852}
+.real-combat-root .skill-info h3{font-size:16px;margin-bottom:5px}
+.real-combat-root .skill-info p{font-size:11px;color:#c8aeb5;line-height:1.5}
+.real-combat-root .skill-info .desc{color:#e1c6ce;margin-top:5px}
+.real-combat-root .demo-inline{color:#fb919b}
+.real-combat-root .cost-grid{border-top:1px solid #5c2535;margin-top:4px;padding-top:7px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.45fr);align-items:start;gap:5px;font-size:12px}
+.real-combat-root .cost-grid>b{color:#f6a5b0}
+.real-combat-root .per-ghost{display:flex;flex-wrap:wrap;gap:6px;font-size:11px}
+.real-combat-root .per-ghost span{background:#331623;padding:3px 6px;border:1px solid #6d3341}
+.real-combat-root .per-ghost strong{color:#ffc5c9}
+.real-combat-root .eligibility{font-size:11px;color:#b7dbc6;line-height:1.4;padding-top:3px}
+.real-combat-root .eligibility.bad{color:#ff999b}
+.real-combat-root .control-zone{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:9px}
+.real-combat-root .aux-actions{display:flex;gap:7px;flex-wrap:wrap}
+.real-combat-root .aux-actions button{display:flex;align-items:center;justify-content:center;gap:5px;background:#19171e;border:1px solid #58444d;border-radius:5px;padding:10px 10px;white-space:nowrap;font-size:12px}
+.real-combat-root .aux-actions button:hover{border-color:#ed586d;background:#311a27}
+.real-combat-root .aux-actions button img{width:16px;height:16px}
+.real-combat-root .execute-button{display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 22px;border:1px solid #ff7180;background:linear-gradient(120deg,#972334,#a31526);border-radius:7px;box-shadow:0 0 15px #ae26354d;white-space:nowrap;font-size:16px;font-weight:800}
+.real-combat-root .execute-button:hover:not(:disabled){background:#d53845}
+.real-combat-root .execute-button img{width:22px;height:22px}
+.real-combat-root .legal-footer{text-align:center;font-size:11px;color:#a88e9a;background:#07070b;padding:6px 12px;border-top:1px solid #351720}
+.real-combat-root .modal-backdrop{position:fixed;z-index:100;inset:0;background:#040307d8;display:grid;place-items:center;padding:14px}
+.real-combat-root .dialog{position:relative;border:2px solid #913b49;background:linear-gradient(125deg,#22121e,#0a0a10);box-shadow:0 0 60px #ad283553;max-width:490px;width:100%;padding:27px;line-height:1.8}
+.real-combat-root .dialog h2{font-size:21px;margin-bottom:12px}
+.real-combat-root .dialog p,.real-combat-root .dialog li{font-size:14px;color:#e0c2c9}
+.real-combat-root .dialog-x{position:absolute;right:12px;top:7px;background:transparent;border:0;font-size:28px}
+.real-combat-root .confirm-btn{margin-top:15px;background:#9b2431;color:white;border:1px solid #f54c60;border-radius:5px;padding:9px 18px}
+@media (max-width:1300px){.real-combat-root .battle-stage{height:43vh;min-height:355px}
+.real-combat-root .stage-caption{left:17%;right:17%}
+.real-combat-root .figure{height:200px;bottom:120px}
+.real-combat-root .battle-hud{width:29%}
+.real-combat-root .skills-panel{padding-left:10px}
+.real-combat-root .skill-inspector{margin:8px}
+.real-combat-root .skill-card{width:119px;min-width:119px;height:184px}
+.real-combat-root .skill-art{height:83px}
+.real-combat-root .battle-console{grid-template-columns:minmax(0,57%) minmax(0,43%)}
+.real-combat-root .hint{display:none}
+.real-combat-root .skill-inspector{padding:10px}
+.real-combat-root .aux-actions button{padding:9px 7px}
+.real-combat-root .execute-button{padding:10px 13px}}
+@media (max-width:820px){.real-combat-root .combat-top{grid-template-columns:1fr auto;height:auto;min-height:57px;padding:9px 12px}
+.real-combat-root .mission-name{font-size:12px}
+.real-combat-root .battle-name{font-size:16px}
+.real-combat-root .round-line{grid-column:1;grid-row:2;justify-self:start;font-size:12px}
+.real-combat-root .header-tools{grid-column:2;grid-row:1 / span 2;flex-direction:column;align-items:flex-end;gap:4px}
+.real-combat-root .quiet-button{font-size:10px;padding:5px}
+.real-combat-root .demo-pill{font-size:9px;padding:4px}
+.real-combat-root .battle-stage{height:390px;min-height:390px}
+.real-combat-root .stage-caption{top:9px;left:3%;right:3%;white-space:normal;flex-wrap:wrap;gap:3px 13px;font-size:11px;padding:5px 6px}
+.real-combat-root .figure{height:164px;width:45%;bottom:154px}
+.real-combat-root .fighter-left{left:2%}
+.real-combat-root .fighter-right{right:2%}
+.real-combat-root .figure img{max-width:100%}
+.real-combat-root .battle-line{width:56%;left:22%;height:100px;top:100px}
+.real-combat-root .battle-feedback{top:43%;max-width:80%;padding:6px 12px;font-size:11px}
+.real-combat-root .battle-hud{bottom:10px;width:46%;min-height:135px;padding:7px 8px}
+.real-combat-root .player-hud{left:2%}
+.real-combat-root .ghost-hud{right:2%}
+.real-combat-root .battle-hud h2{font-size:14px}
+.real-combat-root .battle-hud h2 span{font-size:10px}
+.real-combat-root .stat-row{grid-template-columns:41px minmax(0,1fr) 49px;gap:4px;font-size:10px}
+.real-combat-root .stat-num{font-size:9px}
+.real-combat-root .hud-note,.real-combat-root .ghost-line{font-size:10px}
+.real-combat-root .battle-console{grid-template-columns:1fr}
+.real-combat-root .skills-panel{border-right:0;border-bottom:1px solid #512b33;padding:14px 10px 7px}
+.real-combat-root .console-title h2{font-size:17px}
+.real-combat-root .capacity{font-size:10px}
+.real-combat-root .skill-tabs{gap:5px}
+.real-combat-root .skill-tab{padding:6px 12px}
+.real-combat-root .skill-scroll{min-height:188px}
+.real-combat-root .skill-card{width:124px;min-width:124px;height:182px}
+.real-combat-root .skill-art{height:82px}
+.real-combat-root .skill-inspector{margin:9px 10px;padding:12px;min-height:270px}
+.real-combat-root .control-zone{flex-wrap:wrap}
+.real-combat-root .aux-actions button{padding:9px}
+.real-combat-root .execute-button{margin-left:auto}
+.real-combat-root .legal-footer{font-size:10px;padding:7px}}
+@media (max-width:420px){.real-combat-root .heading{flex-wrap:wrap;gap:4px}
+.real-combat-root .mission-name{font-size:11px}
+.real-combat-root .battle-stage{height:364px;min-height:364px}
+.real-combat-root .figure{height:144px;bottom:145px}
+.real-combat-root .battle-hud{min-height:132px}
+.real-combat-root .battle-hud h2{margin-bottom:4px}
+.real-combat-root .battle-hud h2 span{display:none}
+.real-combat-root .ghost-line{font-size:10px}
+.real-combat-root .battle-feedback{top:41%;font-size:10px}
+.real-combat-root .stage-caption{font-size:10px}
+.real-combat-root .secondary-toolbar{gap:6px}
+.real-combat-root .sort-button{padding:7px 5px}
+.real-combat-root .skill-info{grid-template-columns:75px minmax(0,1fr)}
+.real-combat-root .skill-info>img{width:75px;height:75px}
+.real-combat-root .skill-info h3{font-size:14px}
+.real-combat-root .skill-info p{font-size:10px}
+.real-combat-root .cost-grid{font-size:11px}
+.real-combat-root .control-zone{display:grid;grid-template-columns:1fr}
+.real-combat-root .aux-actions{justify-content:space-between}
+.real-combat-root .aux-actions button{flex:1}
+.real-combat-root .execute-button{width:100%;margin:0}
+.real-combat-root .legal-footer{line-height:1.5}}
+@media (prefers-reduced-motion:reduce){.real-combat-root *,.real-combat-root *::before,.real-combat-root *::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+.real-combat-root{position:fixed;inset:0;z-index:9999;overflow-x:hidden;overflow-y:auto;background:#09080c;overscroll-behavior:contain;}
+.real-combat-root .combat-app{min-height:100dvh}
+.real-combat-root .modal-backdrop{z-index:10001}
+.real-combat-root .revival-list{margin-top:3px;color:#f0c4c4;font-size:11px;}
+.real-combat-root .action-rule-note{font-size:11px;color:#b4a4a4}
+
+/* 1366x768 laptop view: complete action console within one battlefield screen. */
+@media (min-width:821px) and (max-height:810px) {
+.real-combat-root .battle-stage{height:310px;min-height:300px}
+.real-combat-root .figure{height:178px;bottom:114px}
+.real-combat-root .battle-console{min-height:305px}
+.real-combat-root .skill-scroll{min-height:175px}
+.real-combat-root .skill-card{height:171px}
+.real-combat-root .skill-art{height:72px}
+.real-combat-root .skill-inspector{min-height:265px;gap:5px}
+.real-combat-root .skill-info>img{width:70px;height:68px}
+.real-combat-root .skill-info{grid-template-columns:70px minmax(0,1fr)}
+.real-combat-root .secondary-toolbar{margin-bottom:4px}
+.real-combat-root .skill-tabs{padding-bottom:3px}
+.real-combat-root .console-title{padding-bottom:4px}
+.real-combat-root .skill-inspector .cost-grid{gap:3px}
+.real-combat-root .control-zone{gap:5px}
+}
