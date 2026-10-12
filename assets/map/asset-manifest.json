@@ -1,0 +1,1462 @@
+{
+  "schemaVersion": 1,
+  "coordinateConvention": "XYWH in original PNG pixels, zero based; crop end exclusive",
+  "sources": {
+    "sheet": {
+      "file": "reference/sheet.png",
+      "size": [
+        1672,
+        941
+      ],
+      "sha256": "a1fe246003352ad28c5e92be1881e3febe7b6f0948daef84b81eb8e6c26fe8cf"
+    },
+    "reference": {
+      "file": "reference/reference.png",
+      "size": [
+        1280,
+        851
+      ],
+      "sha256": "a36aae32edb6c3bd40208b424919913af91e890429b320e2f29cbca9a7f96f29"
+    }
+  },
+  "assets": [
+    {
+      "id": "world-base",
+      "file": "assets/map/world-base.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        27,
+        109,
+        320,
+        124
+      ],
+      "role": "Map background, without city labels; small raster stretched proportionally",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "a044b0bc5b78e2b4c420ffb01290f8fdf9cc49debe35c6e119be6fdf03c92dae"
+    },
+    {
+      "id": "fog-source",
+      "file": "assets/map/fog-source.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        363,
+        109,
+        308,
+        124
+      ],
+      "role": "Fog example; baked question marks remain, not used as a full map",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "2cd76b239f62bab91dec0092cd21e52a0e2f71fcfa55ed03c1bc95dbce85a700"
+    },
+    {
+      "id": "route-source",
+      "file": "assets/map/route-source.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        685,
+        109,
+        299,
+        124
+      ],
+      "role": "Route art reference only; routes in demo are editable SVG",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "34871f88d9ff14995f2ec82283fd2ee34dbdac002b6c73d7fe636fa9af452efc"
+    },
+    {
+      "id": "city-highlight-source",
+      "file": "assets/map/city-highlight-source.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1000,
+        109,
+        305,
+        124
+      ],
+      "role": "Highlight reference only; baked label retained",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "745fca52138b62d66415403cfc94f886436b8c5cc96e3babde341294eeab1a95"
+    },
+    {
+      "id": "chapter-source",
+      "file": "assets/map/chapter-source.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1324,
+        109,
+        328,
+        124
+      ],
+      "role": "Chapter reference only; no fictional chapter unlocks implemented",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "ea23805bb8e7e16b8ca335ad6c0840bae8e1ca673e2755b847450539419ef88b"
+    },
+    {
+      "id": "city-normal",
+      "file": "assets/map/city-normal.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        26,
+        298,
+        127,
+        99
+      ],
+      "role": "Independent city-state tile, contains baked text/background",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "442511529e7733171f6e2b1a9e030c129c2367d754c2049219581208555ff79b"
+    },
+    {
+      "id": "city-art-normal",
+      "file": "assets/map/city-art-normal.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        29,
+        301,
+        121,
+        63
+      ],
+      "role": "City skyline thumbnail; glow/background remain",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "79cbe43f815190d9b225f48e7610f35c2c0d94dbb856b6ae38f0ea965236a57f"
+    },
+    {
+      "id": "city-hover",
+      "file": "assets/map/city-hover.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        165,
+        298,
+        124,
+        99
+      ],
+      "role": "Independent city-state tile, contains baked text/background",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "fdc5131cc7e6ba60e89b4915a710a8e8b4864e0f98dd0d9f76e7dbf57bc64a3f"
+    },
+    {
+      "id": "city-selected",
+      "file": "assets/map/city-selected.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        298,
+        298,
+        130,
+        99
+      ],
+      "role": "Independent city-state tile, contains baked text/background",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "397844fab6826f9de7c242e2175990fa917b7d4d9e0c42ba1903a1d37ec8cc43"
+    },
+    {
+      "id": "city-discovered",
+      "file": "assets/map/city-discovered.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        438,
+        298,
+        125,
+        99
+      ],
+      "role": "Independent city-state tile, contains baked text/background",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "28e9180236475759002cd396d60814b30c6e30e5aed1e5588a98cdc71afb6378"
+    },
+    {
+      "id": "city-locked",
+      "file": "assets/map/city-locked.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        576,
+        298,
+        113,
+        99
+      ],
+      "role": "Independent city-state tile, contains baked text/background",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "fb19c33a96f581796f9f669bee4c05e6845d7ce471e5223a1a38ea46c044caf9"
+    },
+    {
+      "id": "city-dahai",
+      "file": "assets/map/city-dahai.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        701,
+        298,
+        133,
+        99
+      ],
+      "role": "Independent city-state tile, contains baked text/background",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "a0fc804c8b5f978131c48477132e5d80a7ebeebfe0a6687307e96da09e0f534c"
+    },
+    {
+      "id": "city-art-dahai",
+      "file": "assets/map/city-art-dahai.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        704,
+        301,
+        127,
+        63
+      ],
+      "role": "City skyline thumbnail; glow/background remain",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "2b2f351e3f69c1532aa0bf347dea50783868f0bce1c3e04ece7fea0a27c19dd6"
+    },
+    {
+      "id": "city-dajing",
+      "file": "assets/map/city-dajing.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        847,
+        298,
+        133,
+        99
+      ],
+      "role": "Independent city-state tile, contains baked text/background",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "f429295dbb4942f3ed29f5ffd8ace332ea3ba1b070dc5b4871f1d245b4dee6c6"
+    },
+    {
+      "id": "city-art-dajing",
+      "file": "assets/map/city-art-dajing.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        850,
+        301,
+        127,
+        63
+      ],
+      "role": "City skyline thumbnail; glow/background remain",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "03a77247799cb204e77db8f97b696eef568552dd1643a23cbebfb9cee730e299"
+    },
+    {
+      "id": "city-dadong",
+      "file": "assets/map/city-dadong.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        991,
+        298,
+        137,
+        99
+      ],
+      "role": "Independent city-state tile, contains baked text/background",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "1317bacb9b29304148c08bc0e793eb0f91b55327dbd153899d1f34e160aeb6e0"
+    },
+    {
+      "id": "city-art-dadong",
+      "file": "assets/map/city-art-dadong.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        994,
+        301,
+        131,
+        63
+      ],
+      "role": "City skyline thumbnail; glow/background remain",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "75cf8ed4f35231fa2a3b1c06f827128affbfba0358c8aea145499c68acb74dba"
+    },
+    {
+      "id": "city-dahan",
+      "file": "assets/map/city-dahan.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1141,
+        298,
+        133,
+        99
+      ],
+      "role": "Independent city-state tile, contains baked text/background",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "596221933bb140b278d5c6fce5394ce8da9ad9e75d2ff12aca3fffc30e39e353"
+    },
+    {
+      "id": "city-art-dahan",
+      "file": "assets/map/city-art-dahan.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1144,
+        301,
+        127,
+        63
+      ],
+      "role": "City skyline thumbnail; glow/background remain",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "bdce4e2c44faff7319a9e3e0c65971164687ac4f54d548d829240e949b28bc71"
+    },
+    {
+      "id": "city-dachuan",
+      "file": "assets/map/city-dachuan.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1287,
+        298,
+        139,
+        99
+      ],
+      "role": "Independent city-state tile, contains baked text/background",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "de8de491794c1b2057013ecc0da0bbb8378feac396b2fc3d7f7c22198a6e8ea0"
+    },
+    {
+      "id": "city-art-dachuan",
+      "file": "assets/map/city-art-dachuan.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1290,
+        301,
+        133,
+        63
+      ],
+      "role": "City skyline thumbnail; glow/background remain",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "7f8b677ff0da387bb70b84a2dc3c499a7729cd903ab3a370c824d3e34e4deaf3"
+    },
+    {
+      "id": "city-unknown",
+      "file": "assets/map/city-unknown.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1440,
+        298,
+        207,
+        99
+      ],
+      "role": "Independent city-state tile, contains baked text/background",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "1c4ccd71fe09b8049e8769cb2539b6b58bf1ab1c7e6690a019f7bf20add3e602"
+    },
+    {
+      "id": "card-school",
+      "file": "assets/map/card-school.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        26,
+        457,
+        87,
+        126
+      ],
+      "role": "Complete card reference, not used as editable card",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "e6c34117778de11d86dd155463e274ecd0e0100f01845b2769e6ffa58427e8c7"
+    },
+    {
+      "id": "art-school",
+      "file": "assets/map/art-school.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        31,
+        463,
+        78,
+        68
+      ],
+      "role": "Dungeon thumbnail, no title/status text",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "957451fd0816e5e2229e57e6ba82c7372c3e959cbc88c71ec6c3c41e48ca94bb"
+    },
+    {
+      "id": "card-village",
+      "file": "assets/map/card-village.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        126,
+        457,
+        79,
+        126
+      ],
+      "role": "Complete card reference, not used as editable card",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "15acf0782d9cafabe6de9802212754b2e96f4c7dc6852c56193e09ed5781517d"
+    },
+    {
+      "id": "art-village",
+      "file": "assets/map/art-village.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        131,
+        463,
+        70,
+        68
+      ],
+      "role": "Dungeon thumbnail, no title/status text",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "61ea28678a29dad48b540dfb41a330c59558129097cf43dfa10a0ebf1ca2aafa"
+    },
+    {
+      "id": "card-estate",
+      "file": "assets/map/card-estate.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        219,
+        457,
+        76,
+        126
+      ],
+      "role": "Complete card reference, not used as editable card",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "516d11b5ee6ff5e002f6f29f24a08ce7fa0abf927104c7428f7c0f96818564fe"
+    },
+    {
+      "id": "art-estate",
+      "file": "assets/map/art-estate.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        224,
+        463,
+        67,
+        68
+      ],
+      "role": "Dungeon thumbnail, no title/status text",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "b6f84ebc01fec7b5c7d85bcdfeb13b32a7ada9126bf2fdd92bc2ca53b1b5d901"
+    },
+    {
+      "id": "card-temple",
+      "file": "assets/map/card-temple.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        309,
+        457,
+        80,
+        126
+      ],
+      "role": "Complete card reference, not used as editable card",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "d9ade5712fe1b1ebf15f2da51092157666d52bd8e768c6aca75f50261ac1ed81"
+    },
+    {
+      "id": "art-temple",
+      "file": "assets/map/art-temple.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        314,
+        463,
+        71,
+        68
+      ],
+      "role": "Dungeon thumbnail, no title/status text",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "37c908aed8b99cbe4f977ef9f15d1f680196120d7a109b0b9c38032b39c882ce"
+    },
+    {
+      "id": "card-cemetery",
+      "file": "assets/map/card-cemetery.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        404,
+        457,
+        75,
+        126
+      ],
+      "role": "Complete card reference, not used as editable card",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "7aa6de1cc5f7b0630fec39233f5f883fc93a864e6b3959fba33cc6695f73e348"
+    },
+    {
+      "id": "art-cemetery",
+      "file": "assets/map/art-cemetery.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        409,
+        463,
+        66,
+        68
+      ],
+      "role": "Dungeon thumbnail, no title/status text",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "17206f17bb00cc2762179838831cefc702cbd5a76b5a7535ee2cf6de87f1d5a3"
+    },
+    {
+      "id": "card-pearl",
+      "file": "assets/map/card-pearl.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        493,
+        457,
+        74,
+        126
+      ],
+      "role": "Complete card reference, not used as editable card",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "dd8dde113536b3ce5ebabc0bf71dbc41fa6df117113ecc9232d58de70d9d3d1f"
+    },
+    {
+      "id": "art-pearl",
+      "file": "assets/map/art-pearl.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        498,
+        463,
+        65,
+        68
+      ],
+      "role": "Dungeon thumbnail, no title/status text",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "cc11b8958e405fe086d9fa4410c528c1caba31ef94fcbc5fcc57b85d962a6535"
+    },
+    {
+      "id": "card-training",
+      "file": "assets/map/card-training.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        582,
+        457,
+        77,
+        126
+      ],
+      "role": "Complete card reference, not used as editable card",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "9f22775a4cd468b01066907741e38a6a27e49fcabcae4abce1d7918a0add9b8d"
+    },
+    {
+      "id": "art-training",
+      "file": "assets/map/art-training.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        587,
+        463,
+        68,
+        68
+      ],
+      "role": "Dungeon thumbnail, no title/status text",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "4385b0742a4b7163de64099c5573a77ac0b0b544a5e299bb621e4231f3f26088"
+    },
+    {
+      "id": "card-peace",
+      "file": "assets/map/card-peace.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        674,
+        457,
+        75,
+        126
+      ],
+      "role": "Complete card reference, not used as editable card",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "ac9cb05568d0a0d3422e4ee832df59ad4d77110aae39ef049598a672a3d48065"
+    },
+    {
+      "id": "art-peace",
+      "file": "assets/map/art-peace.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        679,
+        463,
+        66,
+        68
+      ],
+      "role": "Dungeon thumbnail, no title/status text",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "a8851ac5cd19285050b39ac6878788a9fdaa5780e85f971efd64dc06a5a4cdbf"
+    },
+    {
+      "id": "card-house",
+      "file": "assets/map/card-house.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        761,
+        457,
+        77,
+        126
+      ],
+      "role": "Complete card reference, not used as editable card",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "10f3f6c795a04d94c73ef824f1aea7d1603f6634023d07c4bf65969b9f05606e"
+    },
+    {
+      "id": "art-house",
+      "file": "assets/map/art-house.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        766,
+        463,
+        68,
+        68
+      ],
+      "role": "Dungeon thumbnail, no title/status text",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "7ccf90e4d2ca81c85c70ae70697c7b7c38aa525fe6817de3a5460b053d06ab74"
+    },
+    {
+      "id": "card-post",
+      "file": "assets/map/card-post.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        850,
+        457,
+        74,
+        126
+      ],
+      "role": "Complete card reference, not used as editable card",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "88bd31c67792c3cf092e4124011bcc265f8e1d49dc93b02a0a21233f4c1e5a51"
+    },
+    {
+      "id": "art-post",
+      "file": "assets/map/art-post.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        855,
+        463,
+        65,
+        68
+      ],
+      "role": "Dungeon thumbnail, no title/status text",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "8df993cba6b6f811bb628d6095641f39d1058ed152b98890fe6b0a3cbffe33c3"
+    },
+    {
+      "id": "card-moon",
+      "file": "assets/map/card-moon.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        940,
+        457,
+        74,
+        126
+      ],
+      "role": "Complete card reference, not used as editable card",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "893185ddbd4e873cc26e3f9a666f80979a8ead28a6ffc71c011bf0e6100bed50"
+    },
+    {
+      "id": "art-moon",
+      "file": "assets/map/art-moon.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        945,
+        463,
+        65,
+        68
+      ],
+      "role": "Dungeon thumbnail, no title/status text",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "c88fa96429b125d9e891cb4a25b334678e435ac3277c1f43340328a343f4a2e0"
+    },
+    {
+      "id": "card-room301",
+      "file": "assets/map/card-room301.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1030,
+        457,
+        73,
+        126
+      ],
+      "role": "Complete card reference, not used as editable card",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "7e1fa09d73fcc2451129c91adcbafbcbe2ea92863031f13cc85bb5c71c8cc8c1"
+    },
+    {
+      "id": "art-room301",
+      "file": "assets/map/art-room301.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1035,
+        463,
+        64,
+        68
+      ],
+      "role": "Dungeon thumbnail, no title/status text",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "83fbb889e4e862986b199953ebf5fc0a0d663fcc86d7547b31563ec989d8421e"
+    },
+    {
+      "id": "card-frame-selected",
+      "file": "assets/map/card-frame-selected.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        26,
+        457,
+        87,
+        126
+      ],
+      "role": "CSS border-image; only outer 7px edge rendered, center omitted",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "e6c34117778de11d86dd155463e274ecd0e0100f01845b2769e6ffa58427e8c7"
+    },
+    {
+      "id": "card-frame-normal",
+      "file": "assets/map/card-frame-normal.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        126,
+        457,
+        79,
+        126
+      ],
+      "role": "CSS border-image; only outer 4px edge rendered, center omitted",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "15acf0782d9cafabe6de9802212754b2e96f4c7dc6852c56193e09ed5781517d"
+    },
+    {
+      "id": "detail-school",
+      "file": "assets/map/detail-school.png",
+      "kind": "source-crop",
+      "source": "reference",
+      "rectXYWH": [
+        798,
+        174,
+        461,
+        190
+      ],
+      "role": "School detail screenshot; illustration crop",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "ffd8bc26cac43c1143ca07b5c1f0bfc340219793c585e5854b9ab670df47f850"
+    },
+    {
+      "id": "detail-frame",
+      "file": "assets/map/detail-frame.png",
+      "kind": "source-crop",
+      "source": "reference",
+      "rectXYWH": [
+        779,
+        79,
+        494,
+        701
+      ],
+      "role": "CSS border-image outer 7px only; illustration and text center omitted",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "526a02135a695e8bae6dbe0170466550551c3bf166710fdd57d4376a08451593"
+    },
+    {
+      "id": "panel-frame",
+      "file": "assets/map/panel-frame.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        281,
+        715,
+        452,
+        69
+      ],
+      "role": "Module edge CSS border-image 5px; center omitted",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "18203b8c824544b7d6065b639901d51a2e154365a2b766a47c7120edba9dad86"
+    },
+    {
+      "id": "page-frame",
+      "file": "assets/map/page-frame.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        8,
+        80,
+        1653,
+        183
+      ],
+      "role": "Outer gothic frame; CSS border-image 8px, center omitted",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "848729515d88b8aa0f5518c118855385561aa6c1faf158ffaa0fd18f2955ee27"
+    },
+    {
+      "id": "button-enter",
+      "file": "assets/map/button-enter.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1234,
+        633,
+        182,
+        41
+      ],
+      "role": "Button border-image outer 6px only; label is real DOM",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "1dd6df4ff97db8cb893145422b47d0d7420925d5a79cba47e7b5d2286480b099"
+    },
+    {
+      "id": "button-info",
+      "file": "assets/map/button-info.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1051,
+        633,
+        171,
+        41
+      ],
+      "role": "Button border-image outer 5px only; label is real DOM",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "cce81dfdaae94da3cb8a20cd01c84faab84d5ebdd7b13c98bb3ebb6a46a64740"
+    },
+    {
+      "id": "button-city",
+      "file": "assets/map/button-city.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1506,
+        635,
+        132,
+        39
+      ],
+      "role": "City control border-image, real DOM label",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "4df460d6769ecb520e235d7e0250dd0cac41b2d5309702285c68ee83a49b991b"
+    },
+    {
+      "id": "tag-main",
+      "file": "assets/map/tag-main.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1145,
+        500,
+        95,
+        34
+      ],
+      "role": "Independent label skin; edge-only CSS rendering enables editable text",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "9cbaba9359675a788f8aca78552b0dc523e65effa0aa470ab0b0de76f7a6db9b"
+    },
+    {
+      "id": "tag-side",
+      "file": "assets/map/tag-side.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1145,
+        541,
+        95,
+        34
+      ],
+      "role": "Independent label skin; edge-only CSS rendering enables editable text",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "569019740e11cb60a1f197f5552ba4f8c0bbe3eba857a4fb9c144c7eba265038"
+    },
+    {
+      "id": "tag-available",
+      "file": "assets/map/tag-available.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1270,
+        500,
+        76,
+        34
+      ],
+      "role": "Independent label skin; edge-only CSS rendering enables editable text",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "42f5e17fb04178e40d847712614de9bf95ebd1b0a3e2f63581e433721cdf3b8a"
+    },
+    {
+      "id": "tag-active",
+      "file": "assets/map/tag-active.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1355,
+        500,
+        72,
+        34
+      ],
+      "role": "Independent label skin; edge-only CSS rendering enables editable text",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "8ba142a897f963cd3234b2380af22d5125a06bbc67604c7314a5d91530d1c343"
+    },
+    {
+      "id": "tag-complete",
+      "file": "assets/map/tag-complete.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1442,
+        500,
+        72,
+        34
+      ],
+      "role": "Independent label skin; edge-only CSS rendering enables editable text",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "de89736569c056829467375d9d3784eff45b0701347a44148c599ea056aec8bd"
+    },
+    {
+      "id": "tag-sealed",
+      "file": "assets/map/tag-sealed.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1270,
+        541,
+        76,
+        34
+      ],
+      "role": "Independent label skin; edge-only CSS rendering enables editable text",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "072b6aa7f8d5c836c819d28b192f6e78a8a76facddb65a1df5cf1d5574736682"
+    },
+    {
+      "id": "tag-locked",
+      "file": "assets/map/tag-locked.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1355,
+        541,
+        72,
+        34
+      ],
+      "role": "Independent label skin; edge-only CSS rendering enables editable text",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "5c5cc970ede474a83cbb0bccd0ecc4788679688972532d72189d298fc5d1488a"
+    },
+    {
+      "id": "tag-unknown",
+      "file": "assets/map/tag-unknown.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1442,
+        541,
+        72,
+        34
+      ],
+      "role": "Independent label skin; edge-only CSS rendering enables editable text",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "dd41d736b8cbdf97540d5706bf356da73054c85d696521fc2a4a538fae4b9fdb"
+    },
+    {
+      "id": "tag-high",
+      "file": "assets/map/tag-high.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1543,
+        500,
+        104,
+        30
+      ],
+      "role": "Independent label skin; edge-only CSS rendering enables editable text",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "a0f87201d3b0907d5526bb6e5860f86c91d7245f4526f4d6c7b7e522dd02eb96"
+    },
+    {
+      "id": "tag-medium",
+      "file": "assets/map/tag-medium.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1543,
+        535,
+        104,
+        25
+      ],
+      "role": "Independent label skin; edge-only CSS rendering enables editable text",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "456934d8dd0df3b590a8ac0a1b69587671e8516983a5670e2895fffe3946918d"
+    },
+    {
+      "id": "tag-low",
+      "file": "assets/map/tag-low.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1543,
+        566,
+        104,
+        23
+      ],
+      "role": "Independent label skin; edge-only CSS rendering enables editable text",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "d8e8acbf81211b2ed8620d7ad71a134d779cdfd0d7eeb8a6f72216ea7496dbf2"
+    },
+    {
+      "id": "icon-compass",
+      "file": "assets/map/icon-compass.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1321,
+        6,
+        64,
+        67
+      ],
+      "role": "Icon crop with opaque surrounding pixels",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "72ebd4d8b2ed89f47086e15a06ca251afa65bd9ee4ddefd72a2dcb55e14eed10"
+    },
+    {
+      "id": "icon-reticle",
+      "file": "assets/map/icon-reticle.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        863,
+        883,
+        52,
+        46
+      ],
+      "role": "Icon crop with opaque surrounding pixels",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "17140e21e6eefcc2200167fcd9e47d13cb1e378a04d8c37cbf2826aa763cc7ab"
+    },
+    {
+      "id": "icon-lock",
+      "file": "assets/map/icon-lock.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        984,
+        891,
+        21,
+        30
+      ],
+      "role": "Icon crop with opaque surrounding pixels",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "3bc5a3d4fae401dfd6d00d865ef45b372dcd144ab946f188665b5aa62ca74fa7"
+    },
+    {
+      "id": "icon-file",
+      "file": "assets/map/icon-file.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1021,
+        891,
+        25,
+        30
+      ],
+      "role": "Icon crop with opaque surrounding pixels",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "435c0bfae0db018ec0a4f6379d055da5534b062078f5439650d2cee4b0276499"
+    },
+    {
+      "id": "icon-warning",
+      "file": "assets/map/icon-warning.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1055,
+        887,
+        32,
+        36
+      ],
+      "role": "Icon crop with opaque surrounding pixels",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "69eb5ec3a918037962504f700d08a11f3d207da2ff23e023a4feaea64c88b733"
+    },
+    {
+      "id": "icon-lamp",
+      "file": "assets/map/icon-lamp.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        295,
+        822,
+        25,
+        25
+      ],
+      "role": "Icon crop with opaque surrounding pixels",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "4456db51679bf7e10a0bf6710ae03eb0d07200191bdd4161ba224ce3af91f091"
+    },
+    {
+      "id": "icon-recorder",
+      "file": "assets/map/icon-recorder.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        382,
+        822,
+        27,
+        25
+      ],
+      "role": "Icon crop with opaque surrounding pixels",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "14e8df530aa92a1086c70520046f2a6533aba3c92e1b38e08b65212b10c0924a"
+    },
+    {
+      "id": "icon-restriction",
+      "file": "assets/map/icon-restriction.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        464,
+        822,
+        21,
+        25
+      ],
+      "role": "Icon crop with opaque surrounding pixels",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "57a885d4bc7623ca2ef64b49c3ecfbec3e264f991d5b71f431d9cb03965ee38e"
+    },
+    {
+      "id": "icon-escape",
+      "file": "assets/map/icon-escape.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        536,
+        822,
+        25,
+        25
+      ],
+      "role": "Icon crop with opaque surrounding pixels",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "890d576ad7f4d82554e22276346af059adb4a7e86071df6846ac4e8c16b9696a"
+    },
+    {
+      "id": "icon-home",
+      "file": "assets/map/icon-home.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1480,
+        719,
+        30,
+        29
+      ],
+      "role": "Icon crop with opaque surrounding pixels",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "66f28ebe0f4012d929efe2fe667cd71cc264d79ea530de70558c33be092a63a8"
+    },
+    {
+      "id": "icon-pin",
+      "file": "assets/map/icon-pin.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1518,
+        719,
+        28,
+        29
+      ],
+      "role": "Icon crop with opaque surrounding pixels",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "2928547265cb16923d951355ef8f9cfa5eff5f0e9ae599223bdbe1adfe3984a5"
+    },
+    {
+      "id": "archive-unknown",
+      "file": "assets/map/archive-unknown.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1547,
+        793,
+        94,
+        54
+      ],
+      "role": "Unknown archive artwork, no identity/rating",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "4587978157a06be90a95940d0b4e57091e0807b261c5b7260d65edbaa4977399"
+    },
+    {
+      "id": "archive-rating",
+      "file": "assets/map/archive-rating.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        1281,
+        793,
+        99,
+        54
+      ],
+      "role": "Known rating illustration source only; identity baked into original, never rendered for unknown identity",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "9e3a470465fffd8d89c259aa3420a9c62778d0a2039ef625d14408762f406b01"
+    },
+    {
+      "id": "divider",
+      "file": "assets/map/divider.png",
+      "kind": "source-crop",
+      "source": "sheet",
+      "rectXYWH": [
+        815,
+        891,
+        43,
+        23
+      ],
+      "role": "Decorative red divider",
+      "notes": "Opaque source crop; no original layers recovered.",
+      "sha256": "0d5905290e5e1be608bedb7bad242b6cb5612fbc628fd6d55574c19d2bc8a5af"
+    },
+    {
+      "id": "header-texture",
+      "file": "assets/map/header-texture.png",
+      "kind": "source-crop",
+      "source": "reference",
+      "rectXYWH": [
+        84,
+        0,
+        649,
+        70
+      ],
+      "role": "Top skyline texture; runtime uses crop away from resource labels",
+      "notes": "Skyline crop excludes baked resource counts and account icons.",
+      "sha256": "2efe9b9f3a501dae38fc10e0ec4bad97f6dfe5679d742b7ec61eba49615d1b34"
+    },
+    {
+      "id": "node-normal",
+      "file": "assets/map/node-normal.svg",
+      "kind": "editable-reconstruction",
+      "source": "sheet",
+      "referenceRectXYWH": [
+        298,
+        298,
+        130,
+        99
+      ],
+      "notes": "Transparent SVG reticle reconstructed from selected-city motif; not pixel-exact extraction."
+    },
+    {
+      "id": "node-hover",
+      "file": "assets/map/node-hover.svg",
+      "kind": "editable-reconstruction",
+      "source": "sheet",
+      "referenceRectXYWH": [
+        298,
+        298,
+        130,
+        99
+      ],
+      "notes": "Transparent SVG reticle reconstructed from selected-city motif; not pixel-exact extraction."
+    },
+    {
+      "id": "node-selected",
+      "file": "assets/map/node-selected.svg",
+      "kind": "editable-reconstruction",
+      "source": "sheet",
+      "referenceRectXYWH": [
+        298,
+        298,
+        130,
+        99
+      ],
+      "notes": "Transparent SVG reticle reconstructed from selected-city motif; not pixel-exact extraction."
+    },
+    {
+      "id": "node-discovered",
+      "file": "assets/map/node-discovered.svg",
+      "kind": "editable-reconstruction",
+      "source": "sheet",
+      "referenceRectXYWH": [
+        298,
+        298,
+        130,
+        99
+      ],
+      "notes": "Transparent SVG reticle reconstructed from selected-city motif; not pixel-exact extraction."
+    },
+    {
+      "id": "map-terrain-composite",
+      "file": "assets/map/map-terrain-composite.png",
+      "kind": "source-composite-reconstruction",
+      "sourceRegions": [
+        {
+          "source": "reference",
+          "rectXYWH": [
+            14,
+            136,
+            754,
+            412
+          ]
+        },
+        {
+          "source": "sheet",
+          "rectXYWH": [
+            27,
+            109,
+            320,
+            124
+          ]
+        }
+      ],
+      "notes": "Derived from both approved inputs. Feathered replacement of baked city labels/reticles with sheet terrain. Some source route glow remains. This is manual raster recomposition, NOT a recovered original map layer or pixel-exact restoration.",
+      "sha256": "bdd681348efa2942afe4c6f5cff89eeb3b82a48b1a94a96a1337633d30d3c90e"
+    },
+    {
+      "id": "ornament-frame",
+      "file": "assets/map/ornament-frame.png",
+      "kind": "source-composite-reconstruction",
+      "sourceRegions": [
+        {
+          "source": "reference",
+          "rectXYWH": [
+            27,
+            547,
+            723,
+            8
+          ]
+        },
+        {
+          "source": "reference",
+          "rectXYWH": [
+            7,
+            150,
+            8,
+            375
+          ]
+        },
+        {
+          "source": "reference",
+          "rectXYWH": [
+            769,
+            150,
+            8,
+            375
+          ]
+        },
+        {
+          "source": "reference",
+          "rectXYWH": [
+            7,
+            547,
+            8,
+            8
+          ]
+        }
+      ],
+      "notes": "Text-free 9-slice raster reconstructed from approved reference border strips; corners mirrored. Center transparent. Not original layered extraction.",
+      "sha256": "325bf23afe87602feefd683e05ae259334d2b38b8459c96de28a38d0ee830eda"
+    },
+    {
+      "id": "archive-mirror",
+      "file": "assets/map/archive-mirror.png",
+      "kind": "source-composite-reconstruction",
+      "sourceRegions": [
+        {
+          "source": "reference",
+          "rectXYWH": [
+            1070,
+            695,
+            71,
+            62
+          ]
+        }
+      ],
+      "notes": "Confirmed mirror dossier illustration, cropped above name. Uses approved visual example only.",
+      "sha256": "e80284211e5b076c3d741a20d3d7b57b9125cfc0fc1a2709e03d58d6564314f3"
+    },
+    {
+      "id": "map-terrain-uniform",
+      "file": "assets/map/map-terrain-uniform.png",
+      "kind": "source-composite-reconstruction",
+      "sourceRegions": [
+        {
+          "source": "reference",
+          "rectXYWH": [
+            14,
+            136,
+            754,
+            412
+          ]
+        }
+      ],
+      "notes": "High-resolution reference texture-only repair with Poisson boundary blending; no low-resolution sheet patches. Small vertical fit and texture rearrangement are documented reconstruction.",
+      "sha256": "e5953035cb6727dc773cdc9c64397c22eeda117db779c69984d76ba62037da91"
+    },
+    {
+      "id": "ornament-frame-native",
+      "file": "assets/map/ornament-frame-native.png",
+      "kind": "source-composite-reconstruction",
+      "sourceRegions": [
+        {
+          "source": "reference",
+          "rectXYWH": [
+            7,
+            73,
+            770,
+            484
+          ]
+        }
+      ],
+      "notes": "Original outer 9px border at native resolution; center cleared. Source corners preserved; no mirrored corner approximation.",
+      "sha256": "43dcde52dcfb78296061d57a8173cbe57ac739327cc818885e96afc1947df67f"
+    },
+    {
+      "id": "node-source-normal",
+      "file": "assets/map/node-source-normal.png",
+      "kind": "source-matted-extraction",
+      "sourceRegions": [
+        {
+          "source": "sheet",
+          "rectXYWH": [
+            863,
+            883,
+            52,
+            46
+          ]
+        }
+      ],
+      "notes": "Red/white light matte from the approved source crop. Background removal uses color thresholds; not recovery of an original alpha layer.",
+      "sha256": "81ccd549a9d3ef0ec1010f045d3df86827863cd84266c85c19e98ccc194f5fd2"
+    },
+    {
+      "id": "node-source-selected",
+      "file": "assets/map/node-source-selected.png",
+      "kind": "source-matted-extraction",
+      "sourceRegions": [
+        {
+          "source": "sheet",
+          "rectXYWH": [
+            330,
+            308,
+            65,
+            62
+          ]
+        }
+      ],
+      "notes": "Red/white light matte from the approved source crop. Background removal uses color thresholds; not recovery of an original alpha layer.",
+      "sha256": "4745bb1fb3779636b0d50a9e05f03ddd68e0729c0c497f9d3035bbf4d2e49b8d"
+    }
+  ],
+  "limitations": [
+    "Flattened input has no recoverable editable original text/effects layers.",
+    "Map base source is 320x124; enlarged preview cannot claim pixel fidelity.",
+    "Opaque thumbnails may retain source glow/background.",
+    "All labels/state/content are real DOM; border-image only draws edges.",
+    "Reference is a 1280x851 cropped screen and has no complete left navigation. Sidebar reuses latest locally verified project styling.",
+    "Current map uses only native-resolution reference texture repairs; terrain-repair-coordinates.json records clone regions. This remains reconstructed terrain, not recovered original layers.",
+    "Current map uses only native-resolution reference texture repairs; terrain-repair-coordinates.json records clone regions. This remains reconstructed terrain, not recovered original layers."
+  ]
+}

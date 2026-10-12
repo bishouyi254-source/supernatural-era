@@ -1,0 +1,152 @@
+[
+  {
+    "destinationXYWH": [
+      144,
+      99,
+      222,
+      108
+    ],
+    "referenceSampleXYWH": [
+      164,
+      461,
+      222,
+      87
+    ],
+    "operation": "approved reference texture clone with Poisson edge blending; vertical fit at most 1.32x, no low-resolution sheet texture"
+  },
+  {
+    "destinationXYWH": [
+      299,
+      0,
+      250,
+      76
+    ],
+    "referenceSampleXYWH": [
+      177,
+      461,
+      250,
+      76
+    ],
+    "operation": "approved reference texture clone with Poisson edge blending; vertical fit at most 1.32x, no low-resolution sheet texture"
+  },
+  {
+    "destinationXYWH": [
+      521,
+      45,
+      194,
+      79
+    ],
+    "referenceSampleXYWH": [
+      190,
+      461,
+      194,
+      79
+    ],
+    "operation": "approved reference texture clone with Poisson edge blending; vertical fit at most 1.32x, no low-resolution sheet texture"
+  },
+  {
+    "destinationXYWH": [
+      386,
+      125,
+      216,
+      89
+    ],
+    "referenceSampleXYWH": [
+      203,
+      461,
+      216,
+      87
+    ],
+    "operation": "approved reference texture clone with Poisson edge blending; vertical fit at most 1.32x, no low-resolution sheet texture"
+  },
+  {
+    "destinationXYWH": [
+      98,
+      218,
+      199,
+      90
+    ],
+    "referenceSampleXYWH": [
+      216,
+      461,
+      199,
+      87
+    ],
+    "operation": "approved reference texture clone with Poisson edge blending; vertical fit at most 1.32x, no low-resolution sheet texture"
+  },
+  {
+    "destinationXYWH": [
+      289,
+      236,
+      145,
+      90
+    ],
+    "referenceSampleXYWH": [
+      229,
+      461,
+      145,
+      87
+    ],
+    "operation": "approved reference texture clone with Poisson edge blending; vertical fit at most 1.32x, no low-resolution sheet texture"
+  },
+  {
+    "destinationXYWH": [
+      535,
+      313,
+      99,
+      99
+    ],
+    "referenceSampleXYWH": [
+      242,
+      461,
+      99,
+      87
+    ],
+    "operation": "approved reference texture clone with Poisson edge blending; vertical fit at most 1.32x, no low-resolution sheet texture"
+  },
+  {
+    "destinationXYWH": [
+      651,
+      197,
+      103,
+      103
+    ],
+    "referenceSampleXYWH": [
+      255,
+      461,
+      103,
+      87
+    ],
+    "operation": "approved reference texture clone with Poisson edge blending; vertical fit at most 1.32x, no low-resolution sheet texture"
+  },
+  {
+    "destinationXYWH": [
+      35,
+      41,
+      94,
+      96
+    ],
+    "referenceSampleXYWH": [
+      168,
+      461,
+      94,
+      87
+    ],
+    "operation": "approved reference texture clone with Poisson edge blending; vertical fit at most 1.32x, no low-resolution sheet texture"
+  },
+  {
+    "destinationXYWH": [
+      0,
+      298,
+      142,
+      114
+    ],
+    "referenceSampleXYWH": [
+      181,
+      461,
+      142,
+      87
+    ],
+    "operation": "approved reference texture clone with Poisson edge blending; vertical fit at most 1.32x, no low-resolution sheet texture"
+  }
+]
