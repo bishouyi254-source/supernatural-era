@@ -15,7 +15,7 @@ export const finaleRiskPrompt='只作用于本次外围威胁。消耗能量1，
 export function finaleScene(s){const x=s.finale,legal=finaleAvailable(s);let title='封锁中的城市终局',goal='核对已有损失，再决定是否承担外围职责。',prior=['ff:consequences','ff:news','ff:strategy'];
  if(!x.started){title='大昌市 · 终局前夕';goal='上一阶段记录继续保留。参与外围行动或拒绝高危职责，正史都会继续。';prior=['ff:start','ff:decline'];}
  else if(!x.active){title='独立生存路线';goal='不在核心现场，只读取可获通报。等候世界进展，或恢复外围行动。';prior=['ff:news','ff:resume'];}
- else if(x.source.state==='CONTAINED'){title=finaleProjection(s).source==='已关押，未被消灭'?'源头已关押 · 城市恢复中':'等待城市危机正式通报';goal='先读取正式通报，再核验恢复通道、追查失联和核对救援历史。';prior=['ff:news','ff:custody','ff:finish','ff:survivors'];}
+ else if(x.source.state==='CONTAINED'){title=finaleProjection(s).source==='已关押，未被消灭'?'源头已关押 · 城市恢复中':'等待城市危机正式通报';goal='先读取正式通报，再核验恢复通道、追查失联和核对救援历史。';prior=['ff:finish','ff:news','ff:custody','ff:survivors'];}
  else if(x.current.attemptState==='REVISED'){title='修订行动窗口';goal='读取获准修订方案；复核通信、撤离和外围观察条件。核心关押由杨间执行。';prior=['ff:time-report','ff:revised','ff:contact','ff:check','ff:perimeter'];}
  else if(x.transactions.length&&(x.awareness.player.length||x.strategy.communication==='CONNECTED')){title='核心行动反馈中断';goal='尚未掌握完整经过。接收合法事后回报，再复核现有证据。';prior=['ff:time-report','ff:contact','ff:check'];}
  else if(x.chapter>=269){title='重返七中外围';goal='对照历史地点并查阅获准资料，区别人物、源头与唯一资产。';prior=['ff:school','ff:zhao','ff:artifact','ff:check','ff:perimeter'];}

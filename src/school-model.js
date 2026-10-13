@@ -1,3 +1,4 @@
+import {rebindSettlementPresentation} from './settlement-save.js';
 // 七中 Canon adapter. Window thresholds, routes and mutable students are game adaptation.
 export const schoolZones={classroom:'B楼开放教室',office:'B楼办公室',stairs:'备用楼梯',hall:'A楼走廊',lecture:'临时讲课教室',toilet:'厕所外侧',yard:'操场',tree:'异常树区域',exit:'校门出口'};
 export const normalEdges={classroom:['office','stairs'],office:['classroom','stairs'],stairs:['classroom','office','hall','yard'],hall:['stairs','lecture','toilet'],lecture:['hall'],toilet:['hall'],yard:['stairs','tree','exit'],tree:['yard'],exit:['yard']};
@@ -57,7 +58,7 @@ export function schoolRoute(x,from,to){if(x.window>=1&&x.window<=4){if(from==='s
 export function schoolSituation(s){const x=s.school;let objective=!x.started?'核对七中现场':x.playerEscaped?'整理个人七中记录':x.residual?'复核残余出口，尽快离开':x.window===0?'记录正常地图与通信':x.window===1?'观察异常并避开来源':x.window===2?'比较实际路径与消防图':x.window===3?'保护小组，核对力量的代价':x.window===4?'比较声音与接近的独立案例':'沿当前有效路线撤离';
  return {objective,reason:x.evidence.at(-1)?.fact||'你尚未获得现场证据，不能凭故事确定规则。',map:x.window<2?'正常':x.window===5?'出口需现场复核':'连接不可靠',risk:x.pressure?'身后接近迹象正在增强':x.window>=4?'环境再次恶化':'暂未确认直接追踪',hint:x.hint==='off'?'':x.window>=5?'出口需要当下复核；旧连接可能已过期。':!hasSchool(x,'M-02')?'消防图与实际移动是两个可比较的来源。':!hasSchool(x,'K-03')?'你仍缺少敲门前后行为差异的独立案例。':'已经记录的事实可以支持或否定假设，但不能解释全部源头。'};
 }
-export function editSchoolUI(s,field,value){if(!s.school?.started)return s;if(field==='hint'&&!['off','low','standard','high'].includes(value)||field==='notes'&&(typeof value!=='string'||value.length>2000)||!['hint','notes'].includes(field))return s;const out=structuredClone(s);out.school[field]=value;return out;}
+export function editSchoolUI(s,field,value){if(!s.school?.started)return s;if(field==='hint'&&!['off','low','standard','high'].includes(value)||field==='notes'&&(typeof value!=='string'||value.length>2000)||!['hint','notes'].includes(field))return s;const out=structuredClone(s);out.school[field]=value;return rebindSettlementPresentation(s,out);}
 export function validSchool(s){if(s.school===undefined)return true;try{const x=s.school,integer=(v,min,max)=>Number.isInteger(v)&&v>=min&&v<=max,unique=a=>Array.isArray(a)&&new Set(a).size===a.length;
  if(!x||x.format!==1||!integer(x.window,0,5)||!integer(x.windowTicks,0,1e9)||!integer(x.elapsed,0,1e9)||!integer(x.residualTicks,0,1e9)||!Object.hasOwn(schoolZones,x.zone)||!integer(x.pressure,0,12)||!integer(x.shield,0,3)||!integer(x.drivingCount,0,1)||!integer(x.startOwned,0,20))return false;
  for(const k of ['started','active','participated','canonResolved','playerEscaped','residual','earsCovered','audioStopped'])if(typeof x[k]!=='boolean')return false;

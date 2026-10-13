@@ -1,0 +1,34 @@
+/* Preserve the approved component's four layers inside the existing game route. */
+#app[data-settlement="true"]{max-width:none;padding:0;background:#060708;min-height:100vh}
+#app[data-settlement="true"]>header,#app[data-settlement="true"] .topbar,
+#app[data-settlement="true"] .layout>aside,#app[data-settlement="true"] .save-tools,
+#app[data-settlement="true"] .bottom-menu{display:none!important}
+#app[data-settlement="true"] .layout{display:block;margin:0;max-width:none}
+#app[data-settlement="true"] .workspace{width:100%;padding:0}
+#app[data-settlement="true"] .workspace>:not(#live-settlement-root){display:none!important}
+#app[data-settlement="true"] #live-settlement-root{max-width:1672px;width:100%;margin:0 auto;min-height:100vh;padding:0 30px 24px}
+.settlement-ui .ghost-before-after{color:#c5b6b8;font-size:13px;padding-top:4px}
+.settlement-ui .performance-line strong{overflow-wrap:anywhere;line-height:1.4}
+.settlement-ui .record-details{max-height:280px;overflow:auto}
+.settlement-ui .reward-grid{overflow:auto}
+.settlement-ui .main-action:disabled{opacity:.48;cursor:not-allowed}
+body.settlement-active{margin:0;background:#060708}
+body.settlement-active #game-resonance-launcher,body.settlement-active #game-codex-launcher{display:none!important}
+@media(max-width:1400px) and (min-width:851px){
+ #app[data-settlement="true"] #live-settlement-root{padding:0 26px 18px;max-width:1360px}
+ .settlement-ui .result-hero{height:186px}
+ .settlement-ui .panel{min-height:300px;padding:16px 24px}
+ .settlement-ui .performance-line{grid-template-columns:44px 116px 1fr;min-height:52px;font-size:17px}
+ .settlement-ui .performance-line strong{font-size:17px}
+ .settlement-ui .rewards-panel{padding:14px 24px;min-height:144px}
+ .settlement-ui .action-footer{margin-top:0;padding-top:15px}
+ .settlement-ui .main-action{height:62px}
+}
+@media(max-width:850px){#app[data-settlement="true"] #live-settlement-root{padding:0 10px 20px}}
+@media(max-width:500px){
+ .settlement-ui .ghost-rows{grid-template-columns:1fr;max-height:210px}
+ .settlement-ui .ghost-before-after{font-size:12px}
+ .settlement-ui .performance-line{grid-template-columns:34px 90px 1fr;gap:6px}
+ .settlement-ui .performance-line strong{font-size:14px}
+ .settlement-ui .action-footer{position:sticky;bottom:0;background:#080608ed;padding:8px 0;z-index:5}
+}

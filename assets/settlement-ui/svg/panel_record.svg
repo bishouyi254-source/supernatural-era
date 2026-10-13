@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 255" width="780" height="255" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e2505b"/><stop offset="0.4" stop-color="#703038"/><stop offset="0.75" stop-color="#c94549"/><stop offset="1" stop-color="#481820"/></linearGradient>
+    <linearGradient id="dark" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#1b171a" stop-opacity="0.90"/><stop offset="1" stop-color="#080a0d" stop-opacity="0.93"/></linearGradient>
+    <linearGradient id="red" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#821a25"/><stop offset="0.35" stop-color="#4b111a"/><stop offset="1" stop-color="#1c0c12"/></linearGradient>
+    <filter id="haze" x="-25%" y="-40%" width="150%" height="180%"><feGaussianBlur stdDeviation="4"/></filter>
+    <filter id="flicker" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.6"/></filter>
+    <pattern id="scratches" width="112" height="93" patternUnits="userSpaceOnUse"><path d="M7 73l15 -10 M90 5l9 2 M43 19l17 -6 M67 84l8 -11" fill="none" stroke="#ffccd2" stroke-opacity=".08" stroke-width=".7"/></pattern>
+  </defs><path d="M18 3 H762 L777 18 V237 L762 252 H18 L3 237 V18 Z" fill="url(#dark)" fill-opacity=".97" stroke="#923840" stroke-width="2"/><path d="M15 20 H765 V235 H15 Z" fill="url(#scratches)" opacity=".48"/><path d="M25 11 H755 L769 25 V230 L755 244 H25 L11 230 V25 Z" fill="none" stroke="#d18c8b" stroke-opacity=".20" stroke-width=".85"/><path d="M3 50 L3 18 L18 3 L54 3 M726 3 L762 3 L777 18 V50 M3 205 V237 L18 252 H54 M726 252 H762 L777 237 V205" fill="none" stroke="#ca3544" stroke-width="2.4"/>
+    <path d="M8 42l12 -18 19 -5 -6 12 10 -4 -18 24 M772 42l-12 -18 -19 -5 6 12 -10 -4 18 24 M8 213l12 18 19 5 -6 -12 10 4 -18 -24 M772 213l-12 18 -19 5 6 -12 -10 4 18 -24" fill="none" stroke="#ca3544" stroke-opacity=".3" stroke-width="1"/></svg>

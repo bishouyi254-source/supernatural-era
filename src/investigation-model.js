@@ -1,3 +1,4 @@
+import {rebindSettlementPresentation} from './settlement-save.js';
 // C-017 is an original, bounded investigation, not a claim about novel canon.
 export const zones={hall:'五楼走廊',r501:'501',r502:'502',r503:'503',elevator:'电梯厅',stairs:'消防楼梯',management:'物业管理室',access:'门禁设备间',storage:'废弃储藏室',open:'开放设备区',adjacent:'邻栋连接廊'};
 export const people={lin:'林阿姨',chen:'陈浩',manager:'物业管理员',li:'李文',observer:'外围观察员'};
@@ -61,7 +62,7 @@ export function editDoorUI(input,field,value){const s=structuredClone(attachDoor
  else if(field==='notes'&&typeof value==='string'&&value.length<=2000)x.notes=value;
  else if(field==='focus'&&doorUI(s).questions.some(q=>q.id===value))x.focus=value;
  else if(field==='teaching'&&['evidence','hypothesis','resolution'].includes(value)&&!x.tutorial.includes(value))x.tutorial.push(value);
- else return input;return s;
+ else return input;return rebindSettlementPresentation(input,s);
 }
 export function validDoorCase(s){try{return checkDoorCase(s);}catch{return false;}}
 function checkDoorCase(s){

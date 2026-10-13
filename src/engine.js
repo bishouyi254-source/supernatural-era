@@ -1,3 +1,5 @@
+import {initialSettlement,attachSettlement,validSettlement} from './settlement-save.js';
+import {observeSettlement} from './settlement-controller.js';
 import {actionReceipt,validReceipt} from './action-feedback.js';
 import {attachCase24,case24Ready,case24Available,applyCase24,advanceCase24,validCase24} from './contract-case.js';
 import {validCalendar} from './world-time.js';
@@ -52,14 +54,15 @@ import {newAdvanced,attachAdvanced,advancedAvailable,applyAdvanced,validAdvanced
 import {newV1,attachV1,v1Available,applyV1,validV1,eyeMax,activeIds} from './v1.js';
 export const VERSION = 2;
 const clone = value => structuredClone(value);
-export function newGame(name = '未登记', background = '普通职员', seed = 1) {
+export function newGame(name = '未登记', background = '普通职员', seed = 1, saveId = undefined) {
   if (!backgrounds.includes(background)) throw Error('未知背景');
-  return attachCase24({ version: VERSION, name: String(name).trim().slice(0, 24) || '未登记', background, seed: seed >>> 0,
+  const s=attachCase24({ version: VERSION, name: String(name).trim().slice(0, 24) || '未登记', background, seed: seed >>> 0,
     tick: 0, revision: 0, life: 100, energy: 3, bags: 2, ward: 0, scene: 'hub', phase: '异常', crisis: false,
     contentVersion:1,identityCase:newIdentityCase(),postwar:newPostwar(),finale:newFinale(),hungry:newHungry(),cityCrisis:newCityCrisis(),ghostMirror:newMirror(),regional:newRegional(),reunion:newReunion(),dual:newDual(),village:newVillage(),social:newSocial(),mall:newMall(),dachang:newDachang(),school:newSchool(),doorCase:newDoorCase(),investigation:newInvestigation(),evolution:newEvolution(),bus:newBus(),v1:newV1(),city:newCity(),advanced:newAdvanced(),chapter: newChapter(), journey:newJourney(), systems:newSystems(),combat:null, hostCapacity: tuning.hostCapacity, spirits: [], relations: [], compatibility: null, knowledge: {}, restricted: {}, outcomes: {}, fate: {}, journal: ['你作为普通人抵达住宅区。档案尚未建立。'] });
+  return {...s,settlement:initialSettlement(s,{id:saveId})};
 }
 const upgradeCore = s=>attachSchool(attachDoorCase(attachInvestigation(attachEvolution({...attachBus(attachV1(attachAdvanced(attachCity(attachJourney(attachSystems(attachChapter(s))))))),contentVersion:1}))));
-export const upgrade=s=>{const n=attachIdentityCase(attachPostwar(attachFinale(attachHungry(attachCityCrisis(attachMirror(attachRegional(attachReunion(attachDual(attachVillage(attachSocial(attachMall(attachDachang(upgradeCore(s))))))))))))));return attachCase24(n.dachang.started&&n.city.active?{...n,city:{...n.city,active:false}}:n);};
+export const upgrade=s=>{const n=attachIdentityCase(attachPostwar(attachFinale(attachHungry(attachCityCrisis(attachMirror(attachRegional(attachReunion(attachDual(attachVillage(attachSocial(attachMall(attachDachang(upgradeCore(s))))))))))))));return attachSettlement(attachCase24(n.dachang.started&&n.city.active?{...n,city:{...n.city,active:false}}:n));};
 export function knowledge(s, id) { return s.knowledge[id] || { clues: [], hypotheses: {} }; }
 function baseAvailable(s) {
   s=upgrade(s);if(s.investigation.active&&s.systems.death==='alive'&&!s.crisis)return investigationAvailable(s);if(busBusy(s))return busAvailable(s);const system=systemsAvailable(s);
@@ -207,14 +210,17 @@ export function act(input, action) {
   advanceReunion(s,action,reunionWindow);
 
   postRegional(s);
+  // Persist the same existing compatibility defaults that a reload/available()
+  // would attach, before binding the completed encounter snapshot.
+  Object.assign(s,attachCase24(s));
   s.revision++;
   s.actionReceipt=actionReceipt(before,s,action);
-  s.journal = s.journal.slice(-100); return s;
+  s.journal = s.journal.slice(-100); return observeSettlement(before,s,action,usedId);
 }
 function systemAction(a){return ['second:','release:','abandon:','reaction:','death:','balance:','study:'].some(p=>a.startsWith(p));}
 
 export function validate(s) {
-  if(!s||!validReceipt(s))return false;
+  if(!s||!validReceipt(s)||!validSettlement(s))return false;
   if(!s||!Array.isArray(s.spirits)||!Array.isArray(s.relations))return false;
   if(!validCase24(s)||!validCalendar(s)||!validWorldRegistry(s)||!validContracts(s)||!validXArchives(s)||!validIdentityCase(s)||!validPostwar(s)||!validFinale(s)||!validHungry(s)||!validCityCrisis(s)||!validMirror(s)||!validRegional(s)||!validReunion(s)||!validDual(s)||!validVillage(s)||!validSocial(s)||!validMall(s)||!validDachang(s)||!validSchool(s)||!validDoorCase(s)||!validInvestigation(s)||!validEvolution(s))return false;
   if (s && (Object.hasOwn(s, 'pressure') || Object.hasOwn(s, 'ghost') || Object.hasOwn(s, 'totalRevival'))) return false;

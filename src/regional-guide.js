@@ -8,6 +8,7 @@ export function regionalScene(s){
  const scene=(title,text,goal,items)=>({title,text,goal,actions:pick(items)});
  const next=(title,text,goal)=>scene(title,text,goal,['reg:next','reg:wait','reg:withdraw']);
  if(!x.started&&!x.declined)return scene('街区传来求救消息','封锁线内再次出现敲门异常。你可以协助救人，也可以留在外围。','决定是否参加这次行动。',['reg:start','reg:refuse']);
+ if(x.phase==='G'&&x.world.chapter>=183&&available.includes('reg:next'))return scene('归档本次救援','已救人员和借用物资按真实行动记录；敲门源头仍然存在。','完成本次救援归档。',['reg:next','reg:report']);
  if(x.departed||x.declined)return scene('你已离开这次行动',x.outcome?.saved?'你带出了'+x.outcome.saved+'人。救援结果已经保存，敲门异常仍未永久解决。':'你没有继续留在现场。未带出者的生死不会被凭空确定。','提交行动记录，或返回城市处理个人事务。',['reg:report','reg:residence']);
  if(!x.active)return scene('行动暂时中断','先处理自身危机。恢复行动后，已经消耗的物品与现场变化仍然保留。','确认身体状态后继续。',['reg:resume']);
  if(!regionalKnown(s,'RECUR'))return scene('封锁线外','街道深处传来异常动静。你还没有足够的现场信息。','先观察，不急着走进街区。',['reg:observe','reg:withdraw']);

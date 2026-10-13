@@ -1,3 +1,4 @@
+import {rebindSettlementPresentation} from './settlement-save.js';
 import {itemTypes} from './v1.js';
 import {events} from './content.js';
 import {schoolPeople} from './school-model.js';
@@ -17,7 +18,7 @@ export function cityFact(s,id,text,source,origin,level='SUPPORTED'){
 }
 export function citySetup(s){const d=s.dachang;return {home:d.home.confirmed,official:d.official.attempted,code:!s.spirits.length||!!d.codename||d.official.route==='HIDDEN'||d.official.requested.includes('code-declined'),intel:d.facts.some(f=>f.source==='PERSONAL_CONTACT'&&f.level==='CONFIRMED'||f.source==='OFFICIAL'&&f.level==='SUPPORTED'),risk:d.riskReviewed,contact:d.contacts.some(c=>c.id!=='operator')||d.official.attempted};}
 export function codeCandidates(s){const g=s.spirits[0];return g?[g.name+'记录者',g.name+'接触者','大昌异常观察者']:[];}
-export function editDachangUI(s,field,value){const next=structuredClone(s);if(field==='notes')next.dachang.notes=String(value).slice(0,2000);if(field==='candidate')next.dachang.candidate=String(value).trim().slice(0,16);if(field==='bookmark'&&Array.isArray(value)&&feedEntries[value[0]]&&['关注','存疑','相关','忽略','归档'].includes(value[1]))next.dachang.bookmarks[value[0]]=value[1];return next;}
+export function editDachangUI(s,field,value){const next=structuredClone(s);if(field==='notes')next.dachang.notes=String(value).slice(0,2000);if(field==='candidate')next.dachang.candidate=String(value).trim().slice(0,16);if(field==='bookmark'&&Array.isArray(value)&&feedEntries[value[0]]&&['关注','存疑','相关','忽略','归档'].includes(value[1]))next.dachang.bookmarks[value[0]]=value[1];return rebindSettlementPresentation(s,next);}
 const record=v=>v&&typeof v==='object'&&!Array.isArray(v),int=(v,max=1e9)=>Number.isInteger(v)&&v>=0&&v<=max;
 const list=(v,max,fn)=>Array.isArray(v)&&v.length<=max&&v.every(x=>fn(x)),unique=(v,max,fn)=>list(v,max,fn)&&new Set(v).size===v.length;
 const string=(v,max=2000)=>typeof v==='string'&&v.length<=max;

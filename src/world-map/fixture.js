@@ -8,7 +8,7 @@ export const cities=Object.freeze([
  {id:'dachuan',name:'大川市',x:16,y:78,art:'dachuan',summary:'明月小区 / 301室'},
  {id:'unknown',name:'未确认区域',x:86,y:76,unknown:true,summary:'区域情报尚未确认'}
 ]);
-export const statuses=['可调查','调查中','已完成','已封存','未解锁','未确认'];
+export const statuses=['可调查','调查中','有效压制','失衡观察中','已完成','已封存','驾驭成功','事件目标完成','已撤离','挑战失败','未解锁','未确认'];
 export const DEMO_NOTICE='当前游戏情报 · 地点插画不代表事件解锁';
 export const dungeons=[];
 export function setRecords(rows){dungeons.splice(0,dungeons.length,...rows);}

@@ -1,7 +1,7 @@
 import {cities,statuses,DEMO_NOTICE} from './fixture.js';import {filtered,visible,selectedRecord,enterable,archiveView,archiveDetails,pageSize} from './model.js';
 export const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const image=(name,cls='',alt='')=>`<img class="${cls}" src="assets/map/${name}.png" alt="${esc(alt)}" ${alt?'':'aria-hidden="true"'}>`;
-const tagIds={'主线':'main','支线':'side','可调查':'available','调查中':'active','已完成':'complete','已封存':'sealed','未解锁':'locked','未确认':'unknown','高危':'high','中危':'medium','低危':'low','未知':'unknown'};
+const tagIds={'主线':'main','支线':'side','可调查':'available','调查中':'active','有效压制':'active','失衡观察中':'active','驾驭成功':'complete','事件目标完成':'complete','已撤离':'complete','挑战失败':'high','已完成':'complete','已封存':'sealed','未解锁':'locked','未确认':'unknown','高危':'high','中危':'medium','低危':'low','未知':'unknown'};
 export const tag=(text,dimension='')=>`<span class="tag tag-${tagIds[text]||'unknown'}" aria-label="${dimension?dimension+'：':''}${text}">${text}</span>`;
 const opt=(list,value)=>list.map(x=>`<option ${x===value?'selected':''}>${x}</option>`).join('');
 
