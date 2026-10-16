@@ -17,10 +17,10 @@ export function suppressionFor(s, spirit) {
   return Math.max(ruleBlocked(s,spirit.id)?1:0,relational, spirit.suppressionRemaining > 0 ? tuning.suppression : 0, s.bus?.transit?.started?transitSuppression(s,spirit):busSuppression(s)?.85:0,villageEnvironment(s)?.25:0);
 }
 export function hostState(s) {
-  const totalBurden = s.spirits.reduce((sum, g) => sum + g.burden, 0);
+  const totalBurden = s.spirits.reduce((sum, g) => sum + g.burden, 0)+(s.ghostEyeV6?.persistentLoad||0);
   // Ordinary compatibility/suppression never implies a burden discount.
   const structure=structureState(s);
-  const effectiveBurden = structure.effective;
+  const effectiveBurden = structure.effective+(s.ghostEyeV6?.persistentLoad||0);
   const burdenRatio = effectiveBurden / structure.capacity;
   const conflicts = s.relations.reduce((sum, r) => sum + r.conflictAtoB + r.conflictBtoA, 0);
   const bias=Math.max(0,...s.relations.map(r=>Math.abs(r.bias||0)));
@@ -37,22 +37,22 @@ export function hostState(s) {
     carryingState: carryingStage(burdenRatio), balanceState, balanceBias: bias,
     bodyStress: Math.min(100,100-s.life+(burdenRatio>1?20:0)), consciousnessStress: conflicts+(burdenRatio>1?20:0), hostRisk: ['低','中','高','极高','临界'][severity] };
 }
-export function growthFor(s, g, usage = false, stimulus = 0) {
+export function growthFor(s, g, usage = false, stimulus = 0, usageOverride = null, advanceNatural = true) {
   const suppression = suppressionFor(s, g);
   const conflict = s.relations.filter(r=>r.spiritA===g.id||r.spiritB===g.id).reduce((sum, r) => sum + (r.spiritA === g.id ? r.conflictBtoA : r.conflictAtoB)+(Math.abs(r.bias||0)>=60?2:0), 0);
   const overloaded=hostState(s).burdenRatio>1;
-  const natural = (masteryStable(s,g.id)?0:(overloaded?Math.max(.5,g.naturalRevivalRate):g.naturalRevivalRate) * (overloaded ? tuning.overloadMultiplier : 1));
-  const extra={suppression:2,mind:1,rule:4}[s.v1?.build]||0;
-  return (natural + (usage && !ruleBlocked(s,g.id) && !masteryStable(s,g.id) ? g.usageRevivalRate+extra : 0) + stimulus + conflict) * (1 - suppression);
+  const natural = !advanceNatural?0:(masteryStable(s,g.id)?0:(overloaded?Math.max(.5,g.naturalRevivalRate):g.naturalRevivalRate) * (overloaded ? tuning.overloadMultiplier : 1));
+  const extra=({suppression:2,mind:1,rule:4}[s.v1?.build]||0)+(usageOverride!==null&&s.v1?.build==='domain'?3:0);
+  return (natural + (usage && !ruleBlocked(s,g.id) && !masteryStable(s,g.id) ? (usageOverride??g.usageRevivalRate)+extra : 0) + stimulus + (advanceNatural?conflict:0)) * (1 - suppression);
 }
-export function settleSpirits(s, usedId = null, stimulusId = null) {
+export function settleSpirits(s, usedId = null, stimulusId = null, usageCosts = {}, advanceNatural = true) {
   const used=Array.isArray(usedId)?usedId:[usedId];
-  const gains = s.spirits.map(g => growthFor(s, g, used.includes(g.id), g.id === stimulusId ? 10 : 0));
+  const gains = s.spirits.map(g => growthFor(s, g, used.includes(g.id), g.id === stimulusId ? 10 : 0,usageCosts[g.id]??null,advanceNatural));
   const drift=(s.advanced?.mediaStudy?9:12)*(s.v1?.build==='stable'?.75:1);
   for(const r of s.relations)r.bias=Math.max(-100,Math.min(100,(r.bias||0)+(used.includes(r.spiritA)?drift:0)-(used.includes(r.spiritB)?drift:0)));
   s.spirits.forEach((g, i) => {
     g.revivalProgress = Math.min(100, Math.round((g.revivalProgress + gains[i]) * 10000) / 10000);
-    if (g.suppressionRemaining > 0) g.suppressionRemaining--;
+    if (advanceNatural && g.suppressionRemaining > 0) g.suppressionRemaining--;
     g.suppressionReceived = suppressionFor(s, g);
     g.activityLevel = g.suppressionReceived > 0 ? '被压制' : '正常';
   });
@@ -63,7 +63,7 @@ export function validSpirits(s, events) {
   if (!n(s.hostCapacity) || s.hostCapacity === 0 || !Array.isArray(s.spirits) || !Array.isArray(s.relations)) return false;
   const ids = new Set();
   for (const g of s.spirits) {
-    if (!g || ids.has(g.id) || !events[g.sourceId] || g.id !== 'player-' + g.sourceId || g.name !== events[g.sourceId].spirit ||
+    if (!g || ids.has(g.id) || !events[g.sourceId] || events[g.sourceId].playerOwnable===false || g.id !== 'player-' + g.sourceId || g.name !== events[g.sourceId].spirit ||
       g.ruleId!==undefined&&g.ruleId!=='rule-'+g.sourceId || g.instanceType!==undefined&&g.instanceType!=='player' || g.rank!==undefined&&g.rank!==(events[g.sourceId].grade==='S潜力'?'S':events[g.sourceId].grade) || !n(g.burden) || !n(g.revivalProgress, 100) || !n(g.naturalRevivalRate) || !n(g.usageRevivalRate) ||
       !n(g.suppressionReceived, 1) || !Number.isInteger(g.suppressionRemaining) || !n(g.suppressionRemaining, 3) ||
       !['正常','被压制'].includes(g.activityLevel) || !n(g.development,100) || !['稳定','不稳定'].includes(g.stability)) return false;

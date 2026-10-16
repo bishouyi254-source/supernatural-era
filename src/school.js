@@ -1,3 +1,4 @@
+import {knockerEntry,queueKnockerDamage} from './knocker-intents.js';
 import {schoolZones,normalEdges,schoolPeople,windows,newSchool,schoolFact,hasSchool,schoolAssessment,schoolRoute,schoolSeedRoll} from './school-model.js';
 import {makeSpirit} from './progression.js';
 import {activeIds} from './v1.js';
@@ -15,7 +16,8 @@ export function schoolAvailable(s){const x=s.school;if(!x)return [];
  if(!x.started)return alive(s)&&s.scene==='hub'&&!s.combat&&!s.bus.active&&!s.journey.active&&!s.city.active&&!s.doorCase.active&&!s.investigation.active&&!advancedBusy(s)?['school:start','school:outside']:[];
  if(!x.participated&&!x.canonResolved&&x.window<=2&&alive(s))return ['school:join'];
  if(!x.active||!alive(s)||advancedBusy(s))return x.playerEscaped&&!hasSchool(x,'R-01')&&alive(s)?['school:report']:[];
- const out=['school:observe','school:search','school:wait',...(x.group.followState==='HESITANT'?[]:normalEdges[x.zone].map(z=>'school:move:'+z))];
+ const formalEntry=knockerEntry(s);
+ const out=[...(formalEntry?[formalEntry]:[]),'school:observe','school:search','school:wait',...(x.group.followState==='HESITANT'?[]:normalEdges[x.zone].map(z=>'school:move:'+z))];
  if(x.tools.cotton&&!x.earsCovered)out.push('school:cover');
  if(x.window>=1&&!x.audioStopped)out.push('school:stop-audio');
  if(x.window>=1)out.push('school:avoid','school:listen');
@@ -122,7 +124,7 @@ export function advanceSchool(s,action){const x=s.school;if(!x?.started)return;c
  if(x.canonResolved&&x.active&&!x.residual&&x.windowTicks>=windows[5].hard){x.residual=true;x.result='TRAPPED';say(s,'正常撤离人群已经远去。你仍在残余异常区域，可继续寻找出口，不能直接传送安全屋。');}
  if(!x.active){if(x.records[0]?.tick===s.tick)finishSchoolRecord(s);return;}
  if(x.shield)x.shield--;
- if(x.pressure&&x.shield===0){if(x.earsCovered&&x.audioStopped)x.pressure=Math.max(0,x.pressure-1);else{x.pressure=Math.min(12,x.pressure+1);if(x.pressure>=8){s.life=Math.max(0,s.life-20);say(s,'身后脚步近得难以辨认方向，身体受到侵蚀。');}}}
+ if(x.pressure&&x.shield===0){if(x.earsCovered&&x.audioStopped)x.pressure=Math.max(0,x.pressure-1);else{x.pressure=Math.min(12,x.pressure+1);if(x.pressure>=8&&!queueKnockerDamage(s)){s.life=Math.max(0,s.life-20);say(s,'身后脚步近得难以辨认方向，身体受到侵蚀。');}}}
  if(x.window>=4&&x.windowTicks%6===0&&x.group.members.length){x.group.panic=Math.min(5,x.group.panic+1);if(x.group.panic>=4)x.group.followState='HESITANT';}
  for(const [id,n] of Object.entries(x.npcs)){if(n.state==='ALIVE'&&!n.warned&&!x.group.members.includes(id)&&x.window>=4&&x.elapsed>=45+Object.keys(schoolPeople).indexOf(id)*4)n.state='MISSING';}
  if(x.residual){x.residualTicks++;if(x.residualTicks>=12){s.life=Math.max(0,s.life-20);say(s,'长期停留在残余区域持续受到侵蚀。');}}

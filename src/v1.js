@@ -30,9 +30,9 @@ export function v1Available(s){const v=s.v1,out=[],g=s.spirits.find(g=>g.sourceI
  if(s.systems.death==='committed')return [];
  if(v.items.medium>0&&v.facilities.includes('emergency')&&s.life>10&&s.spirits.length&&s.systems.death==='alive'&&s.scene==='hub')out.push('v1:emergency');
  if(s.crisis)return out;
- if(g&&s.combat?.snapshot&&g.development>=50&&s.energy>0&&activeIds(s).includes(g.id)&&g.revivalProgress<95){if(max>=7)out.push('v1:reset:self');if(max>=8)out.push('v1:reset:range');}
+ if(!s.combat?.eyeV6&&g&&s.combat?.snapshot&&g.development>=50&&s.energy>0&&activeIds(s).includes(g.id)&&g.revivalProgress<95){if(max>=7)out.push('v1:reset:self');if(max>=8)out.push('v1:reset:range');}
  if(s.systems.death==='pending')return out;
- if(s.combat&&g&&activeIds(s).includes(g.id)&&s.energy>0&&v.eye.layer>0&&v.eye.layer<=max&&!s.combat.cooldowns[g.id])out.push('v1:domain:cast');
+ if(s.combat&&!s.combat.eyeV6&&g&&activeIds(s).includes(g.id)&&s.energy>0&&v.eye.layer>0&&v.eye.layer<=max&&!s.combat.cooldowns[g.id])out.push('v1:domain:cast');
  if(s.combat&&v.items.seal>0&&knowledgeState(s,s.scene).level==='CONFIRMED')out.push('v1:seal:cast');
  if(!free(s))return out;
  if(v.build===null||v.cash>=100)out.push(...Object.keys(builds).filter(id=>id!==v.build).map(id=>'v1:build:'+id));

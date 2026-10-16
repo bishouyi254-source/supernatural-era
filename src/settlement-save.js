@@ -45,7 +45,7 @@ function recordShape(r){
   str(r.eventId,150,1)&&outcomes.has(r.outcome)&&typeof r.missionCompleted==='boolean'&&
   ['encounter','target','ruleResult'].every(k=>str(r[k],2000,1))&&
   ['title','resultLabel','coverageLabel'].every(k=>r[k]===undefined||str(r[k],2000))&&
-  plain(r.cost)&&['energy','burden'].every(k=>plain(r.cost[k])&&num(r.cost[k].before,k==='energy'?3:1e6)&&num(r.cost[k].after,k==='energy'?3:1e6))&&
+  plain(r.cost)&&(!Object.hasOwn(r.cost.energy??{},'consumed')||num(r.cost.energy.consumed,1e6)&&num(r.cost.energy.restored,1e6))&&['energy','burden'].every(k=>plain(r.cost[k])&&num(r.cost[k].before,k==='energy'?3:1e6)&&num(r.cost[k].after,k==='energy'?3:1e6))&&
   list(r.cost.ghosts,100,ghost)&&unique(r.cost.ghosts.map(g=>g.id))&&list(r.abilitiesUsed,4096,v=>str(v,200,1))&&
   list(r.log,200,log)&&list(r.rewards,100,reward)&&unique(r.rewards.map(v=>v.id))&&
   plain(r.actions)&&typeof r.actions.returnToMap==='boolean'&&typeof r.actions.retry==='boolean';

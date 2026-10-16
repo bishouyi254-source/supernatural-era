@@ -265,6 +265,14 @@ button:hover,.file:hover{background-color:#391018;border-color:#e68a8e}
 .mirror-details summary{cursor:pointer;padding:18px 0;min-height:44px;color:#eeeae4}
 @media(max-width:600px){.layout:has(.mirror-workspace)>aside{display:none}.mirror-actions,.mirror-directory{grid-template-columns:minmax(0,1fr)}.mirror-tabs{gap:5px}.mirror-tabs button{padding:8px 4px}}
 @media(max-width:600px){.layout:has(.regional-workspace)>aside,.layout:has(.rescue-confirm)>aside{display:none}}
+/* Same confirmation treatment as the existing relation observation, scoped to balance. */
+dialog.relation-preview{box-sizing:border-box;width:min(640px,94vw);max-height:90dvh;overflow:auto;background:#090b10;color:#eee;border:1px solid #ff3a53;padding:20px}
+dialog.relation-preview::backdrop{background:#000b}
+dialog.relation-preview h3{font-size:20px}
+dialog.relation-preview p{font:14px/1.6 Microsoft YaHei;overflow-wrap:anywhere}
+dialog.relation-preview table{width:100%;table-layout:fixed;border-collapse:collapse}
+dialog.relation-preview th,dialog.relation-preview td{font-size:13px;padding:6px;overflow-wrap:anywhere}
+dialog.relation-preview button{min-height:44px;padding:8px;margin:8px 6px 0 0}
 
 /* 0.18: preserve the established blood-red ink panels and mobile action hierarchy. */
 .crisis-tabs,.crisis-actions,.crisis-directory{display:flex;flex-wrap:wrap;gap:8px}

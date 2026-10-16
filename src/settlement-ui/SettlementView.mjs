@@ -65,7 +65,7 @@ export function mountSettlement(root, options = {}) {
     el('target').textContent=data.target;
     el('rules').textContent=data.ruleResult;
     el('ability-count').textContent=`${data.abilityCount} 次 · ${data.abilityCounts.length} 项`;
-    el('energy').textContent=`${rangeLabel(data.energy.before,data.energy.after)}（消耗 ${data.energy.before === null || data.energy.after === null ? '未记录':Math.max(0,data.energy.before-data.energy.after)}）`;
+    el('energy').textContent=`${rangeLabel(data.energy.before,data.energy.after)}（消耗 ${data.energy.before === null || data.energy.after === null ? '未记录':data.energy.consumed===null?'分项未记录':data.energy.consumed}；恢复 ${data.energy.restored??'分项未记录'}）`;
     el('energy-fill').style.width=`${percent(data.energy.before,data.energy.after)}%`;
     el('burden').textContent=rangeLabel(data.burden.before,data.burden.after);
     const ghostRows=el('ghost-rows'); ghostRows.replaceChildren();

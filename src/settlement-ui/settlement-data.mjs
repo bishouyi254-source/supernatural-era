@@ -43,7 +43,7 @@ export function normalizeSettlement(input = {}) {
     abilitiesUsed: abilities.map(a => label(typeof a === 'string' ? a : obj(a).name)).slice(0, 300),
     abilityCount: abilities.length,
     abilityCounts: [...abilities.reduce((counts,a)=>{const name=label(typeof a==='string'?a:obj(a).name);counts.set(name,(counts.get(name)||0)+1);return counts;},new Map())],
-    energy: {before: nonneg(energy.before), after: nonneg(energy.after)},
+    energy: {before: nonneg(energy.before), after: nonneg(energy.after),consumed:energy.consumed??null,restored:energy.restored??null},
     burden: {before: nonneg(burden.before), after: nonneg(burden.after)},
     ghosts: ghosts.slice(0, 100).map((entry, index) => {
       const g = obj(entry);

@@ -2,7 +2,7 @@ import { events } from './content.js';
 import { fateResult } from './rules.js';
 export function newSystems(){return {death:'alive',sealed:[],aids:{},items:{barrier:2},combinations:[],second:null,decisions:{},research:[]};}
 export function attachSystems(s){return s.systems?s:{...s,systems:newSystems(),combat:null};}
-export function makeSpirit(id){const e=events[id];return {id:'player-'+id,sourceId:id,ruleId:'rule-'+id,instanceType:'player',rank:e.grade==='S潜力'?'S':e.grade,name:e.spirit,burden:e.load,revivalProgress:e.initialRevival,naturalRevivalRate:e.naturalRevivalRate,usageRevivalRate:e.usageRevivalRate,activityLevel:'正常',suppressionReceived:0,suppressionRemaining:0,development:0,stability:'稳定',...(id==='eye'?{awakeningProgress:1}:{})};}
+export function makeSpirit(id){const e=events[id];if(e.playerOwnable===false)throw Error('正史源头不可作为玩家实例');return {id:'player-'+id,sourceId:id,ruleId:'rule-'+id,instanceType:'player',rank:e.grade==='S潜力'?'S':e.grade,name:e.spirit,burden:e.load,revivalProgress:e.initialRevival,naturalRevivalRate:e.naturalRevivalRate,usageRevivalRate:e.usageRevivalRate,activityLevel:'正常',suppressionReceived:0,suppressionRemaining:0,development:0,stability:'稳定',...(id==='eye'?{awakeningProgress:1}:{})};}
 // Traits/medium relationships, independent from rarity/grade. Legacy compatibility fraction maps to -100..100.
 const pairs={
  'door|echo':[.65,.3,.3,0,0], 'door|eye':[.6,.3,.3,0,0], 'door|shadow':[.6,.3,.3,0,0],
