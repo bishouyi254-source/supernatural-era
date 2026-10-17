@@ -1,3 +1,6 @@
+import {productionEnemy,productionIntent} from './g1a-production.js';
+import {candidateEnemy,candidateIntent} from './g1a-candidate.js';
+import {recordBloodContest} from './g1a-archives.js';
 import {resolveKnockerDamage} from './knocker-intents.js';
 import {eyeGhost,newEyeCombat,beginEyeRound,completeEyeEffects,enemyIntent,eyeAvailable} from './ghost-eye-v6.js';
 import { events } from './content.js';
@@ -19,6 +22,9 @@ export function combatAvailable(s){const c=s.combat;if(!c)return [];if(c.nativeS
 export function applyCombat(s,action,roundStarted=false){const c=s.combat,r=ruleFor(c.eventId,events[c.eventId]),log=(phase,text)=>{c.logs.push({clock:c.clock,phase,source:r.instanceId,rule:r.id,text});s.journal.push(text);};let used=[];
  if(!roundStarted)beginEyeRound(s);
  const k=action.slice(7);
+ // Provenance lasts only while this one ward remains in effect. Any replacement
+ // invalidates it; observations and unrelated actions cannot manufacture contact.
+ if(k.startsWith('ability:')||k.startsWith('focus:')||k.startsWith('cover:')||k==='combo'||k==='item'||k.startsWith('aid:'))delete c.bloodWard;
  if(k==='retreat'){s.scene='hub';s.combat=null;s.ward=0;s.journal.push('退出规则遭遇，现场、证据和消耗保留。');return {used};}
  if(k==='observe'){
   if(c.nativeSchool){s.journal.push('观察已记录的七中声音迹象，不自动认证源头全部规则。');}else{
@@ -42,6 +48,7 @@ export function applyCombat(s,action,roundStarted=false){const c=s.combat,r=rule
  if(k==='item'){s.systems.items.barrier--;c.wardWeight=5;c.wardMedium='all';log('物品','隔离符膜消耗×1，仅保护一次触发，不返还。');}
  if(k.startsWith('aid:')){const id=k.slice(4),a=s.systems.aids[id];a.remaining--;a.used++;c.wardWeight=3;c.wardMedium=ruleFor(id,events[id]).medium;log('援助',events[id].spirit+'援助调用，次数－1；未植入身体，不虚构负荷与复苏。');}
  if(k==='restrict'){s.bags--;s.restricted[c.eventId]=true;s.phase='限制';log('限制',events[c.eventId].restriction+'隔离袋×1已消耗，厉鬼被限制而非死亡。');s.combat=null;return {used};}
+ if(k==='ability:player-blood')c.bloodWard={tick:s.tick,battleId:s.settlement.active?.encounterId||`${s.settlement.ownerId}:${s.settlement.nextEncounter}`};
  c.turn++;c.playerGauge-=100;resumeCombat(s);return {used};
 }
 export function resumeCombat(s){
@@ -65,11 +72,16 @@ export function resumeCombat(s){
 
 }
 function resolveEnemy(s,r,log,intent){const c=s.combat;
+    if(s.g1a?.production){intent=productionIntent(s,r,intent);if(c.position==='exposed'&&!intent?.cancelled&&productionEnemy(s,intent)){log('对抗','专属规则拦截本次已证明适用的行动；未关押源头。');return;}}
+    intent=candidateIntent(s,r,intent);
+    if(c.position==='exposed'&&!intent?.cancelled&&candidateEnemy(s,intent)){log('对抗','【模拟候选】当前已验证作用拦截本次适用行动；其他固有灵异继续。');return;}
     log('灵异','源头按媒介条件结算，不因玩家点击数随机更换规则。');
    if(!intent?.cancelled&&c.position==='exposed'){
     const matching=c.wardMedium===r.medium||c.wardMedium==='all';const outcome=ruleContest(matching?c.wardWeight:0,intent?.weight??r.weight);
     const rawDamage=outcome==='blocked'?0:outcome==='partial'?Math.ceil((intent?.damage??r.damage)/2):(intent?.damage??r.damage);
     const damage=Math.max(0,rawDamage-(s.v1?.build==='mind'&&knowledgeState(s,c.eventId).level==='CONFIRMED'?8:0));
+    if(matching&&c.wardMedium==='body'&&!intent?.simulation&&(!intent?.kind||intent.kind==='ordinary'))recordBloodContest(s,r,outcome,c.bloodWard);
+    delete c.bloodWard;
     s.life=Math.max(0,s.life-damage);log('对抗','规则对抗：'+({blocked:'成功阻断',partial:'同权重部分阻断',failed:'未能阻断'}[outcome])+'，身体损伤'+damage+'。');
     c.wardWeight=0;c.wardMedium=null;
     if(s.life===0){s.systems.death='pending';log('致死','进入死亡待定。仅剩已拥有的反应资源可拦截；提交后不可普通复活。');}
@@ -82,6 +94,7 @@ export function continueEyeReaction(s){
  resolveEnemy(s,r,log,p);resumeCombat(s);
 }
 export function validCombat(s){const c=s.combat;if(c===undefined||c===null)return true;const n=(v,max)=>Number.isInteger(v)&&v>=0&&v<=max;
+ if(c.bloodWard&&(!n(c.bloodWard.tick,s.tick)||typeof c.bloodWard.battleId!=='string'||!c.bloodWard.battleId.startsWith(s.settlement?.ownerId+':')||c.wardMedium!=='body'||!s.spirits.some(g=>g.id==='player-blood')||Object.keys(c.bloodWard).sort().join()!=='battleId,tick'))return false;
  if(c.nativeSchool!==undefined&&typeof c.nativeSchool!=='boolean'||c.eventId==='knocker'&&(!c.nativeSchool||!s.school?.started||!s.school.participated)||c.nativeSchool&&c.eventId!=='knocker')return false;
  if(c.snapshot){const x=c.snapshot,b=x.combat;if(!n(x.life,100)||x.life===0||!b||!['safe','exposed'].includes(b.position)||!n(b.playerGauge,199)||!n(b.sourceGauge,199)||!b.cooldowns||typeof b.cooldowns!=='object'||Array.isArray(b.cooldowns)||Object.entries(b.cooldowns).some(([id,v])=>!(id==='combo'||s.spirits.some(g=>g.id===id))||!n(v,3)))return false;}
  if(!c||!events[c.eventId]||s.scene!==c.eventId||c.ruleId!=='rule:'+c.eventId||c.sourceId!=='source:'+c.eventId||!n(c.clock,1e9)||!n(c.turn,1e9)||!n(c.playerGauge,199)||!n(c.sourceGauge,199)||!['safe','exposed'].includes(c.position)||!n(c.wardWeight,10)||![null,'visual','audio','body','all'].includes(c.wardMedium)||!c.cooldowns||typeof c.cooldowns!=='object'||Array.isArray(c.cooldowns)||Object.entries(c.cooldowns).some(([id,v])=>!(id==='combo'||s.spirits.some(g=>g.id===id))||!n(v,3)))return false;

@@ -1,3 +1,4 @@
+import {productionCost} from './g1a-production-view.js';
 import {available,upgrade} from './engine.js';
 import {schoolSituation,schoolZones} from './school-model.js';
 import {events} from './content.js';
@@ -13,6 +14,7 @@ import {mirrorScene} from './mirror-guide.js';
 import {regionalScene} from './regional-guide.js';
 
 export function actionCost(s,a) {
+  if(a.startsWith('g1ap:'))return productionCost(a);
   if(/^combat:(focus|cover):/.test(a)){const g=s.spirits.find(g=>g.id===a.slice(13));return '能量 '+(a.includes(':cover:')?2:1)+'；'+g.name+'预计复苏 +'+growthFor(s,g,true).toFixed(2)+'%；共用该鬼冷却3（本行动结束递减）；仅原创实例技巧。';}
   const id=a.startsWith('inv:probe:')?a.slice(10):a.startsWith('combat:ability:')?a.slice(15):null;
   const g=s.spirits.find(g=>g.id===id);

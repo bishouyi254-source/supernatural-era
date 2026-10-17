@@ -1,3 +1,4 @@
+import {events} from './content.js';
 // Canon motifs sourced in docs/CANON_SOURCES.md; player interventions are game adaptations.
 export const journeys={
  mall:{title:'第二章 · 歇业商场',stages:['未介入','巡查商铺','假模特与电梯','监控室','合作与关押','街头收束'],steps:[
@@ -25,7 +26,7 @@ export const journeys={
 export function newJourney(){return {active:null,chapters:Object.fromEntries(Object.keys(journeys).map(id=>[id,{stage:0,evidence:[],completed:false,withdrawals:0}])),worldHistory:[],personalHistory:[],npcObservations:[],canonInstances:[]};}
 export function attachJourney(s){return s.journey?s:{...s,journey:newJourney()};}
 export function unlocked(s,id){return s.chapter?.completed&&(id==='mall'||id==='club'&&s.journey?.chapters.mall.completed||id==='village'&&s.journey?.chapters.club.completed);}
-export function eventUnlocked(s,id){return !['hungry','eye','officer','watch','door','knocker'].includes(id)&&s.chapter?.completed&&(!eventsD.includes(id)||id==='blood'&&s.journey?.chapters.mall.completed||id==='headless'&&s.journey?.chapters.village.stage>=5);}
+export function eventUnlocked(s,id){return !events[id]?.acquisitionLocked&&!['hungry','eye','officer','watch','door','knocker'].includes(id)&&s.chapter?.completed&&(!eventsD.includes(id)||id==='blood'&&s.journey?.chapters.mall.completed||id==='headless'&&s.journey?.chapters.village.stage>=5);}
 const eventsD=['blood','headless'];
 export const journeyLabels={
  'journey:mall':'介入歇业商场','journey:club':'到访小强俱乐部','journey:village':'介入黄岗村',

@@ -1,3 +1,6 @@
+import {productionAllowed,productionAvailable,prepareProduction,applyProduction,advanceProduction,validProduction,integrationAllowed} from './g1a-production.js';
+import {candidateEnabled,candidateAvailable,applyCandidate,advanceCandidate,useCandidateContext,prepareCandidateAction,recordCandidateRequest,validCandidate} from './g1a-candidate.js';
+import {attachG1A,g1aAvailable,applyG1A,validG1A} from './g1a-archives.js';
 import {enterKnocker} from './knocker-intents.js';
 import {newEyeV6,attachEyeV6,syncEyeUnlocks,eyeAvailable,applyEye,finishEyeCost,beginEyeRound,validEyeV6} from './ghost-eye-v6.js';
 import {continueEyeReaction} from './combat.js';
@@ -63,10 +66,10 @@ export function newGame(name = '未登记', background = '普通职员', seed = 
   const s=attachCase24({ version: VERSION, name: String(name).trim().slice(0, 24) || '未登记', background, seed: seed >>> 0,
     tick: 0, revision: 0, life: 100, energy: 3, bags: 2, ward: 0, scene: 'hub', phase: '异常', crisis: false,
     ghostEyeV6:newEyeV6(),contentVersion:1,identityCase:newIdentityCase(),postwar:newPostwar(),finale:newFinale(),hungry:newHungry(),cityCrisis:newCityCrisis(),ghostMirror:newMirror(),regional:newRegional(),reunion:newReunion(),dual:newDual(),village:newVillage(),social:newSocial(),mall:newMall(),dachang:newDachang(),school:newSchool(),doorCase:newDoorCase(),investigation:newInvestigation(),evolution:newEvolution(),bus:newBus(),v1:newV1(),city:newCity(),advanced:newAdvanced(),chapter: newChapter(), journey:newJourney(), systems:newSystems(),combat:null, hostCapacity: tuning.hostCapacity, spirits: [], relations: [], compatibility: null, knowledge: {}, restricted: {}, outcomes: {}, fate: {}, journal: ['你作为普通人抵达住宅区。档案尚未建立。'] });
-  return {...s,settlement:initialSettlement(s,{id:saveId})};
+  const current=attachG1A(s);return {...current,settlement:initialSettlement(current,{id:saveId})};
 }
 const upgradeCore = s=>attachSchool(attachDoorCase(attachInvestigation(attachEvolution({...attachBus(attachV1(attachAdvanced(attachCity(attachJourney(attachSystems(attachChapter(s))))))),contentVersion:1}))));
-export const upgrade=s=>{const n=attachIdentityCase(attachPostwar(attachFinale(attachHungry(attachCityCrisis(attachMirror(attachRegional(attachReunion(attachDual(attachVillage(attachSocial(attachMall(attachDachang(upgradeCore(s))))))))))))));const core=attachSettlement(attachCase24(n.dachang.started&&n.city.active?{...n,city:{...n.city,active:false}}:n));const migrated=attachEyeV6(core);if(migrated!==core&&validSettlement(core)){migrated.settlement=structuredClone(core.settlement);for(const session of [migrated.settlement.active,...Object.values(migrated.settlement.pending||{})])if(session)session.binding=settlementCoreToken(migrated);}return migrated;};
+export const upgrade=s=>{const n=attachIdentityCase(attachPostwar(attachFinale(attachHungry(attachCityCrisis(attachMirror(attachRegional(attachReunion(attachDual(attachVillage(attachSocial(attachMall(attachDachang(upgradeCore(s))))))))))))));const core=attachSettlement(attachCase24(n.dachang.started&&n.city.active?{...n,city:{...n.city,active:false}}:n));const migrated=attachG1A(attachEyeV6(core));if(migrated!==core&&validSettlement(core)){migrated.settlement=structuredClone(core.settlement);for(const session of [migrated.settlement.active,...Object.values(migrated.settlement.pending||{})])if(session)session.binding=settlementCoreToken(migrated);}return migrated;};
 export function knowledge(s, id) { return s.knowledge[id] || { clues: [], hypotheses: {} }; }
 function baseAvailable(s) {
   s=upgrade(s);if(s.investigation.active&&s.systems.death==='alive'&&!s.crisis)return investigationAvailable(s);if(busBusy(s))return busAvailable(s);const system=systemsAvailable(s);
@@ -85,20 +88,35 @@ function baseAvailable(s) {
     'combat:start','risk', ...(s.spirits[0] && activeIds(s).includes(s.spirits[0].id) && s.energy > 0 ? ['ability'] : []),
     ...(k.hypotheses.true === 'confirmed' && s.bags > 0 ? ['restrict'] : []), 'retreat'];
 }
-export function available(input){
+function existingAvailable(input){
  if(input.investigation?.active&&input.systems.death==='alive'&&!input.crisis)return investigationAvailable(upgrade(input));
  const s=upgrade(input);if(s.combat?.nativeSchool&&!s.combat.eyeV6?.pending&&s.systems.death==='alive'&&!s.crisis)return [...combatAvailable(s),...eyeAvailable(s)];if(s.combat?.eyeV6?.pending||s.combat?.eyeV6&&s.systems.death==='pending')return [...eyeAvailable(s),...(s.systems.death==='pending'?['death:commit']:[])];if(case24Ready(s))return case24Available(s);if(transitReady(s)&&!s.bus.transit.completed)return transitAvailable(s);const ia=identityAvailable(s);if(identityBusy(s)&&s.systems.death==='alive'&&!s.crisis&&!advancedBusy(s))return ia;const pa=postwarAvailable(s);if(postwarBusy(s)&&pa.length)return [...pa,...ia];const fa=finaleAvailable(s);if(fa.length)return [...fa,...pa];const ha=hungryAvailable(s);if(hungryReady(s)&&s.hungry.startUnits!==null&&s.systems.death==='alive'&&!s.crisis&&!advancedBusy(s)&&ha.length)return ha;if(crisisBusy(s)&&s.systems.death==='alive'&&!s.crisis&&!advancedBusy(s))return crisisAvailable(s);if(mirrorBusy(s)&&s.systems.death==='alive'&&!s.crisis&&!advancedBusy(s))return mirrorAvailable(s);if(regionalBusy(s)&&s.systems.death==='alive'&&!s.crisis&&!advancedBusy(s))return regionalAvailable(s);if(reunionBusy(s)&&s.systems.death==='alive'&&!s.crisis&&!advancedBusy(s))return reunionAvailable(s);if(villageBusy(s)&&s.systems.death==='alive'&&!s.crisis&&!advancedBusy(s))return [...villageAvailable(s),...dualAvailable(s)];if(socialBusy(s)&&s.systems.death==='alive'&&!s.crisis&&!advancedBusy(s))return socialAvailable(s);if(s.mall.active&&s.systems.death==='alive'&&!s.crisis&&!advancedBusy(s))return mallAvailable(s);if(s.school.active&&s.systems.death==='alive'&&!s.crisis&&!advancedBusy(s))return schoolAvailable(s);if(s.doorCase.active&&s.systems.death==='alive'&&!s.crisis&&!advancedBusy(s))return doorAvailable(s);if(s.systems.death==='pending'&&s.evolution.host.form===3)return ['death:commit',...evolutionAvailable(s)];if(s.evolution.host.continuity==='失去自我')return s.systems.death==='pending'?['death:commit']:[];let actions=advancedBusy(s)&&s.systems.death==='alive'?evolutionAvailable(s):[...baseAvailable(s),...evolutionAvailable(s)];
  if(advancedBusy(s)&&!s.evolution.encounter?.active&&!s.evolution.cascade&&s.systems.death==='alive'&&s.life>0)actions.push('rest');
  if(s.evolution.host.shellDestroyed&&s.evolution.host.integrity>5&&s.energy<3&&!s.evolution.encounter?.active&&!s.evolution.cascade&&s.systems.death==='alive')actions.push('evo:host:focus');
  actions.push(...hungryAvailable(s),...crisisAvailable(s),...mirrorAvailable(s),...regionalAvailable(s),...reunionAvailable(s),...schoolAvailable(s),...dachangAvailable(s),...mallAvailable(s),...socialAvailable(s),...villageAvailable(s),...dualAvailable(s));actions.push(...eyeAvailable(s));return [...new Set(actions)].filter(a=>{if(!socialAllows(s,a)||!dachangAllows(s,a))return false;if(s.school.started&&a.startsWith('chapter:')&&a!=='chapter:supply')return false;if(a==='evo:third:begin:door'&&!s.doorCase?.sealed)return false;if(a==='evo:third:begin:door'&&s.knowledge.door?.clues.length!==3)return false;if(s.combat?.eyeV6&&a==='ability')return false;const id=a.startsWith('practice:')?a.slice(9):a.startsWith('combat:ability:')?a.slice(15):null;if(id&&ruleBlocked(s,id))return false;if(a==='practice')return activeIds(s).includes(s.spirits[0]?.id)&&!ruleBlocked(s,s.spirits[0]?.id);if(a.startsWith('practice:'))return activeIds(s).includes(id);if(a==='rest'&&s.evolution.host.shellDestroyed)return false;if(a==='abandon'&&!s.spirits.some(g=>s.evolution.nodes[g.id]?.structure!=='STRUCTURAL'))return false;if(a.startsWith('abandon:')&&s.evolution.nodes[a.slice(8)]?.structure==='STRUCTURAL')return false;return true;});
 }
-export function act(input, action) {
-  if (!available(input).includes(action)) return input;
+export function available(input,context=null){
+ if(!productionAllowed(input,context))return [];
+ if(input.g1a?.production?.shroud.crisis)return [];
+ if(input.g1a?.candidate&&!candidateEnabled(context))return [];
+ if(input.g1a?.candidate?.shroud.crisis)return candidateAvailable(input,context);
+ let legal=existingAvailable(input);const s=upgrade(input),x=s.g1a?.candidate;
+ if(x&&candidateEnabled(context)){const ids=[x.rope.actorId,x.blood.actorId].filter(Boolean);legal=legal.filter(a=>!(a==='practice'||a==='ability'||a==='abandon'||ids.some(id=>['practice:','study:','combat:ability:'].some(p=>a===p+id))||a==='abandon:'+x.rope.actorId));}
+ if(s.g1a?.production?.rope.actorId){const id=s.g1a.production.rope.actorId;legal=legal.filter(a=>!['ability','practice'].includes(a)&&!['combat:ability:','practice:','study:','abandon:'].some(p=>a===p+id));}
+ return [...legal,...(legal.includes('rest')?g1aAvailable(s):[]),...(s.combat||legal.includes('rest')?candidateAvailable(s,context):[]),...(s.combat||legal.includes('rest')||legal.includes('combat:start')?productionAvailable(s,context):[])];
+}
+export function act(input, action,context=null) {
+  if(input.g1a?.production?.completed.includes(context?.requestId))return input;
+  if (input.g1a?.candidate?.completed.includes(context?.requestId)||!available(input,context).includes(action)) return input;
   const before=upgrade(input), s = clone(before); const log = text => s.journal.push(text);
-  let eyeResult=null;
+  prepareProduction(s,context);
+  useCandidateContext(s,context);
+  prepareCandidateAction(s,context);
+  recordCandidateRequest(s,context);
+  let eyeResult=null,candidateResult=null;
   if(action.startsWith('eye6:react:')||action==='eye6:pass'){
    eyeResult=applyEye(s,action);if(eyeResult.used)settleSpirits(s,eyeResult.used,null,{[eyeResult.used]:eyeResult.usage},false);
-   finishEyeCost(s);continueEyeReaction(s);s.revision=before.revision+1;s.actionReceipt=actionReceipt(before,s,action);s.journal=s.journal.slice(-100);return observeSettlement(before,s,action,eyeResult.used);
+   finishEyeCost(s);continueEyeReaction(s);advanceCandidate(before,s,action,context);advanceProduction(before,s,action,context);s.revision=before.revision+1;s.actionReceipt=actionReceipt(before,s,action);s.journal=s.journal.slice(-100);return observeSettlement(before,s,action,eyeResult.used);
   }
   s.tick++; let usedId = null, stimulusId = null;
   const wasMirrorCrisis=mirrorCrisis(s);
@@ -106,7 +124,10 @@ export function act(input, action) {
   const mallCrisis=s.mall.active&&s.mall.phase==='CRISIS';
   const reunionCrisis=s.reunion.active&&['D','F'].includes(s.reunion.phase);
   const reunionWindow=s.reunion.active&&s.reunion.phase==='D'&&s.reunion.party.state==='TRAPPED';
-  if(action==='school:engage-audio'){enterKnocker(s);}
+  if(action.startsWith('g1ap:')){candidateResult=applyProduction(s,action,context);usedId=candidateResult.used;if(s.combat)applyCombat(s,'combat:eye-action');}
+  else if(action.startsWith('g1ac:')){candidateResult=applyCandidate(s,action,context);usedId=candidateResult.used;if(s.combat)applyCombat(s,'combat:eye-action');}
+  else if(action.startsWith('g1a:'))applyG1A(s,action);
+  else if(action==='school:engage-audio'){enterKnocker(s);}
   else if(action.startsWith('eye6:cast:')){beginEyeRound(s);eyeResult=applyEye(s,action);usedId=eyeResult.used;applyCombat(s,'combat:eye-action',true);}
   else if(action.startsWith('cx:'))applyCase24(s,action);
   else if(action.startsWith('tr:')){const r=applyTransit(s,action);usedId=r.used;if(r.extra){const g=s.spirits.find(g=>g.id===r.extra.id);g.revivalProgress=Math.min(100,g.revivalProgress+r.extra.amount);}}
@@ -194,7 +215,7 @@ export function act(input, action) {
   settleHungryAction(s,action,s.dachang.timeUnits+(wasMirrorCrisis||wasRegionalCrisis||reunionCrisis||mallCrisis||s.village.active&&['F','ESCAPE'].includes(s.village.phase)&&action.startsWith('dual:')?1:4));
   s.evolution=attachEvolution(s).evolution;
   advanceEvolution(s,usedId);
-  settleSpirits(s, usedId, stimulusId,eyeResult?{[usedId]:eyeResult.usage}:{});finishEyeCost(s);syncEyeUnlocks(s,action);
+  settleSpirits(s, usedId, stimulusId,eyeResult?{[usedId]:eyeResult.usage}:candidateResult?.used?{[usedId]:candidateResult.usage}:{});finishEyeCost(s);syncEyeUnlocks(s,action);
   postEvolution(s);
   if(s.doorCase.sealed&&s.spirits.some(g=>g.sourceId==='door'))s.doorCase.driven=true;
   advanceDoor(s,action);
@@ -221,6 +242,8 @@ export function act(input, action) {
   advanceReunion(s,action,reunionWindow);
 
   postRegional(s);
+  advanceCandidate(before,s,action,context);
+  advanceProduction(before,s,action,context);
   // Persist the same existing compatibility defaults that a reload/available()
   // would attach, before binding the completed encounter snapshot.
   Object.assign(s,attachCase24(s));
@@ -231,8 +254,9 @@ export function act(input, action) {
 }
 function systemAction(a){return ['second:','release:','abandon:','reaction:','death:','balance:','study:'].some(p=>a.startsWith(p));}
 
-export function validate(s) {
-  if(!s||!validEyeV6(s)||!validReceipt(s)||!validSettlement(s))return false;
+export function validate(s,context=null) {
+  if(!s||!validG1A(s)||!validCandidate(s,context)||!validProduction(s,context)||!validEyeV6(s)||!validReceipt(s)||!validSettlement(s))return false;
+  if(s.spirits.some(g=>g.sourceId==='g1a-rope-candidate')&&!candidateEnabled(context)&&!(s.g1a?.production?.testOnly&&integrationAllowed(s,context)))return false;
   if(!s||!Array.isArray(s.spirits)||!Array.isArray(s.relations))return false;
   if(!validCase24(s)||!validCalendar(s)||!validWorldRegistry(s)||!validContracts(s)||!validXArchives(s)||!validIdentityCase(s)||!validPostwar(s)||!validFinale(s)||!validHungry(s)||!validCityCrisis(s)||!validMirror(s)||!validRegional(s)||!validReunion(s)||!validDual(s)||!validVillage(s)||!validSocial(s)||!validMall(s)||!validDachang(s)||!validSchool(s)||!validDoorCase(s)||!validInvestigation(s)||!validEvolution(s))return false;
   if (s && (Object.hasOwn(s, 'pressure') || Object.hasOwn(s, 'ghost') || Object.hasOwn(s, 'totalRevival'))) return false;

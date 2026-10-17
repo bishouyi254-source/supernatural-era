@@ -4,6 +4,7 @@ import {busSuppression,busMaintains} from './bus.js';
 import {transitSuppression} from './transit-model.js';
 // Prototype tuning, not canonical novel statistics. Rates are per action node.
 export const tuning = { hostCapacity: 100, overloadMultiplier: 1.25, suppression: 0.4, suppressionActions: 3 };
+export const revivalCrisisFor=(s,g)=>g.revivalProgress===100&&g.suppressionRemaining===0&&!busMaintains(s,g)&&!ruleBlocked(s,g.id);
 export function revivalStage(value) {
   if (!Number.isFinite(value) || value < 0 || value > 100) throw Error('无效复苏进度');
   return value < 20 ? '沉寂' : value < 40 ? '轻微躁动' : value < 60 ? '活跃' : value < 80 ? '高风险' : value < 95 ? '严重复苏' : value < 100 ? '临界' : '厉鬼复苏';
@@ -17,10 +18,10 @@ export function suppressionFor(s, spirit) {
   return Math.max(ruleBlocked(s,spirit.id)?1:0,relational, spirit.suppressionRemaining > 0 ? tuning.suppression : 0, s.bus?.transit?.started?transitSuppression(s,spirit):busSuppression(s)?.85:0,villageEnvironment(s)?.25:0);
 }
 export function hostState(s) {
-  const totalBurden = s.spirits.reduce((sum, g) => sum + g.burden, 0)+(s.ghostEyeV6?.persistentLoad||0);
+  const totalBurden = s.spirits.reduce((sum, g) => sum + g.burden, 0)+(s.ghostEyeV6?.persistentLoad||0)+(s.g1a?.candidate?.persistentLoad||0)+(s.g1a?.production?.load||0);
   // Ordinary compatibility/suppression never implies a burden discount.
   const structure=structureState(s);
-  const effectiveBurden = structure.effective+(s.ghostEyeV6?.persistentLoad||0);
+  const effectiveBurden = structure.effective+(s.ghostEyeV6?.persistentLoad||0)+(s.g1a?.candidate?.persistentLoad||0)+(s.g1a?.production?.load||0);
   const burdenRatio = effectiveBurden / structure.capacity;
   const conflicts = s.relations.reduce((sum, r) => sum + r.conflictAtoB + r.conflictBtoA, 0);
   const bias=Math.max(0,...s.relations.map(r=>Math.abs(r.bias||0)));
@@ -56,7 +57,7 @@ export function settleSpirits(s, usedId = null, stimulusId = null, usageCosts = 
     g.suppressionReceived = suppressionFor(s, g);
     g.activityLevel = g.suppressionReceived > 0 ? '被压制' : '正常';
   });
-  s.crisis = s.spirits.some(g => g.revivalProgress === 100 && g.suppressionRemaining === 0 && !busMaintains(s,g) && !ruleBlocked(s,g.id));
+  s.crisis = !!s.g1a?.candidate?.shroud.crisis || !!s.g1a?.production?.shroud.crisis || s.spirits.some(g => revivalCrisisFor(s,g));
 }
 export function validSpirits(s, events) {
   const n = (x, max = Number.MAX_SAFE_INTEGER) => Number.isFinite(x) && x >= 0 && x <= max;
@@ -76,5 +77,5 @@ export function validSpirits(s, events) {
       !n(r.conflictAtoB) || !n(r.conflictBtoA) ||r.bias!==undefined&&(!Number.isFinite(r.bias)||r.bias< -100||r.bias>100)|| r.burdenSynergy !== 0 || r.specialInteraction !== null) return false;
     const pair = [r.spiritA, r.spiritB].sort().join('|'); if (pairs.has(pair)) return false; pairs.add(pair);
   }
-  return s.crisis === s.spirits.some(g => g.revivalProgress === 100 && g.suppressionRemaining === 0 && !busMaintains(s,g) && !ruleBlocked(s,g.id));
+  return s.crisis === (!!s.g1a?.candidate?.shroud.crisis || !!s.g1a?.production?.shroud.crisis || s.spirits.some(g => revivalCrisisFor(s,g)));
 }

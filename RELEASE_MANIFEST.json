@@ -1,11 +1,17 @@
 {
-  "version": "0.24.4",
-  "edition": "ghost-eye-first-release-v6.5.1",
-  "base_commit": "9f69cc65e1f22de4a92b468bf8ef1ace9c9cc3bc",
-  "accepted_commit": "6c6dfd1e18f93592bac114204913079954d98a58",
+  "version": "0.24.5",
+  "edition": "g1a-production-engine-integration-candidate",
+  "previousRelease": "224313a7d8e5035cd3600b4e6b37c9f973c365e8",
+  "acceptedMechanics": "29c2a80feeb9e133b7a05844ee2d38c492bbd7a8",
+  "strategyAudit": "c1502ad853ff15a72b770db44a37e34bffa8fc57",
+  "ghostEye": "V6.5.1 unchanged",
   "saveFormat": 2,
-  "published": true,
-  "scope": "Accepted Ghost Eye V6 through V6.5.1, A0 rules unchanged; existing combat art, maps, second-spirit P1 and chapter outcomes preserved. Layers 2/4/5/6 lack defined official enemy interactions.",
+  "scope": "Production mechanism integration; lawful old-mall player blood only. Rope/shroud ordinary acquisition remains locked; no story addition, no fixture pages or artificial holder states deployed. Overall balance/cooperation not finally frozen.",
+  "parameters": {
+    "bloodExposure": 10,
+    "shroudProtection": 6,
+    "shroudTime": 3
+  },
   "files": [
     {
       "path": ".nojekyll",
@@ -14,8 +20,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 1672,
-      "sha256": "018d2cf606532b674e1a484d0f29df86135ca2d02eee156f70fc4bcb626f6532"
+      "bytes": 2328,
+      "sha256": "3508580b521eb3c18121bb72b53c389dea81bc80e0668a57cd818cb352cccc36"
     },
     {
       "path": "assets/backpack/art-a.png",
@@ -1979,8 +1985,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 82763,
-      "sha256": "e6b5a427d71ca6b48c2fb5f690d92cda2fdcce1cd5840a46dd010d777eb67c39"
+      "bytes": 83329,
+      "sha256": "9ce835b627adb7882060ad72713f51a14ceef8ccdf4e5189fc88e32be58759e3"
     },
     {
       "path": "src/audio-medium.js",
@@ -2104,8 +2110,8 @@
     },
     {
       "path": "src/combat-stage4-adapter.js",
-      "bytes": 8242,
-      "sha256": "444dfdf07d59df8b5536307e8acd87ee57b5f761b940fff23509919e8fd7fbff"
+      "bytes": 9115,
+      "sha256": "5124e428f80fc8ee57457a893e41c24ff995e1037b03ad97f81e05aedd999495"
     },
     {
       "path": "src/combat-stage4-ui.js",
@@ -2124,13 +2130,13 @@
     },
     {
       "path": "src/combat.js",
-      "bytes": 9585,
-      "sha256": "739e429147ca8fe47f06054d85d6c4dd54a1b491c6fb2240c7af48c7268af84a"
+      "bytes": 11167,
+      "sha256": "47415ad44917644cb70293b1b5538dac8658b0c77c1cc070a2987d173127cb27"
     },
     {
       "path": "src/content.js",
-      "bytes": 9665,
-      "sha256": "1654a22eb76e4a211275553a7188136ea7b61bdfb0c67e0e52ae9577557ed580"
+      "bytes": 10143,
+      "sha256": "001d841163c734345bef146721b9230e9c48b1b09fc7932fd6fd696bc9bfc481"
     },
     {
       "path": "src/contract-case.js",
@@ -2169,8 +2175,8 @@
     },
     {
       "path": "src/engine.js",
-      "bytes": 28725,
-      "sha256": "91037570be3b715c19d642a6a30fc3cdd7a959943ad49908b8630421a5fc05d6"
+      "bytes": 31476,
+      "sha256": "cff5bc7e73a5f30f513ba241ba318241578850ef1b0f35d5bc127d27c747978e"
     },
     {
       "path": "src/event-rules.js",
@@ -2213,9 +2219,39 @@
       "sha256": "6d62499cce88be28f30f9c53e8c219d59cbd6ddf82d1faa8748e0386f54627ef"
     },
     {
+      "path": "src/g1a-archives.js",
+      "bytes": 7027,
+      "sha256": "c9ba79bf53fae6005caead6f079a261670c186231d845bff034c0984c6e55e3f"
+    },
+    {
+      "path": "src/g1a-candidate-view.js",
+      "bytes": 2753,
+      "sha256": "0ed177592a70fa2f81d197bf7a280d5ceea7cf4affa83e2c0b6cf796b6607b20"
+    },
+    {
+      "path": "src/g1a-candidate.js",
+      "bytes": 14476,
+      "sha256": "d1628fd50d5f0001188c5bb8aa22d933f1ada681d533e0dba3a227d485c72d3d"
+    },
+    {
+      "path": "src/g1a-production-view.js",
+      "bytes": 4293,
+      "sha256": "bc64e5f7ace1a8e78a52ed9073fb80b9c1c0f8ae7c89f85beba260fa6fa6a51b"
+    },
+    {
+      "path": "src/g1a-production.js",
+      "bytes": 18391,
+      "sha256": "be2dc322bbdc0ade4ca69c72b8172dc5430f997d82177dfaa80603332064aacb"
+    },
+    {
+      "path": "src/g1a-view.js",
+      "bytes": 2011,
+      "sha256": "25ea866b3b3aa4b9f420c75f94697ad6f717947a3e329d754b2018d859c1a395"
+    },
+    {
       "path": "src/gameplay-guide.js",
-      "bytes": 12028,
-      "sha256": "201dc6f55c88041453c85a4d5da815297bef7c7498aa8a9b1d52a5df52253904"
+      "bytes": 12138,
+      "sha256": "c5aebb1aecdb45278885725a58b092ded9f5a4a717896dbe679d8b76c47d88dc"
     },
     {
       "path": "src/ghost-eye-v6.d.ts",
@@ -2279,8 +2315,8 @@
     },
     {
       "path": "src/journey.js",
-      "bytes": 8355,
-      "sha256": "2ff1d0aa5a417a358a514ae07a3815ee89805654d1400889be7eb55c464348ce"
+      "bytes": 8426,
+      "sha256": "61e399608c26f371f65adb03ef1b5b8f2a78c2f43024988d1b6b8b06526411e7"
     },
     {
       "path": "src/knocker-intents.js",
@@ -2394,8 +2430,8 @@
     },
     {
       "path": "src/rpg-workshop.js",
-      "bytes": 21055,
-      "sha256": "24bcb1b9b7b86903348cf9e2322d2a990e030c67ee2af3d1bf8da4098829a91e"
+      "bytes": 21693,
+      "sha256": "4ce34aaa649a3f40cc8d30e8d22de7481590098ddccc8a0201901a0a0b8adb95"
     },
     {
       "path": "src/rules.js",
@@ -2474,8 +2510,8 @@
     },
     {
       "path": "src/spirits.js",
-      "bytes": 7190,
-      "sha256": "4b5d32dd2080b8c930e9ee8520112e7e5250d4ecda652b597a5afec7c56c24eb"
+      "bytes": 7447,
+      "sha256": "bf0aa40c0779599f370810b06ddf49fc4ca8ed2a5c6c15f357eb3b1138a48e3e"
     },
     {
       "path": "src/style.css",
@@ -2494,8 +2530,8 @@
     },
     {
       "path": "src/ui-loop.js",
-      "bytes": 9911,
-      "sha256": "bafd0c3fe970d7e94dc5e28c5191578a822c021b146c4ddd61413187ab85ba44"
+      "bytes": 9918,
+      "sha256": "76ccf1911965139ef8f7e4c8dce98d57f31a3c1aa020505859556dbe8c4ff729"
     },
     {
       "path": "src/v1.js",
@@ -2614,8 +2650,8 @@
     },
     {
       "path": "src/views-v1.js",
-      "bytes": 7177,
-      "sha256": "d73660c5848e026b9a615d45a1afbd161638ea95ae2d5ec9afc05827f3bb3093"
+      "bytes": 7185,
+      "sha256": "0f54d4caead94fc25b37dfa8e766872f20760450b32b09e55baf64b3bf3e2850"
     },
     {
       "path": "src/views-village.js",
