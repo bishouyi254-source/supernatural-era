@@ -1,12 +1,11 @@
 {
-  "version": "0.24.5",
-  "edition": "g1a-production-engine-integration-candidate",
-  "previousRelease": "224313a7d8e5035cd3600b4e6b37c9f973c365e8",
-  "acceptedMechanics": "29c2a80feeb9e133b7a05844ee2d38c492bbd7a8",
-  "strategyAudit": "c1502ad853ff15a72b770db44a37e34bffa8fc57",
+  "version": "0.24.6",
+  "edition": "g1b-production-mechanism-release",
+  "previousRelease": "ababb53ad411857e4ffbac0779f617f2174de810",
+  "acceptedMechanics": "1791730436c3fc9f09f0f2e399e71422ec935e70",
   "ghostEye": "V6.5.1 unchanged",
   "saveFormat": 2,
-  "scope": "Production mechanism integration; lawful old-mall player blood only. Rope/shroud ordinary acquisition remains locked; no story addition, no fixture pages or artificial holder states deployed. Overall balance/cooperation not finally frozen.",
+  "scope": "006 tablet, 007 caller, 008 smoke production mechanics and independent evidence growth. Ordinary acquisition remains locked. Missing return assistance, identity/hearing/facing/turning and geography qualifications remain explicitly isolated; no QA pages, artificial holders or GDD deployed. Initial balance/high tiers not finally frozen.",
   "parameters": {
     "bloodExposure": 10,
     "shroudProtection": 6,
@@ -20,8 +19,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 2328,
-      "sha256": "3508580b521eb3c18121bb72b53c389dea81bc80e0668a57cd818cb352cccc36"
+      "bytes": 2889,
+      "sha256": "fe77c2a888fdf779e30875d0b4adf88dea25caf6ad9f7ae08894e9471c4fc79f"
     },
     {
       "path": "assets/backpack/art-a.png",
@@ -1985,8 +1984,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 83329,
-      "sha256": "9ce835b627adb7882060ad72713f51a14ceef8ccdf4e5189fc88e32be58759e3"
+      "bytes": 83432,
+      "sha256": "72abb199fd4cd6a5c353f7f94f443c68372d5ceaa6d6b16961caaa21e6ccee8b"
     },
     {
       "path": "src/audio-medium.js",
@@ -2110,8 +2109,8 @@
     },
     {
       "path": "src/combat-stage4-adapter.js",
-      "bytes": 9115,
-      "sha256": "5124e428f80fc8ee57457a893e41c24ff995e1037b03ad97f81e05aedd999495"
+      "bytes": 10192,
+      "sha256": "473383f706b9fc07623074629234a7f0cd371bad2681606e9f0e8d5f92d21585"
     },
     {
       "path": "src/combat-stage4-ui.js",
@@ -2130,13 +2129,13 @@
     },
     {
       "path": "src/combat.js",
-      "bytes": 11167,
-      "sha256": "47415ad44917644cb70293b1b5538dac8658b0c77c1cc070a2987d173127cb27"
+      "bytes": 11618,
+      "sha256": "524652761e9faf76407446f28784289101edb01c322f30d76394a90411012fde"
     },
     {
       "path": "src/content.js",
-      "bytes": 10143,
-      "sha256": "001d841163c734345bef146721b9230e9c48b1b09fc7932fd6fd696bc9bfc481"
+      "bytes": 11555,
+      "sha256": "b51ced429e5c0246996e1aa2adaccc8fb2cf7264ad22a3591ff6ba03a1dcad73"
     },
     {
       "path": "src/contract-case.js",
@@ -2175,8 +2174,8 @@
     },
     {
       "path": "src/engine.js",
-      "bytes": 31476,
-      "sha256": "cff5bc7e73a5f30f513ba241ba318241578850ef1b0f35d5bc127d27c747978e"
+      "bytes": 32148,
+      "sha256": "854150853f1f3f557157caa1a2f9b4e21ebbfd06e19591b1ae290611051eb916"
     },
     {
       "path": "src/event-rules.js",
@@ -2249,9 +2248,19 @@
       "sha256": "25ea866b3b3aa4b9f420c75f94697ad6f717947a3e329d754b2018d859c1a395"
     },
     {
+      "path": "src/g1b-production.js",
+      "bytes": 23074,
+      "sha256": "215e566bcfed2fb1f88a21c9d26df5c0f67f1dadc48f112fac2380d546bf6142"
+    },
+    {
+      "path": "src/g1b-view.js",
+      "bytes": 1131,
+      "sha256": "682cd8d80509f208276f9406c4164cd07817d9064d9649d4410aa0d730d72729"
+    },
+    {
       "path": "src/gameplay-guide.js",
-      "bytes": 12138,
-      "sha256": "c5aebb1aecdb45278885725a58b092ded9f5a4a717896dbe679d8b76c47d88dc"
+      "bytes": 12229,
+      "sha256": "d6803df58471a7b917beb58d893f3c8521baeb4c12d207ecfed473f244559017"
     },
     {
       "path": "src/ghost-eye-v6.d.ts",
@@ -2430,8 +2439,8 @@
     },
     {
       "path": "src/rpg-workshop.js",
-      "bytes": 21693,
-      "sha256": "4ce34aaa649a3f40cc8d30e8d22de7481590098ddccc8a0201901a0a0b8adb95"
+      "bytes": 21784,
+      "sha256": "1fe88b4439da80d15b240a93081672291fa2a6edcac091600baeb69330398d31"
     },
     {
       "path": "src/rules.js",
@@ -2510,8 +2519,8 @@
     },
     {
       "path": "src/spirits.js",
-      "bytes": 7447,
-      "sha256": "bf0aa40c0779599f370810b06ddf49fc4ca8ed2a5c6c15f357eb3b1138a48e3e"
+      "bytes": 7536,
+      "sha256": "c98b2216ef3f9ba14483c9654782d956d6b547a108ebfd8ceb4453a733bfd2f5"
     },
     {
       "path": "src/style.css",
@@ -2530,8 +2539,8 @@
     },
     {
       "path": "src/ui-loop.js",
-      "bytes": 9918,
-      "sha256": "76ccf1911965139ef8f7e4c8dce98d57f31a3c1aa020505859556dbe8c4ff729"
+      "bytes": 9925,
+      "sha256": "454c26a5041b63a931775cfc68e0e7d50872803bf0a9f408136a42898cd4d41b"
     },
     {
       "path": "src/v1.js",

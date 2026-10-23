@@ -18,10 +18,10 @@ export function suppressionFor(s, spirit) {
   return Math.max(ruleBlocked(s,spirit.id)?1:0,relational, spirit.suppressionRemaining > 0 ? tuning.suppression : 0, s.bus?.transit?.started?transitSuppression(s,spirit):busSuppression(s)?.85:0,villageEnvironment(s)?.25:0);
 }
 export function hostState(s) {
-  const totalBurden = s.spirits.reduce((sum, g) => sum + g.burden, 0)+(s.ghostEyeV6?.persistentLoad||0)+(s.g1a?.candidate?.persistentLoad||0)+(s.g1a?.production?.load||0);
+  const totalBurden = s.spirits.reduce((sum, g) => sum + g.burden, 0)+(s.ghostEyeV6?.persistentLoad||0)+(s.g1a?.candidate?.persistentLoad||0)+(s.g1a?.production?.load||0)+(s.g1b?.load||0);
   // Ordinary compatibility/suppression never implies a burden discount.
   const structure=structureState(s);
-  const effectiveBurden = structure.effective+(s.ghostEyeV6?.persistentLoad||0)+(s.g1a?.candidate?.persistentLoad||0)+(s.g1a?.production?.load||0);
+  const effectiveBurden = structure.effective+(s.ghostEyeV6?.persistentLoad||0)+(s.g1a?.candidate?.persistentLoad||0)+(s.g1a?.production?.load||0)+(s.g1b?.load||0);
   const burdenRatio = effectiveBurden / structure.capacity;
   const conflicts = s.relations.reduce((sum, r) => sum + r.conflictAtoB + r.conflictBtoA, 0);
   const bias=Math.max(0,...s.relations.map(r=>Math.abs(r.bias||0)));
@@ -46,9 +46,9 @@ export function growthFor(s, g, usage = false, stimulus = 0, usageOverride = nul
   const extra=({suppression:2,mind:1,rule:4}[s.v1?.build]||0)+(usageOverride!==null&&s.v1?.build==='domain'?3:0);
   return (natural + (usage && !ruleBlocked(s,g.id) && !masteryStable(s,g.id) ? (usageOverride??g.usageRevivalRate)+extra : 0) + stimulus + (advanceNatural?conflict:0)) * (1 - suppression);
 }
-export function settleSpirits(s, usedId = null, stimulusId = null, usageCosts = {}, advanceNatural = true) {
+export function settleSpirits(s, usedId = null, stimulusId = null, usageCosts = {}, advanceNatural = true, additionalRevival = {}) {
   const used=Array.isArray(usedId)?usedId:[usedId];
-  const gains = s.spirits.map(g => growthFor(s, g, used.includes(g.id), g.id === stimulusId ? 10 : 0,usageCosts[g.id]??null,advanceNatural));
+  const gains = s.spirits.map(g => growthFor(s, g, used.includes(g.id), (g.id === stimulusId ? 10 : 0)+(additionalRevival[g.id]||0),usageCosts[g.id]??null,advanceNatural));
   const drift=(s.advanced?.mediaStudy?9:12)*(s.v1?.build==='stable'?.75:1);
   for(const r of s.relations)r.bias=Math.max(-100,Math.min(100,(r.bias||0)+(used.includes(r.spiritA)?drift:0)-(used.includes(r.spiritB)?drift:0)));
   s.spirits.forEach((g, i) => {

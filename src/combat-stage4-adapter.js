@@ -1,3 +1,4 @@
+import {g1bLabel,g1bCost,g1bRisk,G1B_COSTS,g1bMaintenance} from './g1b-production.js';
 import {EYE_V6,eyeCost} from './ghost-eye-v6.js';
 import {productionState,productionLabel,G1A_COSTS} from './g1a-production.js';
 import {productionRisk} from './g1a-production-view.js';
@@ -25,12 +26,13 @@ const num = n => Number.isFinite(n)? +n.toFixed(2):0;
 
 export function buildRealCombatData(s,context=null) {
  if(!s?.combat)throw Error('仅在真实战斗中生成接线数据');
- const c=s.combat,e=events[c.eventId],legal=new Set(available(s,context));
+ const c=s.combat,e=events[c.eventId],legal=new Set(available(s,context)),g1bTyped=!!s.g1b?.world.actors.length;
  const active=activeIds(s), h=hostState(s);
  const visibleIds=new Set(active);
  const ghostMap=new Map(s.spirits.map(g=>[g.id,g]));
  const resonance=s.systems.combinations.find(x=>x.ids.every(id=>visibleIds.has(id)));
  const participating=a=>{
+  if(a.startsWith('g1bp:'))return [s.g1b[a.split(':')[1]].actorId].filter(Boolean);
   if(a.startsWith('g1ap:')){const x=productionState(s);return [a.startsWith('g1ap:rope:')?x.rope.actorId:x.blood.actorId].filter(Boolean);}
   if(a.startsWith('eye6:')&&a!=='eye6:pass')return s.spirits.filter(g=>g.sourceId==='eye').map(g=>g.id);
   if(a.startsWith('combat:ability:'))return [a.slice('combat:ability:'.length)];
@@ -42,11 +44,12 @@ export function buildRealCombatData(s,context=null) {
  };
  const candidates=new Set([
   'combat:observe','combat:avoid','combat:restrict','combat:item','combat:risk','combat:force',
-  ...s.spirits.filter(g=>g.sourceId!=='g1a-rope-candidate'&&(!c.eyeV6||g.sourceId!=='eye')).flatMap(g=>[`combat:ability:${g.id}`,...(['watch','echo','shadow'].includes(g.sourceId)?[`combat:focus:${g.id}`,`combat:cover:${g.id}`]:[])]),
+  ...s.spirits.filter(g=>!['tablet','caller','smoke','g1a-rope-candidate'].includes(g.sourceId)&&(!c.eyeV6||g.sourceId!=='eye')).flatMap(g=>[`combat:ability:${g.id}`,...(['watch','echo','shadow'].includes(g.sourceId)?[`combat:focus:${g.id}`,`combat:cover:${g.id}`]:[])]),
   ...(s.systems.combinations.length?['combat:combo']:[]),
   ...(!c.eyeV6&&s.spirits.some(g=>g.sourceId==='eye')?['v1:domain:cast','v1:reset:self','v1:reset:range']:[]),
   ...[...legal].filter(a=>a.startsWith('eye6:')),
   ...[...legal].filter(a=>a.startsWith('g1ap:')),
+  ...[...legal].filter(a=>a.startsWith('g1bp:')),
   ...Object.keys(s.systems.aids).map(id=>'combat:aid:'+id),
   ...[...legal].filter(a=>['v1:domain:cast','v1:seal:cast','v1:reset:self','v1:reset:range'].includes(a))
  ]);
@@ -57,11 +60,12 @@ export function buildRealCombatData(s,context=null) {
   const energy=eyeSpec?eyeSpec.energy:a==='eye6:pass'?0:a==='combat:combo'||a==='combat:cover:'+gId?2:
     a==='combat:item'||a==='combat:avoid'||a==='combat:observe'||a==='combat:restrict'||a==='combat:risk'||a==='combat:force'||a.startsWith('combat:aid:')||a==='v1:seal:cast'?0:1;
   const ghostId=a==='combat:combo'?'resonance':gId||'utility';
-  let name=a.startsWith('g1ap:')?productionLabel(a):eyeSpec?eyeSpec.name+(a.endsWith(':enemy')?' · 敌方':a.endsWith(':self')?' · 自身':''):a==='eye6:pass'?'放弃本次反应':knownActionNames[a]||
+  let name=a.startsWith('g1bp:')?g1bLabel(a):a.startsWith('g1ap:')?productionLabel(a):eyeSpec?eyeSpec.name+(a.endsWith(':enemy')?' · 敌方':a.endsWith(':self')?' · 自身':''):a==='eye6:pass'?'放弃本次反应':knownActionNames[a]||
    (a.startsWith('combat:ability:')?(g?.name||'未知')+'·基础调用':
     a.startsWith('combat:focus:')?(g?.name||'未知')+'·集中压制':
     a.startsWith('combat:cover:')?(g?.name||'未知')+'·收束掩护':
     a.startsWith('combat:aid:')?'有限援助 · '+(events[a.slice(11)]?.spirit||'辅助媒介'):'规则行动');
+  if(a.startsWith('g1bp:caller:call:'))name+=' · '+(s.g1b.world.knownIdentities.find(v=>v.id===a.slice('g1bp:caller:call:'.length))?.identity||'已确认目标');
   const reasons=[];
   if(disabled){
    if(ownAction&&!visibleIds.has(gId))reasons.push('该厉鬼未启用');
@@ -75,10 +79,12 @@ export function buildRealCombatData(s,context=null) {
   for(const ghost of s.spirits)revivalByGhost[ghost.id]=num(growthFor(s,ghost,used.includes(ghost.id)));
   const g1aCost=a.startsWith('g1ap:')?G1A_COSTS[a.split(':')[2]]:null;
   if(g1aCost){const p=structuredClone(s);p.g1a.production=structuredClone(productionState(s));p.g1a.production.load+=g1aCost[2];for(const ghost of p.spirits)revivalByGhost[ghost.id]=num(growthFor(p,ghost,used.includes(ghost.id),0,used.includes(ghost.id)?g1aCost[1]:null));}
+  const g1bCost=a.startsWith('g1bp:')?G1B_COSTS[a.split(':')[2]]:null;
+  if(s.g1b){const p=structuredClone(s);if(g1bCost)p.g1b.load+=g1bCost[2];const maintaining=a==='g1bp:smoke:release'||s.g1b.smoke.state==='CONTROLLED'&&a!=='g1bp:smoke:gather';for(const ghost of p.spirits)revivalByGhost[ghost.id]=num(growthFor(p,ghost,used.includes(ghost.id),maintaining&&ghost.sourceId==='smoke'?1:0,used.includes(ghost.id)&&g1bCost?g1bCost[1]:null));}
   const reaction=a.startsWith('eye6:react:')||a==='eye6:pass';
   if(eyeSpec){for(const ghost of s.spirits)revivalByGhost[ghost.id]=ghost.sourceId==='eye'?num(eyeCost(s,eyeSpec.layer,reaction).total):num(growthFor(s,ghost,false,0,null,!reaction));}
   const cDescription=eyeSpec?`V6.1测试候选 · ${reaction?'灵异反应':'主动行动'}；${eyeSpec.layer===1?'鬼域持续3轮':eyeSpec.layer===7?'恢复自身临时状态，保留行动/反应/重启额度与全部代价':eyeSpec.layer===8?'范围内选择自身有限恢复或敌方可逆强化清除；不回滚永久结果':eyeSpec.name}；${c.eyeV6?.pending?.simulation||c.eyeV6?.scenario?'当前敌方规则为明确模拟夹具':'只对真实合法条件开放'}。`:a==='eye6:pass'?'不施放技能，继续当前已宣告敌方行动；不重复推进世界时间。':actionCost(s,a);
-  return {id:a,name,ghostId,icon:iconFor(a),energy,burden:g1aCost?.[2]??eyeSpec?.burden??0,
+  return {id:a,name,ghostId,icon:iconFor(a),energy,burden:g1bCost?.[2]??g1aCost?.[2]??eyeSpec?.burden??0,
    revivalByGhost,description:cDescription,status:disabled?(cooldown?'cooldown':'locked'):'available',
    reason:reasons.join('；')||'当前引擎合法行动清单不包含该动作；可能未启用、开发不足、组合取代或资源不足。',
    code:a,participating:used};
@@ -87,12 +93,12 @@ export function buildRealCombatData(s,context=null) {
  if(knowledge?.hypotheses?.true==='confirmed')clues.push('现有记录与对照支持限制方案；不代表了解源头全部规则。');
  if(c.nativeSchool)clues.push(...s.school.evidence.filter(e=>['K-01','K-02','C-02','K-03','K-04'].includes(e.id)).map(e=>e.fact));
  const last=c.logs?.at(-1)?.text||'本回合尚未执行行动。';
- return {mode:'live',location:e?.title||'规则遭遇',room:e?.title||'当前现场',round:c.turn+1,phase:c.eyeV6?.pending?'敌方宣告 · 选择反应':s.systems.death==='pending'?'紧急反应':'我方行动',
-  stageState:c.wardWeight>0?'防护已部署':'媒介规则持续结算',stageRisk:productionRisk(s)||(c.nativeSchool?'七中接近压力 '+s.school.pressure:c.position==='exposed'?'已处于触发范围':'当前避开触发媒介'),
+ return {mode:'live',location:g1bTyped?'G1-B隔离类型化战斗':e?.title||'规则遭遇',room:g1bTyped?'测试参与者 · 非正式关卡':e?.title||'当前现场',round:c.turn+1,phase:c.eyeV6?.pending?'敌方宣告 · 选择反应':s.systems.death==='pending'?'紧急反应':'我方行动',
+  stageState:c.wardWeight>0?'防护已部署':'媒介规则持续结算',stageRisk:g1bRisk(s)||productionRisk(s)||(c.nativeSchool?'七中接近压力 '+s.school.pressure:c.position==='exposed'?'已处于触发范围':'当前避开触发媒介'),
   feedback:c.eyeV6?.pending?`敌方宣告：${({position:'位置型来袭',propagation:'外部传播型来袭',preparation:'准备行动',ordinary:'普通行动'})[c.eyeV6.pending.kind]}${c.eyeV6.pending.simulation?'（模拟夹具）':''}，可选择一次合法反应或放弃。`:last,player:{name:s.name,hp:s.life,hpMax:100,energy:s.energy,energyMax:3,
    burden:h.effectiveBurden,burdenMax:h.hostCapacity,coreGhost:ghostMap.get(active[0])?.name||'无',
    spirits:s.spirits.map(g=>({id:g.id,name:g.name,revival:g.revivalProgress,burden:g.burden}))},
-  enemy:{id:c.eventId,displayName:knowledge?.hypotheses?.true==='confirmed'?e.spirit:'未识别异常',
+  enemy:{id:c.eventId,displayName:g1bTyped?'隔离测试参与者':knowledge?.hypotheses?.true==='confirmed'?e.spirit:'未识别异常',
    status:c.wardWeight>0?'防护部署中，效果需经规则验证':'尚未建立防护',
    risk:'评级未确认',goal:legal.has('combat:restrict')?'可以尝试合法限制':'取得证据、避险或撤离',rules:clues},
   ghosts:s.spirits.map(g=>({id:g.id,name:g.name,activated:visibleIds.has(g.id)})),

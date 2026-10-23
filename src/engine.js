@@ -1,3 +1,4 @@
+import {g1bAllowed,g1bAvailable,g1bFilter,prepareG1B,applyG1B,advanceG1B,observeG1B,g1bMaintenance,validG1B} from './g1b-production.js';
 import {productionAllowed,productionAvailable,prepareProduction,applyProduction,advanceProduction,validProduction,integrationAllowed} from './g1a-production.js';
 import {candidateEnabled,candidateAvailable,applyCandidate,advanceCandidate,useCandidateContext,prepareCandidateAction,recordCandidateRequest,validCandidate} from './g1a-candidate.js';
 import {attachG1A,g1aAvailable,applyG1A,validG1A} from './g1a-archives.js';
@@ -96,6 +97,7 @@ function existingAvailable(input){
  actions.push(...hungryAvailable(s),...crisisAvailable(s),...mirrorAvailable(s),...regionalAvailable(s),...reunionAvailable(s),...schoolAvailable(s),...dachangAvailable(s),...mallAvailable(s),...socialAvailable(s),...villageAvailable(s),...dualAvailable(s));actions.push(...eyeAvailable(s));return [...new Set(actions)].filter(a=>{if(!socialAllows(s,a)||!dachangAllows(s,a))return false;if(s.school.started&&a.startsWith('chapter:')&&a!=='chapter:supply')return false;if(a==='evo:third:begin:door'&&!s.doorCase?.sealed)return false;if(a==='evo:third:begin:door'&&s.knowledge.door?.clues.length!==3)return false;if(s.combat?.eyeV6&&a==='ability')return false;const id=a.startsWith('practice:')?a.slice(9):a.startsWith('combat:ability:')?a.slice(15):null;if(id&&ruleBlocked(s,id))return false;if(a==='practice')return activeIds(s).includes(s.spirits[0]?.id)&&!ruleBlocked(s,s.spirits[0]?.id);if(a.startsWith('practice:'))return activeIds(s).includes(id);if(a==='rest'&&s.evolution.host.shellDestroyed)return false;if(a==='abandon'&&!s.spirits.some(g=>s.evolution.nodes[g.id]?.structure!=='STRUCTURAL'))return false;if(a.startsWith('abandon:')&&s.evolution.nodes[a.slice(8)]?.structure==='STRUCTURAL')return false;return true;});
 }
 export function available(input,context=null){
+ if(!g1bAllowed(input,context)||!validG1B(input,context))return [];
  if(!productionAllowed(input,context))return [];
  if(input.g1a?.production?.shroud.crisis)return [];
  if(input.g1a?.candidate&&!candidateEnabled(context))return [];
@@ -103,20 +105,22 @@ export function available(input,context=null){
  let legal=existingAvailable(input);const s=upgrade(input),x=s.g1a?.candidate;
  if(x&&candidateEnabled(context)){const ids=[x.rope.actorId,x.blood.actorId].filter(Boolean);legal=legal.filter(a=>!(a==='practice'||a==='ability'||a==='abandon'||ids.some(id=>['practice:','study:','combat:ability:'].some(p=>a===p+id))||a==='abandon:'+x.rope.actorId));}
  if(s.g1a?.production?.rope.actorId){const id=s.g1a.production.rope.actorId;legal=legal.filter(a=>!['ability','practice'].includes(a)&&!['combat:ability:','practice:','study:','abandon:'].some(p=>a===p+id));}
- return [...legal,...(legal.includes('rest')?g1aAvailable(s):[]),...(s.combat||legal.includes('rest')?candidateAvailable(s,context):[]),...(s.combat||legal.includes('rest')||legal.includes('combat:start')?productionAvailable(s,context):[])];
+ return [...g1bFilter(s,[...legal,...(legal.includes('rest')?g1aAvailable(s):[]),...(s.combat||legal.includes('rest')?candidateAvailable(s,context):[]),...(s.combat||legal.includes('rest')||legal.includes('combat:start')?productionAvailable(s,context):[])]),...g1bAvailable(s,context)];
 }
 export function act(input, action,context=null) {
+  if(input.g1b?.completed.includes(context?.requestId))return input;
   if(input.g1a?.production?.completed.includes(context?.requestId))return input;
   if (input.g1a?.candidate?.completed.includes(context?.requestId)||!available(input,context).includes(action)) return input;
   const before=upgrade(input), s = clone(before); const log = text => s.journal.push(text);
   prepareProduction(s,context);
+  prepareG1B(s,context);
   useCandidateContext(s,context);
   prepareCandidateAction(s,context);
   recordCandidateRequest(s,context);
   let eyeResult=null,candidateResult=null;
   if(action.startsWith('eye6:react:')||action==='eye6:pass'){
    eyeResult=applyEye(s,action);if(eyeResult.used)settleSpirits(s,eyeResult.used,null,{[eyeResult.used]:eyeResult.usage},false);
-   finishEyeCost(s);continueEyeReaction(s);advanceCandidate(before,s,action,context);advanceProduction(before,s,action,context);s.revision=before.revision+1;s.actionReceipt=actionReceipt(before,s,action);s.journal=s.journal.slice(-100);return observeSettlement(before,s,action,eyeResult.used);
+   finishEyeCost(s);continueEyeReaction(s);advanceCandidate(before,s,action,context);advanceProduction(before,s,action,context);advanceG1B(before,s,action,context);s.revision=before.revision+1;s.actionReceipt=actionReceipt(before,s,action);s.journal=s.journal.slice(-100);return observeSettlement(before,s,action,eyeResult.used);
   }
   s.tick++; let usedId = null, stimulusId = null;
   const wasMirrorCrisis=mirrorCrisis(s);
@@ -124,7 +128,8 @@ export function act(input, action,context=null) {
   const mallCrisis=s.mall.active&&s.mall.phase==='CRISIS';
   const reunionCrisis=s.reunion.active&&['D','F'].includes(s.reunion.phase);
   const reunionWindow=s.reunion.active&&s.reunion.phase==='D'&&s.reunion.party.state==='TRAPPED';
-  if(action.startsWith('g1ap:')){candidateResult=applyProduction(s,action,context);usedId=candidateResult.used;if(s.combat)applyCombat(s,'combat:eye-action');}
+  if(action.startsWith('g1bp:')){candidateResult=applyG1B(s,action,context);usedId=candidateResult.used;if(s.combat)applyCombat(s,'combat:eye-action');}
+  else if(action.startsWith('g1ap:')){candidateResult=applyProduction(s,action,context);usedId=candidateResult.used;if(s.combat)applyCombat(s,'combat:eye-action');}
   else if(action.startsWith('g1ac:')){candidateResult=applyCandidate(s,action,context);usedId=candidateResult.used;if(s.combat)applyCombat(s,'combat:eye-action');}
   else if(action.startsWith('g1a:'))applyG1A(s,action);
   else if(action==='school:engage-audio'){enterKnocker(s);}
@@ -215,7 +220,8 @@ export function act(input, action,context=null) {
   settleHungryAction(s,action,s.dachang.timeUnits+(wasMirrorCrisis||wasRegionalCrisis||reunionCrisis||mallCrisis||s.village.active&&['F','ESCAPE'].includes(s.village.phase)&&action.startsWith('dual:')?1:4));
   s.evolution=attachEvolution(s).evolution;
   advanceEvolution(s,usedId);
-  settleSpirits(s, usedId, stimulusId,eyeResult?{[usedId]:eyeResult.usage}:candidateResult?.used?{[usedId]:candidateResult.usage}:{});finishEyeCost(s);syncEyeUnlocks(s,action);
+  observeG1B(s,action,context);
+  settleSpirits(s, usedId, stimulusId,eyeResult?{[usedId]:eyeResult.usage}:candidateResult?.used?{[usedId]:candidateResult.usage}:{},true,g1bMaintenance(s));finishEyeCost(s);syncEyeUnlocks(s,action);
   postEvolution(s);
   if(s.doorCase.sealed&&s.spirits.some(g=>g.sourceId==='door'))s.doorCase.driven=true;
   advanceDoor(s,action);
@@ -244,6 +250,7 @@ export function act(input, action,context=null) {
   postRegional(s);
   advanceCandidate(before,s,action,context);
   advanceProduction(before,s,action,context);
+  advanceG1B(before,s,action,context);
   // Persist the same existing compatibility defaults that a reload/available()
   // would attach, before binding the completed encounter snapshot.
   Object.assign(s,attachCase24(s));
@@ -255,6 +262,7 @@ export function act(input, action,context=null) {
 function systemAction(a){return ['second:','release:','abandon:','reaction:','death:','balance:','study:'].some(p=>a.startsWith(p));}
 
 export function validate(s,context=null) {
+  if(!validG1B(s,context))return false;
   if(!s||!validG1A(s)||!validCandidate(s,context)||!validProduction(s,context)||!validEyeV6(s)||!validReceipt(s)||!validSettlement(s))return false;
   if(s.spirits.some(g=>g.sourceId==='g1a-rope-candidate')&&!candidateEnabled(context)&&!(s.g1a?.production?.testOnly&&integrationAllowed(s,context)))return false;
   if(!s||!Array.isArray(s.spirits)||!Array.isArray(s.relations))return false;

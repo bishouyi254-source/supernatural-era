@@ -1,6 +1,10 @@
 export const backgrounds = ['学生', '普通职员', '医疗相关', '安保', '自由职业'];
 // These scenarios are original technical fixtures, not claims about the novel.
 export const events = {
+ // Registry identities only: acquisitionLocked excludes ordinary entry and grants.
+ tablet:{acquisitionLocked:true,title:'006 灵位鬼（获取待开发）',source:'G1-B游戏候选，回返资格目前仅隔离验证',spirit:'灵位鬼（玩家实例）',grade:'B',load:0,initialRevival:0,naturalRevivalRate:0,usageRevivalRate:5,medium:'body',ruleWeight:3,intro:'获取待开发',clues:[],riskText:'未开放',restriction:'未开放',ability:'意识位置与身体占据独立；归位必须通过真实对抗。'},
+ caller:{acquisitionLocked:true,title:'007 喊人鬼（获取待开发）',source:'G1-B游戏候选；与鬼回头独立',spirit:'喊人鬼（玩家实例）',grade:'B',load:0,initialRevival:0,naturalRevivalRate:0,usageRevivalRate:4,medium:'audio',ruleWeight:3,intro:'获取待开发',clues:[],riskText:'未开放',restriction:'未开放',ability:'真实身份、身后听闻、实际回头后才对抗；不保证击败。'},
+ smoke:{acquisitionLocked:true,title:'008 鬼烟（获取待开发）',source:'G1-B游戏候选；李乐平相关鬼烟定位，非鬼雾/鬼风/鬼眼鬼域',spirit:'鬼烟（玩家实例）',grade:'B',load:0,initialRevival:0,naturalRevivalRate:0,usageRevivalRate:3,medium:'body',ruleWeight:3,intro:'获取待开发',clues:[],riskText:'未开放',restriction:'未开放',ability:'侵蚀合法范围内身体；友方不豁免，Y2方可扩张相邻区域。'},
  // Reserved candidate identity, deliberately excluded from every acquisition route.
  'g1a-rope-candidate':{acquisitionLocked:true,title:'鬼绳候选规则夹具（未开放）',source:'G1-A补完稿；仅隔离模拟，不是获取剧情',spirit:'鬼绳（候选独立实例）',grade:'B',load:0,initialRevival:0,naturalRevivalRate:0,usageRevivalRate:0,medium:'body',ruleWeight:0,intro:'未开放',clues:[],riskText:'未开放',restriction:'未开放',ability:'未开放'},
  knocker:{title:'七中 · 当前声音威胁',source:'正式GDD0.10七中正史适配：外部音频媒介，不是玩家战利品',spirit:'敲门鬼（正史源头）',grade:'S',playerOwnable:false,load:0,initialRevival:0,naturalRevivalRate:0,usageRevivalRate:0,medium:'audio',ruleWeight:2,intro:'外部敲门音频与接近侵蚀。',clues:[],riskyLabel:'接触音频',riskText:'本次外部声音侵蚀',hypothesis:'声音通路暂时可隔离',falseHypothesis:'源头已经封存',restriction:'不能借临时隔绝封存正史源头',ability:'不提供玩家驾驭'},
