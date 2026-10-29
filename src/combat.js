@@ -1,4 +1,4 @@
-import {g1cEnemy} from './g1c-production.js';
+import {g1cEnemy,g1cIntent} from './g1c-production.js';
 import {g1bEnemy} from './g1b-production.js';
 import {productionEnemy,productionIntent} from './g1a-production.js';
 import {candidateEnemy,candidateIntent} from './g1a-candidate.js';
@@ -29,7 +29,7 @@ export function applyCombat(s,action,roundStarted=false){const c=s.combat,r=rule
  if(k.startsWith('ability:')||k.startsWith('focus:')||k.startsWith('cover:')||k==='combo'||k==='item'||k.startsWith('aid:'))delete c.bloodWard;
  if(k==='retreat'){s.scene='hub';s.combat=null;s.ward=0;s.journal.push('退出规则遭遇，现场、证据和消耗保留。');return {used};}
  if(k==='observe'){
-  if(s.g1b?.tablet.location==='tablet'){s.journal.push('意识在灵位内观察已知占据关系；推进敌方行动，不恢复身体控制或获取外部真名。');}else if(s.g1b?.world.actors.length){s.journal.push('隔离参与者观察：只记录该参与者明确暴露的身份和现场边界，不取得作为计时外壳的普通关卡线索。');}else if(c.nativeSchool){s.journal.push('观察已记录的七中声音迹象，不自动认证源头全部规则。');}else{
+  if(s.g1b?.tablet.location==='tablet'){s.journal.push('意识在灵位内观察已知占据关系；推进敌方行动，不恢复身体控制或获取外部真名。');}else if(s.g1c){s.journal.push('隔离参与者观察：不获取计时外壳的正式剧情线索。');}else if(s.g1b?.world.actors.length){s.journal.push('隔离参与者观察：只记录该参与者明确暴露的身份和现场边界，不取得作为计时外壳的普通关卡线索。');}else if(c.nativeSchool){s.journal.push('观察已记录的七中声音迹象，不自动认证源头全部规则。');}else{
   const e=events[c.eventId];s.knowledge[c.eventId]||={clues:[],hypotheses:{}};const known=s.knowledge[c.eventId];const clue=e.clues.find(v=>!known.clues.includes(v.id));
   if(clue){known.clues.push(clue.id);log('玩家','观察确认：'+clue.text);s.spirits.filter(g=>g.sourceId===c.eventId).forEach(g=>develop(g,5));}
   else log('玩家','已观察到全部现有证据；继续观察不重复获得开发度。');
@@ -75,6 +75,7 @@ export function resumeCombat(s){
 }
 function resolveEnemy(s,r,log,intent){const c=s.combat;
     if(g1bEnemy(s,r,log,intent))return;
+    intent=g1cIntent(s,r,intent);
     if(g1cEnemy(s,r,intent,log))return;
     if(s.g1a?.production){intent=productionIntent(s,r,intent);if(c.position==='exposed'&&!intent?.cancelled&&productionEnemy(s,intent)){log('对抗','专属规则拦截本次已证明适用的行动；未关押源头。');return;}}
     intent=candidateIntent(s,r,intent);

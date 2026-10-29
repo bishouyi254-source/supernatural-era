@@ -3,9 +3,9 @@ import assert from 'node:assert/strict';
 import {newGame,validate} from '../src/engine.js';
 import {makeSpirit} from '../src/progression.js';
 import {newCombat} from '../src/combat.js';
-import {newG1C,g1cAllowed,validG1C,prepareG1C,g1cAvailable,applyG1C,g1cEnemy,advanceG1C} from '../src/g1c-production.js';
+import {newG1C,g1cAllowed,validG1C,prepareG1C,g1cAvailable,applyG1C,g1cEnemy,g1cIntent,advanceG1C} from '../src/g1c-production.js';
 
-const target=(id,heightCm,faction='enemy')=>({id,heightCm,faction,region:'exposed',body:true,spirit:true,ruleWeight:2,domainWeight:1});
+const target=(id,heightCm,faction='enemy')=>({id,heightCm,faction,region:'exposed',body:true,spirit:true,ruleWeight:2,domainWeight:1,action:{type:'domain',targetRegion:'exposed',damage:8}});
 function fixture(kind='press',others=[]){
  const s=newGame('隔离测试');const g=makeSpirit('ghost-'+kind);s.spirits.push(g);s.v1.active=[g.id];
  s.scene='shadow';s.combat=newCombat('shadow',s);s.combat.position='exposed';
@@ -37,7 +37,7 @@ test('fire is paid and learns only through real source interactions',()=>{
  assert.equal(s.g1c.fire.load,2);
  assert.equal(g1cEnemy(s,{instanceId:'source:shadow',medium:'body'},{simulation:true},()=>{}),false);
  assert.equal(s.g1c.fire.evidence.some(e=>e.type==='burned'),false);
- g1cEnemy(s,{instanceId:'source:shadow',medium:'body'},{kind:'ordinary'},()=>{});
+ g1cEnemy(s,{instanceId:'source:shadow',medium:'body'},g1cIntent(s,{instanceId:'source:shadow'},{kind:'ordinary'}),()=>{});
  assert.ok(s.g1c.fire.evidence.some(e=>['burned','burn-resisted'].includes(e.type)));
  advanceG1C(prior,s,'g1cp:fire:ignite',ctx);
  assert.ok(validG1C(s,ctx));assert.ok(g1cAvailable(s,ctx).includes('g1cp:fire:quench'));
@@ -48,7 +48,7 @@ test('wind contests an explicitly typed domain, never a simulated attack',()=>{
  const before=s.g1c.wind.evidence.length;
  assert.equal(g1cEnemy(s,{instanceId:'source:shadow',medium:'body'},{simulation:true},()=>{}),false);
  assert.equal(s.g1c.wind.evidence.length,before);
- g1cEnemy(s,{instanceId:'source:shadow',medium:'body'},{kind:'ordinary'},()=>{});
+ g1cEnemy(s,{instanceId:'source:shadow',medium:'body'},g1cIntent(s,{instanceId:'source:shadow'},{kind:'ordinary'}),()=>{});
  assert.ok(s.g1c.wind.evidence.some(e=>e.type==='domain-contest'));
  advanceG1C(prior,s,'g1cp:wind:raise',ctx);assert.ok(validG1C(s,ctx));
 });

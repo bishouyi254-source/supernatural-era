@@ -1,0 +1,12 @@
+{
+  "name": "supernatural-era-prototype",
+  "version": "0.24.6",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "test:g1c": "node --test tests/g1c-*.test.mjs",
+    "audit:g1c": "node scripts/g1c-audit.mjs"
+  }
+}
