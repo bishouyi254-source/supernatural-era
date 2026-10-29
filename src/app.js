@@ -1,3 +1,4 @@
+import {g1cLabel} from './g1c-production.js';
 import {g1bLabel} from './g1b-production.js';
 import {productionLabel} from './g1a-production.js';
 import {historyRecord} from './settlement-save.js';
@@ -140,6 +141,7 @@ function exportSave() {
 }
 document.addEventListener('click',e=>{if(e.target.closest('[data-g1a-open]'))document.querySelector('.g1a-dialog')?.showModal();if(e.target.closest('[data-g1a-close]'))document.querySelector('.g1a-dialog')?.close();});
 function label(action) {
+  if(action.startsWith('g1cp:'))return g1cLabel(action);
   if(action.startsWith('g1bp:'))return g1bLabel(action);
   if(action.startsWith('g1ap:'))return productionLabel(action);
   if(action.startsWith('g1a:'))return action==='g1a:review-blood-contest'?'研究 身体媒介对抗案例（能量1＋一次世界行动）':'研究已核实案例（一次世界行动）';
