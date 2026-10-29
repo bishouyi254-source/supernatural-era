@@ -1,3 +1,4 @@
+import {g1cEnemy} from './g1c-production.js';
 import {g1bEnemy} from './g1b-production.js';
 import {productionEnemy,productionIntent} from './g1a-production.js';
 import {candidateEnemy,candidateIntent} from './g1a-candidate.js';
@@ -74,6 +75,7 @@ export function resumeCombat(s){
 }
 function resolveEnemy(s,r,log,intent){const c=s.combat;
     if(g1bEnemy(s,r,log,intent))return;
+    if(g1cEnemy(s,r,intent,log))return;
     if(s.g1a?.production){intent=productionIntent(s,r,intent);if(c.position==='exposed'&&!intent?.cancelled&&productionEnemy(s,intent)){log('对抗','专属规则拦截本次已证明适用的行动；未关押源头。');return;}}
     intent=candidateIntent(s,r,intent);
     if(c.position==='exposed'&&!intent?.cancelled&&candidateEnemy(s,intent)){log('对抗','【模拟候选】当前已验证作用拦截本次适用行动；其他固有灵异继续。');return;}
