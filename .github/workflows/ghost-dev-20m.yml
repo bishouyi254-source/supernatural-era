@@ -1,0 +1,125 @@
+name: Ghost development queue (20-minute check)
+
+on:
+  schedule:
+    - cron: "*/20 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: ghost-development-queue
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  run-one-approved-batch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout public orchestration files
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Verify approval and configuration (no paid model call)
+        id: gate
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ENABLED: ${{ vars.GHOST_AUTODEV_ENABLED }}
+          DEV_REPO: ${{ vars.GHOST_DEV_REPO }}
+          STAGE: ${{ vars.GHOST_AUTODEV_STAGE }}
+          CODEX_KEY: ${{ secrets.OPENAI_API_KEY }}
+          DEV_TOKEN: ${{ secrets.GHOST_DEV_REPO_TOKEN }}
+        run: |
+          set -euo pipefail
+          echo "ready=false" >> "$GITHUB_OUTPUT"
+          if [[ "$ENABLED" != "true" ]]; then echo "Disabled: set GHOST_AUTODEV_ENABLED=true after review"; exit 0; fi
+          if [[ ! "$STAGE" =~ ^g1-[c-z]$ ]]; then echo "Missing or unsafe GHOST_AUTODEV_STAGE"; exit 0; fi
+          if [[ -z "$DEV_REPO" || "$DEV_REPO" == "$GITHUB_REPOSITORY" || -z "$CODEX_KEY" || -z "$DEV_TOKEN" ]]; then
+            echo "Missing private development repository or required secrets"; exit 0
+          fi
+          if ! gh issue view 1 -R "$GITHUB_REPOSITORY" --json labels --jq '.labels[].name' | grep -Fxq 'ready-for-codex'; then
+            echo "Issue #1 is not approved for the next single run"; exit 0
+          fi
+          echo "ready=true" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout private complete development workspace
+        if: steps.gate.outputs.ready == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ vars.GHOST_DEV_REPO }}
+          token: ${{ secrets.GHOST_DEV_REPO_TOKEN }}
+          path: dev
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Verify real GDD, tests and absent review PR
+        if: steps.gate.outputs.ready == 'true'
+        id: preflight
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GHOST_DEV_REPO_TOKEN }}
+          DEV_REPO: ${{ vars.GHOST_DEV_REPO }}
+          STAGE: ${{ vars.GHOST_AUTODEV_STAGE }}
+        run: |
+          set -euo pipefail
+          echo "ready=false" >> "$GITHUB_OUTPUT"
+          if [[ ! -d dev/gdd-reference || ! -d dev/tests ]] || ! find dev/tests -maxdepth 1 -name '*.test.mjs' | grep -q .; then
+            echo "::warning::Full private GDD and Node tests unavailable; no Codex run"; exit 0
+          fi
+          if [[ "$(gh pr list -R "$DEV_REPO" --state open --head "codex/$STAGE" --json number --jq 'length')" != 0 ]]; then
+            echo "Existing draft PR awaiting review; do not pay for duplicate generation"; exit 0
+          fi
+          echo "ready=true" >> "$GITHUB_OUTPUT"
+
+      - name: Claim the approved run exactly once
+        if: steps.preflight.outputs.ready == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh issue edit 1 -R "$GITHUB_REPOSITORY" --remove-label ready-for-codex
+
+      - name: Set up Node for engine tests
+        if: steps.preflight.outputs.ready == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Run Codex against private developer workspace
+        if: steps.preflight.outputs.ready == 'true'
+        uses: openai/codex-action@v1
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          prompt-file: automation/ghosts/CODEX_INSTRUCTIONS.md
+          working-directory: dev
+          output-file: dev/GHOST-AUTODEV-REPORT.md
+          permission-profile: ':workspace'
+          safety-strategy: drop-sudo
+
+      - name: Full Node regression (production engine)
+        if: steps.preflight.outputs.ready == 'true'
+        shell: bash
+        working-directory: dev
+        run: node --test --test-concurrency=2 tests/*.test.mjs
+
+      - name: Create draft PR only after tests pass
+        if: steps.preflight.outputs.ready == 'true'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GHOST_DEV_REPO_TOKEN }}
+          DEV_REPO: ${{ vars.GHOST_DEV_REPO }}
+          STAGE: ${{ vars.GHOST_AUTODEV_STAGE }}
+        working-directory: dev
+        run: |
+          set -euo pipefail
+          git add -A
+          if git diff --cached --quiet; then echo "No changes; no PR"; exit 0; fi
+          git -c user.name="ghost-development-bot" -c user.email="ghost-development-bot@users.noreply.github.com" commit -m "candidate($STAGE): tested mechanics and growth"
+          git switch -c "codex/$STAGE"
+          gh auth setup-git
+          git push origin "HEAD:refs/heads/codex/$STAGE"
+          gh pr create -R "$DEV_REPO" --base main --head "codex/$STAGE" --draft \
+            --title "$STAGE: ghost mechanics and independent growth (review required)" \
+            --body "Automated candidate only; complete private GDD and tests checked. Do not merge or publish without human review. Production acquisition remains locked."
