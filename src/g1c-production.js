@@ -83,7 +83,7 @@ export function g1cAvailable(s,c){
   }
   if(x.press.state==='CLOSED'&&tallest(s,c)&&affordable(s,'press','fall'))out.push('g1cp:press:fall');
   if(inBattle(s,x.press)){
-   if(x.press.stage>=2&&affordable(s,'press','intensify'))out.push('g1cp:press:intensify');
+   if(x.press.stage>=2&&x.press.region===region(s)&&tallest(s,c)?.id===x.press.targetId&&affordable(s,'press','intensify'))out.push('g1cp:press:intensify');
    if(affordable(s,'press','lift'))out.push('g1cp:press:lift');
   }
  }
@@ -139,7 +139,7 @@ export function applyG1C(s,action,c){
 // Typed source action integration. The actual enemy initiative still belongs to combat.js.
 export function g1cEnemy(s,r,intent,log){
  const c=contexts.get(s),x=s.g1c;
- if(!x||!g1cAllowed(s,c)||!s.combat||intent?.cancelled)return false;
+ if(!x||!g1cAllowed(s,c)||!s.combat||intent?.cancelled||intent?.simulation||intent?.kind&&intent.kind!=='ordinary')return false;
  const t=sourceTarget(s,c);
  if(!t||t.id!==r.instanceId)return false;
  // Fire reports a contest only against an explicitly typed spirit medium; no HP bar, loot or automatic kill.
@@ -148,13 +148,13 @@ export function g1cEnemy(s,r,intent,log){
   fact(s,'fire',contest==='failed'?'burn-resisted':'burned',{targetId:t.id,result:contest});
   if(t.domainWeight>0)fact(s,'fire','domain-contest',{targetId:t.id,result:contest});
  }
- if(inBattle(s,x.wind)&&x.wind.region===region(s)&&t.domainWeight>0){
+ if(s.combat.position==='exposed'&&inBattle(s,x.wind)&&x.wind.region===region(s)&&t.domainWeight>0){
   const contest=ruleContest(weight(s,'wind'),t.domainWeight);
   fact(s,'wind','domain-contest',{targetId:t.id,result:contest});
   fact(s,'wind',contest==='failed'?'interference-resisted':'interfered',{targetId:t.id,result:contest});
   if(contest==='blocked'){log('对抗','鬼风侵扰成功：阻断一次明确匹配的领域行动。');return true;}
  }
- if(inBattle(s,x.press)&&x.press.targetId===t.id){
+ if(s.combat.position==='exposed'&&inBattle(s,x.press)&&x.press.region===region(s)&&x.press.targetId===t.id&&tallest(s,c)?.id===t.id){
   const contest=ruleContest(weight(s,'press'),t.ruleWeight);
   fact(s,'press','pressure-contest',{targetId:t.id,result:contest});
   if(contest==='blocked'){fact(s,'press','action-suppressed',{targetId:t.id,actionType:intent?.actionType||r.medium});log('对抗','鬼压人阻断一次真实源头行动，不等于关押。');return true;}
