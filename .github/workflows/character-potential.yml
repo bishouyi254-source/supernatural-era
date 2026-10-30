@@ -31,3 +31,19 @@ jobs:
           node --check src/app.js
       - name: Character and death regression tests
         run: node --test tests/character-potential.test.mjs
+      - name: Install isolated browser harness
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Browser smoke on two viewports
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/character-http.log 2>&1 &
+          node tests/character-potential.browser.mjs
+      - name: Upload candidate browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: character-potential-browser-evidence
+          path: candidate-artifacts/
+          if-no-files-found: ignore
+
