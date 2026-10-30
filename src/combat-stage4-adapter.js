@@ -1,4 +1,4 @@
-import {g1cLabel,g1cCost,G1C_COSTS,g1cMaintenance} from './g1c-production.js';
+import {g1cEnergyWarning,g1cLabel,g1cCost,G1C_COSTS,g1cMaintenance} from './g1c-production.js';
 import {g1bLabel,g1bCost,g1bRisk,G1B_COSTS,g1bMaintenance} from './g1b-production.js';
 import {EYE_V6,eyeCost} from './ghost-eye-v6.js';
 import {productionState,productionLabel,G1A_COSTS} from './g1a-production.js';
@@ -99,7 +99,7 @@ export function buildRealCombatData(s,context=null) {
  if(c.nativeSchool)clues.push(...s.school.evidence.filter(e=>['K-01','K-02','C-02','K-03','K-04'].includes(e.id)).map(e=>e.fact));
  const last=c.logs?.at(-1)?.text||'本回合尚未执行行动。';
  return {mode:'live',location:g1bTyped?(s.g1c?'G1-C隔离类型化战斗':'G1-B隔离类型化战斗'):e?.title||'规则遭遇',room:g1bTyped?'测试参与者 · 非正式关卡':e?.title||'当前现场',round:c.turn+1,phase:c.eyeV6?.pending?'敌方宣告 · 选择反应':s.systems.death==='pending'?'紧急反应':'我方行动',
-  stageState:c.wardWeight>0?'防护已部署':'媒介规则持续结算',stageRisk:g1bRisk(s)||productionRisk(s)||(c.nativeSchool?'七中接近压力 '+s.school.pressure:c.position==='exposed'?'已处于触发范围':'当前避开触发媒介'),
+  stageState:c.wardWeight>0?'防护已部署':'媒介规则持续结算',stageRisk:[g1cEnergyWarning(s,context,[...legal]),g1bRisk(s)||productionRisk(s)||(c.nativeSchool?'七中接近压力 '+s.school.pressure:c.position==='exposed'?'已处于触发范围':'当前避开触发媒介')].filter(Boolean).join('；'),
   feedback:c.eyeV6?.pending?`敌方宣告：${({position:'位置型来袭',propagation:'外部传播型来袭',preparation:'准备行动',ordinary:'普通行动'})[c.eyeV6.pending.kind]}${c.eyeV6.pending.simulation?'（模拟夹具）':''}，可选择一次合法反应或放弃。`:last,player:{name:s.name,hp:s.life,hpMax:100,energy:s.energy,energyMax:3,
    burden:h.effectiveBurden,burdenMax:h.hostCapacity,coreGhost:ghostMap.get(active[0])?.name||'无',
    spirits:s.spirits.map(g=>({id:g.id,name:g.name,revival:g.revivalProgress,burden:g.burden}))},
