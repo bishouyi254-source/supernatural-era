@@ -60,17 +60,19 @@ import {develop} from './rules.js';
 import {newCity,attachCity,cityAvailable,applyCity,advanceCity,validCity} from './city.js';
 import {newAdvanced,attachAdvanced,advancedAvailable,applyAdvanced,validAdvanced} from './advanced.js';
 import {newV1,attachV1,v1Available,applyV1,validV1,eyeMax,activeIds} from './v1.js';
+import {initialTraits,initialLineage,attachPotential,validPotential,spiritSlotLimit,restrictDevelopment,applyMentalCastBonus,mentalChargeLimit,grantDeathReward} from './character-potential.js';
 export const VERSION = 2;
 const clone = value => structuredClone(value);
-export function newGame(name = '未登记', background = '普通职员', seed = 1, saveId = undefined) {
+export function newGame(name = '未登记', background = '普通职员', seed = 1, saveId = undefined, options = {}) {
   if (!backgrounds.includes(background)) throw Error('未知背景');
   const s=attachCase24({ version: VERSION, name: String(name).trim().slice(0, 24) || '未登记', background, seed: seed >>> 0,
     tick: 0, revision: 0, life: 100, energy: 3, bags: 2, ward: 0, scene: 'hub', phase: '异常', crisis: false,
+    traits:initialTraits(options,options.lineage),lineage:initialLineage(options.lineage),
     ghostEyeV6:newEyeV6(),contentVersion:1,identityCase:newIdentityCase(),postwar:newPostwar(),finale:newFinale(),hungry:newHungry(),cityCrisis:newCityCrisis(),ghostMirror:newMirror(),regional:newRegional(),reunion:newReunion(),dual:newDual(),village:newVillage(),social:newSocial(),mall:newMall(),dachang:newDachang(),school:newSchool(),doorCase:newDoorCase(),investigation:newInvestigation(),evolution:newEvolution(),bus:newBus(),v1:newV1(),city:newCity(),advanced:newAdvanced(),chapter: newChapter(), journey:newJourney(), systems:newSystems(),combat:null, hostCapacity: tuning.hostCapacity, spirits: [], relations: [], compatibility: null, knowledge: {}, restricted: {}, outcomes: {}, fate: {}, journal: ['你作为普通人抵达住宅区。档案尚未建立。'] });
   const current=attachG1A(s);return {...current,settlement:initialSettlement(current,{id:saveId})};
 }
 const upgradeCore = s=>attachSchool(attachDoorCase(attachInvestigation(attachEvolution({...attachBus(attachV1(attachAdvanced(attachCity(attachJourney(attachSystems(attachChapter(s))))))),contentVersion:1}))));
-export const upgrade=s=>{const n=attachIdentityCase(attachPostwar(attachFinale(attachHungry(attachCityCrisis(attachMirror(attachRegional(attachReunion(attachDual(attachVillage(attachSocial(attachMall(attachDachang(upgradeCore(s))))))))))))));const core=attachSettlement(attachCase24(n.dachang.started&&n.city.active?{...n,city:{...n.city,active:false}}:n));const migrated=attachG1A(attachEyeV6(core));if(migrated!==core&&validSettlement(core)){migrated.settlement=structuredClone(core.settlement);for(const session of [migrated.settlement.active,...Object.values(migrated.settlement.pending||{})])if(session)session.binding=settlementCoreToken(migrated);}return migrated;};
+export const upgrade=s=>{const n=attachIdentityCase(attachPostwar(attachFinale(attachHungry(attachCityCrisis(attachMirror(attachRegional(attachReunion(attachDual(attachVillage(attachSocial(attachMall(attachDachang(upgradeCore(s))))))))))))));const core=attachSettlement(attachCase24(n.dachang.started&&n.city.active?{...n,city:{...n.city,active:false}}:n));const migrated=attachG1A(attachEyeV6(core));if(migrated!==core&&validSettlement(core)){migrated.settlement=structuredClone(core.settlement);for(const session of [migrated.settlement.active,...Object.values(migrated.settlement.pending||{})])if(session)session.binding=settlementCoreToken(migrated);}const withPotential=attachPotential(migrated);if(withPotential!==migrated&&validSettlement(migrated)){withPotential.settlement=structuredClone(migrated.settlement);for(const session of [withPotential.settlement.active,...Object.values(withPotential.settlement.pending||{})])if(session)session.binding=settlementCoreToken(withPotential);}return withPotential;};
 export function knowledge(s, id) { return s.knowledge[id] || { clues: [], hypotheses: {} }; }
 function baseAvailable(s) {
   s=upgrade(s);if(s.investigation.active&&s.systems.death==='alive'&&!s.crisis)return investigationAvailable(s);if(busBusy(s))return busAvailable(s);const system=systemsAvailable(s);
@@ -168,7 +170,7 @@ export function act(input, action,context=null) {
     if (s.background === '安保') log('背景线索：可从值班记录开始调查。');
     if (s.background === '医疗相关') log('背景线索：侵蚀可能同时影响身体与意识。');
   } else if (action === 'rest') {
-    s.life = Math.min(100, s.life + (s.v1.build==='body'||s.advanced.alienStage===2||s.evolution.host.form===3?10:20)); s.energy = 3;
+    s.life = Math.min(100, s.life + (s.v1.build==='body'||s.advanced.alienStage===2||s.evolution.host.form===3?10:20)); s.energy = 3; s.traits.mentalCharges=mentalChargeLimit(s);
     log('安全屋恢复身体和行动能力；累计复苏不下降。');
   } else if (action === 'practice' || action.startsWith('practice:') || action === 'ability') {
     const spirit=action.startsWith('practice:')?s.spirits.find(g=>g.id===action.slice(9)):s.spirits[0];
@@ -254,6 +256,10 @@ export function act(input, action,context=null) {
   // Persist the same existing compatibility defaults that a reload/available()
   // would attach, before binding the completed encounter snapshot.
   Object.assign(s,attachCase24(s));
+  if(s.spirits.length>spiritSlotLimit(before)&&s.spirits.length>before.spirits.length)return input; // Preserve previously valid holders; reject new capacity overflow.
+  restrictDevelopment(before,s);
+  applyMentalCastBonus(before,s,action,usedId);
+  if(action==='death:commit')grantDeathReward(s);
   s.revision++;
   if(!eyeResult){s.ghostEyeV6.energySpent+=Math.max(0,before.energy-s.energy);s.ghostEyeV6.energyRestored+=Math.max(0,s.energy-before.energy);}
   s.actionReceipt=actionReceipt(before,s,action);
@@ -263,7 +269,7 @@ function systemAction(a){return ['second:','release:','abandon:','reaction:','de
 
 export function validate(s,context=null) {
   if(!validG1B(s,context))return false;
-  if(!s||!validG1A(s)||!validCandidate(s,context)||!validProduction(s,context)||!validEyeV6(s)||!validReceipt(s)||!validSettlement(s))return false;
+  if(!s||!validPotential(s)||!validG1A(s)||!validCandidate(s,context)||!validProduction(s,context)||!validEyeV6(s)||!validReceipt(s)||!validSettlement(s))return false;
   if(s.spirits.some(g=>g.sourceId==='g1a-rope-candidate')&&!candidateEnabled(context)&&!(s.g1a?.production?.testOnly&&integrationAllowed(s,context)))return false;
   if(!s||!Array.isArray(s.spirits)||!Array.isArray(s.relations))return false;
   if(!validCase24(s)||!validCalendar(s)||!validWorldRegistry(s)||!validContracts(s)||!validXArchives(s)||!validIdentityCase(s)||!validPostwar(s)||!validFinale(s)||!validHungry(s)||!validCityCrisis(s)||!validMirror(s)||!validRegional(s)||!validReunion(s)||!validDual(s)||!validVillage(s)||!validSocial(s)||!validMall(s)||!validDachang(s)||!validSchool(s)||!validDoorCase(s)||!validInvestigation(s)||!validEvolution(s))return false;

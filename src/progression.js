@@ -1,5 +1,6 @@
 import { events } from './content.js';
 import { fateResult } from './rules.js';
+import {spiritSlotLimit} from './character-potential.js';
 export function newSystems(){return {death:'alive',sealed:[],aids:{},items:{barrier:2},combinations:[],second:null,decisions:{},research:[]};}
 export function attachSystems(s){return s.systems?s:{...s,systems:newSystems(),combat:null};}
 export function makeSpirit(id){const e=events[id];if(e.playerOwnable===false)throw Error('正史源头不可作为玩家实例');return {id:'player-'+id,sourceId:id,ruleId:'rule-'+id,instanceType:'player',rank:e.grade==='S潜力'?'S':e.grade,name:e.spirit,burden:e.load,revivalProgress:e.initialRevival,naturalRevivalRate:e.naturalRevivalRate,usageRevivalRate:e.usageRevivalRate,activityLevel:'正常',suppressionReceived:0,suppressionRemaining:0,development:0,stability:'稳定',...(id==='eye'?{awakeningProgress:1}:{})};}
@@ -13,7 +14,7 @@ const pairs={
 };
 export function relationship(a,b){const sorted=[a.sourceId,b.sourceId].sort(),p=pairs[sorted.join('|')]||[.35,.1,.1,1,1];const direct=a.sourceId===sorted[0];
  return {spiritA:a.id,spiritB:b.id,compatibility:p[0],suppressionAtoB:p[direct?1:2],suppressionBtoA:p[direct?2:1],conflictAtoB:p[direct?3:4],conflictBtoA:p[direct?4:3],burdenSynergy:0,specialInteraction:null,bias:0};}
-export function canSecond(s){return !!s.journey?.chapters.club.completed&&s.spirits.length===1;}
+export function canSecond(s){return !!s.journey?.chapters.club.completed&&s.spirits.length===1&&s.spirits.length<spiritSlotLimit(s);}
 export function systemsAvailable(s){
  const x=s.systems||newSystems(); if(x.death==='committed')return [];
  if(x.death==='pending')return [...(x.items.barrier>0?['reaction:item']:[]),...Object.keys(x.aids).filter(id=>x.aids[id].remaining>0).map(id=>'reaction:aid:'+id), 'death:commit'];

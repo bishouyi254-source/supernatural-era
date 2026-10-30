@@ -1,0 +1,72 @@
+name: Character potential candidate
+on:
+  push:
+    branches: [feature/character-potential-death-loop, main]
+  pull_request:
+    paths:
+      - 'src/character-potential*'
+      - 'src/engine.js'
+      - 'src/progression.js'
+      - 'src/combat.js'
+      - 'src/app.js'
+      - 'tests/character-potential.test.mjs'
+      - '.github/workflows/character-potential.yml'
+jobs:
+  character-potential:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax checks
+        run: |
+          node --check src/character-potential.js
+          node --check src/character-potential-ui.js
+          node --check src/engine.js
+          node --check src/progression.js
+          node --check src/combat.js
+          node --check src/app.js
+      - name: Character and death regression tests
+        run: node --test tests/character-potential.test.mjs
+      - name: Install isolated browser harness
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Browser smoke on four viewports
+        run: |
+          mkdir -p candidate-artifacts
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/character-http.log 2>&1 &
+          if ! node tests/character-potential.browser.mjs > candidate-artifacts/browser-smoke.log 2>&1; then
+            cat candidate-artifacts/browser-smoke.log
+            exit 1
+          fi
+          cat candidate-artifacts/browser-smoke.log
+          for name in desktop tablet mobile compact; do
+            for stage in creation character death next-life; do
+              test -s "candidate-artifacts/${name}-${stage}.png" || { echo "Missing screenshot: ${name}-${stage}"; exit 1; }
+            done
+          done
+          test "$(find candidate-artifacts -name '*-visual-metrics.json' | wc -l)" -eq 4
+          ls -lh candidate-artifacts/
+      - name: Report candidate browser failure in draft PR
+        if: failure() && github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          if [ -f candidate-artifacts/browser-smoke.log ]; then
+            { echo "### Browser smoke blocker (automated candidate evidence)"; echo '~~~'; tail -n 40 candidate-artifacts/browser-smoke.log; echo '~~~'; } > /tmp/character-smoke-comment.md
+            gh pr comment "$PR_NUMBER" --body-file /tmp/character-smoke-comment.md
+          fi
+      - name: Upload candidate browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: character-potential-browser-evidence
+          path: candidate-artifacts/
+          if-no-files-found: ignore
+
