@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {fixture,replay,step} from './g1c-helpers.mjs';
-import {available,newGame} from '../src/engine.js';
+import {available,act,newGame} from '../src/engine.js';
 import {buildRealCombatData} from '../src/combat-stage4-adapter.js';
 import {g1cEnergyWarning} from '../src/g1c-production.js';
 
@@ -12,6 +12,7 @@ test('two manifested ghosts: zero-energy calm is illegal, but costly retreat rem
  assert.equal(s.g1c.wind.state,'CONTROLLED');
  const legal=available(s,c);
  assert.equal(legal.includes('g1cp:wind:calm'),false);
+ assert.equal(act(s,'g1cp:wind:calm',c),s,'invalid free calm must not mutate or advance');
  assert.equal(legal.includes('combat:retreat'),true);
  const hint=g1cEnergyWarning(s,c,legal);
  assert.match(hint,/能量已耗尽/);
@@ -36,7 +37,9 @@ test('a player pinned by tallest-body pressure cannot leave or cancel for free a
  assert.equal(s.g1c.press.targetId,'player-body');
  const legal=available(s,c);
  assert.equal(legal.includes('g1cp:press:lift'),false);
+ assert.equal(act(s,'g1cp:press:lift',c),s,'invalid free lift must not mutate or advance');
  assert.equal(legal.includes('combat:retreat'),false);
+ assert.equal(act(s,'combat:retreat',c),s,'body pressure must deny free retreat');
  assert.equal(legal.includes('combat:force'),true);
  assert.match(g1cEnergyWarning(s,c,legal),/身体被鬼压人压制/);
  assert.match(buildRealCombatData(s,c).stageRisk,/不能免费解除或撤离/);
