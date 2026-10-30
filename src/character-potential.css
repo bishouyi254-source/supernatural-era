@@ -1,21 +1,104 @@
-.potential-inputs{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;margin:14px 0;padding:18px;border:1px solid #594b43;border-radius:12px;background:rgba(18,22,28,.55)}
-.potential-inputs legend{padding:0 9px;font-weight:650;color:#e7d6bc}
-.potential-inputs label,.potential-next-life>label{display:flex;flex-direction:column;gap:7px;font-size:.91rem}
-.potential-inputs input,.potential-next-life input{box-sizing:border-box;width:100%;padding:10px 12px;min-height:42px;border:1px solid #817469;background:#191e26;color:#f5eee6;border-radius:8px}
-.potential-profile,.potential-death{border:1px solid #716151;background:linear-gradient(150deg,#202831,#161b23);padding:clamp(18px,3vw,29px);border-radius:14px;margin:18px 0;color:#f3ece1}
-.potential-profile h3,.potential-death h2,.potential-death h3{margin:0 0 15px}
-.potential-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:10px;margin:15px 0}
-.potential-stats>div{display:flex;flex-direction:column;gap:7px;min-height:64px;justify-content:center;padding:12px;background:#2b3038;border-radius:9px}
-.potential-stats span,.potential-score span{font-size:.84rem;color:#b9bbc3}
-.potential-stats strong{font-size:1.17rem;color:#f6e3bd}
-.potential-caps p{margin:9px 0}
-.potential-result-heading{display:flex;align-items:center;justify-content:space-between;gap:15px}
-.potential-grade{font-size:clamp(58px,12vw,96px);line-height:1;color:#e6b96d;text-shadow:0 3px 14px #000}
-.potential-score{display:flex;gap:16px;justify-content:space-between;align-items:center;background:#2b3038;padding:11px 15px;border-radius:8px}
-.potential-allocations{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:12px;margin:14px 0 22px}
-.potential-allocations>div{border:1px solid #65594a;padding:14px;display:flex;flex-direction:column;gap:12px;border-radius:10px;justify-content:space-between}
-.potential-allocations button,.potential-next-life button{cursor:pointer;background:#a78756;color:#15191e;border:0;border-radius:8px;padding:12px;font-weight:700}
-.potential-allocations button:disabled{opacity:.44;cursor:not-allowed}
-.potential-next-life{display:grid;gap:12px}
-.potential-next-life .potential-inputs{margin:0}
-@media (max-width:600px){.potential-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.potential-inputs{grid-template-columns:1fr}.potential-profile,.potential-death{padding:14px}}
+/* Character V1: self-contained creation/profile/death interface.
+   Existing game art, mechanics and the live battle settlement remain unchanged. */
+#app :is(.potential-inputs,.potential-profile,.potential-death){--potential-gold:#e5ba79;--potential-text:#f2e9dc;--potential-dim:#c1b8ad;--potential-border:#766457;--potential-bg:#0d1118;color:var(--potential-text);min-width:0;max-width:100%;box-sizing:border-box;font-family:'Microsoft YaHei','PingFang SC',sans-serif}
+#app .potential-inputs{display:block;min-width:0;border:1px solid var(--potential-border);border-radius:12px;background:linear-gradient(145deg,#1d2530,#11151b);padding:clamp(13px,2vw,22px);margin:15px 0;box-shadow:inset 0 1px #ffffff10}
+#app .potential-inputs legend{font-size:1rem;font-weight:700;letter-spacing:.04em;padding:0 8px;color:var(--potential-gold)}
+#app .potential-section-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin:0 0 13px}
+#app .potential-section-heading h3{font-size:clamp(20px,2vw,27px);line-height:1.25;margin:4px 0 0;color:#faf0e5}
+#app .potential-eyebrow{font-weight:700;font-size:11px;letter-spacing:.13em;color:var(--potential-gold);line-height:1.5}
+#app .potential-section-note,#app .potential-status{font-size:12px;color:var(--potential-dim);white-space:normal;text-align:right}
+#app .potential-core-heading{border-top:1px solid #87705b55;padding-top:17px;margin-top:19px}
+#app .potential-static-inputs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;min-width:0}
+#app .potential-static-inputs label,#app .potential-next-life>label{display:flex;flex-direction:column;gap:5px;min-width:0;font-size:14px;font-weight:650;color:var(--potential-text)}
+#app .potential-static-inputs label small{font-weight:400;font-size:11px;color:var(--potential-dim)}
+#app .potential-static-inputs input,#app .potential-next-life>label input{width:100%;min-width:0;max-width:100%;min-height:46px;border:1px solid #948371;border-radius:8px;box-sizing:border-box;background:#0a0e14;color:#fff5e9;padding:10px 12px;font:600 16px/1.4 'Microsoft YaHei','PingFang SC',sans-serif;box-shadow:inset 0 1px 6px #0009}
+#app .potential-static-inputs input:focus-visible,#app .potential-next-life input:focus-visible,#app .potential-death button:focus-visible{outline:3px solid #fff2b8;outline-offset:3px}
+#app .potential-create-core{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+#app .potential-create-core-card{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;align-items:start;gap:6px 10px;min-width:0;border:1px solid #92795b7a;border-radius:10px;background:#2b292a;padding:15px}
+#app .potential-core-label{display:grid;gap:2px}
+#app .potential-core-label strong{font-size:15px;font-weight:700;color:#ffe9cb}
+#app .potential-core-label small{font-size:10px;color:#cdbdad;letter-spacing:.05em}
+#app .potential-create-core-card output{font-size:clamp(26px,3vw,34px);font-weight:800;color:var(--potential-gold);line-height:1.1;white-space:nowrap}
+#app .potential-create-core-card output small{font-size:12px;font-weight:600}
+#app .potential-create-core-card p{grid-column:1 / -1;margin:4px 0 0;font-size:12px;line-height:1.6;color:#d0c8bf;overflow-wrap:anywhere}
+#app .potential-help{font-size:12px;line-height:1.8;color:var(--potential-dim);margin:12px 0 0;overflow-wrap:anywhere}
+#app .potential-profile,#app .potential-death{border:1px solid #90775888;background:linear-gradient(157deg,#202831 0%,#131820 52%,#0b0d13 100%);padding:clamp(17px,3vw,30px);border-radius:14px;margin:15px 0 25px;box-shadow:inset 0 1px #ffffff10,0 15px 32px #0005}
+#app .potential-profile h4{font-size:15px;color:#f0e6d7;margin:0 0 7px}
+#app .potential-profile h4 small{font-size:11px;color:var(--potential-dim);margin-left:8px;font-weight:400}
+#app .potential-profile-groups{display:grid;grid-template-columns:1fr;gap:15px}
+#app .potential-stats{display:grid;gap:10px;margin:10px 0 14px;min-width:0}
+#app dl.potential-stats{padding:0}
+#app .potential-physical{grid-template-columns:repeat(3,minmax(0,1fr))}
+#app .potential-core{grid-template-columns:repeat(2,minmax(0,1fr))}
+#app .potential-stats>div{display:flex;flex-direction:column;justify-content:center;min-width:0;gap:5px;background:#2a303a;border:1px solid #93817144;border-radius:9px;padding:12px 13px;min-height:73px}
+#app .potential-core>div{border-color:#b6946d77;background:linear-gradient(115deg,#332d2a,#252931)}
+#app .potential-stats dt{font-size:12px;font-weight:500;color:#cdc4ba;line-height:1.45;overflow-wrap:anywhere}
+#app .potential-stats dd{font-size:clamp(17px,2vw,23px);font-weight:750;line-height:1.3;color:#fff1d7;margin:0;overflow-wrap:anywhere}
+#app .potential-stats dd small{font-size:13px;font-weight:400}
+#app .potential-core>div span{font-size:11px;color:#e0c9a9}
+#app .potential-rule-detail{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;border-top:1px solid #87705b55;padding:13px 2px 0;font-size:13px}
+#app .potential-rule-detail strong{color:#f6e5ce}
+#app .potential-rule-detail span{color:var(--potential-dim)}
+/* Result grade is presented before the legacy death note. */
+#app .potential-result-hero{display:flex;justify-content:space-between;align-items:center;gap:18px;padding-bottom:15px}
+#app .potential-result-hero h2{font-size:clamp(27px,4vw,43px);line-height:1.18;margin:7px 0;color:#fff0db}
+#app .potential-result-hero p{font-size:13px;color:#d1c1ae;margin:8px 0 0;max-width:440px;line-height:1.7}
+#app .potential-grade-block{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:112px;padding:11px 17px;background:radial-gradient(circle at 50% 25%,#5d4535,#28262b 70%);border:1px solid #ac8357;border-radius:12px;box-shadow:inset 0 0 25px #e8ba7820}
+#app .potential-grade-block small{font-size:12px;color:#e0c5a5}
+#app .potential-grade{font-family:Georgia,'Times New Roman',serif;color:#f6cd88;font-size:clamp(57px,7vw,87px);line-height:1;font-weight:800;text-shadow:0 2px 18px #b38a5a55}
+#app .potential-grade-block>span{font-size:12px;color:#f0d4ad}
+#app .potential-score-track{height:8px;border:1px solid #87745c;border-radius:9px;background:#0a0b0f;margin:0 0 30px;overflow:hidden}
+#app .potential-score-track span{height:100%;display:block;background:linear-gradient(90deg,#8c6252,#e8bd78);border-radius:8px}
+#app .potential-death>.potential-section-heading{border-top:1px solid #85705b44;padding-top:18px}
+#app .potential-death-stats{grid-template-columns:repeat(4,minmax(0,1fr));margin:12px 0 22px}
+#app .potential-point-balance{border:1px solid #af8655;border-radius:999px;background:#3d3328;padding:6px 12px;color:#f2d9b0;font-size:13px;white-space:nowrap;align-self:center}
+#app .potential-point-balance strong{font-size:19px;color:#fff1cf;margin:0 3px}
+#app .potential-allocations{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-bottom:9px}
+#app .potential-allocation-card{display:flex;flex-direction:column;gap:12px;min-width:0;background:linear-gradient(145deg,#302c2b,#1a1f28);border:1px solid #ab8a654a;border-radius:12px;padding:16px}
+#app .potential-allocation-top{display:flex;align-items:center;gap:10px;min-width:0}
+#app .potential-allocation-top>div{min-width:0;display:grid;gap:2px;flex:1}
+#app .potential-allocation-top>div strong{font-size:16px;line-height:1.4;color:#ffe9ca}
+#app .potential-allocation-top small{font-size:10px;color:#c6bdb3;letter-spacing:.08em}
+#app .potential-allocation-icon{display:grid;place-items:center;width:35px;height:35px;flex:0 0 auto;border:1px solid #b18c61;background:#493628;color:#f5cc8f;border-radius:8px;font-size:18px;font-family:serif}
+#app .potential-current-value{font-size:21px;white-space:nowrap;color:#ffd999}
+#app .potential-allocation-card p{font-size:12px;color:#d7cdc3;margin:0;min-height:2.3em}
+#app .potential-allocation-card button,#app .potential-next-actions button{display:block;width:100%;min-width:0;min-height:48px;border-radius:9px;border:1px solid #e7bd82;background:linear-gradient(180deg,#e9c58e,#bd955e);color:#1a1a1c;cursor:pointer;font-size:14px;font-weight:800;padding:11px 13px;line-height:1.45;white-space:normal}
+#app .potential-allocation-card button:disabled{background:#343238;border-color:#656063;color:#c6bec0;cursor:not-allowed}
+#app .potential-allocation-card button:not(:disabled):hover,#app .potential-next-actions button:hover{filter:brightness(1.1)}
+#app .potential-inheritance-note{font-size:13px;line-height:1.7;color:#d8cbbb;margin:8px 0 12px;border-left:3px solid #be915c;padding:7px 12px;background:#302a263f}
+#app .potential-next-life{display:grid;gap:10px}
+#app .potential-next-life>label{max-width:440px}
+#app .potential-next-life .potential-inputs{margin:4px 0 9px}
+#app .potential-next-actions{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px;border:1px solid #99806655;border-radius:10px;background:#2b25236c}
+#app .potential-next-actions p{font-size:12px;line-height:1.7;max-width:380px;color:#dbbda2;margin:0}
+#app .potential-next-actions button{flex:0 0 235px;width:235px}
+#app .potential-evaluation-guide{margin-top:18px;border-top:1px solid #a6875a55;padding-top:14px;color:#ccc2b7;font-size:12px}
+#app .potential-evaluation-guide summary{cursor:pointer;min-height:44px;display:flex;align-items:center;color:#d6c6ad}
+#app .potential-evaluation-guide p{line-height:1.8}
+#app .potential-death-legacy{margin:5px 0 20px;color:#bdb3aa;border:1px solid #594b43;border-radius:10px;padding:8px 12px}
+#app .potential-death-legacy>summary{cursor:pointer;min-height:35px;display:flex;align-items:center}
+#app .potential-death-legacy article{border:0;background:transparent;padding:10px 0;box-shadow:none}
+@media(max-width:900px){#app .potential-death-stats{grid-template-columns:repeat(2,minmax(0,1fr))}#app .potential-next-actions{flex-direction:column;align-items:stretch}#app .potential-next-actions button{flex:0 0 auto;width:100%}}
+@media(max-width:650px){
+  #app .potential-inputs{padding:13px}
+  #app .potential-static-inputs{grid-template-columns:1fr;gap:10px}
+  #app .potential-create-core{grid-template-columns:1fr;gap:9px}
+  #app .potential-profile,#app .potential-death{padding:14px}
+  #app .potential-core{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #app .potential-death-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #app .potential-allocations{grid-template-columns:1fr}
+  #app .potential-result-hero{align-items:flex-start}
+  #app .potential-grade-block{min-width:91px;padding:10px 9px}
+  #app .potential-grade{font-size:60px}
+  #app .potential-section-heading{gap:8px}
+  #app .potential-section-note{max-width:49%}
+}
+@media(max-width:370px){
+  #app .potential-physical{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+  #app .potential-core{grid-template-columns:1fr}
+  #app .potential-stats>div{padding:9px}
+  #app .potential-result-hero h2{font-size:25px}
+  #app .potential-grade-block{min-width:80px}
+  #app .potential-point-balance{font-size:11px;padding:4px 7px}
+}
+@media(prefers-reduced-motion:reduce){#app .potential-death *{scroll-behavior:auto}}
