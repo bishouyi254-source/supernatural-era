@@ -1,0 +1,21 @@
+name: G1-C candidate regression
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  node-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: G1-C energy closure
+        run: node --test tests/g1c-energy-closure.test.mjs
+      - name: All checked-in Node regression tests
+        run: node --test tests/*.test.mjs
