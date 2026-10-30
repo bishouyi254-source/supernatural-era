@@ -13,7 +13,7 @@ export function spiritSlotLimit(s){
 }
 export function mentalChargeLimit(s){
   const base=s?.traits?.mentalBase??TRAIT_DEFAULTS.mentalBase;
-  return Math.min(4,Math.max(0,Math.floor((base-50)/20)));
+  return Math.min(4,Math.max(0,Math.floor((base-50)/10)));
 }
 export function mentalRuleBonus(s){
   return Math.min(3,Math.max(0,Math.floor(((s?.traits?.mentalBase??50)-50)/20)));
@@ -29,7 +29,7 @@ export function initialTraits(input={},lineage=null){
     age:safe(input.age,18,65,20),
     constitution:prev?.constitution??TRAIT_DEFAULTS.constitution,
     mentalBase:prev?.mentalBase??TRAIT_DEFAULTS.mentalBase,
-    mentalCharges:Math.min(4,Math.floor(Math.max(0,(prev?.mentalBase??50)-50)/20))
+    mentalCharges:Math.min(4,Math.floor(Math.max(0,(prev?.mentalBase??50)-50)/10))
   };
 }
 export function initialLineage(previous=null){
