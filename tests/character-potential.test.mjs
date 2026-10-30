@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {newGame,upgrade,validate} from '../src/engine.js';
+import {newGame,upgrade,validate,available,act} from '../src/engine.js';
 import {
   spiritSlotLimit,mentalChargeLimit,mentalRuleBonus,developmentPotential,
   evaluateDeath,grantDeathReward,spendDeathPoint,nextLifeOptions,
@@ -96,4 +96,21 @@ test('death allocation cannot occur before death is finalized',()=>{
   const s=fresh('save-alive');
   assert.strictEqual(spendDeathPoint(s,'constitution'),s);
   assert.throws(()=>nextLifeOptions(s,{heightCm:180,weightKg:70,age:22}));
+});
+
+
+test('real engine death:commit grants exactly one reward with no free resurrection',()=>{
+  const s=fresh('save-engine-death');s.tick=240;s.life=0;s.systems.death='pending';s.outcomes.echo='已封存';
+  assert.ok(validate(s),'pending death fixture must be a valid original engine state');
+  assert.ok(available(s).includes('death:commit'));
+  const result=act(s,'death:commit');
+  assert.notStrictEqual(result,s);
+  assert.equal(result.systems.death,'committed');
+  assert.equal(result.life,0);
+  assert.equal(result.lineage.deaths.length,1);
+  assert.ok(result.lineage.unspent>0);
+  assert.ok(validate(result),'death reward must remain a valid real game save');
+  const repeated=act(result,'death:commit');
+  assert.strictEqual(repeated,result);
+  assert.equal(repeated.lineage.deaths.length,1);
 });
