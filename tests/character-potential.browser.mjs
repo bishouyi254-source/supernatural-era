@@ -19,7 +19,7 @@ try{
     await page.locator('#create [name="age"]').fill('22');
     await page.locator('#create button').click();
     await page.locator('.topbar .identity').waitFor({timeout:20000});
-    await page.locator('[data-tab="角色"]').first().click();
+    await page.locator('[data-tab="角色"]:visible').first().click();
     await page.locator('.potential-profile').waitFor({timeout:20000});
     const profile=await page.locator('.potential-profile').textContent();
     assert.match(profile,/182 cm/);assert.match(profile,/体质/);
