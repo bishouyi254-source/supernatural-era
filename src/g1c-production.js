@@ -75,6 +75,18 @@ export function g1cStruggle(s,action,c){
  fact(s,'press',result==='blocked'?'escaped':'action-suppressed',{targetId:'player-body',result,actionType:'body'});
  if(result==='blocked'){v.state='CLOSED';v.battleId=null;v.region=null;v.targetId=null;v.amplified=false;}
 }
+// Read-only explanation of the zero-energy branch. It neither grants energy nor
+// weakens an active ghost. Only valid integration holders can see this detail.
+export function g1cEnergyWarning(s,c,legal=[]){
+ if(!s?.g1c||!s.combat||s.energy!==0||!g1cAllowed(s,c))return '';
+ const manifest=Object.keys(G1C_SOURCES).filter(k=>inBattle(s,s.g1c[k]));
+ if(!manifest.length)return '';
+ const names={fire:'鬼火',wind:'鬼风',press:'鬼压人'};
+ const remaining=manifest.map(k=>names[k]).join('、');
+ if(g1cBodyBlocked(s,c))return `能量已耗尽：${remaining}仍在作用，且身体被鬼压人压制。不能免费解除或撤离；仅可按现有合法清单尝试普通力量挣脱／观察，失败仍推进敌方危险与复苏。不是测试通过状态。`;
+ if(legal.includes('combat:retreat'))return `能量已耗尽：${remaining}仍在作用，无法免费收束。可选择现有撤离行动，但离开时失去控制的灵异后果仍保留；不能计作安全完成本场。`;
+ return `能量已耗尽：${remaining}仍在作用，当前没有合法免费收束或撤离。只允许执行引擎实际提供的行动并承担后果；不得注入额外资源。`;
+}
 export function g1cAvailable(s,c){
  if(!s.g1c||!g1cAllowed(s,c)||!validG1C(s,c)||s.systems.death!=='alive'||s.crisis)return [];
  const x=s.g1c,out=[];
