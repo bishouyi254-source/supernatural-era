@@ -66,14 +66,25 @@ jobs:
           PLAYWRIGHT_MODULE: playwright
           G1C_URL: http://127.0.0.1:4353
         run: node scripts/qa-g1c-chrome.mjs
+      - name: Stage browser report inside the checked-out workspace
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p ci-browser-evidence
+          if [ -f ../../outputs/g1-c/browser-g1c/results.json ]; then
+            cp ../../outputs/g1-c/browser-g1c/results.json ci-browser-evidence/results.json
+          fi
+          if [ -f tmp-g1c-browser/stress.json ]; then
+            cp tmp-g1c-browser/stress.json ci-browser-evidence/stress.json
+          fi
+          if compgen -G "../../outputs/g1-c/browser-g1c/*.png" > /dev/null; then
+            sha256sum ../../outputs/g1-c/browser-g1c/*.png > ci-browser-evidence/screenshot-sha256.txt
+          fi
       - name: Preserve browser audit evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: g1c-chrome-${{ github.run_id }}
-          path: |
-            ../../outputs/g1-c/browser-g1c/results.json
-            ../../outputs/g1-c/browser-g1c/*.png
-            tmp-g1c-browser/stress.json
+          path: ci-browser-evidence
           retention-days: 14
           if-no-files-found: warn
