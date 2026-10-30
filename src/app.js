@@ -256,7 +256,7 @@ function workspaceView() {
  if(tab==='背包与装备')return '<article><button data-tab="拼图背包">打开厉鬼拼图背包</button></article>'+workshopView(state,available(state),label,true);
  if(state.systems.death==='alive'&&!state.crisis&&state.scene==='echo'&&!state.combat&&state.phase!=='限制'&&['首页','现场'].includes(tab))return preparationView(state,label);
  if(state.systems.death==='alive'&&!state.crisis){
-  if(!state.school.started&&!state.dachang.started&&!state.investigation.active&&tab==='角色')return '<article><h2>技能与装备</h2><button data-tab="技能工坊">技能工坊</button><button data-tab="背包与装备">背包与装备</button></article>'+ '<article><h2>当前身份与能力</h2><p>先学习调查、道具与撤离。驾驭必须由你主动选择；不会因为完成教程自动获得技能。</p></article>'+compactHost(state)+spiritCards();
+  if(!state.school.started&&!state.dachang.started&&!state.investigation.active&&tab==='角色')return '<article><h2>技能与装备</h2><button data-tab="技能工坊">技能工坊</button><button data-tab="背包与装备">背包与装备</button></article>'+ '<article><h2>当前身份与能力</h2><p>先学习调查、道具与撤离。驾驭必须由你主动选择；不会因为完成教程自动获得技能。</p></article>'+compactHost(state)+characterPotentialView(state)+spiritCards();
   if(firstContact(state)&&tab==='首页')return newcomerView(state,label);
   if(state.investigation.active&&tab==='调查现场')return encounterView(state,label,playPreview);
   if(state.scene==='hub'&&state.investigation.resolution&&!state.school.started&&['首页','调查现场','调查档案'].includes(tab))return investigationSummary(state,label)+'<details><summary>展开原有调查档案与历史</summary>'+investigationView(state,'调查档案')+'</details>';
