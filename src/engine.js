@@ -256,7 +256,7 @@ export function act(input, action,context=null) {
   // Persist the same existing compatibility defaults that a reload/available()
   // would attach, before binding the completed encounter snapshot.
   Object.assign(s,attachCase24(s));
-  if(s.spirits.length>spiritSlotLimit(before))return input; // Reject capacity overflow atomically.
+  if(s.spirits.length>spiritSlotLimit(before)&&s.spirits.length>before.spirits.length)return input; // Preserve previously valid holders; reject new capacity overflow.
   restrictDevelopment(before,s);
   applyMentalCastBonus(before,s,action,usedId);
   if(action==='death:commit')grantDeathReward(s);
