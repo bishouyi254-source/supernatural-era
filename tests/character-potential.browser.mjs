@@ -83,6 +83,24 @@ try{
     assert.equal(next.traits.mentalBase,60);assert.equal(next.lineage.generation,2);
     assert.equal(next.spirits.length,0);assert.equal(next.tick,0);
     assert.deepEqual(errors,[],name+' browser page errors');
+    // Existing browser saves from 0.24.6 must be backed up and migrated in place.
+    await page.evaluate(()=>{
+      const key='supernatural-era.prototype.v2';
+      const legacy=JSON.parse(localStorage.getItem(key));
+      delete legacy.traits;delete legacy.lineage;
+      localStorage.removeItem(key+'.before-character-v1');
+      localStorage.setItem(key,JSON.stringify(legacy));
+    });
+    await page.reload({waitUntil:'domcontentloaded'});
+    await page.locator('.topbar .identity').waitFor({timeout:20000});
+    const migration=await page.evaluate(()=>{
+      const key='supernatural-era.prototype.v2';
+      return {current:JSON.parse(localStorage.getItem(key)),
+        backup:JSON.parse(localStorage.getItem(key+'.before-character-v1'))};
+    });
+    assert.equal(migration.backup.traits,undefined);
+    assert.equal(migration.current.traits.constitution,2);
+    assert.equal(migration.current.name,'第二轮角色');
     await page.screenshot({path:'candidate-artifacts/'+name+'-next-life.png',fullPage:true});
     await writeFile('candidate-artifacts/'+name+'-visual-metrics.json',JSON.stringify(evidence,null,2),'utf8');
     console.log(name+': five-trait creation → character → grade/layout → allocation → next life: PASS');
