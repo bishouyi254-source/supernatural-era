@@ -45,11 +45,12 @@ jobs:
             exit 1
           fi
           cat candidate-artifacts/browser-smoke.log
-          for name in desktop mobile; do
-            for stage in character death next-life; do
+          for name in desktop tablet mobile compact; do
+            for stage in creation character death next-life; do
               test -s "candidate-artifacts/${name}-${stage}.png" || { echo "Missing screenshot: ${name}-${stage}"; exit 1; }
             done
           done
+          test "$(find candidate-artifacts -name '*-visual-metrics.json' | wc -l)" -eq 4
           ls -lh candidate-artifacts/
       - name: Report candidate browser failure in draft PR
         if: failure() && github.event_name == 'pull_request'
