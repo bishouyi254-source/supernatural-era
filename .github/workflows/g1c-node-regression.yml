@@ -19,3 +19,17 @@ jobs:
         run: node --test tests/g1c-energy-closure.test.mjs
       - name: All checked-in Node regression tests
         run: node --test tests/*.test.mjs
+      - name: G1-C actual zero-energy closure and 33 scenario replay
+        env:
+          G1C_OUTPUT: ./tmp-g1c-ci
+        run: |
+          node scripts/g1c-closure-audit.mjs
+          node scripts/g1c-audit.mjs --stress-only
+      - name: Preserve objective replay outputs for review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g1c-replay-\${{ github.run_id }}
+          path: tmp-g1c-ci
+          retention-days: 14
+          if-no-files-found: warn
