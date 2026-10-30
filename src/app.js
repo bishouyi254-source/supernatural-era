@@ -233,7 +233,7 @@ function homeView() {
 function socialRiskPrompt(a){const id=a==='social:domain'?state.spirits.find(g=>g.sourceId==='eye')?.id:a.startsWith('social:asset:probe:')?a.slice(19):a.startsWith('social:cast:')?a.slice(12):null,g=state.spirits.find(g=>g.id===id);return g?g.name+'当前复苏 '+g.revivalProgress+'%【'+revivalStage(g.revivalProgress)+'】；本次调用按当前条件增长约 '+(growthFor(state,g,true)+(a==='social:domain'?6+state.v1.eye.layer*2:0)).toFixed(2)+'%，消耗能量1并留下目击，可能引起其他驭鬼者反应。是否实际调用？':'当面威胁可能引起对方灵异回应和失控，历史披露会保留。是否继续？';}
 function hgConfirmation(){return hgPreview&&available(state).includes(hgPreview)?'<article class="danger" role="region" aria-label="高风险操作确认"><h2>确认本次高风险操作</h2><p>'+esc(hgPreview.startsWith('dual:stress:')?'高强度验证消耗能量2、身体4、对应鬼额外复苏4，另按实际调用增长；可能破坏平衡，是否执行？':villageRiskPrompt(state,hgPreview))+'</p><p>查看与取消不推进时间、不扣资源。</p><button data-hg-confirm>确认执行本次操作</button><button data-hg-cancel>取消，保持当前状态</button></article>':'';}
 function workspaceView() {
-  if(state?.systems?.death==='committed')return deathView(state,cdButtons)+deathPotentialView(state);
+  if(state?.systems?.death==='committed'&&tab!=='结算历史'&&!viewingHistoryId)return deathView(state,cdButtons)+deathPotentialView(state);
  if(tab==='结算历史'&&!viewingHistoryId)return settlementHistoryView();
  if(liveSettlement())return '<div id="live-settlement-root" class="page" aria-label="真实战斗结算"></div>';
  if(state.combat&&state.systems.death!=='alive')return deathView(state,cdButtons);
@@ -320,7 +320,7 @@ function render() {
  if(liveBackpack){try{state=readLive(localStorage).state;}catch{notice='存档无法读取，原始内容未覆盖。';}if(tab!=='拼图背包')backpackRoot.remove();}
  codexUI.refresh();
  const isBackpack=tab==='拼图背包';
- document.querySelectorAll('link[data-game-style]').forEach(link=>{if(link.sheet)link.sheet.disabled=isBackpack||!!liveSettlement();});
+ document.querySelectorAll('link[data-game-style]').forEach(link=>{if(link.sheet)link.sheet.disabled=isBackpack||state?.systems?.death!=='committed'&&!!liveSettlement();});
  document.querySelectorAll('link[data-backpack-style]').forEach(link=>{if(link.sheet)link.sheet.disabled=!isBackpack;});
  if(isBackpack){
   const root=document.querySelector('#app');root.removeAttribute('data-loop');root.dataset.view=tab;root.dataset.page=tab;
@@ -356,8 +356,8 @@ function render() {
   document.querySelector('#app').dataset.view = tab;
     document.querySelector('#app').dataset.loop = state&&loopEnabled(state)?'true':'false';
     document.querySelector('#app').dataset.page = tab;
-  document.querySelector('#app').dataset.settlement = liveSettlement()?'true':'false';
-  document.body.classList.toggle('settlement-active',!!liveSettlement());
+  document.querySelector('#app').dataset.settlement = state?.systems?.death!=='committed'&&liveSettlement()?'true':'false';
+  document.body.classList.toggle('settlement-active',state?.systems?.death!=='committed'&&!!liveSettlement());
   document.querySelector('#app').dataset.battle = state?.combat&&state.systems.death==='alive'&&['首页','现场'].includes(tab)?'true':'false';
   const header = `<header><span>大昌市 · 灵异调查</span><h1>神秘复苏<span>灵异时代</span></h1><p>0.24.6 · 鬼眼 V6.5.1 · G1-B机制接入 · 探索、战术与技能研究</p></header>`;
   if(pendingImport){document.querySelector('#app').innerHTML=header+'<main class="registration rescue-confirm"><h2>确认导入存档副本</h2><p>将导入：'+esc(pendingImport.name)+'。这会替换本地当前进度；已有进度会先导出备份。</p><button data-import-confirm>确认导入</button><button data-import-cancel>取消，保留当前进度</button></main>';document.querySelector('[data-import-confirm]').onclick=()=>{if(state)download(JSON.stringify(state,null,2),'灵异时代-导入前备份.json');state=upgrade(pendingImport);pendingImport=null;resetSettlement();tab='首页';persist();render();};document.querySelector('[data-import-cancel]').onclick=()=>{pendingImport=null;render();};return;}
