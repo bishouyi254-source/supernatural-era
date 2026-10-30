@@ -40,7 +40,17 @@ jobs:
         run: |
           mkdir -p candidate-artifacts
           python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/character-http.log 2>&1 &
-          node tests/character-potential.browser.mjs 2>&1 | tee candidate-artifacts/browser-smoke.log
+          if ! node tests/character-potential.browser.mjs > candidate-artifacts/browser-smoke.log 2>&1; then
+            cat candidate-artifacts/browser-smoke.log
+            exit 1
+          fi
+          cat candidate-artifacts/browser-smoke.log
+          for name in desktop mobile; do
+            for stage in character death next-life; do
+              test -s "candidate-artifacts/${name}-${stage}.png" || { echo "Missing screenshot: ${name}-${stage}"; exit 1; }
+            done
+          done
+          ls -lh candidate-artifacts/
       - name: Report candidate browser failure in draft PR
         if: failure() && github.event_name == 'pull_request'
         env:
