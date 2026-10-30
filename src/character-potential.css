@@ -1,0 +1,21 @@
+.potential-inputs{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;margin:14px 0;padding:18px;border:1px solid #594b43;border-radius:12px;background:rgba(18,22,28,.55)}
+.potential-inputs legend{padding:0 9px;font-weight:650;color:#e7d6bc}
+.potential-inputs label,.potential-next-life>label{display:flex;flex-direction:column;gap:7px;font-size:.91rem}
+.potential-inputs input,.potential-next-life input{box-sizing:border-box;width:100%;padding:10px 12px;min-height:42px;border:1px solid #817469;background:#191e26;color:#f5eee6;border-radius:8px}
+.potential-profile,.potential-death{border:1px solid #716151;background:linear-gradient(150deg,#202831,#161b23);padding:clamp(18px,3vw,29px);border-radius:14px;margin:18px 0;color:#f3ece1}
+.potential-profile h3,.potential-death h2,.potential-death h3{margin:0 0 15px}
+.potential-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:10px;margin:15px 0}
+.potential-stats>div{display:flex;flex-direction:column;gap:7px;min-height:64px;justify-content:center;padding:12px;background:#2b3038;border-radius:9px}
+.potential-stats span,.potential-score span{font-size:.84rem;color:#b9bbc3}
+.potential-stats strong{font-size:1.17rem;color:#f6e3bd}
+.potential-caps p{margin:9px 0}
+.potential-result-heading{display:flex;align-items:center;justify-content:space-between;gap:15px}
+.potential-grade{font-size:clamp(58px,12vw,96px);line-height:1;color:#e6b96d;text-shadow:0 3px 14px #000}
+.potential-score{display:flex;gap:16px;justify-content:space-between;align-items:center;background:#2b3038;padding:11px 15px;border-radius:8px}
+.potential-allocations{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:12px;margin:14px 0 22px}
+.potential-allocations>div{border:1px solid #65594a;padding:14px;display:flex;flex-direction:column;gap:12px;border-radius:10px;justify-content:space-between}
+.potential-allocations button,.potential-next-life button{cursor:pointer;background:#a78756;color:#15191e;border:0;border-radius:8px;padding:12px;font-weight:700}
+.potential-allocations button:disabled{opacity:.44;cursor:not-allowed}
+.potential-next-life{display:grid;gap:12px}
+.potential-next-life .potential-inputs{margin:0}
+@media (max-width:600px){.potential-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.potential-inputs{grid-template-columns:1fr}.potential-profile,.potential-death{padding:14px}}
