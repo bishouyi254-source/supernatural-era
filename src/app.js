@@ -112,7 +112,27 @@ let display={large:false,low:false};try{const p=JSON.parse(localStorage.getItem(
 const esc = x => String(x).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
 try {
   const saved = localStorage.getItem(key);
-  if (saved) { const parsed = JSON.parse(saved); if (!validate(parsed)) throw Error(); state = upgrade(parsed);if(!parsed.settlement){let cache=null;try{cache=JSON.parse(localStorage.getItem(settlementKey)||'null');}catch{}state=migratePresentationCache(state,cache);try{localStorage.setItem(key,JSON.stringify(state));}catch{notice='旧存档结算历史升级尚未保存，请先导出副本。';}}lastCommittedState=state; }
+  if (saved) {
+      const parsed = JSON.parse(saved);
+      if (!validate(parsed)) throw Error('无效的原存档');
+      state = upgrade(parsed);
+      if (!parsed.settlement) {
+        let cache=null;
+        try{cache=JSON.parse(localStorage.getItem(settlementKey)||'null');}catch{}
+        state=migratePresentationCache(state,cache);
+      }
+      if (!validate(state)) throw Error('升级后的存档无效');
+      const needsUpgrade=!parsed.settlement||!parsed.traits&&!parsed.lineage;
+      if(needsUpgrade){
+        try {
+          // The original v2 save is retained before the first Character V1 migration.
+          const backupKey=key+'.before-character-v1';
+          if(!localStorage.getItem(backupKey))localStorage.setItem(backupKey,saved);
+          localStorage.setItem(key,JSON.stringify(state));
+        }catch{notice='旧存档已读取，但自动升级未能完整保存。原始存档保留，请先导出副本。';}
+      }
+      lastCommittedState=state;
+    }
   if (!saved && localStorage.getItem(legacyKey)) notice = '发现旧版混合字段存档。可保留原副本并明确转换；新复苏按试验初始值重建，不是无损恢复。';
 } catch { notice = '现有存档无法读取，原始内容未覆盖。可先导出原始存档，再创建新角色。'; }
 // Core save owns history and the unfinished session; cache is a disposable mirror.
