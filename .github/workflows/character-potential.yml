@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -38,7 +39,17 @@ jobs:
       - name: Browser smoke on two viewports
         run: |
           python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/character-http.log 2>&1 &
-          node tests/character-potential.browser.mjs
+          node tests/character-potential.browser.mjs 2>&1 | tee candidate-artifacts/browser-smoke.log
+      - name: Report candidate browser failure in draft PR
+        if: failure() && github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          if [ -f candidate-artifacts/browser-smoke.log ]; then
+            { echo "### Browser smoke blocker (automated candidate evidence)"; echo '~~~'; tail -n 40 candidate-artifacts/browser-smoke.log; echo '~~~'; } > /tmp/character-smoke-comment.md
+            gh pr comment "$PR_NUMBER" --body-file /tmp/character-smoke-comment.md
+          fi
       - name: Upload candidate browser evidence
         if: always()
         uses: actions/upload-artifact@v4
