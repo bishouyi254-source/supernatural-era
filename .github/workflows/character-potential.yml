@@ -1,0 +1,33 @@
+name: Character potential candidate
+on:
+  push:
+    branches: [feature/character-potential-death-loop]
+  pull_request:
+    paths:
+      - 'src/character-potential*'
+      - 'src/engine.js'
+      - 'src/progression.js'
+      - 'src/combat.js'
+      - 'src/app.js'
+      - 'tests/character-potential.test.mjs'
+      - '.github/workflows/character-potential.yml'
+jobs:
+  character-potential:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax checks
+        run: |
+          node --check src/character-potential.js
+          node --check src/character-potential-ui.js
+          node --check src/engine.js
+          node --check src/progression.js
+          node --check src/combat.js
+          node --check src/app.js
+      - name: Character and death regression tests
+        run: node --test tests/character-potential.test.mjs
