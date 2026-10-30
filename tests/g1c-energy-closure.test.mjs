@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {fixture,replay,step} from './g1c-helpers.mjs';
-import {available,validate,upgrade,newGame} from '../src/engine.js';
+import {available,newGame} from '../src/engine.js';
 import {buildRealCombatData} from '../src/combat-stage4-adapter.js';
 import {g1cEnergyWarning} from '../src/g1c-production.js';
 
@@ -28,12 +28,10 @@ test('two manifested ghosts: zero-energy calm is illegal, but costly retreat rem
 });
 
 test('a player pinned by tallest-body pressure cannot leave or cancel for free at zero energy',()=>{
- let {s,c}=fixture({ownership:['press'],playerHeightCm:200});
- // Start an isolated case with one remaining unit; this models costs already paid
- // before the encounter and is not a resource injection during a stress replay.
- s.energy=1;delete s.settlement;s=upgrade(s);
- assert.ok(validate(s,c));
- s=replay(s,c);s=step(s,'g1cp:press:fall',c);
+ let {s,c}=fixture({ownership:['fire','press'],playerHeightCm:200});
+ s=replay(s,c);
+ // All three energy units are spent by legal production actions; none are injected.
+ for(const action of ['g1cp:fire:ignite','g1cp:fire:quench','g1cp:press:fall'])s=step(s,action,c);
  assert.equal(s.energy,0);
  assert.equal(s.g1c.press.targetId,'player-body');
  const legal=available(s,c);
