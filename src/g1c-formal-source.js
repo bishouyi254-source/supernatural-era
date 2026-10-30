@@ -6,7 +6,7 @@ import {KNOCKER_DECLARATION} from './knocker-intents.js';
 const REQUIRED=Object.freeze({
  fire:Object.freeze(['real enemy source action','verified spirit medium','real impact region','source-side contest weight']),
  wind:Object.freeze(['real enemy source action','explicit domain-type initiative','verified domain region','source-side domain weight']),
- press:Object.freeze(['real body registry','complete height ordering','real in-range bodies','action target and physical resistance'])
+ press:Object.freeze(['real body registry','complete height and posture ordering at the trigger tick','real in-range bodies','action target and physical resistance'])
 });
 const noAction=Object.freeze({fire:false,wind:false,press:false});
 const snapshot=(kind,origin,reason)=>Object.freeze({
