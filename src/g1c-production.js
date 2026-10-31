@@ -6,6 +6,7 @@ import {growthFor,revivalCrisisFor} from './spirits.js';
 import {ruleBlocked} from './evolution-model.js';
 import {ruleContest} from './rules.js';
 import {mentalRuleBonus} from './character-potential.js';
+import {g1cSceneConsequences} from './g1c-consequences.js';
 
 export const G1C_SOURCES=Object.freeze({fire:'ghost-fire',wind:'ghost-wind',press:'ghost-press'});
 export const G1C_COSTS=Object.freeze({
@@ -62,6 +63,8 @@ export function prepareG1C(s,c){
 }
 export function g1cFilter(s,actions){
  if(!s.g1c)return actions;
+ // Unknown legacy locations conservatively block re-entry, never infer safety.
+ actions=actions.filter(a=>!((a.startsWith('enter:')||a==='combat:start')&&g1cSceneConsequences(s,a==='combat:start'?s.scene:a.slice(6)).length));
  const ids=Object.keys(G1C_SOURCES).map(k=>s.g1c[k].actorId).filter(Boolean);
  return actions.filter(a=>!a.startsWith('abandon')&&!a.startsWith('combat:aid:')&&!['combat:restrict','restrict','capture','ability','practice'].includes(a)&&!ids.some(id=>['combat:ability:','practice:','study:'].some(p=>a===p+id))
   &&!(ids.includes(s.spirits[0]?.id)&&['ability','practice'].includes(a))&&a!=='combat:combo');
@@ -207,7 +210,12 @@ export function advanceG1C(before,s,action,c){
  for(const k of Object.keys(G1C_SOURCES)){
   const v=s.g1c[k];if(v.state!=='CONTROLLED')continue;
   if(!s.combat||v.battleId!==battle(s)||!own(s,k)||revivalCrisisFor(s,own(s,k))||!enabled(s,k)){
-   v.state='UNCONTROLLED';fact(s,k,'lost-control',{lastTarget:v.targetId});continue;
+   const origin=before.combat||s.combat;
+   const reason=!s.combat?'ENCOUNTER_ENDED':v.battleId!==battle(s)?'ENCOUNTER_CHANGED':'CONTROL_LOST';
+   v.state='UNCONTROLLED';fact(s,k,'lost-control',{lastTarget:v.targetId,consequence:{
+    encounterId:v.battleId,eventId:origin?.eventId??null,sourceInstanceId:origin?.sourceId??null,
+    region:v.region,reason,actionId:action
+   }});continue;
   }
   if(k==='press'&&(!pressureValid(s,c))){v.state='CLOSED';v.battleId=null;v.region=null;v.targetId=null;v.amplified=false;fact(s,k,'scope-ended');continue;}
   if(k==='fire'&&own(s,k).revivalProgress>=70){s.life=Math.max(0,s.life-2);fact(s,k,'backlash',{damage:2});}
@@ -241,6 +249,12 @@ export function validG1C(s,c){
    if(e.seq!==i+1||!integer(e.tick,s.tick)||e.tick<lastTick||!keys.includes(e.kind)||!legalTypes.includes(e.type)||!e.data||typeof e.data!=='object')return false;
    lastTick=e.tick;
    if(e.type==='paid'&&!same(e.data.cost,G1C_COSTS[e.data.verb]))return false;
+   if(e.type==='lost-control'&&e.data.consequence!==undefined){
+    const d=e.data.consequence;
+    if(!d||typeof d.encounterId!=='string'||!['ENCOUNTER_ENDED','ENCOUNTER_CHANGED','CONTROL_LOST'].includes(d.reason)
+     ||!['safe','exposed'].includes(d.region)||typeof d.actionId!=='string'
+     ||d.eventId!==null&&typeof d.eventId!=='string'||d.sourceInstanceId!==null&&typeof d.sourceInstanceId!=='string')return false;
+   }
   }
   let load=0;
   const requirements={fire:[['burned','burn-resisted'],['domain-contest']],wind:[['interfered','interference-resisted'],['domain-contest']],press:[['tallest-verified'],['action-suppressed']]};

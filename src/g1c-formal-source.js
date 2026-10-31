@@ -2,6 +2,7 @@
 // Does NOT grant G1-C ownership, create a new enemy, or inject fictional actions.
 import {events} from './content.js';
 import {KNOCKER_DECLARATION} from './knocker-intents.js';
+export {registerG1CEvidence,auditG1CSourceAction,G1C_APPROVED_SOURCES} from './g1c-source-registry.js';
 
 const REQUIRED=Object.freeze({
  fire:Object.freeze(['real enemy source action','verified spirit medium','real impact region','source-side contest weight']),

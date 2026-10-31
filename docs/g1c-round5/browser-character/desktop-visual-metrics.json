@@ -1,0 +1,149 @@
+{
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "stages": {
+    "creation": [
+      {
+        "tag": "FIELDSET",
+        "className": "potential-inputs",
+        "clientWidth": 416,
+        "scrollWidth": 416,
+        "left": 511,
+        "right": 929,
+        "width": 418
+      },
+      {
+        "tag": "DIV",
+        "className": "potential-static-inputs",
+        "clientWidth": 372,
+        "scrollWidth": 372,
+        "left": 534,
+        "right": 906,
+        "width": 372
+      },
+      {
+        "tag": "DIV",
+        "className": "potential-create-core",
+        "clientWidth": 372,
+        "scrollWidth": 372,
+        "left": 534,
+        "right": 906,
+        "width": 372
+      }
+    ],
+    "character": [
+      {
+        "tag": "SECTION",
+        "className": "potential-profile",
+        "clientWidth": 1122,
+        "scrollWidth": 1122,
+        "left": 284,
+        "right": 1408,
+        "width": 1124
+      },
+      {
+        "tag": "DL",
+        "className": "potential-stats potential-physical",
+        "clientWidth": 1062,
+        "scrollWidth": 1062,
+        "left": 315,
+        "right": 1377,
+        "width": 1062
+      },
+      {
+        "tag": "DL",
+        "className": "potential-stats potential-core",
+        "clientWidth": 1062,
+        "scrollWidth": 1062,
+        "left": 315,
+        "right": 1377,
+        "width": 1062
+      }
+    ],
+    "death": [
+      {
+        "tag": "SECTION",
+        "className": "potential-death",
+        "clientWidth": 1374,
+        "scrollWidth": 1374,
+        "left": 32,
+        "right": 1408,
+        "width": 1376
+      },
+      {
+        "tag": "DL",
+        "className": "potential-stats potential-death-stats",
+        "clientWidth": 1314,
+        "scrollWidth": 1314,
+        "left": 63,
+        "right": 1377,
+        "width": 1314
+      },
+      {
+        "tag": "DIV",
+        "className": "potential-allocations",
+        "clientWidth": 1314,
+        "scrollWidth": 1314,
+        "left": 63,
+        "right": 1377,
+        "width": 1314
+      },
+      {
+        "tag": "DIV",
+        "className": "potential-allocation-card",
+        "clientWidth": 649,
+        "scrollWidth": 649,
+        "left": 63,
+        "right": 714,
+        "width": 651
+      },
+      {
+        "tag": "DIV",
+        "className": "potential-allocation-card",
+        "clientWidth": 649,
+        "scrollWidth": 649,
+        "left": 727,
+        "right": 1377,
+        "width": 651
+      },
+      {
+        "tag": "FIELDSET",
+        "className": "potential-inputs",
+        "clientWidth": 1312,
+        "scrollWidth": 1312,
+        "left": 63,
+        "right": 1377,
+        "width": 1314
+      },
+      {
+        "tag": "DIV",
+        "className": "potential-static-inputs",
+        "clientWidth": 1268,
+        "scrollWidth": 1268,
+        "left": 86,
+        "right": 1354,
+        "width": 1268
+      },
+      {
+        "tag": "DIV",
+        "className": "potential-create-core",
+        "clientWidth": 1268,
+        "scrollWidth": 1268,
+        "left": 86,
+        "right": 1354,
+        "width": 1268
+      },
+      {
+        "tag": "DIV",
+        "className": "potential-next-actions",
+        "clientWidth": 1312,
+        "scrollWidth": 1312,
+        "left": 63,
+        "right": 1377,
+        "width": 1314
+      }
+    ]
+  }
+}

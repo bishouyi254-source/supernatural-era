@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
 import {act,available,validate} from '../src/engine.js';
+import {g1cSceneConsequences} from '../src/g1c-consequences.js';
 const {chromium}=createRequire(import.meta.url)(process.env.PLAYWRIGHT_MODULE||'playwright');
 const out=process.env.G1C_EDGE_OUTPUT||'docs/g1c-round4/browser-edges';await fs.mkdir(out,{recursive:true});
 const fixtures=JSON.parse(await fs.readFile('scripts/g1c-states.json','utf8'));
@@ -35,7 +36,12 @@ try{
     expected=act(expected,action,c);assert.ok(validate(expected,c));
     await p.waitForFunction(s=>localStorage.getItem('G1C-PRODUCTION:state')===s,JSON.stringify(expected));
    }
-   if(label==='round4-zero-pair')assert.equal(expected.g1c.wind.state,'UNCONTROLLED');
+   if(label==='round4-zero-pair'){
+    assert.equal(expected.g1c.wind.state,'UNCONTROLLED');
+    assert.equal(g1cSceneConsequences(expected)[0].eventId,'shadow');
+    assert.equal(g1cSceneConsequences(expected)[0].sourceInstanceId,'source:shadow');
+    assert.match(await p.locator('#research [aria-label="G1-C场景后果"]').innerText(),/未解决的失控后果/);
+   }
    if(label==='round4-zero-pinned'){
     assert.equal(expected.energy,0);assert.ok(!available(expected,c).includes('combat:retreat'));
     assert.match(await p.locator('body').innerText(),/不能免费解除或撤离/);

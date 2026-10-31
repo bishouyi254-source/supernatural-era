@@ -1,0 +1,7 @@
+{
+  "boundary": "Real Chromium; isolated holders and static heights; mobile viewport emulation, not a real phone",
+  "browser": "156.0.8078.74",
+  "scenarios": [],
+  "errors": [],
+  "failure": "locator.innerText: Error: strict mode violation: locator('[aria-label=\"G1-C场景后果\"]') resolved to 2 elements:\n    1) <section aria-label=\"G1-C场景后果\">…</section> aka getByRole('region', { name: 'G1-C场景后果' })\n    2) <section aria-label=\"G1-C场景后果\">…</section> aka locator('#workshop').getByLabel('G1-C场景后果')\n\nCall log:\n\u001b[2m  - waiting for locator('[aria-label=\"G1-C场景后果\"]')\u001b[22m\n\n    at C:\\Users\\ziho\\Documents\\Codex\\2026-10-30\\referenced-chatgpt-conversation-this-is-an\\work\\g1c-round4\\scripts\\g1c-round4-browser.mjs:43:61"
+}

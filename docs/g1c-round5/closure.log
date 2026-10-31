@@ -1,0 +1,71 @@
+{
+  "runs": [
+    {
+      "ownership": [
+        "fire",
+        "wind"
+      ],
+      "classification": "retreat with uncontrolled ghost; not safe completion",
+      "energy": 0,
+      "states": {
+        "fire": "CLOSED",
+        "wind": "UNCONTROLLED",
+        "press": "CLOSED"
+      }
+    },
+    {
+      "ownership": [
+        "fire",
+        "press"
+      ],
+      "classification": "retreat with uncontrolled ghost; not safe completion",
+      "energy": 0,
+      "states": {
+        "fire": "CLOSED",
+        "wind": "CLOSED",
+        "press": "UNCONTROLLED"
+      }
+    },
+    {
+      "ownership": [
+        "wind",
+        "press"
+      ],
+      "classification": "retreat with uncontrolled ghost; not safe completion",
+      "energy": 0,
+      "states": {
+        "fire": "CLOSED",
+        "wind": "CLOSED",
+        "press": "UNCONTROLLED"
+      }
+    },
+    {
+      "ownership": [
+        "fire",
+        "wind",
+        "press"
+      ],
+      "classification": "retreat with uncontrolled ghost; not safe completion",
+      "energy": 0,
+      "states": {
+        "fire": "CLOSED",
+        "wind": "UNCONTROLLED",
+        "press": "CLOSED"
+      }
+    },
+    {
+      "ownership": [
+        "fire",
+        "press"
+      ],
+      "classification": "trapped player: legal struggle performed, no guaranteed escape",
+      "energy": 0,
+      "states": {
+        "fire": "CLOSED",
+        "wind": "CLOSED",
+        "press": "CONTROLLED"
+      }
+    }
+  ],
+  "output": "docs/g1c-round5"
+}
