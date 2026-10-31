@@ -1,0 +1,54 @@
+[
+  {
+    "field": "ruleWeight",
+    "value": "11",
+    "result": "REJECTED_WITHOUT_MUTATION"
+  },
+  {
+    "field": "ruleWeight",
+    "value": "Infinity",
+    "result": "REJECTED_WITHOUT_MUTATION"
+  },
+  {
+    "field": "ruleWeight",
+    "value": "-1",
+    "result": "REJECTED_WITHOUT_MUTATION"
+  },
+  {
+    "field": "ruleWeight",
+    "value": "NaN",
+    "result": "REJECTED_WITHOUT_MUTATION"
+  },
+  {
+    "field": "domainWeight",
+    "value": "11",
+    "result": "REJECTED_WITHOUT_MUTATION"
+  },
+  {
+    "field": "domainWeight",
+    "value": "Infinity",
+    "result": "REJECTED_WITHOUT_MUTATION"
+  },
+  {
+    "field": "domainWeight",
+    "value": "-1",
+    "result": "REJECTED_WITHOUT_MUTATION"
+  },
+  {
+    "field": "domainWeight",
+    "value": "NaN",
+    "result": "REJECTED_WITHOUT_MUTATION"
+  },
+  {
+    "k": "fire",
+    "result": "DUPLICATE_REQUEST_NO_EXTRA_COST_OR_EVIDENCE"
+  },
+  {
+    "k": "wind",
+    "result": "DUPLICATE_REQUEST_NO_EXTRA_COST_OR_EVIDENCE"
+  },
+  {
+    "k": "press",
+    "result": "DUPLICATE_REQUEST_NO_EXTRA_COST_OR_EVIDENCE"
+  }
+]

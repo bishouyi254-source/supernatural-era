@@ -1,0 +1,1392 @@
+{
+  "scope": "isolated G1-C only, production available/act/validate; no normal acquisition or synthetic invulnerability",
+  "runs": [
+    {
+      "ownership": [
+        "fire",
+        "wind"
+      ],
+      "active": [
+        "fire",
+        "wind"
+      ],
+      "requested": 1,
+      "safelyClosed": 0,
+      "encountersEnded": 1,
+      "classification": "retreat with uncontrolled ghost; not safe completion",
+      "atStop": {
+        "tick": 4,
+        "life": 100,
+        "energy": 0,
+        "active": [
+          "player-ghost-fire",
+          "player-ghost-wind"
+        ],
+        "revival": {
+          "ghost-fire": 8,
+          "ghost-wind": 6
+        },
+        "persistentLoad": 5,
+        "states": {
+          "fire": "CLOSED",
+          "wind": "CONTROLLED",
+          "press": "CLOSED"
+        },
+        "crisis": false,
+        "death": "alive"
+      },
+      "after": {
+        "tick": 5,
+        "life": 100,
+        "energy": 0,
+        "active": [
+          "player-ghost-fire",
+          "player-ghost-wind"
+        ],
+        "revival": {
+          "ghost-fire": 8,
+          "ghost-wind": 6
+        },
+        "persistentLoad": 5,
+        "states": {
+          "fire": "CLOSED",
+          "wind": "UNCONTROLLED",
+          "press": "CLOSED"
+        },
+        "crisis": false,
+        "death": "alive"
+      },
+      "warning": "能量已耗尽：鬼风仍在作用，无法免费收束。可选择现有撤离行动，但离开时失去控制的灵异后果仍保留；不能计作安全完成本场。",
+      "trace": [
+        {
+          "action": "g1cp:fire:ignite",
+          "before": {
+            "tick": 0,
+            "life": 100,
+            "energy": 3,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-wind"
+            ],
+            "revival": {
+              "ghost-fire": 0,
+              "ghost-wind": 0
+            },
+            "persistentLoad": 0,
+            "states": {
+              "fire": "CLOSED",
+              "wind": "CLOSED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          },
+          "after": {
+            "tick": 1,
+            "life": 100,
+            "energy": 2,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-wind"
+            ],
+            "revival": {
+              "ghost-fire": 4,
+              "ghost-wind": 0
+            },
+            "persistentLoad": 2,
+            "states": {
+              "fire": "CONTROLLED",
+              "wind": "CLOSED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          }
+        },
+        {
+          "action": "g1cp:wind:raise",
+          "before": {
+            "tick": 1,
+            "life": 100,
+            "energy": 2,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-wind"
+            ],
+            "revival": {
+              "ghost-fire": 4,
+              "ghost-wind": 0
+            },
+            "persistentLoad": 2,
+            "states": {
+              "fire": "CONTROLLED",
+              "wind": "CLOSED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          },
+          "after": {
+            "tick": 2,
+            "life": 100,
+            "energy": 1,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-wind"
+            ],
+            "revival": {
+              "ghost-fire": 5,
+              "ghost-wind": 4
+            },
+            "persistentLoad": 4,
+            "states": {
+              "fire": "CONTROLLED",
+              "wind": "CONTROLLED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          }
+        },
+        {
+          "action": "combat:observe",
+          "before": {
+            "tick": 2,
+            "life": 100,
+            "energy": 1,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-wind"
+            ],
+            "revival": {
+              "ghost-fire": 5,
+              "ghost-wind": 4
+            },
+            "persistentLoad": 4,
+            "states": {
+              "fire": "CONTROLLED",
+              "wind": "CONTROLLED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          },
+          "after": {
+            "tick": 3,
+            "life": 100,
+            "energy": 1,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-wind"
+            ],
+            "revival": {
+              "ghost-fire": 6,
+              "ghost-wind": 5
+            },
+            "persistentLoad": 4,
+            "states": {
+              "fire": "CONTROLLED",
+              "wind": "CONTROLLED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          }
+        },
+        {
+          "action": "g1cp:fire:quench",
+          "before": {
+            "tick": 3,
+            "life": 100,
+            "energy": 1,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-wind"
+            ],
+            "revival": {
+              "ghost-fire": 6,
+              "ghost-wind": 5
+            },
+            "persistentLoad": 4,
+            "states": {
+              "fire": "CONTROLLED",
+              "wind": "CONTROLLED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          },
+          "after": {
+            "tick": 4,
+            "life": 100,
+            "energy": 0,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-wind"
+            ],
+            "revival": {
+              "ghost-fire": 8,
+              "ghost-wind": 6
+            },
+            "persistentLoad": 5,
+            "states": {
+              "fire": "CLOSED",
+              "wind": "CONTROLLED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          }
+        },
+        {
+          "action": "combat:retreat",
+          "before": {
+            "tick": 4,
+            "life": 100,
+            "energy": 0,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-wind"
+            ],
+            "revival": {
+              "ghost-fire": 8,
+              "ghost-wind": 6
+            },
+            "persistentLoad": 5,
+            "states": {
+              "fire": "CLOSED",
+              "wind": "CONTROLLED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          },
+          "after": {
+            "tick": 5,
+            "life": 100,
+            "energy": 0,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-wind"
+            ],
+            "revival": {
+              "ghost-fire": 8,
+              "ghost-wind": 6
+            },
+            "persistentLoad": 5,
+            "states": {
+              "fire": "CLOSED",
+              "wind": "UNCONTROLLED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          }
+        }
+      ]
+    },
+    {
+      "ownership": [
+        "fire",
+        "press"
+      ],
+      "active": [
+        "fire",
+        "press"
+      ],
+      "requested": 1,
+      "safelyClosed": 0,
+      "encountersEnded": 1,
+      "classification": "retreat with uncontrolled ghost; not safe completion",
+      "atStop": {
+        "tick": 4,
+        "life": 97,
+        "energy": 0,
+        "active": [
+          "player-ghost-fire",
+          "player-ghost-press"
+        ],
+        "revival": {
+          "ghost-fire": 8,
+          "ghost-press": 7
+        },
+        "persistentLoad": 5,
+        "states": {
+          "fire": "CLOSED",
+          "wind": "CLOSED",
+          "press": "CONTROLLED"
+        },
+        "crisis": false,
+        "death": "alive"
+      },
+      "after": {
+        "tick": 5,
+        "life": 97,
+        "energy": 0,
+        "active": [
+          "player-ghost-fire",
+          "player-ghost-press"
+        ],
+        "revival": {
+          "ghost-fire": 8,
+          "ghost-press": 7
+        },
+        "persistentLoad": 5,
+        "states": {
+          "fire": "CLOSED",
+          "wind": "CLOSED",
+          "press": "UNCONTROLLED"
+        },
+        "crisis": false,
+        "death": "alive"
+      },
+      "warning": "能量已耗尽：鬼压人仍在作用，无法免费收束。可选择现有撤离行动，但离开时失去控制的灵异后果仍保留；不能计作安全完成本场。",
+      "trace": [
+        {
+          "action": "g1cp:fire:ignite",
+          "before": {
+            "tick": 0,
+            "life": 100,
+            "energy": 3,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-press"
+            ],
+            "revival": {
+              "ghost-fire": 0,
+              "ghost-press": 0
+            },
+            "persistentLoad": 0,
+            "states": {
+              "fire": "CLOSED",
+              "wind": "CLOSED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          },
+          "after": {
+            "tick": 1,
+            "life": 100,
+            "energy": 2,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-press"
+            ],
+            "revival": {
+              "ghost-fire": 4,
+              "ghost-press": 0
+            },
+            "persistentLoad": 2,
+            "states": {
+              "fire": "CONTROLLED",
+              "wind": "CLOSED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          }
+        },
+        {
+          "action": "g1cp:press:fall",
+          "before": {
+            "tick": 1,
+            "life": 100,
+            "energy": 2,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-press"
+            ],
+            "revival": {
+              "ghost-fire": 4,
+              "ghost-press": 0
+            },
+            "persistentLoad": 2,
+            "states": {
+              "fire": "CONTROLLED",
+              "wind": "CLOSED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          },
+          "after": {
+            "tick": 2,
+            "life": 99,
+            "energy": 1,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-press"
+            ],
+            "revival": {
+              "ghost-fire": 5,
+              "ghost-press": 5
+            },
+            "persistentLoad": 4,
+            "states": {
+              "fire": "CONTROLLED",
+              "wind": "CLOSED",
+              "press": "CONTROLLED"
+            },
+            "crisis": false,
+            "death": "alive"
+          }
+        },
+        {
+          "action": "combat:observe",
+          "before": {
+            "tick": 2,
+            "life": 99,
+            "energy": 1,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-press"
+            ],
+            "revival": {
+              "ghost-fire": 5,
+              "ghost-press": 5
+            },
+            "persistentLoad": 4,
+            "states": {
+              "fire": "CONTROLLED",
+              "wind": "CLOSED",
+              "press": "CONTROLLED"
+            },
+            "crisis": false,
+            "death": "alive"
+          },
+          "after": {
+            "tick": 3,
+            "life": 98,
+            "energy": 1,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-press"
+            ],
+            "revival": {
+              "ghost-fire": 6,
+              "ghost-press": 6
+            },
+            "persistentLoad": 4,
+            "states": {
+              "fire": "CONTROLLED",
+              "wind": "CLOSED",
+              "press": "CONTROLLED"
+            },
+            "crisis": false,
+            "death": "alive"
+          }
+        },
+        {
+          "action": "g1cp:fire:quench",
+          "before": {
+            "tick": 3,
+            "life": 98,
+            "energy": 1,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-press"
+            ],
+            "revival": {
+              "ghost-fire": 6,
+              "ghost-press": 6
+            },
+            "persistentLoad": 4,
+            "states": {
+              "fire": "CONTROLLED",
+              "wind": "CLOSED",
+              "press": "CONTROLLED"
+            },
+            "crisis": false,
+            "death": "alive"
+          },
+          "after": {
+            "tick": 4,
+            "life": 97,
+            "energy": 0,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-press"
+            ],
+            "revival": {
+              "ghost-fire": 8,
+              "ghost-press": 7
+            },
+            "persistentLoad": 5,
+            "states": {
+              "fire": "CLOSED",
+              "wind": "CLOSED",
+              "press": "CONTROLLED"
+            },
+            "crisis": false,
+            "death": "alive"
+          }
+        },
+        {
+          "action": "combat:retreat",
+          "before": {
+            "tick": 4,
+            "life": 97,
+            "energy": 0,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-press"
+            ],
+            "revival": {
+              "ghost-fire": 8,
+              "ghost-press": 7
+            },
+            "persistentLoad": 5,
+            "states": {
+              "fire": "CLOSED",
+              "wind": "CLOSED",
+              "press": "CONTROLLED"
+            },
+            "crisis": false,
+            "death": "alive"
+          },
+          "after": {
+            "tick": 5,
+            "life": 97,
+            "energy": 0,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-press"
+            ],
+            "revival": {
+              "ghost-fire": 8,
+              "ghost-press": 7
+            },
+            "persistentLoad": 5,
+            "states": {
+              "fire": "CLOSED",
+              "wind": "CLOSED",
+              "press": "UNCONTROLLED"
+            },
+            "crisis": false,
+            "death": "alive"
+          }
+        }
+      ]
+    },
+    {
+      "ownership": [
+        "wind",
+        "press"
+      ],
+      "active": [
+        "wind",
+        "press"
+      ],
+      "requested": 1,
+      "safelyClosed": 0,
+      "encountersEnded": 1,
+      "classification": "retreat with uncontrolled ghost; not safe completion",
+      "atStop": {
+        "tick": 4,
+        "life": 97,
+        "energy": 0,
+        "active": [
+          "player-ghost-wind",
+          "player-ghost-press"
+        ],
+        "revival": {
+          "ghost-wind": 8,
+          "ghost-press": 7
+        },
+        "persistentLoad": 5,
+        "states": {
+          "fire": "CLOSED",
+          "wind": "CLOSED",
+          "press": "CONTROLLED"
+        },
+        "crisis": false,
+        "death": "alive"
+      },
+      "after": {
+        "tick": 5,
+        "life": 97,
+        "energy": 0,
+        "active": [
+          "player-ghost-wind",
+          "player-ghost-press"
+        ],
+        "revival": {
+          "ghost-wind": 8,
+          "ghost-press": 7
+        },
+        "persistentLoad": 5,
+        "states": {
+          "fire": "CLOSED",
+          "wind": "CLOSED",
+          "press": "UNCONTROLLED"
+        },
+        "crisis": false,
+        "death": "alive"
+      },
+      "warning": "能量已耗尽：鬼压人仍在作用，无法免费收束。可选择现有撤离行动，但离开时失去控制的灵异后果仍保留；不能计作安全完成本场。",
+      "trace": [
+        {
+          "action": "g1cp:wind:raise",
+          "before": {
+            "tick": 0,
+            "life": 100,
+            "energy": 3,
+            "active": [
+              "player-ghost-wind",
+              "player-ghost-press"
+            ],
+            "revival": {
+              "ghost-wind": 0,
+              "ghost-press": 0
+            },
+            "persistentLoad": 0,
+            "states": {
+              "fire": "CLOSED",
+              "wind": "CLOSED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          },
+          "after": {
+            "tick": 1,
+            "life": 100,
+            "energy": 2,
+            "active": [
+              "player-ghost-wind",
+              "player-ghost-press"
+            ],
+            "revival": {
+              "ghost-wind": 4,
+              "ghost-press": 0
+            },
+            "persistentLoad": 2,
+            "states": {
+              "fire": "CLOSED",
+              "wind": "CONTROLLED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          }
+        },
+        {
+          "action": "g1cp:press:fall",
+          "before": {
+            "tick": 1,
+            "life": 100,
+            "energy": 2,
+            "active": [
+              "player-ghost-wind",
+              "player-ghost-press"
+            ],
+            "revival": {
+              "ghost-wind": 4,
+              "ghost-press": 0
+            },
+            "persistentLoad": 2,
+            "states": {
+              "fire": "CLOSED",
+              "wind": "CONTROLLED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          },
+          "after": {
+            "tick": 2,
+            "life": 99,
+            "energy": 1,
+            "active": [
+              "player-ghost-wind",
+              "player-ghost-press"
+            ],
+            "revival": {
+              "ghost-wind": 5,
+              "ghost-press": 5
+            },
+            "persistentLoad": 4,
+            "states": {
+              "fire": "CLOSED",
+              "wind": "CONTROLLED",
+              "press": "CONTROLLED"
+            },
+            "crisis": false,
+            "death": "alive"
+          }
+        },
+        {
+          "action": "combat:observe",
+          "before": {
+            "tick": 2,
+            "life": 99,
+            "energy": 1,
+            "active": [
+              "player-ghost-wind",
+              "player-ghost-press"
+            ],
+            "revival": {
+              "ghost-wind": 5,
+              "ghost-press": 5
+            },
+            "persistentLoad": 4,
+            "states": {
+              "fire": "CLOSED",
+              "wind": "CONTROLLED",
+              "press": "CONTROLLED"
+            },
+            "crisis": false,
+            "death": "alive"
+          },
+          "after": {
+            "tick": 3,
+            "life": 98,
+            "energy": 1,
+            "active": [
+              "player-ghost-wind",
+              "player-ghost-press"
+            ],
+            "revival": {
+              "ghost-wind": 6,
+              "ghost-press": 6
+            },
+            "persistentLoad": 4,
+            "states": {
+              "fire": "CLOSED",
+              "wind": "CONTROLLED",
+              "press": "CONTROLLED"
+            },
+            "crisis": false,
+            "death": "alive"
+          }
+        },
+        {
+          "action": "g1cp:wind:calm",
+          "before": {
+            "tick": 3,
+            "life": 98,
+            "energy": 1,
+            "active": [
+              "player-ghost-wind",
+              "player-ghost-press"
+            ],
+            "revival": {
+              "ghost-wind": 6,
+              "ghost-press": 6
+            },
+            "persistentLoad": 4,
+            "states": {
+              "fire": "CLOSED",
+              "wind": "CONTROLLED",
+              "press": "CONTROLLED"
+            },
+            "crisis": false,
+            "death": "alive"
+          },
+          "after": {
+            "tick": 4,
+            "life": 97,
+            "energy": 0,
+            "active": [
+              "player-ghost-wind",
+              "player-ghost-press"
+            ],
+            "revival": {
+              "ghost-wind": 8,
+              "ghost-press": 7
+            },
+            "persistentLoad": 5,
+            "states": {
+              "fire": "CLOSED",
+              "wind": "CLOSED",
+              "press": "CONTROLLED"
+            },
+            "crisis": false,
+            "death": "alive"
+          }
+        },
+        {
+          "action": "combat:retreat",
+          "before": {
+            "tick": 4,
+            "life": 97,
+            "energy": 0,
+            "active": [
+              "player-ghost-wind",
+              "player-ghost-press"
+            ],
+            "revival": {
+              "ghost-wind": 8,
+              "ghost-press": 7
+            },
+            "persistentLoad": 5,
+            "states": {
+              "fire": "CLOSED",
+              "wind": "CLOSED",
+              "press": "CONTROLLED"
+            },
+            "crisis": false,
+            "death": "alive"
+          },
+          "after": {
+            "tick": 5,
+            "life": 97,
+            "energy": 0,
+            "active": [
+              "player-ghost-wind",
+              "player-ghost-press"
+            ],
+            "revival": {
+              "ghost-wind": 8,
+              "ghost-press": 7
+            },
+            "persistentLoad": 5,
+            "states": {
+              "fire": "CLOSED",
+              "wind": "CLOSED",
+              "press": "UNCONTROLLED"
+            },
+            "crisis": false,
+            "death": "alive"
+          }
+        }
+      ]
+    },
+    {
+      "ownership": [
+        "fire",
+        "wind",
+        "press"
+      ],
+      "active": [
+        "fire",
+        "wind"
+      ],
+      "requested": 1,
+      "safelyClosed": 0,
+      "encountersEnded": 1,
+      "classification": "retreat with uncontrolled ghost; not safe completion",
+      "atStop": {
+        "tick": 4,
+        "life": 100,
+        "energy": 0,
+        "active": [
+          "player-ghost-fire",
+          "player-ghost-wind"
+        ],
+        "revival": {
+          "ghost-fire": 8,
+          "ghost-wind": 6,
+          "ghost-press": 0
+        },
+        "persistentLoad": 5,
+        "states": {
+          "fire": "CLOSED",
+          "wind": "CONTROLLED",
+          "press": "CLOSED"
+        },
+        "crisis": false,
+        "death": "alive"
+      },
+      "after": {
+        "tick": 5,
+        "life": 100,
+        "energy": 0,
+        "active": [
+          "player-ghost-fire",
+          "player-ghost-wind"
+        ],
+        "revival": {
+          "ghost-fire": 8,
+          "ghost-wind": 6,
+          "ghost-press": 0
+        },
+        "persistentLoad": 5,
+        "states": {
+          "fire": "CLOSED",
+          "wind": "UNCONTROLLED",
+          "press": "CLOSED"
+        },
+        "crisis": false,
+        "death": "alive"
+      },
+      "warning": "能量已耗尽：鬼风仍在作用，无法免费收束。可选择现有撤离行动，但离开时失去控制的灵异后果仍保留；不能计作安全完成本场。",
+      "trace": [
+        {
+          "action": "g1cp:fire:ignite",
+          "before": {
+            "tick": 0,
+            "life": 100,
+            "energy": 3,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-wind"
+            ],
+            "revival": {
+              "ghost-fire": 0,
+              "ghost-wind": 0,
+              "ghost-press": 0
+            },
+            "persistentLoad": 0,
+            "states": {
+              "fire": "CLOSED",
+              "wind": "CLOSED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          },
+          "after": {
+            "tick": 1,
+            "life": 100,
+            "energy": 2,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-wind"
+            ],
+            "revival": {
+              "ghost-fire": 4,
+              "ghost-wind": 0,
+              "ghost-press": 0
+            },
+            "persistentLoad": 2,
+            "states": {
+              "fire": "CONTROLLED",
+              "wind": "CLOSED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          }
+        },
+        {
+          "action": "g1cp:wind:raise",
+          "before": {
+            "tick": 1,
+            "life": 100,
+            "energy": 2,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-wind"
+            ],
+            "revival": {
+              "ghost-fire": 4,
+              "ghost-wind": 0,
+              "ghost-press": 0
+            },
+            "persistentLoad": 2,
+            "states": {
+              "fire": "CONTROLLED",
+              "wind": "CLOSED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          },
+          "after": {
+            "tick": 2,
+            "life": 100,
+            "energy": 1,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-wind"
+            ],
+            "revival": {
+              "ghost-fire": 5,
+              "ghost-wind": 4,
+              "ghost-press": 0
+            },
+            "persistentLoad": 4,
+            "states": {
+              "fire": "CONTROLLED",
+              "wind": "CONTROLLED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          }
+        },
+        {
+          "action": "combat:observe",
+          "before": {
+            "tick": 2,
+            "life": 100,
+            "energy": 1,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-wind"
+            ],
+            "revival": {
+              "ghost-fire": 5,
+              "ghost-wind": 4,
+              "ghost-press": 0
+            },
+            "persistentLoad": 4,
+            "states": {
+              "fire": "CONTROLLED",
+              "wind": "CONTROLLED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          },
+          "after": {
+            "tick": 3,
+            "life": 100,
+            "energy": 1,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-wind"
+            ],
+            "revival": {
+              "ghost-fire": 6,
+              "ghost-wind": 5,
+              "ghost-press": 0
+            },
+            "persistentLoad": 4,
+            "states": {
+              "fire": "CONTROLLED",
+              "wind": "CONTROLLED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          }
+        },
+        {
+          "action": "g1cp:fire:quench",
+          "before": {
+            "tick": 3,
+            "life": 100,
+            "energy": 1,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-wind"
+            ],
+            "revival": {
+              "ghost-fire": 6,
+              "ghost-wind": 5,
+              "ghost-press": 0
+            },
+            "persistentLoad": 4,
+            "states": {
+              "fire": "CONTROLLED",
+              "wind": "CONTROLLED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          },
+          "after": {
+            "tick": 4,
+            "life": 100,
+            "energy": 0,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-wind"
+            ],
+            "revival": {
+              "ghost-fire": 8,
+              "ghost-wind": 6,
+              "ghost-press": 0
+            },
+            "persistentLoad": 5,
+            "states": {
+              "fire": "CLOSED",
+              "wind": "CONTROLLED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          }
+        },
+        {
+          "action": "combat:retreat",
+          "before": {
+            "tick": 4,
+            "life": 100,
+            "energy": 0,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-wind"
+            ],
+            "revival": {
+              "ghost-fire": 8,
+              "ghost-wind": 6,
+              "ghost-press": 0
+            },
+            "persistentLoad": 5,
+            "states": {
+              "fire": "CLOSED",
+              "wind": "CONTROLLED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          },
+          "after": {
+            "tick": 5,
+            "life": 100,
+            "energy": 0,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-wind"
+            ],
+            "revival": {
+              "ghost-fire": 8,
+              "ghost-wind": 6,
+              "ghost-press": 0
+            },
+            "persistentLoad": 5,
+            "states": {
+              "fire": "CLOSED",
+              "wind": "UNCONTROLLED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          }
+        }
+      ]
+    },
+    {
+      "ownership": [
+        "fire",
+        "press"
+      ],
+      "playerTallest": true,
+      "requested": 1,
+      "safelyClosed": 0,
+      "encountersEnded": 0,
+      "classification": "trapped player: legal struggle performed, no guaranteed escape",
+      "atStop": {
+        "tick": 3,
+        "life": 83,
+        "energy": 0,
+        "active": [
+          "player-ghost-fire",
+          "player-ghost-press"
+        ],
+        "revival": {
+          "ghost-fire": 6,
+          "ghost-press": 5
+        },
+        "persistentLoad": 5,
+        "states": {
+          "fire": "CLOSED",
+          "wind": "CLOSED",
+          "press": "CONTROLLED"
+        },
+        "crisis": false,
+        "death": "alive"
+      },
+      "after": {
+        "tick": 4,
+        "life": 74,
+        "energy": 0,
+        "active": [
+          "player-ghost-fire",
+          "player-ghost-press"
+        ],
+        "revival": {
+          "ghost-fire": 6,
+          "ghost-press": 6
+        },
+        "persistentLoad": 5,
+        "states": {
+          "fire": "CLOSED",
+          "wind": "CLOSED",
+          "press": "CONTROLLED"
+        },
+        "crisis": false,
+        "death": "alive"
+      },
+      "warning": "能量已耗尽：鬼压人仍在作用，且身体被鬼压人压制。不能免费解除或撤离；仅可按现有合法清单尝试普通力量挣脱／观察，失败仍推进敌方危险与复苏。不是测试通过状态。",
+      "trace": [
+        {
+          "action": "g1cp:fire:ignite",
+          "before": {
+            "tick": 0,
+            "life": 100,
+            "energy": 3,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-press"
+            ],
+            "revival": {
+              "ghost-fire": 0,
+              "ghost-press": 0
+            },
+            "persistentLoad": 0,
+            "states": {
+              "fire": "CLOSED",
+              "wind": "CLOSED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          },
+          "after": {
+            "tick": 1,
+            "life": 100,
+            "energy": 2,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-press"
+            ],
+            "revival": {
+              "ghost-fire": 4,
+              "ghost-press": 0
+            },
+            "persistentLoad": 2,
+            "states": {
+              "fire": "CONTROLLED",
+              "wind": "CLOSED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          }
+        },
+        {
+          "action": "g1cp:fire:quench",
+          "before": {
+            "tick": 1,
+            "life": 100,
+            "energy": 2,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-press"
+            ],
+            "revival": {
+              "ghost-fire": 4,
+              "ghost-press": 0
+            },
+            "persistentLoad": 2,
+            "states": {
+              "fire": "CONTROLLED",
+              "wind": "CLOSED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          },
+          "after": {
+            "tick": 2,
+            "life": 92,
+            "energy": 1,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-press"
+            ],
+            "revival": {
+              "ghost-fire": 6,
+              "ghost-press": 0
+            },
+            "persistentLoad": 3,
+            "states": {
+              "fire": "CLOSED",
+              "wind": "CLOSED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          }
+        },
+        {
+          "action": "g1cp:press:fall",
+          "before": {
+            "tick": 2,
+            "life": 92,
+            "energy": 1,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-press"
+            ],
+            "revival": {
+              "ghost-fire": 6,
+              "ghost-press": 0
+            },
+            "persistentLoad": 3,
+            "states": {
+              "fire": "CLOSED",
+              "wind": "CLOSED",
+              "press": "CLOSED"
+            },
+            "crisis": false,
+            "death": "alive"
+          },
+          "after": {
+            "tick": 3,
+            "life": 83,
+            "energy": 0,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-press"
+            ],
+            "revival": {
+              "ghost-fire": 6,
+              "ghost-press": 5
+            },
+            "persistentLoad": 5,
+            "states": {
+              "fire": "CLOSED",
+              "wind": "CLOSED",
+              "press": "CONTROLLED"
+            },
+            "crisis": false,
+            "death": "alive"
+          }
+        },
+        {
+          "action": "combat:force",
+          "before": {
+            "tick": 3,
+            "life": 83,
+            "energy": 0,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-press"
+            ],
+            "revival": {
+              "ghost-fire": 6,
+              "ghost-press": 5
+            },
+            "persistentLoad": 5,
+            "states": {
+              "fire": "CLOSED",
+              "wind": "CLOSED",
+              "press": "CONTROLLED"
+            },
+            "crisis": false,
+            "death": "alive"
+          },
+          "after": {
+            "tick": 4,
+            "life": 74,
+            "energy": 0,
+            "active": [
+              "player-ghost-fire",
+              "player-ghost-press"
+            ],
+            "revival": {
+              "ghost-fire": 6,
+              "ghost-press": 6
+            },
+            "persistentLoad": 5,
+            "states": {
+              "fire": "CLOSED",
+              "wind": "CLOSED",
+              "press": "CONTROLLED"
+            },
+            "crisis": false,
+            "death": "alive"
+          }
+        }
+      ]
+    }
+  ],
+  "node": "v24.22.1",
+  "successfulAssertions": true
+}

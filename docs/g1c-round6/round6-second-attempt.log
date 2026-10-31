@@ -1,0 +1,76 @@
+✔ v1.0 fire stage0 focus=false: effective weight 3 (117.7877ms)
+✔ v1.0 fire stage1 focus=true: effective weight 4 (169.1547ms)
+✔ v1.0 fire stage2 focus=false: effective weight 4 (299.7205ms)
+✔ v1.0 fire stage2 focus=true: effective weight 5 (270.4873ms)
+✔ v1.0 wind stage0 focus=false: effective weight 3 (41.0552ms)
+✔ v1.0 wind stage1 focus=false: effective weight 4 (132.8493ms)
+✔ v1.0 wind stage2 focus=false: effective weight 4 (270.1641ms)
+✔ v1.0 wind stage2 focus=true: effective weight 5 (280.3649ms)
+✔ v1.0 press stage0 focus=false: effective weight 3 (47.2668ms)
+✔ v1.0 press stage1 focus=false: effective weight 4 (142.5906ms)
+✔ v1.0 press stage2 focus=false: effective weight 4 (247.0287ms)
+✔ v1.0 press stage2 focus=true: effective weight 5 (242.9361ms)
+✔ F2 domain buff requires burnable spirit; body gets only the legal F1 focus (762.1697ms)
+✔ W1/W2 never turn a body attack with domainWeight into a domain action (237.5008ms)
+✔ fire: stage and focus additions cap at10, equality stays partial (251.8627ms)
+✔ wind: stage and focus additions cap at10, equality stays partial (251.6224ms)
+✔ press: stage and focus additions cap at10, equality stays partial (249.0642ms)
+✔ two partial interceptions apply ceil(original damage/2) only once (84.3596ms)
+✖ first full block stops later ghosts from earning duplicate success/research (76.8735ms)
+✖ failed fire retains its failure evidence when a later wind fully blocks (75.4108ms)
+✔ re-entering the same resolved engine action cannot create more evidence or movement (45.8237ms)
+✔ one source action cannot buy two research stages through burn/domain projections (210.4696ms)
+✔ P1/P2 cease on tie, moved target or invalid body; no retargeting or free intensify (726.8486ms)
+✔ F1/W2 target lock never transfers to a different current source (513.3755ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 22
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6039.6341
+
+✖ failing tests:
+
+test at tests\g1c-round6.test.mjs:44:1
+✖ first full block stops later ghosts from earning duplicate success/research (76.8735ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  2 !== 1
+  
+      at TestContext.<anonymous> (file:///C:/Users/ziho/Documents/Codex/2026-10-31/referenced-chatgpt-conversation-this-is-an/work/g1c-round6/tests/g1c-round6.test.mjs:46:34)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\g1c-round6.test.mjs:50:1
+✖ failed fire retains its failure evidence when a later wind fully blocks (75.4108ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  2 !== 1
+  
+      at TestContext.<anonymous> (file:///C:/Users/ziho/Documents/Codex/2026-10-31/referenced-chatgpt-conversation-this-is-an/work/g1c-round6/tests/g1c-round6.test.mjs:54:161)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

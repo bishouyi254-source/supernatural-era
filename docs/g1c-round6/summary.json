@@ -1,0 +1,92 @@
+{
+  "baseline": "18d6064a1ce230e55c088f3c137d43e2975fca19",
+  "main": "f4c326f0df1bf1a38052ac865f28b722a8f88664",
+  "date": "2026-10-31",
+  "timezone": "America/New_York",
+  "nodeVersion": "v24.22.1",
+  "gitVersion": "git version 2.53.0.windows.3",
+  "node": {
+    "node-full.log": {
+      "tests": 1324,
+      "pass": 1324,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "g1c-focused.log": {
+      "tests": 101,
+      "pass": 101,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "legacy-ghosts.log": {
+      "tests": 150,
+      "pass": 150,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "potential-death.log": {
+      "tests": 19,
+      "pass": 19,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    }
+  },
+  "countsOverlap": "Focused suites are subsets of full Node; do not sum.",
+  "browser": {
+    "version": "156.0.8078.74",
+    "checks": 540,
+    "actualActions": 147,
+    "errors": 0,
+    "edgeScenarios": 6,
+    "edgeErrors": 0,
+    "characterViewports": 4,
+    "realPhone": false,
+    "v1Scenarios": 30,
+    "v1Actions": 60,
+    "boundaryChecks": 11
+  },
+  "stress": {
+    "groups": 33,
+    "requested": 385,
+    "completed": 225,
+    "groupsReached": 18,
+    "energyFailureAttempts": 12,
+    "predictedRevivalRejections": 3,
+    "unexecuted": 145
+  },
+  "source": {
+    "events": 17,
+    "records": 6,
+    "formalEligible": 0,
+    "compatibility": {
+      "priorRoundLossValid": true,
+      "roundtripValid": true,
+      "sourceUnchanged": true,
+      "unknownLocationFailClosed": true
+    }
+  },
+  "formalAcceptance": "BLOCKED_MISSING_APPROVED_GDD_AND_REAL_SOURCE",
+  "acquisition": "LOCKED",
+  "observedFailures": [
+    "New test first attempt: 7 assertion failures; second attempt: 2; corrected action deltas and historical evidence scope.",
+    "Legacy browser scripts initially lacked Playwright module and Chrome path; retained launch errors, then reran with installed runtime."
+  ],
+  "remoteBaseline": {
+    "sha": "18d6064a1ce230e55c088f3c137d43e2975fca19",
+    "runs": [
+      41165032033,
+      41165032041
+    ],
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "remoteRound6": "NOT_UPLOADED_PENDING_USER_CONFIRMATION"
+}

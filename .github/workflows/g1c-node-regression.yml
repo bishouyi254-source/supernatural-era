@@ -19,6 +19,8 @@ jobs:
         run: node --test tests/g1c-energy-closure.test.mjs
       - name: Fifth-round fail-closed source contracts and persistent consequences
         run: node --test tests/g1c-round5.test.mjs
+      - name: Sixth-round stage weights, cap and shared-action regression
+        run: node --test tests/g1c-round6.test.mjs
       - name: All checked-in Node regression tests
         run: node --test tests/*.test.mjs
       - name: G1-C actual zero-energy closure and 33 scenario replay
@@ -28,6 +30,7 @@ jobs:
           node scripts/g1c-closure-audit.mjs
           node scripts/g1c-audit.mjs --stress-only
           node scripts/g1c-source-audit.mjs
+          node scripts/g1c-round6-boundary.mjs
       - name: Preserve objective replay outputs for review
         if: always()
         uses: actions/upload-artifact@v4
@@ -78,6 +81,13 @@ jobs:
           G1C_URL: http://127.0.0.1:4353
           G1C_EDGE_OUTPUT: ./tmp-g1c-edges
         run: node scripts/g1c-round4-browser.mjs
+      - name: Sixth-round stage buffs in desktop and mobile Chromium viewports
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+          PLAYWRIGHT_MODULE: playwright
+          G1C_URL: http://127.0.0.1:4353
+          G1C_OUTPUT: ./tmp-g1c-browser
+        run: node scripts/g1c-round6-browser.mjs
       - name: Stage browser report inside the checked-out workspace
         if: always()
         shell: bash
@@ -100,5 +110,6 @@ jobs:
           path: |
             ci-browser-evidence
             tmp-g1c-edges
+            tmp-g1c-browser/browser-v1.json
           retention-days: 14
           if-no-files-found: warn

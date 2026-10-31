@@ -1,0 +1,27 @@
+✔ new character retains five independent creation fields and a valid v2 save (102.12ms)
+✔ legacy v2 without traits upgrades without erasing existing save fields (10.4286ms)
+✔ immediate deaths with no recorded progress never award potential (2.6493ms)
+✔ death evaluation counts existing progression evidence, not UI claims (2.552ms)
+✔ same finalized run never awards death points twice (2.0596ms)
+✔ points separately increase host slots and mental potential (9.8341ms)
+✔ next life resets ghosts and story but inherits paid potential (32.0709ms)
+✔ mental casts refund energy at most once per remaining charge without suppressing revival (4.4863ms)
+✔ development potential never reduces legacy development that was already earned (4.7369ms)
+✔ death allocation cannot occur before death is finalized (1.9242ms)
+✔ real engine death:commit grants exactly one reward with no free resurrection (100.7357ms)
+✔ round4 fire: mental refund follows full independent revival and load cost (500.1604ms)
+✔ round4 wind: mental refund follows full independent revival and load cost (118.2192ms)
+✔ round4 press: mental refund follows full independent revival and load cost (132.9403ms)
+✔ round4 mental rule bonus affects actual domain contest but pays revival (371.9103ms)
+✔ round4 maximum mental potential never bypasses fire backlash or revival crisis (597.4758ms)
+✔ round4 G1-C death commits once, survives reload, allocates points and inherits no ghosts (75.3083ms)
+✔ round4 legacy isolated holder above default slots remains valid without ordinary eligibility (224.918ms)
+✔ round4 maximum constitution grants no G1-C ownership or ordinary actions (4.8372ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4551.6747

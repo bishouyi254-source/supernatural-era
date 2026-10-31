@@ -14,8 +14,21 @@ export const G1C_COSTS=Object.freeze({
  raise:[1,3,2],invade:[1,5,3],calm:[1,2,1],
  fall:[1,4,2],intensify:[1,5,3],lift:[1,2,1]});
 const contexts=new WeakMap();
+const resolvedActions=new WeakMap();
 const own=(s,k)=>s.spirits.find(g=>g.id===s.g1c?.[k]?.actorId&&g.sourceId===G1C_SOURCES[k]);
-const has=(v,type)=>v.evidence.some(e=>e.type===type);
+const requirements={fire:[['burned','burn-resisted'],['domain-contest']],wind:[['interfered','interference-resisted'],['domain-contest']],press:[['tallest-verified'],['action-suppressed']]};
+// One engine action cannot fund two stages through different fact projections.
+const evidenceKey=e=>e.data.actionId||[e.battleId,e.tick,e.data.targetId].join(':');
+function researchEvidence(records,k,stage){
+ const used=new Set();
+ for(const learned of records.filter(e=>e.type==='researched')){
+  const prior=records.filter(e=>e.seq<learned.seq&&(learned.data.evidenceSeq===undefined||!used.has(evidenceKey(e)))&&requirements[k][learned.data.stage-1].includes(e.type));
+  const chosen=learned.data.evidenceSeq===undefined?prior[0]:prior.find(e=>e.seq===learned.data.evidenceSeq);
+  if(!chosen)return null;
+  used.add(evidenceKey(chosen));
+ }
+ return records.find(e=>!used.has(evidenceKey(e))&&requirements[k][stage-1].includes(e.type))||null;
+}
 const battle=s=>s.combat?.g1cBattleId||null;
 const region=s=>s.combat?.position||null;
 const integer=(v,max=1e9)=>Number.isInteger(v)&&v>=0&&v<=max;
@@ -40,6 +53,15 @@ function enabled(s,k){
  const g=own(s,k);return !!g&&activeIds(s).includes(g.id)&&!revivalCrisisFor(s,g)&&!ruleBlocked(s,g.id)&&!s.systems.combinations.some(v=>v.disabledId===g.id);
 }
 function weight(s,k){const g=own(s,k);return g?Math.min(10,v1Ward(s,g,s.combat?.eventId||'blood')+mentalRuleBonus(s)):0;}
+// Qualified current actions only; every addition shares the final cap.
+function effectiveWeight(s,k,{targetId=null,domain=false,pressure=false,amplified=false}={}){
+ const v=s.g1c[k];let bonus=0;
+ if(k==='fire')bonus=(v.stage>=1&&v.targetId===targetId?1:0)+(v.stage>=2&&domain?1:0);
+ if(k==='wind')bonus=(v.stage>=1&&domain?1:0)+(v.stage>=2&&domain&&v.targetId===targetId?1:0);
+ if(k==='press'&&pressure)bonus=(v.stage>=1?1:0)+(v.stage>=2&&amplified?1:0);
+ return Math.min(10,weight(s,k)+bonus);
+}
+const pressureWeight=(s,c,amplified=s.g1c.press.amplified)=>effectiveWeight(s,'press',{pressure:pressureValid(s,c),amplified});
 function affordable(s,k,verb){
  if(!enabled(s,k)||s.energy<G1C_COSTS[verb][0])return false;
  const p=structuredClone(s),g=own(p,k);p.g1c.load+=G1C_COSTS[verb][2];
@@ -72,10 +94,10 @@ export function g1cFilter(s,actions){
 const inBattle=(s,v)=>s.combat&&v.battleId===battle(s)&&v.state==='CONTROLLED';
 const live=(s,k)=>inBattle(s,s.g1c[k])&&enabled(s,k);
 const pressureValid=(s,c)=>live(s,'press')&&s.g1c.press.region===region(s)&&tallest(s,c)?.id===s.g1c.press.targetId;
-export const g1cBodyBlocked=(s,c)=>!!s.g1c&&pressureValid(s,c)&&s.g1c.press.targetId==='player-body'&&ruleContest(weight(s,'press')+(s.g1c.press.amplified?1:0),c.playerRuleWeight)==='blocked';
+export const g1cBodyBlocked=(s,c)=>!!s.g1c&&pressureValid(s,c)&&s.g1c.press.targetId==='player-body'&&ruleContest(pressureWeight(s,c),c.playerRuleWeight)==='blocked';
 export function g1cStruggle(s,action,c){
  if(action!=='combat:force'||!g1cBodyBlocked(s,c))return;
- const v=s.g1c.press,result=ruleContest(c.playerRuleWeight,weight(s,'press')+(v.amplified?1:0));
+ const v=s.g1c.press,result=ruleContest(c.playerRuleWeight,pressureWeight(s,c));
  fact(s,'press',result==='blocked'?'escaped':'action-suppressed',{targetId:'player-body',result,actionType:'body'});
  if(result==='blocked'){v.state='CLOSED';v.battleId=null;v.region=null;v.targetId=null;v.amplified=false;}
 }
@@ -114,11 +136,9 @@ export function g1cAvailable(s,c){
   }
  }
  if(!s.combat&&s.scene==='hub'){
-  const requirements={fire:[['burned','burn-resisted'],['domain-contest']],wind:[['interfered','interference-resisted'],['domain-contest']],press:[['tallest-verified'],['action-suppressed']]};
   for(const k of Object.keys(G1C_SOURCES)){
    const v=x[k];if(!enabled(s,k)||v.stage>=2)continue;
-   const r=requirements[k][v.stage];
-   if(v.stage===0?r.some(t=>has(v,t)):r.every(t=>has(v,t)))out.push(`g1cp:${k}:research:${v.stage+1}`);
+   if(researchEvidence(v.evidence,k,v.stage+1))out.push(`g1cp:${k}:research:${v.stage+1}`);
   }
  }
  return out;
@@ -129,7 +149,7 @@ function pay(s,k,verb){
 }
 export function applyG1C(s,action,c){
  const [,k,verb,...tail]=action.split(':'),v=s.g1c[k],id=tail.join(':');
- if(verb==='research'){v.stage++;fact(s,k,'researched',{stage:v.stage});s.journal.push(g1cLabel(action)+'：只确认已记录的真实规律，高阶拼图仍锁定。');return {used:null,usage:0};}
+ if(verb==='research'){const e=researchEvidence(v.evidence,k,v.stage+1);v.stage++;fact(s,k,'researched',{stage:v.stage,evidenceSeq:e.seq});s.journal.push(g1cLabel(action)+'：只确认已记录的真实规律，高阶拼图仍锁定。');return {used:null,usage:0};}
  const cost=pay(s,k,verb),t=sourceTarget(s,c);
  if(verb==='ignite'||verb==='raise'){
   v.state='CONTROLLED';v.battleId=battle(s);v.region=region(s);fact(s,k,'manifested',{region:v.region});
@@ -154,7 +174,7 @@ export function applyG1C(s,action,c){
  }
  if(k==='press'&&verb==='intensify'){
   const opponent=v.targetId==='player-body'?c.playerRuleWeight:targets(s,c).find(t=>t.id===v.targetId)?.ruleWeight;
-  const contest=ruleContest(weight(s,k),opponent);
+  const contest=ruleContest(pressureWeight(s,c,true),opponent);
   v.amplified=contest!=='failed';fact(s,k,'pressure-contest',{targetId:v.targetId,result:contest,amplified:true});
  }
  s.journal.push(g1cLabel(action)+'：实际行动已付费；未获得额外厉鬼或剧情资格。');return cost;
@@ -170,11 +190,14 @@ export function g1cIntent(s,r,intent){
 export function g1cEnemy(s,r,intent,log){
  const c=contexts.get(s),x=s.g1c,t=sourceTarget(s,c);
  if(!x||!g1cAllowed(s,c)||!s.combat||!intent?.g1cTyped||intent.cancelled||intent.simulation||!t||t.id!==r.instanceId||intent.sourceId!==t.id)return false;
+ const actionId=[battle(s),s.combat.clock,t.id].join(':');
+ const previous=resolvedActions.get(s);
+ if(previous?.actionId===actionId){intent.damage=previous.damage;return previous.intercepted;}
  const recordAction=(a,blocked)=>{const v=x.participantActions[a.id]??={attempts:0,blocked:0,completed:0};v.attempts++;v[blocked?'blocked':'completed']++;if(!blocked&&a.action.moveTo)x.positions[a.id]=a.action.moveTo;};
  // Typed allies have their own initiative and movement. Pressure prevents the actual move.
  for(const a of targets(s,c).filter(a=>a.faction==='ally'&&a.action)){
   let blocked=false;
-  if(pressureValid(s,c)&&x.press.targetId===a.id){const result=ruleContest(weight(s,'press')+(x.press.amplified?1:0),a.ruleWeight);
+  if(pressureValid(s,c)&&x.press.targetId===a.id){const result=ruleContest(pressureWeight(s,c),a.ruleWeight);
    fact(s,'press',result==='blocked'?'action-suppressed':'pressure-resisted',{targetId:a.id,result,actionType:a.action.type});
    blocked=result==='blocked';
    if(result==='failed'){x.press.state='CLOSED';x.press.battleId=null;x.press.region=null;x.press.targetId=null;x.press.amplified=false;fact(s,'press','escaped',{targetId:a.id});}
@@ -182,21 +205,23 @@ export function g1cEnemy(s,r,intent,log){
   recordAction(a,blocked);
  }
  if(region(s)!=='exposed'||t.region!==region(s)||intent.targetRegion!==region(s))return false;
- let intercepted=false,damage=intent.damage;
+ // Fixed original action; one final damage application, first complete block wins.
+ const originalDamage=intent.damage;
+ let intercepted=false,damage=originalDamage;
  for(const k of ['fire','wind','press']){
   const v=x[k];if(!live(s,k)||v.region!==region(s))continue;
   if(k==='fire'&&!t.spirit||k==='wind'&&(intent.actionType!=='domain'||!(t.domainWeight>0))||k==='press'&&(!pressureValid(s,c)||v.targetId!==t.id))continue;
   const defense=k==='wind'?t.domainWeight:k==='press'?t.ruleWeight:intent.weight;
-  const attack=weight(s,k)+(v.targetId===t.id&&k!=='press'?1:0)+(k==='press'&&v.amplified?1:0);
+  const attack=effectiveWeight(s,k,{targetId:t.id,domain:intent.actionType==='domain',pressure:k==='press',amplified:v.amplified});
   const result=ruleContest(attack,defense);
   fact(s,k,k==='fire'?(result==='failed'?'burn-resisted':'burned'):k==='wind'?(result==='failed'?'interference-resisted':'interfered'):(result==='blocked'?'action-suppressed':'pressure-resisted'),
-   {targetId:t.id,result,actionType:intent.actionType,attack,defense});
-  if(intent.actionType==='domain'&&k!=='press')fact(s,k,'domain-contest',{targetId:t.id,result,attack,defense});
-  if(result==='blocked'){intercepted=true;log('对抗',g1cLabel('g1cp:'+k+':'+({fire:'ignite',wind:'raise',press:'fall'}[k]))+'阻断匹配行动；源头仍存在。');}
-  else if(result==='partial')damage=Math.min(damage,Math.ceil(intent.damage/2));
+   {targetId:t.id,result,actionType:intent.actionType,attack,defense,actionId});
+  if(intent.actionType==='domain'&&k!=='press')fact(s,k,'domain-contest',{targetId:t.id,result,attack,defense,actionId});
+  if(result==='blocked'){intercepted=true;log('对抗',g1cLabel('g1cp:'+k+':'+({fire:'ignite',wind:'raise',press:'fall'}[k]))+'阻断匹配行动；源头仍存在。');break;}
+  else if(result==='partial')damage=Math.min(damage,Math.ceil(originalDamage/2));
   if(k==='press'&&result==='failed'){v.state='CLOSED';v.battleId=null;v.region=null;v.targetId=null;v.amplified=false;fact(s,k,'escaped',{targetId:t.id});}
  }
- recordAction(t,intercepted);intent.damage=damage;return intercepted;
+ recordAction(t,intercepted);intent.damage=damage;resolvedActions.set(s,{actionId,damage,intercepted});return intercepted;
 }
 export function g1cMaintenance(s){
  const out={};if(!s.g1c||!s.combat)return out;
@@ -257,13 +282,17 @@ export function validG1C(s,c){
    }
   }
   let load=0;
-  const requirements={fire:[['burned','burn-resisted'],['domain-contest']],wind:[['interfered','interference-resisted'],['domain-contest']],press:[['tallest-verified'],['action-suppressed']]};
   for(const k of keys){
    const v=x[k],g=own(s,k),records=x.events.filter(e=>e.kind===k);
    if(v.actorId!==((c.g1cOwnership??c.ownership).includes(k)?'player-'+G1C_SOURCES[k]:null)||v.actorId&&!g||!integer(v.stage,2)||!number(v.load)||!same(v.evidence,records)||!['CLOSED','CONTROLLED','UNCONTROLLED'].includes(v.state)||v.amplified!==undefined&&typeof v.amplified!=='boolean')return false;
    const paid=records.filter(e=>e.type==='paid'),spent=paid.reduce((a,e)=>a+e.data.cost[2],0);if(spent!==v.load)return false;load+=spent;
    const learned=records.filter(e=>e.type==='researched');if(learned.length!==v.stage||learned.some((e,i)=>e.data.stage!==i+1))return false;
-   for(const e of learned){const observed=records.filter(r=>r.seq<e.seq).map(r=>r.type),needed=requirements[k][e.data.stage-1];if(e.data.stage===1?!needed.some(t=>observed.includes(t)):!needed.every(t=>observed.includes(t)))return false;}
+   for(const e of learned){
+    const prior=records.filter(r=>r.seq<e.seq);
+    // Legacy research had no consumption pointer; retain its original read contract.
+    if(e.data.evidenceSeq===undefined){if(!prior.some(r=>requirements[k][e.data.stage-1].includes(r.type)))return false;}
+    else {const chosen=researchEvidence(prior,k,e.data.stage);if(!chosen||chosen.seq!==e.data.evidenceSeq)return false;}
+   }
    if(v.state==='CLOSED'&&(v.battleId!==null||v.region!==null||v.targetId!==null))return false;
    if(v.state==='CONTROLLED'&&(!v.actorId||typeof v.battleId!=='string'||!['safe','exposed'].includes(v.region)||k==='press'&&!v.targetId))return false;
   }

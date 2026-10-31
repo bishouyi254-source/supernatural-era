@@ -1,0 +1,208 @@
+✔ v1.0 fire stage0 focus=false: effective weight 3 (121.6873ms)
+✔ v1.0 fire stage1 focus=true: effective weight 4 (172.2718ms)
+✔ v1.0 fire stage2 focus=false: effective weight 4 (303.954ms)
+✔ v1.0 fire stage2 focus=true: effective weight 5 (294.9393ms)
+✔ v1.0 wind stage0 focus=false: effective weight 3 (41.4336ms)
+✔ v1.0 wind stage1 focus=false: effective weight 4 (150.2136ms)
+✔ v1.0 wind stage2 focus=false: effective weight 4 (274.4045ms)
+✔ v1.0 wind stage2 focus=true: effective weight 5 (252.0417ms)
+✔ v1.0 press stage0 focus=false: effective weight 3 (49.5053ms)
+✔ v1.0 press stage1 focus=false: effective weight 4 (146.1323ms)
+✔ v1.0 press stage2 focus=false: effective weight 4 (266.4759ms)
+✔ v1.0 press stage2 focus=true: effective weight 5 (250.0711ms)
+✖ F2 domain buff requires burnable spirit; body gets only the legal F1 focus (765.105ms)
+✖ W1/W2 never turn a body attack with domainWeight into a domain action (262.6297ms)
+✔ fire: stage and focus additions cap at10, equality stays partial (258.7208ms)
+✔ wind: stage and focus additions cap at10, equality stays partial (254.5187ms)
+✔ press: stage and focus additions cap at10, equality stays partial (277.1805ms)
+✖ two partial interceptions apply ceil(original damage/2) only once (75.1079ms)
+✖ first full block stops later ghosts from earning duplicate success/research (81.1577ms)
+✖ failed fire retains its failure evidence when a later wind fully blocks (74.9389ms)
+✔ re-entering the same resolved engine action cannot create more evidence or movement (56.5475ms)
+✖ one source action cannot buy two research stages through burn/domain projections (153.7123ms)
+✔ P1/P2 cease on tie, moved target or invalid body; no retargeting or free intensify (807.8981ms)
+✖ F1/W2 target lock never transfers to a different current source (221.3529ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 17
+ℹ fail 7
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5919.8261
+
+✖ failing tests:
+
+test at tests\g1c-round6.test.mjs:24:1
+✖ F2 domain buff requires burnable spirit; body gets only the legal F1 focus (765.105ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + {
+  +   battleId: 'save-91f64827bab0c1ab:g1c:1:6',
+  +   data: {
+  +     actionId: 'save-91f64827bab0c1ab:g1c:1:6:5:source:shadow',
+  +     attack: 3,
+  +     defense: 2,
+  +     result: 'blocked',
+  +     targetId: 'source:shadow'
+  +   },
+  +   kind: 'fire',
+  +   seq: 11,
+  +   tick: 8,
+  +   type: 'domain-contest'
+  + }
+  - undefined
+  
+      at TestContext.<anonymous> (file:///C:/Users/ziho/Documents/Codex/2026-10-31/referenced-chatgpt-conversation-this-is-an/work/g1c-round6/tests/g1c-round6.test.mjs:27:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { seq: 11, tick: 8, battleId: 'save-91f64827bab0c1ab:g1c:1:6', kind: 'fire', type: 'domain-contest', data: { targetId: 'source:shadow', result: 'blocked', attack: 3, defense: 2, actionId: 'save-91f64827bab0c1ab:g1c:1:6:5:source:shadow' } },
+    expected: undefined,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\g1c-round6.test.mjs:29:1
+✖ W1/W2 never turn a body attack with domainWeight into a domain action (262.6297ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + {
+  +   battleId: 'save-91f64827bab0c1ab:g1c:1:6',
+  +   data: {
+  +     actionId: 'save-91f64827bab0c1ab:g1c:1:6:5:source:shadow',
+  +     attack: 4,
+  +     defense: 2,
+  +     result: 'blocked',
+  +     targetId: 'source:shadow'
+  +   },
+  +   kind: 'wind',
+  +   seq: 11,
+  +   tick: 8,
+  +   type: 'domain-contest'
+  + }
+  - undefined
+  
+      at TestContext.<anonymous> (file:///C:/Users/ziho/Documents/Codex/2026-10-31/referenced-chatgpt-conversation-this-is-an/work/g1c-round6/tests/g1c-round6.test.mjs:30:56)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { seq: 11, tick: 8, battleId: 'save-91f64827bab0c1ab:g1c:1:6', kind: 'wind', type: 'domain-contest', data: { targetId: 'source:shadow', result: 'blocked', attack: 4, defense: 2, actionId: 'save-91f64827bab0c1ab:g1c:1:6:5:source:shadow' } },
+    expected: undefined,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\g1c-round6.test.mjs:38:1
+✖ two partial interceptions apply ceil(original damage/2) only once (75.1079ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  90 !== 95
+  
+      at TestContext.<anonymous> (file:///C:/Users/ziho/Documents/Codex/2026-10-31/referenced-chatgpt-conversation-this-is-an/work/g1c-round6/tests/g1c-round6.test.mjs:41:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 90,
+    expected: 95,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\g1c-round6.test.mjs:44:1
+✖ first full block stops later ghosts from earning duplicate success/research (81.1577ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  2 !== 1
+  
+      at TestContext.<anonymous> (file:///C:/Users/ziho/Documents/Codex/2026-10-31/referenced-chatgpt-conversation-this-is-an/work/g1c-round6/tests/g1c-round6.test.mjs:46:34)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\g1c-round6.test.mjs:50:1
+✖ failed fire retains its failure evidence when a later wind fully blocks (74.9389ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  2 !== 1
+  
+      at TestContext.<anonymous> (file:///C:/Users/ziho/Documents/Codex/2026-10-31/referenced-chatgpt-conversation-this-is-an/work/g1c-round6/tests/g1c-round6.test.mjs:54:161)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\g1c-round6.test.mjs:61:1
+✖ one source action cannot buy two research stages through burn/domain projections (153.7123ms)
+  AssertionError [ERR_ASSERTION]: available g1cp:fire:quench : combat:observe,combat:avoid,combat:force,combat:risk,combat:retreat,combat:item
+      at step (file:///C:/Users/ziho/Documents/Codex/2026-10-31/referenced-chatgpt-conversation-this-is-an/work/g1c-round6/tests/g1c-helpers.mjs:14:36)
+      at cycle (file:///C:/Users/ziho/Documents/Codex/2026-10-31/referenced-chatgpt-conversation-this-is-an/work/g1c-round6/tests/g1c-helpers.mjs:15:147)
+      at TestContext.<anonymous> (file:///C:/Users/ziho/Documents/Codex/2026-10-31/referenced-chatgpt-conversation-this-is-an/work/g1c-round6/tests/g1c-round6.test.mjs:64:4)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests\g1c-round6.test.mjs:73:1
+✖ F1/W2 target lock never transfers to a different current source (221.3529ms)
+  AssertionError [ERR_ASSERTION]: available combat:observe : 
+      at step (file:///C:/Users/ziho/Documents/Codex/2026-10-31/referenced-chatgpt-conversation-this-is-an/work/g1c-round6/tests/g1c-helpers.mjs:14:36)
+      at TestContext.<anonymous> (file:///C:/Users/ziho/Documents/Codex/2026-10-31/referenced-chatgpt-conversation-this-is-an/work/g1c-round6/tests/g1c-round6.test.mjs:76:77)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
