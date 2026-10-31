@@ -1,0 +1,1142 @@
+[
+  {
+    "ownership": [
+      "fire"
+    ],
+    "strategy": "single",
+    "requested": 5,
+    "completed": 5,
+    "stop": "requested count reached",
+    "last": {
+      "tick": 25,
+      "life": 100,
+      "energy": 3,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-fire"
+      ],
+      "load": 15,
+      "loads": {
+        "fire": 15,
+        "wind": 0,
+        "press": 0
+      },
+      "R": {
+        "ghost-fire": 35
+      },
+      "capacity": 100,
+      "burden": 15,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "fire"
+    ],
+    "strategy": "single",
+    "requested": 10,
+    "completed": 10,
+    "stop": "requested count reached",
+    "last": {
+      "tick": 50,
+      "life": 100,
+      "energy": 3,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-fire"
+      ],
+      "load": 30,
+      "loads": {
+        "fire": 30,
+        "wind": 0,
+        "press": 0
+      },
+      "R": {
+        "ghost-fire": 70
+      },
+      "capacity": 100,
+      "burden": 30,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "fire"
+    ],
+    "strategy": "single",
+    "requested": 20,
+    "completed": 14,
+    "stop": "unavailable g1cp:fire:ignite",
+    "last": {
+      "tick": 70,
+      "life": 100,
+      "energy": 3,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-fire"
+      ],
+      "load": 42,
+      "loads": {
+        "fire": 42,
+        "wind": 0,
+        "press": 0
+      },
+      "R": {
+        "ghost-fire": 98
+      },
+      "capacity": 100,
+      "burden": 42,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "wind"
+    ],
+    "strategy": "single",
+    "requested": 5,
+    "completed": 5,
+    "stop": "requested count reached",
+    "last": {
+      "tick": 25,
+      "life": 100,
+      "energy": 3,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-wind"
+      ],
+      "load": 15,
+      "loads": {
+        "fire": 0,
+        "wind": 15,
+        "press": 0
+      },
+      "R": {
+        "ghost-wind": 35
+      },
+      "capacity": 100,
+      "burden": 15,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "wind"
+    ],
+    "strategy": "single",
+    "requested": 10,
+    "completed": 10,
+    "stop": "requested count reached",
+    "last": {
+      "tick": 50,
+      "life": 100,
+      "energy": 3,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-wind"
+      ],
+      "load": 30,
+      "loads": {
+        "fire": 0,
+        "wind": 30,
+        "press": 0
+      },
+      "R": {
+        "ghost-wind": 70
+      },
+      "capacity": 100,
+      "burden": 30,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "wind"
+    ],
+    "strategy": "single",
+    "requested": 20,
+    "completed": 14,
+    "stop": "unavailable g1cp:wind:raise",
+    "last": {
+      "tick": 70,
+      "life": 100,
+      "energy": 3,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-wind"
+      ],
+      "load": 42,
+      "loads": {
+        "fire": 0,
+        "wind": 42,
+        "press": 0
+      },
+      "R": {
+        "ghost-wind": 98
+      },
+      "capacity": 100,
+      "burden": 42,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "press"
+    ],
+    "strategy": "single",
+    "requested": 5,
+    "completed": 5,
+    "stop": "requested count reached",
+    "last": {
+      "tick": 25,
+      "life": 100,
+      "energy": 3,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-press"
+      ],
+      "load": 15,
+      "loads": {
+        "fire": 0,
+        "wind": 0,
+        "press": 15
+      },
+      "R": {
+        "ghost-press": 40
+      },
+      "capacity": 100,
+      "burden": 15,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "press"
+    ],
+    "strategy": "single",
+    "requested": 10,
+    "completed": 10,
+    "stop": "requested count reached",
+    "last": {
+      "tick": 50,
+      "life": 100,
+      "energy": 3,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-press"
+      ],
+      "load": 30,
+      "loads": {
+        "fire": 0,
+        "wind": 0,
+        "press": 30
+      },
+      "R": {
+        "ghost-press": 80
+      },
+      "capacity": 100,
+      "burden": 30,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "press"
+    ],
+    "strategy": "single",
+    "requested": 20,
+    "completed": 12,
+    "stop": "unavailable g1cp:press:fall",
+    "last": {
+      "tick": 60,
+      "life": 100,
+      "energy": 3,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-press"
+      ],
+      "load": 36,
+      "loads": {
+        "fire": 0,
+        "wind": 0,
+        "press": 36
+      },
+      "R": {
+        "ghost-press": 96
+      },
+      "capacity": 100,
+      "burden": 36,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "fire",
+      "wind"
+    ],
+    "strategy": "simultaneous",
+    "requested": 5,
+    "completed": 0,
+    "stop": "unavailable g1cp:wind:calm",
+    "last": {
+      "tick": 4,
+      "life": 100,
+      "energy": 0,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-fire",
+        "player-ghost-wind"
+      ],
+      "load": 5,
+      "loads": {
+        "fire": 3,
+        "wind": 2,
+        "press": 0
+      },
+      "R": {
+        "ghost-fire": 8,
+        "ghost-wind": 6
+      },
+      "capacity": 100,
+      "burden": 5,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "fire",
+      "wind"
+    ],
+    "strategy": "simultaneous",
+    "requested": 10,
+    "completed": 0,
+    "stop": "unavailable g1cp:wind:calm",
+    "last": {
+      "tick": 4,
+      "life": 100,
+      "energy": 0,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-fire",
+        "player-ghost-wind"
+      ],
+      "load": 5,
+      "loads": {
+        "fire": 3,
+        "wind": 2,
+        "press": 0
+      },
+      "R": {
+        "ghost-fire": 8,
+        "ghost-wind": 6
+      },
+      "capacity": 100,
+      "burden": 5,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "fire",
+      "wind"
+    ],
+    "strategy": "simultaneous",
+    "requested": 20,
+    "completed": 0,
+    "stop": "unavailable g1cp:wind:calm",
+    "last": {
+      "tick": 4,
+      "life": 100,
+      "energy": 0,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-fire",
+        "player-ghost-wind"
+      ],
+      "load": 5,
+      "loads": {
+        "fire": 3,
+        "wind": 2,
+        "press": 0
+      },
+      "R": {
+        "ghost-fire": 8,
+        "ghost-wind": 6
+      },
+      "capacity": 100,
+      "burden": 5,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "fire",
+      "wind"
+    ],
+    "strategy": "rotating",
+    "requested": 5,
+    "completed": 5,
+    "stop": "requested count reached",
+    "last": {
+      "tick": 25,
+      "life": 100,
+      "energy": 3,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-fire",
+        "player-ghost-wind"
+      ],
+      "load": 15,
+      "loads": {
+        "fire": 9,
+        "wind": 6,
+        "press": 0
+      },
+      "R": {
+        "ghost-fire": 21,
+        "ghost-wind": 14
+      },
+      "capacity": 100,
+      "burden": 15,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "fire",
+      "wind"
+    ],
+    "strategy": "rotating",
+    "requested": 10,
+    "completed": 10,
+    "stop": "requested count reached",
+    "last": {
+      "tick": 50,
+      "life": 100,
+      "energy": 3,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-fire",
+        "player-ghost-wind"
+      ],
+      "load": 30,
+      "loads": {
+        "fire": 15,
+        "wind": 15,
+        "press": 0
+      },
+      "R": {
+        "ghost-fire": 35,
+        "ghost-wind": 35
+      },
+      "capacity": 100,
+      "burden": 30,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "fire",
+      "wind"
+    ],
+    "strategy": "rotating",
+    "requested": 20,
+    "completed": 20,
+    "stop": "requested count reached",
+    "last": {
+      "tick": 100,
+      "life": 100,
+      "energy": 3,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-fire",
+        "player-ghost-wind"
+      ],
+      "load": 60,
+      "loads": {
+        "fire": 30,
+        "wind": 30,
+        "press": 0
+      },
+      "R": {
+        "ghost-fire": 70,
+        "ghost-wind": 70
+      },
+      "capacity": 100,
+      "burden": 60,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "fire",
+      "press"
+    ],
+    "strategy": "simultaneous",
+    "requested": 5,
+    "completed": 0,
+    "stop": "unavailable g1cp:press:lift",
+    "last": {
+      "tick": 4,
+      "life": 97,
+      "energy": 0,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-fire",
+        "player-ghost-press"
+      ],
+      "load": 5,
+      "loads": {
+        "fire": 3,
+        "wind": 0,
+        "press": 2
+      },
+      "R": {
+        "ghost-fire": 8,
+        "ghost-press": 7
+      },
+      "capacity": 100,
+      "burden": 5,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "fire",
+      "press"
+    ],
+    "strategy": "simultaneous",
+    "requested": 10,
+    "completed": 0,
+    "stop": "unavailable g1cp:press:lift",
+    "last": {
+      "tick": 4,
+      "life": 97,
+      "energy": 0,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-fire",
+        "player-ghost-press"
+      ],
+      "load": 5,
+      "loads": {
+        "fire": 3,
+        "wind": 0,
+        "press": 2
+      },
+      "R": {
+        "ghost-fire": 8,
+        "ghost-press": 7
+      },
+      "capacity": 100,
+      "burden": 5,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "fire",
+      "press"
+    ],
+    "strategy": "simultaneous",
+    "requested": 20,
+    "completed": 0,
+    "stop": "unavailable g1cp:press:lift",
+    "last": {
+      "tick": 4,
+      "life": 97,
+      "energy": 0,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-fire",
+        "player-ghost-press"
+      ],
+      "load": 5,
+      "loads": {
+        "fire": 3,
+        "wind": 0,
+        "press": 2
+      },
+      "R": {
+        "ghost-fire": 8,
+        "ghost-press": 7
+      },
+      "capacity": 100,
+      "burden": 5,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "fire",
+      "press"
+    ],
+    "strategy": "rotating",
+    "requested": 5,
+    "completed": 5,
+    "stop": "requested count reached",
+    "last": {
+      "tick": 25,
+      "life": 100,
+      "energy": 3,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-fire",
+        "player-ghost-press"
+      ],
+      "load": 15,
+      "loads": {
+        "fire": 9,
+        "wind": 0,
+        "press": 6
+      },
+      "R": {
+        "ghost-fire": 21,
+        "ghost-press": 16
+      },
+      "capacity": 100,
+      "burden": 15,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "fire",
+      "press"
+    ],
+    "strategy": "rotating",
+    "requested": 10,
+    "completed": 10,
+    "stop": "requested count reached",
+    "last": {
+      "tick": 50,
+      "life": 100,
+      "energy": 3,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-fire",
+        "player-ghost-press"
+      ],
+      "load": 30,
+      "loads": {
+        "fire": 15,
+        "wind": 0,
+        "press": 15
+      },
+      "R": {
+        "ghost-fire": 35,
+        "ghost-press": 40
+      },
+      "capacity": 100,
+      "burden": 30,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "fire",
+      "press"
+    ],
+    "strategy": "rotating",
+    "requested": 20,
+    "completed": 20,
+    "stop": "requested count reached",
+    "last": {
+      "tick": 100,
+      "life": 100,
+      "energy": 3,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-fire",
+        "player-ghost-press"
+      ],
+      "load": 60,
+      "loads": {
+        "fire": 30,
+        "wind": 0,
+        "press": 30
+      },
+      "R": {
+        "ghost-fire": 70,
+        "ghost-press": 80
+      },
+      "capacity": 100,
+      "burden": 60,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "wind",
+      "press"
+    ],
+    "strategy": "simultaneous",
+    "requested": 5,
+    "completed": 0,
+    "stop": "unavailable g1cp:press:lift",
+    "last": {
+      "tick": 4,
+      "life": 97,
+      "energy": 0,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-wind",
+        "player-ghost-press"
+      ],
+      "load": 5,
+      "loads": {
+        "fire": 0,
+        "wind": 3,
+        "press": 2
+      },
+      "R": {
+        "ghost-wind": 8,
+        "ghost-press": 7
+      },
+      "capacity": 100,
+      "burden": 5,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "wind",
+      "press"
+    ],
+    "strategy": "simultaneous",
+    "requested": 10,
+    "completed": 0,
+    "stop": "unavailable g1cp:press:lift",
+    "last": {
+      "tick": 4,
+      "life": 97,
+      "energy": 0,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-wind",
+        "player-ghost-press"
+      ],
+      "load": 5,
+      "loads": {
+        "fire": 0,
+        "wind": 3,
+        "press": 2
+      },
+      "R": {
+        "ghost-wind": 8,
+        "ghost-press": 7
+      },
+      "capacity": 100,
+      "burden": 5,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "wind",
+      "press"
+    ],
+    "strategy": "simultaneous",
+    "requested": 20,
+    "completed": 0,
+    "stop": "unavailable g1cp:press:lift",
+    "last": {
+      "tick": 4,
+      "life": 97,
+      "energy": 0,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-wind",
+        "player-ghost-press"
+      ],
+      "load": 5,
+      "loads": {
+        "fire": 0,
+        "wind": 3,
+        "press": 2
+      },
+      "R": {
+        "ghost-wind": 8,
+        "ghost-press": 7
+      },
+      "capacity": 100,
+      "burden": 5,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "wind",
+      "press"
+    ],
+    "strategy": "rotating",
+    "requested": 5,
+    "completed": 5,
+    "stop": "requested count reached",
+    "last": {
+      "tick": 25,
+      "life": 100,
+      "energy": 3,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-wind",
+        "player-ghost-press"
+      ],
+      "load": 15,
+      "loads": {
+        "fire": 0,
+        "wind": 9,
+        "press": 6
+      },
+      "R": {
+        "ghost-wind": 21,
+        "ghost-press": 16
+      },
+      "capacity": 100,
+      "burden": 15,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "wind",
+      "press"
+    ],
+    "strategy": "rotating",
+    "requested": 10,
+    "completed": 10,
+    "stop": "requested count reached",
+    "last": {
+      "tick": 50,
+      "life": 100,
+      "energy": 3,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-wind",
+        "player-ghost-press"
+      ],
+      "load": 30,
+      "loads": {
+        "fire": 0,
+        "wind": 15,
+        "press": 15
+      },
+      "R": {
+        "ghost-wind": 35,
+        "ghost-press": 40
+      },
+      "capacity": 100,
+      "burden": 30,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "wind",
+      "press"
+    ],
+    "strategy": "rotating",
+    "requested": 20,
+    "completed": 20,
+    "stop": "requested count reached",
+    "last": {
+      "tick": 100,
+      "life": 100,
+      "energy": 3,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-wind",
+        "player-ghost-press"
+      ],
+      "load": 60,
+      "loads": {
+        "fire": 0,
+        "wind": 30,
+        "press": 30
+      },
+      "R": {
+        "ghost-wind": 70,
+        "ghost-press": 80
+      },
+      "capacity": 100,
+      "burden": 60,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "fire",
+      "wind",
+      "press"
+    ],
+    "strategy": "simultaneous",
+    "requested": 5,
+    "completed": 0,
+    "stop": "unavailable g1cp:wind:calm",
+    "last": {
+      "tick": 4,
+      "life": 100,
+      "energy": 0,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-fire",
+        "player-ghost-wind"
+      ],
+      "load": 5,
+      "loads": {
+        "fire": 3,
+        "wind": 2,
+        "press": 0
+      },
+      "R": {
+        "ghost-fire": 8,
+        "ghost-wind": 6,
+        "ghost-press": 0
+      },
+      "capacity": 100,
+      "burden": 5,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "fire",
+      "wind",
+      "press"
+    ],
+    "strategy": "simultaneous",
+    "requested": 10,
+    "completed": 0,
+    "stop": "unavailable g1cp:wind:calm",
+    "last": {
+      "tick": 4,
+      "life": 100,
+      "energy": 0,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-fire",
+        "player-ghost-wind"
+      ],
+      "load": 5,
+      "loads": {
+        "fire": 3,
+        "wind": 2,
+        "press": 0
+      },
+      "R": {
+        "ghost-fire": 8,
+        "ghost-wind": 6,
+        "ghost-press": 0
+      },
+      "capacity": 100,
+      "burden": 5,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "fire",
+      "wind",
+      "press"
+    ],
+    "strategy": "simultaneous",
+    "requested": 20,
+    "completed": 0,
+    "stop": "unavailable g1cp:wind:calm",
+    "last": {
+      "tick": 4,
+      "life": 100,
+      "energy": 0,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-fire",
+        "player-ghost-wind"
+      ],
+      "load": 5,
+      "loads": {
+        "fire": 3,
+        "wind": 2,
+        "press": 0
+      },
+      "R": {
+        "ghost-fire": 8,
+        "ghost-wind": 6,
+        "ghost-press": 0
+      },
+      "capacity": 100,
+      "burden": 5,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "fire",
+      "wind",
+      "press"
+    ],
+    "strategy": "rotating",
+    "requested": 5,
+    "completed": 5,
+    "stop": "requested count reached",
+    "last": {
+      "tick": 33,
+      "life": 100,
+      "energy": 3,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-wind",
+        "player-ghost-fire"
+      ],
+      "load": 15,
+      "loads": {
+        "fire": 9,
+        "wind": 0,
+        "press": 6
+      },
+      "R": {
+        "ghost-fire": 21,
+        "ghost-wind": 0,
+        "ghost-press": 16
+      },
+      "capacity": 100,
+      "burden": 15,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "fire",
+      "wind",
+      "press"
+    ],
+    "strategy": "rotating",
+    "requested": 10,
+    "completed": 10,
+    "stop": "requested count reached",
+    "last": {
+      "tick": 68,
+      "life": 100,
+      "energy": 3,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-wind",
+        "player-ghost-press"
+      ],
+      "load": 30,
+      "loads": {
+        "fire": 15,
+        "wind": 0,
+        "press": 15
+      },
+      "R": {
+        "ghost-fire": 35,
+        "ghost-wind": 0,
+        "ghost-press": 40
+      },
+      "capacity": 100,
+      "burden": 30,
+      "crisis": false,
+      "death": "alive"
+    }
+  },
+  {
+    "ownership": [
+      "fire",
+      "wind",
+      "press"
+    ],
+    "strategy": "rotating",
+    "requested": 20,
+    "completed": 20,
+    "stop": "requested count reached",
+    "last": {
+      "tick": 138,
+      "life": 100,
+      "energy": 3,
+      "bags": 2,
+      "cash": 500,
+      "active": [
+        "player-ghost-wind",
+        "player-ghost-press"
+      ],
+      "load": 60,
+      "loads": {
+        "fire": 30,
+        "wind": 0,
+        "press": 30
+      },
+      "R": {
+        "ghost-fire": 70,
+        "ghost-wind": 0,
+        "ghost-press": 80
+      },
+      "capacity": 100,
+      "burden": 60,
+      "crisis": false,
+      "death": "alive"
+    }
+  }
+]

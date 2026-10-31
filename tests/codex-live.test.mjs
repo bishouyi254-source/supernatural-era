@@ -1,0 +1,23 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {newGame,act,available,validate,upgrade} from '../src/engine.js';
+import {taskGuide} from '../src/gameplay-guide.js';
+import {makeSpirit} from '../src/progression.js';
+import {gameRecords,publicRecords,preferenceKey,savePreference,loadPreferences,SAVE_KEY} from '../src/codex/live-adapter.js';
+import {selectRecords} from '../src/codex/model.js';
+const step=(s,a)=>{assert.ok(available(s).includes(a),a);const n=act(s,a);assert.ok(validate(n));return n;};
+const store=()=>{const m=new Map();return {getItem:k=>m.get(k)??null,setItem:(k,v)=>m.set(k,v),m};};
+function investigated(){let s=newGame('图鉴回归', '学生',19);for(let i=0;i<20&&!s.investigation.resolution;i++)s=step(s,taskGuide(s).recommended);assert.ok(s.investigation.resolution);return s;}
+test('新角色未知卡不公开内容名称、六档或规则，不创建情报',()=>{const s=newGame(),before=JSON.stringify(s),rows=publicRecords(s);assert.equal(rows.length,9);assert.ok(rows.every(r=>!r.discovered&&r.name==='未知档案'&&!r.rating&&!r.rules.length));assert.equal(JSON.stringify(s),before);assert.equal(selectRecords(rows,{rating:'C'}).total,0);});
+test('进入实际现场不等于辨认身份和评级',()=>{const s=step(newGame(),'inv:enter'),r=publicRecords(s)[1];assert.ok(r.discovered&&r.contacted);assert.equal(r.name,'未知档案');assert.equal(r.rating,null);assert.equal(s.spirits.length,0);});
+test('未核实证词保留来源与状态，不升级为规则',()=>{const s=step(step(newGame(),'inv:enter'),'inv:question'),r=publicRecords(s)[1];assert.ok(r.clues.some(t=>t.includes('UNVERIFIED')&&t.includes('陈宁')));assert.equal(r.rules.length,0);});
+test('实际调查结算提供媒介、证据、处理记录而非持有',()=>{const s=investigated(),r=publicRecords(s)[1],before=JSON.stringify(s);assert.ok(r.clues.length&&r.encounters.length);assert.ok(r.name.includes('点名磁带'));assert.equal(r.rating,null);assert.equal(s.spirits.length,0);assert.equal(JSON.stringify(s),before);});
+test('持有实例rank可公开，不将原始配置S潜力冒充评级',()=>{const s=newGame();s.spirits=[makeSpirit('hungry')];const r=publicRecords(upgrade(s)).find(r=>r.id==='FILE-005');assert.equal(r.rating,'S');assert.ok(r.ratingEvidence.includes('rank'));});
+test('未持有同源的评级和能力不由其他实例推出',()=>{const s=newGame();s.spirits=[makeSpirit('watch')];const r=publicRecords(s);assert.equal(r[1].rating,'C');assert.equal(r[3].rating,null);assert.equal(r[3].name,'未知档案');});
+test('后台世界资料仅knownBy包含player时公开',()=>{const s=newGame();s.worldRegistry.evidence.A={id:'A',text:'SECRET_BACKEND',knownBy:['OFFICIAL'],tick:0};assert.ok(!JSON.stringify(gameRecords(s)).includes('SECRET_BACKEND'));s.worldRegistry.evidence.A.knownBy.push('player');assert.ok(JSON.stringify(gameRecords(s)).includes('SECRET_BACKEND'));});
+test('公交资料严格使用接收者过滤',()=>{const s=newGame();s.bus.transit.evidence=[{id:'A',text:'NPC_SECRET',receivedBy:'yang'},{id:'B',text:'已接收',receivedBy:'player'}];const rows=JSON.stringify(gameRecords(s));assert.ok(!rows.includes('NPC_SECRET'));assert.ok(rows.includes('已接收'));});
+test('未知档案不能保存目标或笔记',()=>{const storage=store();assert.throws(()=>savePreference(storage,newGame(),'FILE-001','target'));assert.equal(storage.m.size,0);});
+test('个人笔记和目标不修改存档、证据、时间或持有',()=>{const s=investigated(),before=JSON.stringify(s),storage=store();storage.setItem(SAVE_KEY,before);savePreference(storage,s,'FILE-002','note','仅个人猜测');savePreference(storage,s,'FILE-002','target');assert.equal(loadPreferences(storage,s).target,'FILE-002');assert.equal(loadPreferences(storage,s).notes['FILE-002'],'仅个人猜测');assert.equal(storage.getItem(SAVE_KEY),before);assert.equal(JSON.stringify(s),before);assert.ok(!JSON.stringify(gameRecords(s)).includes('仅个人猜测'));});
+test('角色标记分区、笔记长度限制与坏JSON安全回退',()=>{const s=investigated(),storage=store();savePreference(storage,s,'FILE-002','note','x'.repeat(3000));assert.equal(loadPreferences(storage,s).notes['FILE-002'].length,2000);assert.notEqual(preferenceKey(s),preferenceKey({...s,seed:20}));storage.setItem(preferenceKey(s),'invalid');assert.deepEqual(loadPreferences(storage,s),{target:null,notes:{}});});
+test('存储失败不得报告已保存或修改原存档',()=>{const s=investigated(),before=JSON.stringify(s);assert.throws(()=>savePreference({getItem:()=>null,setItem:()=>{throw Error('quota');}},s,'FILE-002','target'));assert.equal(JSON.stringify(s),before);});
+test('存档导出与旧存档upgrade仍保持format2且合法',()=>{const s=investigated(),before=JSON.stringify(s),copy=upgrade(JSON.parse(before));assert.ok(validate(copy));assert.equal(copy.version,2);assert.deepEqual(publicRecords(copy),publicRecords(s));assert.equal(JSON.stringify(s),before);});

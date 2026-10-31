@@ -1,0 +1,16 @@
+✔ round4 fire: mental refund follows full independent revival and load cost (547.5111ms)
+✔ round4 wind: mental refund follows full independent revival and load cost (191.8759ms)
+✔ round4 press: mental refund follows full independent revival and load cost (133.1452ms)
+✔ round4 mental rule bonus affects actual domain contest but pays revival (410.9164ms)
+✔ round4 maximum mental potential never bypasses fire backlash or revival crisis (306.0835ms)
+✔ round4 G1-C death commits once, survives reload, allocates points and inherits no ghosts (52.2035ms)
+✔ round4 legacy isolated holder above default slots remains valid without ordinary eligibility (140.8948ms)
+✔ round4 maximum constitution grants no G1-C ownership or ordinary actions (5.3832ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3366.7656

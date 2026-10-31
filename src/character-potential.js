@@ -137,7 +137,8 @@ export function applyMentalCastBonus(before,s,action,usedId){
   if(!usedId||!s.traits?.mentalCharges||s.energy>=before.energy)return;
   const recognized=action==='ability'||action==='practice'||action.startsWith('practice:')||
     action.startsWith('combat:ability:')||action.startsWith('combat:focus:')||
-    action.startsWith('combat:cover:')||action==='combat:combo'||action.startsWith('eye6:cast:');
+    action.startsWith('combat:cover:')||action==='combat:combo'||action.startsWith('eye6:cast:')||
+    /^g1cp:(fire|wind|press):(ignite|concentrate|quench|raise|invade|calm|fall|intensify|lift)(:|$)/.test(action);
   if(!recognized)return;
   s.energy=Math.min(3,s.energy+1);
   s.traits.mentalCharges--;

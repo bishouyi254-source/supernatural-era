@@ -1,0 +1,61 @@
+{
+  "generatedAt": "2026-10-31T02:54:34.032Z",
+  "node": "v24.22.1",
+  "logs": {
+    "node-full.log": {
+      "tests": 1271,
+      "pass": 1271,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "g1c-focused.log": {
+      "tests": 48,
+      "pass": 48,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "legacy-ghosts-final.log": {
+      "tests": 150,
+      "pass": 150,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "character-compatibility.log": {
+      "tests": 11,
+      "pass": 11,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    }
+  },
+  "stress": {
+    "groups": 33,
+    "groupsReached": 18,
+    "groupsEnergyFailure": 12,
+    "groupsProjectedRevivalStop": 3,
+    "requested": 385,
+    "safelyCompleted": 225,
+    "energyFailureAttempts": 12,
+    "projectedRevivalRejected": 3,
+    "actualCrisisAttempts": 0,
+    "unexecuted": 145
+  },
+  "browser": {
+    "version": "156.0.8078.74",
+    "checks": 540,
+    "actions": 147,
+    "errors": 0,
+    "edgeScenarios": 6
+  },
+  "sourceHashes": {
+    "src/engine.js": "3a8bd27e5632167c4d128bdbfcdd2a9561850d92db3dfb4cecd7956bed768b06",
+    "src/app.js": "2ab879655551652402d027bbbaaa1614b619dfae480b4ba391ece92dbdb1e023",
+    "src/combat.js": "e4d9e979d0b9980ab0e160fc5161aef034d3f893b5c05d7b0cc31367b0aafa09",
+    "src/progression.js": "26cb222102e3ca7f4340af5d69d4b8c3a565d818ece4826b18ddc3e5719ac72d",
+    "src/g1c-production.js": "c11a1e1d0b2bc5963eb0697d4556a9073e94918332ec3ad589b83e4ff1d8c052",
+    "src/character-potential.js": "0f8329d25c6e721020bff776e60faaaa9ddcbf1dfb63d2cb1fa889666bed7078"
+  }
+}

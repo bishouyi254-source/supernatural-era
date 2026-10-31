@@ -1,0 +1,1538 @@
+{
+  "boundary": "READ-ONLY AUDIT; NO FORMAL BINDINGS; NO ACQUISITION GRANTS",
+  "records": [
+    {
+      "ok": true,
+      "record": {
+        "id": "round5-1",
+        "ghost": "fire",
+        "classification": "NOVEL_LEAD",
+        "locator": "https://www.hetushu.com/book/7491/5210368.html",
+        "claim": "Third-party chapter 481 lines 90,141,147 support ghost-fire domain and host burning motifs; no numeric threshold or formal source authorization.",
+        "revision": "round5",
+        "reviewer": "Codex source audit"
+      },
+      "status": "PENDING_REVIEW",
+      "formal": false
+    },
+    {
+      "ok": true,
+      "record": {
+        "id": "round5-2",
+        "ghost": "press",
+        "classification": "NOVEL_LEAD",
+        "locator": "https://www.xbiquge345.com/chapter/9643/95029971.html",
+        "claim": "Third-party chapter 597 lines 113,129-141 support seated posture and tallest-body trigger motifs; initial find results were incomplete and corrected by reading full text. No heights, tie rule or formal authorization.",
+        "revision": "round5",
+        "reviewer": "Codex source audit"
+      },
+      "status": "PENDING_REVIEW",
+      "formal": false
+    },
+    {
+      "ok": true,
+      "record": {
+        "id": "round5-3",
+        "ghost": "wind",
+        "classification": "UNKNOWN_SOURCE",
+        "locator": "docs/g1c-acceptance/formal-source-gate.md",
+        "claim": "Independent primary chapter proof and formal domain intent remain missing.",
+        "revision": "round5",
+        "reviewer": "Codex source audit"
+      },
+      "status": "PENDING_REVIEW",
+      "formal": false
+    },
+    {
+      "ok": true,
+      "record": {
+        "id": "round5-4",
+        "ghost": "fire",
+        "classification": "CANDIDATE_PARAMETER",
+        "locator": "docs/g1c-acceptance/rules-boundary-candidate.md",
+        "claim": "Isolated engineering parameters only; no production balance or acquisition approval.",
+        "revision": "round5",
+        "reviewer": "Codex source audit"
+      },
+      "status": "PENDING_REVIEW",
+      "formal": false
+    },
+    {
+      "ok": true,
+      "record": {
+        "id": "round5-5",
+        "ghost": "wind",
+        "classification": "CANDIDATE_PARAMETER",
+        "locator": "docs/g1c-acceptance/rules-boundary-candidate.md",
+        "claim": "Isolated engineering parameters only; no production balance or acquisition approval.",
+        "revision": "round5",
+        "reviewer": "Codex source audit"
+      },
+      "status": "PENDING_REVIEW",
+      "formal": false
+    },
+    {
+      "ok": true,
+      "record": {
+        "id": "round5-6",
+        "ghost": "press",
+        "classification": "CANDIDATE_PARAMETER",
+        "locator": "docs/g1c-acceptance/rules-boundary-candidate.md",
+        "claim": "Isolated engineering parameters only; no production balance or acquisition approval.",
+        "revision": "round5",
+        "reviewer": "Codex source audit"
+      },
+      "status": "PENDING_REVIEW",
+      "formal": false
+    }
+  ],
+  "matrix": [
+    {
+      "eventId": "tablet",
+      "inspection": {
+        "kind": "UNTYPED_EVENT",
+        "origin": "G1-B游戏候选，回返资格目前仅隔离验证",
+        "eligible": {
+          "fire": false,
+          "wind": false,
+          "press": false
+        },
+        "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+        "missing": {
+          "fire": [
+            "real enemy source action",
+            "verified spirit medium",
+            "real impact region",
+            "source-side contest weight"
+          ],
+          "wind": [
+            "real enemy source action",
+            "explicit domain-type initiative",
+            "verified domain region",
+            "source-side domain weight"
+          ],
+          "press": [
+            "real body registry",
+            "complete height and posture ordering at the trigger tick",
+            "real in-range bodies",
+            "action target and physical resistance"
+          ]
+        }
+      },
+      "gates": {
+        "fire": {
+          "eligible": false,
+          "ghost": "fire",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_BURNABLE_MEDIUM",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "wind": {
+          "eligible": false,
+          "ghost": "wind",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_DOMAIN_ACTION",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "press": {
+          "eligible": false,
+          "ghost": "press",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "INCOMPLETE_BODY_REGISTRY",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        }
+      }
+    },
+    {
+      "eventId": "caller",
+      "inspection": {
+        "kind": "UNTYPED_EVENT",
+        "origin": "G1-B游戏候选；与鬼回头独立",
+        "eligible": {
+          "fire": false,
+          "wind": false,
+          "press": false
+        },
+        "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+        "missing": {
+          "fire": [
+            "real enemy source action",
+            "verified spirit medium",
+            "real impact region",
+            "source-side contest weight"
+          ],
+          "wind": [
+            "real enemy source action",
+            "explicit domain-type initiative",
+            "verified domain region",
+            "source-side domain weight"
+          ],
+          "press": [
+            "real body registry",
+            "complete height and posture ordering at the trigger tick",
+            "real in-range bodies",
+            "action target and physical resistance"
+          ]
+        }
+      },
+      "gates": {
+        "fire": {
+          "eligible": false,
+          "ghost": "fire",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_BURNABLE_MEDIUM",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "wind": {
+          "eligible": false,
+          "ghost": "wind",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_DOMAIN_ACTION",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "press": {
+          "eligible": false,
+          "ghost": "press",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "INCOMPLETE_BODY_REGISTRY",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        }
+      }
+    },
+    {
+      "eventId": "smoke",
+      "inspection": {
+        "kind": "UNTYPED_EVENT",
+        "origin": "G1-B游戏候选；李乐平相关鬼烟定位，非鬼雾/鬼风/鬼眼鬼域",
+        "eligible": {
+          "fire": false,
+          "wind": false,
+          "press": false
+        },
+        "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+        "missing": {
+          "fire": [
+            "real enemy source action",
+            "verified spirit medium",
+            "real impact region",
+            "source-side contest weight"
+          ],
+          "wind": [
+            "real enemy source action",
+            "explicit domain-type initiative",
+            "verified domain region",
+            "source-side domain weight"
+          ],
+          "press": [
+            "real body registry",
+            "complete height and posture ordering at the trigger tick",
+            "real in-range bodies",
+            "action target and physical resistance"
+          ]
+        }
+      },
+      "gates": {
+        "fire": {
+          "eligible": false,
+          "ghost": "fire",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_BURNABLE_MEDIUM",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "wind": {
+          "eligible": false,
+          "ghost": "wind",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_DOMAIN_ACTION",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "press": {
+          "eligible": false,
+          "ghost": "press",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "INCOMPLETE_BODY_REGISTRY",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        }
+      }
+    },
+    {
+      "eventId": "ghost-fire",
+      "inspection": {
+        "kind": "UNTYPED_EVENT",
+        "origin": "G1-C候选：真实灵异焚烧及宿主反噬；隔离验证",
+        "eligible": {
+          "fire": false,
+          "wind": false,
+          "press": false
+        },
+        "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+        "missing": {
+          "fire": [
+            "real enemy source action",
+            "verified spirit medium",
+            "real impact region",
+            "source-side contest weight"
+          ],
+          "wind": [
+            "real enemy source action",
+            "explicit domain-type initiative",
+            "verified domain region",
+            "source-side domain weight"
+          ],
+          "press": [
+            "real body registry",
+            "complete height and posture ordering at the trigger tick",
+            "real in-range bodies",
+            "action target and physical resistance"
+          ]
+        }
+      },
+      "gates": {
+        "fire": {
+          "eligible": false,
+          "ghost": "fire",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_BURNABLE_MEDIUM",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "wind": {
+          "eligible": false,
+          "ghost": "wind",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_DOMAIN_ACTION",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "press": {
+          "eligible": false,
+          "ghost": "press",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "INCOMPLETE_BODY_REGISTRY",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        }
+      }
+    },
+    {
+      "eventId": "ghost-wind",
+      "inspection": {
+        "kind": "UNTYPED_EVENT",
+        "origin": "G1-C候选：侵扰既存鬼域；隔离验证",
+        "eligible": {
+          "fire": false,
+          "wind": false,
+          "press": false
+        },
+        "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+        "missing": {
+          "fire": [
+            "real enemy source action",
+            "verified spirit medium",
+            "real impact region",
+            "source-side contest weight"
+          ],
+          "wind": [
+            "real enemy source action",
+            "explicit domain-type initiative",
+            "verified domain region",
+            "source-side domain weight"
+          ],
+          "press": [
+            "real body registry",
+            "complete height and posture ordering at the trigger tick",
+            "real in-range bodies",
+            "action target and physical resistance"
+          ]
+        }
+      },
+      "gates": {
+        "fire": {
+          "eligible": false,
+          "ghost": "fire",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_BURNABLE_MEDIUM",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "wind": {
+          "eligible": false,
+          "ghost": "wind",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_DOMAIN_ACTION",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "press": {
+          "eligible": false,
+          "ghost": "press",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "INCOMPLETE_BODY_REGISTRY",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        }
+      }
+    },
+    {
+      "eventId": "ghost-press",
+      "inspection": {
+        "kind": "UNTYPED_EVENT",
+        "origin": "G1-C候选：有身高关系的条件压制；隔离验证",
+        "eligible": {
+          "fire": false,
+          "wind": false,
+          "press": false
+        },
+        "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+        "missing": {
+          "fire": [
+            "real enemy source action",
+            "verified spirit medium",
+            "real impact region",
+            "source-side contest weight"
+          ],
+          "wind": [
+            "real enemy source action",
+            "explicit domain-type initiative",
+            "verified domain region",
+            "source-side domain weight"
+          ],
+          "press": [
+            "real body registry",
+            "complete height and posture ordering at the trigger tick",
+            "real in-range bodies",
+            "action target and physical resistance"
+          ]
+        }
+      },
+      "gates": {
+        "fire": {
+          "eligible": false,
+          "ghost": "fire",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_BURNABLE_MEDIUM",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "wind": {
+          "eligible": false,
+          "ghost": "wind",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_DOMAIN_ACTION",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "press": {
+          "eligible": false,
+          "ghost": "press",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "INCOMPLETE_BODY_REGISTRY",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        }
+      }
+    },
+    {
+      "eventId": "g1a-rope-candidate",
+      "inspection": {
+        "kind": "UNTYPED_EVENT",
+        "origin": "G1-A补完稿；仅隔离模拟，不是获取剧情",
+        "eligible": {
+          "fire": false,
+          "wind": false,
+          "press": false
+        },
+        "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+        "missing": {
+          "fire": [
+            "real enemy source action",
+            "verified spirit medium",
+            "real impact region",
+            "source-side contest weight"
+          ],
+          "wind": [
+            "real enemy source action",
+            "explicit domain-type initiative",
+            "verified domain region",
+            "source-side domain weight"
+          ],
+          "press": [
+            "real body registry",
+            "complete height and posture ordering at the trigger tick",
+            "real in-range bodies",
+            "action target and physical resistance"
+          ]
+        }
+      },
+      "gates": {
+        "fire": {
+          "eligible": false,
+          "ghost": "fire",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_BURNABLE_MEDIUM",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "wind": {
+          "eligible": false,
+          "ghost": "wind",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_DOMAIN_ACTION",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "press": {
+          "eligible": false,
+          "ghost": "press",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "INCOMPLETE_BODY_REGISTRY",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        }
+      }
+    },
+    {
+      "eventId": "knocker",
+      "inspection": {
+        "kind": "UNVERIFIED_SCHOOL_SOURCE",
+        "origin": null,
+        "eligible": {
+          "fire": false,
+          "wind": false,
+          "press": false
+        },
+        "reason": "不满足七中真实音频行动的开始/参与条件，不能依据事件名推断正式意图",
+        "missing": {
+          "fire": [
+            "real enemy source action",
+            "verified spirit medium",
+            "real impact region",
+            "source-side contest weight"
+          ],
+          "wind": [
+            "real enemy source action",
+            "explicit domain-type initiative",
+            "verified domain region",
+            "source-side domain weight"
+          ],
+          "press": [
+            "real body registry",
+            "complete height and posture ordering at the trigger tick",
+            "real in-range bodies",
+            "action target and physical resistance"
+          ]
+        }
+      },
+      "gates": {
+        "fire": {
+          "eligible": false,
+          "ghost": "fire",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_BURNABLE_MEDIUM",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "wind": {
+          "eligible": false,
+          "ghost": "wind",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_DOMAIN_ACTION",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "press": {
+          "eligible": false,
+          "ghost": "press",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "INCOMPLETE_BODY_REGISTRY",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        }
+      }
+    },
+    {
+      "eventId": "door",
+      "inspection": {
+        "kind": "UNTYPED_EVENT",
+        "origin": "0.9.0原创调查；非原著灵异，数值为测试预算",
+        "eligible": {
+          "fire": false,
+          "wind": false,
+          "press": false
+        },
+        "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+        "missing": {
+          "fire": [
+            "real enemy source action",
+            "verified spirit medium",
+            "real impact region",
+            "source-side contest weight"
+          ],
+          "wind": [
+            "real enemy source action",
+            "explicit domain-type initiative",
+            "verified domain region",
+            "source-side domain weight"
+          ],
+          "press": [
+            "real body registry",
+            "complete height and posture ordering at the trigger tick",
+            "real in-range bodies",
+            "action target and physical resistance"
+          ]
+        }
+      },
+      "gates": {
+        "fire": {
+          "eligible": false,
+          "ghost": "fire",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_BURNABLE_MEDIUM",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "wind": {
+          "eligible": false,
+          "ghost": "wind",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_DOMAIN_ACTION",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "press": {
+          "eligible": false,
+          "ghost": "press",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "INCOMPLETE_BODY_REGISTRY",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        }
+      }
+    },
+    {
+      "eventId": "watch",
+      "inspection": {
+        "kind": "UNTYPED_EVENT",
+        "origin": "V2.0 ORIGINAL样板；非原著灵异",
+        "eligible": {
+          "fire": false,
+          "wind": false,
+          "press": false
+        },
+        "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+        "missing": {
+          "fire": [
+            "real enemy source action",
+            "verified spirit medium",
+            "real impact region",
+            "source-side contest weight"
+          ],
+          "wind": [
+            "real enemy source action",
+            "explicit domain-type initiative",
+            "verified domain region",
+            "source-side domain weight"
+          ],
+          "press": [
+            "real body registry",
+            "complete height and posture ordering at the trigger tick",
+            "real in-range bodies",
+            "action target and physical resistance"
+          ]
+        }
+      },
+      "gates": {
+        "fire": {
+          "eligible": false,
+          "ghost": "fire",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_BURNABLE_MEDIUM",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "wind": {
+          "eligible": false,
+          "ghost": "wind",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_DOMAIN_ACTION",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "press": {
+          "eligible": false,
+          "ghost": "press",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "INCOMPLETE_BODY_REGISTRY",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        }
+      }
+    },
+    {
+      "eventId": "officer",
+      "inspection": {
+        "kind": "UNTYPED_EVENT",
+        "origin": "V1.6玩家实例；数值与外围事件为游戏改编",
+        "eligible": {
+          "fire": false,
+          "wind": false,
+          "press": false
+        },
+        "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+        "missing": {
+          "fire": [
+            "real enemy source action",
+            "verified spirit medium",
+            "real impact region",
+            "source-side contest weight"
+          ],
+          "wind": [
+            "real enemy source action",
+            "explicit domain-type initiative",
+            "verified domain region",
+            "source-side domain weight"
+          ],
+          "press": [
+            "real body registry",
+            "complete height and posture ordering at the trigger tick",
+            "real in-range bodies",
+            "action target and physical resistance"
+          ]
+        }
+      },
+      "gates": {
+        "fire": {
+          "eligible": false,
+          "ghost": "fire",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_BURNABLE_MEDIUM",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "wind": {
+          "eligible": false,
+          "ghost": "wind",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_DOMAIN_ACTION",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "press": {
+          "eligible": false,
+          "ghost": "press",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "INCOMPLETE_BODY_REGISTRY",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        }
+      }
+    },
+    {
+      "eventId": "eye",
+      "inspection": {
+        "kind": "UNTYPED_EVENT",
+        "origin": "V1母文档玩家实例；鬼域、权柄与数值为GDD游戏模型",
+        "eligible": {
+          "fire": false,
+          "wind": false,
+          "press": false
+        },
+        "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+        "missing": {
+          "fire": [
+            "real enemy source action",
+            "verified spirit medium",
+            "real impact region",
+            "source-side contest weight"
+          ],
+          "wind": [
+            "real enemy source action",
+            "explicit domain-type initiative",
+            "verified domain region",
+            "source-side domain weight"
+          ],
+          "press": [
+            "real body registry",
+            "complete height and posture ordering at the trigger tick",
+            "real in-range bodies",
+            "action target and physical resistance"
+          ]
+        }
+      },
+      "gates": {
+        "fire": {
+          "eligible": false,
+          "ghost": "fire",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_BURNABLE_MEDIUM",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "wind": {
+          "eligible": false,
+          "ghost": "wind",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_DOMAIN_ACTION",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "press": {
+          "eligible": false,
+          "ghost": "press",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "INCOMPLETE_BODY_REGISTRY",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        }
+      }
+    },
+    {
+      "eventId": "hungry",
+      "inspection": {
+        "kind": "UNTYPED_EVENT",
+        "origin": "GDD饿死鬼玩家实例；高级获取与规则为游戏改编",
+        "eligible": {
+          "fire": false,
+          "wind": false,
+          "press": false
+        },
+        "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+        "missing": {
+          "fire": [
+            "real enemy source action",
+            "verified spirit medium",
+            "real impact region",
+            "source-side contest weight"
+          ],
+          "wind": [
+            "real enemy source action",
+            "explicit domain-type initiative",
+            "verified domain region",
+            "source-side domain weight"
+          ],
+          "press": [
+            "real body registry",
+            "complete height and posture ordering at the trigger tick",
+            "real in-range bodies",
+            "action target and physical resistance"
+          ]
+        }
+      },
+      "gates": {
+        "fire": {
+          "eligible": false,
+          "ghost": "fire",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_BURNABLE_MEDIUM",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "wind": {
+          "eligible": false,
+          "ghost": "wind",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_DOMAIN_ACTION",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "press": {
+          "eligible": false,
+          "ghost": "press",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "INCOMPLETE_BODY_REGISTRY",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        }
+      }
+    },
+    {
+      "eventId": "blood",
+      "inspection": {
+        "kind": "UNTYPED_EVENT",
+        "origin": "GDD同源玩家实例；获取路线与限制规律为游戏改编",
+        "eligible": {
+          "fire": false,
+          "wind": false,
+          "press": false
+        },
+        "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+        "missing": {
+          "fire": [
+            "real enemy source action",
+            "verified spirit medium",
+            "real impact region",
+            "source-side contest weight"
+          ],
+          "wind": [
+            "real enemy source action",
+            "explicit domain-type initiative",
+            "verified domain region",
+            "source-side domain weight"
+          ],
+          "press": [
+            "real body registry",
+            "complete height and posture ordering at the trigger tick",
+            "real in-range bodies",
+            "action target and physical resistance"
+          ]
+        }
+      },
+      "gates": {
+        "fire": {
+          "eligible": false,
+          "ghost": "fire",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_BURNABLE_MEDIUM",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "wind": {
+          "eligible": false,
+          "ghost": "wind",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_DOMAIN_ACTION",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "press": {
+          "eligible": false,
+          "ghost": "press",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "INCOMPLETE_BODY_REGISTRY",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        }
+      }
+    },
+    {
+      "eventId": "headless",
+      "inspection": {
+        "kind": "UNTYPED_EVENT",
+        "origin": "GDD同源玩家实例；外围路线与规则数值为游戏改编",
+        "eligible": {
+          "fire": false,
+          "wind": false,
+          "press": false
+        },
+        "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+        "missing": {
+          "fire": [
+            "real enemy source action",
+            "verified spirit medium",
+            "real impact region",
+            "source-side contest weight"
+          ],
+          "wind": [
+            "real enemy source action",
+            "explicit domain-type initiative",
+            "verified domain region",
+            "source-side domain weight"
+          ],
+          "press": [
+            "real body registry",
+            "complete height and posture ordering at the trigger tick",
+            "real in-range bodies",
+            "action target and physical resistance"
+          ]
+        }
+      },
+      "gates": {
+        "fire": {
+          "eligible": false,
+          "ghost": "fire",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_BURNABLE_MEDIUM",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "wind": {
+          "eligible": false,
+          "ghost": "wind",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_DOMAIN_ACTION",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "press": {
+          "eligible": false,
+          "ghost": "press",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "INCOMPLETE_BODY_REGISTRY",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        }
+      }
+    },
+    {
+      "eventId": "shadow",
+      "inspection": {
+        "kind": "UNTYPED_EVENT",
+        "origin": "游戏原创测试事件",
+        "eligible": {
+          "fire": false,
+          "wind": false,
+          "press": false
+        },
+        "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+        "missing": {
+          "fire": [
+            "real enemy source action",
+            "verified spirit medium",
+            "real impact region",
+            "source-side contest weight"
+          ],
+          "wind": [
+            "real enemy source action",
+            "explicit domain-type initiative",
+            "verified domain region",
+            "source-side domain weight"
+          ],
+          "press": [
+            "real body registry",
+            "complete height and posture ordering at the trigger tick",
+            "real in-range bodies",
+            "action target and physical resistance"
+          ]
+        }
+      },
+      "gates": {
+        "fire": {
+          "eligible": false,
+          "ghost": "fire",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_BURNABLE_MEDIUM",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "wind": {
+          "eligible": false,
+          "ghost": "wind",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_DOMAIN_ACTION",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "press": {
+          "eligible": false,
+          "ghost": "press",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "INCOMPLETE_BODY_REGISTRY",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        }
+      }
+    },
+    {
+      "eventId": "echo",
+      "inspection": {
+        "kind": "UNTYPED_EVENT",
+        "origin": "游戏原创测试事件",
+        "eligible": {
+          "fire": false,
+          "wind": false,
+          "press": false
+        },
+        "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+        "missing": {
+          "fire": [
+            "real enemy source action",
+            "verified spirit medium",
+            "real impact region",
+            "source-side contest weight"
+          ],
+          "wind": [
+            "real enemy source action",
+            "explicit domain-type initiative",
+            "verified domain region",
+            "source-side domain weight"
+          ],
+          "press": [
+            "real body registry",
+            "complete height and posture ordering at the trigger tick",
+            "real in-range bodies",
+            "action target and physical resistance"
+          ]
+        }
+      },
+      "gates": {
+        "fire": {
+          "eligible": false,
+          "ghost": "fire",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_BURNABLE_MEDIUM",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "wind": {
+          "eligible": false,
+          "ghost": "wind",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "UNVERIFIED_DOMAIN_ACTION",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        },
+        "press": {
+          "eligible": false,
+          "ghost": "press",
+          "reasons": [
+            "ENCOUNTER_MISMATCH",
+            "SOURCE_INSTANCE_MISMATCH",
+            "NON_FORMAL_SOURCE",
+            "INVALID_ACTION_MOMENT",
+            "INVALID_MEDIUM_SCOPE",
+            "UNKNOWN_ACTION_RESISTANCE",
+            "INCOMPLETE_BODY_REGISTRY",
+            "NO_APPROVED_GDD_SOURCE_BINDING"
+          ],
+          "targetId": null,
+          "recoverableByFallback": false
+        }
+      }
+    }
+  ],
+  "sources": [
+    {
+      "path": "src/content.js",
+      "sha256": "f44150237d314270e80dde8e231e271ac03bfe920ed6857173a86b485fc0b987"
+    },
+    {
+      "path": "src/combat.js",
+      "sha256": "e4d9e979d0b9980ab0e160fc5161aef034d3f893b5c05d7b0cc31367b0aafa09"
+    },
+    {
+      "path": "src/knocker-intents.js",
+      "sha256": "7797ebbceeef43900c4c9cdc58ee314521db7403e66436a84c68cf54b77ab65c"
+    },
+    {
+      "path": "src/ghost-eye-v6.js",
+      "sha256": "5d3f240d3c2983f4539661e924c5925fe8a3de042932a90f4442a86b87222d7f"
+    },
+    {
+      "path": "src/g1c-source-registry.js",
+      "sha256": "4fa4e30246196d80fcb381cd9072e8fe7b035b7705814ef2c8139c93328ee3ac"
+    },
+    {
+      "path": "src/g1c-production.js",
+      "sha256": "e56b23d1885b545249f6589dac442e3b5b23f45d45e1947b1a4f3add89a472b6"
+    },
+    {
+      "path": "src/g1c-consequences.js",
+      "sha256": "9be2667f03575a9e801a2f12efa91aaf1bfbc42fb52c6b4e906ae7bf7b89f20b"
+    }
+  ],
+  "compatibility": {
+    "priorRoundLossValid": true,
+    "roundtripValid": true,
+    "sourceUnchanged": true,
+    "unknownLocationFailClosed": true
+  }
+}

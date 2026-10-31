@@ -1,0 +1,16 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.innerText: Error: strict mode violation: locator('[aria-label="G1-C场景后果"]') resolved to 2 elements:
+    1) <section aria-label="G1-C场景后果">…</section> aka getByRole('region', { name: 'G1-C场景后果' })
+    2) <section aria-label="G1-C场景后果">…</section> aka locator('#workshop').getByLabel('G1-C场景后果')
+
+Call log:
+  - waiting for locator('[aria-label="G1-C场景后果"]')
+
+    at C:\Users\ziho\Documents\Codex\2026-10-30\referenced-chatgpt-conversation-this-is-an\work\g1c-round4\scripts\g1c-round4-browser.mjs:43:61 {
+  log: [ `  - waiting for locator('[aria-label="G1-C场景后果"]')` ]
+}
+
+Node.js v24.22.1

@@ -1,0 +1,1854 @@
+﻿2026-10-31T03:08:11.1835191Z Current runner version: '2.338.2'
+2026-10-31T03:08:11.1856223Z ##[group]Runner Image Provisioner
+2026-10-31T03:08:11.1856979Z Hosted Compute Agent
+2026-10-31T03:08:11.1857498Z Version: 20261021.618
+2026-10-31T03:08:11.1858269Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+2026-10-31T03:08:11.1858994Z Build Date: 2026-10-21T00:45:21Z
+2026-10-31T03:08:11.1859579Z Worker ID: {749701b8-2b1c-427d-abf9-eb0c3ff8bcaf}
+2026-10-31T03:08:11.1860152Z Region: westus3
+2026-10-31T03:08:11.1860680Z Cloud: Azure
+2026-10-31T03:08:11.1861193Z ##[endgroup]
+2026-10-31T03:08:11.1862693Z ##[group]Operating System
+2026-10-31T03:08:11.1863237Z Ubuntu
+2026-10-31T03:08:11.1863680Z 24.04.5
+2026-10-31T03:08:11.1864185Z LTS
+2026-10-31T03:08:11.1864638Z ##[endgroup]
+2026-10-31T03:08:11.1865162Z ##[group]Runner Image
+2026-10-31T03:08:11.1865692Z Image: ubuntu-24.04
+2026-10-31T03:08:11.1866183Z Version: 20261025.353.1
+2026-10-31T03:08:11.1867280Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261025.353/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-31T03:08:11.1868812Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261025.353
+2026-10-31T03:08:11.1869653Z ##[endgroup]
+2026-10-31T03:08:11.1870768Z ##[group]GITHUB_TOKEN Permissions
+2026-10-31T03:08:11.1872321Z Contents: read
+2026-10-31T03:08:11.1872884Z Metadata: read
+2026-10-31T03:08:11.1873564Z ##[endgroup]
+2026-10-31T03:08:11.1875334Z Secret source: Actions
+2026-10-31T03:08:11.1876237Z Cache mode: write
+2026-10-31T03:08:11.1876859Z Prepare workflow directory
+2026-10-31T03:08:11.2141189Z Prepare all required actions
+2026-10-31T03:08:11.2182320Z Getting action download info
+2026-10-31T03:08:11.5271564Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-31T03:08:11.6302043Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-10-31T03:08:11.7516700Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-31T03:08:11.9734467Z Complete job name: node-regression
+2026-10-31T03:08:12.0420544Z ##[group]Run actions/checkout@v4
+2026-10-31T03:08:12.0421217Z with:
+2026-10-31T03:08:12.0421632Z   repository: bishouyi254-source/supernatural-era
+2026-10-31T03:08:12.0424850Z   token: ***
+2026-10-31T03:08:12.0425217Z   ssh-strict: true
+2026-10-31T03:08:12.0425591Z   ssh-user: git
+2026-10-31T03:08:12.0425964Z   persist-credentials: true
+2026-10-31T03:08:12.0426363Z   clean: true
+2026-10-31T03:08:12.0426727Z   sparse-checkout-cone-mode: true
+2026-10-31T03:08:12.0427152Z   fetch-depth: 1
+2026-10-31T03:08:12.0427503Z   fetch-tags: false
+2026-10-31T03:08:12.0427875Z   show-progress: true
+2026-10-31T03:08:12.0428398Z   lfs: false
+2026-10-31T03:08:12.0428738Z   submodules: false
+2026-10-31T03:08:12.0429103Z   set-safe-directory: true
+2026-10-31T03:08:12.0429512Z   allow-unsafe-pr-checkout: false
+2026-10-31T03:08:12.0430109Z ##[endgroup]
+2026-10-31T03:08:12.5186219Z Syncing repository: bishouyi254-source/supernatural-era
+2026-10-31T03:08:12.5187694Z ##[group]Getting Git version info
+2026-10-31T03:08:12.5188614Z Working directory is '/home/runner/work/supernatural-era/supernatural-era'
+2026-10-31T03:08:12.5189554Z [command]/usr/bin/git version
+2026-10-31T03:08:12.5327840Z git version 2.56.0
+2026-10-31T03:08:12.5351853Z ##[endgroup]
+2026-10-31T03:08:12.5358299Z Temporarily overriding HOME='/home/runner/work/_temp/e2be7f12-c5e7-40ef-9171-8ad9a847e46e' before making global git config changes
+2026-10-31T03:08:12.5360041Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-31T03:08:12.5363420Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/supernatural-era/supernatural-era
+2026-10-31T03:08:12.5409082Z Deleting the contents of '/home/runner/work/supernatural-era/supernatural-era'
+2026-10-31T03:08:12.5429401Z ##[group]Initializing the repository
+2026-10-31T03:08:12.5439202Z [command]/usr/bin/git init /home/runner/work/supernatural-era/supernatural-era
+2026-10-31T03:08:12.5488303Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-31T03:08:12.5489492Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-31T03:08:12.5490605Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-31T03:08:12.5497903Z hint: call:
+2026-10-31T03:08:12.5498907Z hint:
+2026-10-31T03:08:12.5499747Z hint: 	git config --global init.defaultBranch <name>
+2026-10-31T03:08:12.5500558Z hint:
+2026-10-31T03:08:12.5501157Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-31T03:08:12.5502037Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-31T03:08:12.5502745Z hint:
+2026-10-31T03:08:12.5503204Z hint: 	git branch -m <name>
+2026-10-31T03:08:12.5503714Z hint:
+2026-10-31T03:08:12.5504333Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-31T03:08:12.5505618Z Initialized empty Git repository in /home/runner/work/supernatural-era/supernatural-era/.git/
+2026-10-31T03:08:12.5507773Z [command]/usr/bin/git remote add origin https://github.com/bishouyi254-source/supernatural-era
+2026-10-31T03:08:12.5553379Z ##[endgroup]
+2026-10-31T03:08:12.5554023Z ##[group]Disabling automatic garbage collection
+2026-10-31T03:08:12.5557091Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-31T03:08:12.5587814Z ##[endgroup]
+2026-10-31T03:08:12.5588659Z ##[group]Setting up auth
+2026-10-31T03:08:12.5594845Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-31T03:08:12.5627531Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-31T03:08:12.5939036Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-31T03:08:12.5979941Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-31T03:08:12.6193389Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-31T03:08:12.6231952Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-31T03:08:12.6439136Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-31T03:08:12.6481035Z ##[endgroup]
+2026-10-31T03:08:12.6481681Z ##[group]Fetching the repository
+2026-10-31T03:08:12.6490979Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +f8b0908218850e0bea569eb094a23ab63b597ee4:refs/remotes/pull/3/merge
+2026-10-31T03:08:19.7581892Z From https://github.com/bishouyi254-source/supernatural-era
+2026-10-31T03:08:19.7583404Z  * [new ref]         f8b0908218850e0bea569eb094a23ab63b597ee4 -> pull/3/merge
+2026-10-31T03:08:19.7586081Z ##[endgroup]
+2026-10-31T03:08:19.7587175Z ##[group]Determining the checkout info
+2026-10-31T03:08:19.7589334Z ##[endgroup]
+2026-10-31T03:08:19.7592944Z [command]/usr/bin/git sparse-checkout disable
+2026-10-31T03:08:19.7655366Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-31T03:08:19.7692288Z ##[group]Checking out the ref
+2026-10-31T03:08:19.7696701Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/3/merge
+2026-10-31T03:08:20.1925550Z Note: switching to 'refs/remotes/pull/3/merge'.
+2026-10-31T03:08:20.1926302Z 
+2026-10-31T03:08:20.1926802Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-31T03:08:20.1928137Z changes and commit them, and you can discard any commits you make in this
+2026-10-31T03:08:20.1929379Z state without impacting any branches by switching back to a branch.
+2026-10-31T03:08:20.1930027Z 
+2026-10-31T03:08:20.1930606Z If you want to create a new branch to retain commits you create, you may
+2026-10-31T03:08:20.1932084Z do so (now or later) by using -c with the switch command. Example:
+2026-10-31T03:08:20.1932658Z 
+2026-10-31T03:08:20.1933002Z   git switch -c <new-branch-name>
+2026-10-31T03:08:20.1933467Z 
+2026-10-31T03:08:20.1933796Z Or undo this operation with:
+2026-10-31T03:08:20.1934231Z 
+2026-10-31T03:08:20.1934545Z   git switch -
+2026-10-31T03:08:20.1934935Z 
+2026-10-31T03:08:20.1935504Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-31T03:08:20.1936168Z 
+2026-10-31T03:08:20.1936876Z HEAD is now at f8b0908 Merge 9b2f68bb347fc1e6d7775144c2c1cfb5584ac656 into f4c326f0df1bf1a38052ac865f28b722a8f88664
+2026-10-31T03:08:20.1969460Z ##[endgroup]
+2026-10-31T03:08:20.2022975Z [command]/usr/bin/git log -1 --format=%H
+2026-10-31T03:08:20.2052430Z f8b0908218850e0bea569eb094a23ab63b597ee4
+2026-10-31T03:08:20.2362936Z ##[group]Run actions/setup-node@v4
+2026-10-31T03:08:20.2363244Z with:
+2026-10-31T03:08:20.2363476Z   node-version: 24
+2026-10-31T03:08:20.2363736Z   always-auth: false
+2026-10-31T03:08:20.2363983Z   check-latest: false
+2026-10-31T03:08:20.2366274Z   token: ***
+2026-10-31T03:08:20.2366501Z ##[endgroup]
+2026-10-31T03:08:20.3549514Z (node:2108) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-31T03:08:20.3550250Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-31T03:08:20.3559352Z Found in cache @ /opt/hostedtoolcache/node/24.22.1/x64
+2026-10-31T03:08:20.3560197Z ##[group]Environment details
+2026-10-31T03:08:20.7360737Z node: v24.22.1
+2026-10-31T03:08:20.7361149Z npm: 11.19.1
+2026-10-31T03:08:20.7361425Z yarn: 1.22.22
+2026-10-31T03:08:20.7362251Z ##[endgroup]
+2026-10-31T03:08:20.7491737Z ##[group]Run node --test tests/g1c-energy-closure.test.mjs
+2026-10-31T03:08:20.7492164Z [36;1mnode --test tests/g1c-energy-closure.test.mjs[0m
+2026-10-31T03:08:20.7518282Z shell: /usr/bin/bash -e {0}
+2026-10-31T03:08:20.7518542Z ##[endgroup]
+2026-10-31T03:08:21.0515541Z ✔ two manifested ghosts: zero-energy calm is illegal, but costly retreat remains available (116.693311ms)
+2026-10-31T03:08:21.0517241Z ✔ a player pinned by tallest-body pressure cannot leave or cancel for free at zero energy (60.622754ms)
+2026-10-31T03:08:21.0518588Z ✔ no exhausted-G1C warning for ordinary new games or combat with no manifested ghost (2.004343ms)
+2026-10-31T03:08:21.0656299Z ℹ tests 3
+2026-10-31T03:08:21.0656693Z ℹ suites 0
+2026-10-31T03:08:21.0658761Z ℹ pass 3
+2026-10-31T03:08:21.0659091Z ℹ fail 0
+2026-10-31T03:08:21.0659506Z ℹ cancelled 0
+2026-10-31T03:08:21.0659807Z ℹ skipped 0
+2026-10-31T03:08:21.0660034Z ℹ todo 0
+2026-10-31T03:08:21.0660265Z ℹ duration_ms 280.1075
+2026-10-31T03:08:21.0746774Z ##[group]Run node --test tests/*.test.mjs
+2026-10-31T03:08:21.0747065Z [36;1mnode --test tests/*.test.mjs[0m
+2026-10-31T03:08:21.0765139Z shell: /usr/bin/bash -e {0}
+2026-10-31T03:08:21.0765360Z ##[endgroup]
+2026-10-31T03:08:34.3564862Z ✔ 城市前没有交通入口，旧v2只追加公交状态 (519.154101ms)
+2026-10-31T03:08:34.3603168Z ✔ 未知车辆观察不自动登车，拒绝不Game Over且正史继续 (490.975343ms)
+2026-10-31T03:08:34.3608556Z ✔ 普通人可坐着存活完整首次旅程，无鬼也没有HP Boss (540.233565ms)
+2026-10-31T03:08:34.3627866Z ✔ 运行只压制活动和未来增长，不改变承载或71/43累计复苏 (397.350715ms)
+2026-10-31T03:08:34.3692598Z ✔ 100复苏可受运行压制维持，熄火后同一进度产生危机 (461.516346ms)
+2026-10-31T03:08:34.3694123Z ✔ 公交运行超载增长较低，熄火恢复增长，负荷不打折 (449.327256ms)
+2026-10-31T03:08:34.3701722Z ✔ 停车三个行动窗口，及时返回后不被困 (385.630624ms)
+2026-10-31T03:08:34.3728826Z ✔ 错过公交没有Hub传送，调查条件路线可承担代价回归 (381.196062ms)
+2026-10-31T03:08:34.3769281Z ✔ 地点再次到达保留探索，但历史出口不能冒充当前出口 (487.160929ms)
+2026-10-31T03:08:34.3799252Z ✔ 熄火调用A只增加A的调用复苏，恢复运行不返还 (493.66227ms)
+2026-10-31T03:08:34.3803842Z ✔ 公交期间禁用安全自动与城市Hub行动 (410.266229ms)
+2026-10-31T03:08:34.3829195Z ✔ 运行强行触碰不是经验战，车厢秩序恶化 (322.818248ms)
+2026-10-31T03:08:34.3866170Z ✔ 乘客观察不直接认证身份，尝试保护错误对象会承担风险 (315.894647ms)
+2026-10-31T03:08:34.3890928Z ✔ 保护原创普通乘客有成本，存活结果不被正史强行杀掉 (442.916668ms)
+2026-10-31T03:08:34.3899847Z ✔ 遮脸布需观察接近隔离，独立命运稳定且不重复领取 (523.225714ms)
+2026-10-31T03:08:34.3901179Z ✔ 七层重启死亡待定只恢复身体感知，熄火和乘客不回滚 (643.788041ms)
+2026-10-31T03:08:34.3901757Z ✔ 八层局部对抗不能重置X设施、站点或城市结果 (650.892224ms)
+2026-10-31T03:08:34.3902286Z ✔ 致死反应仍在公交，已提交死亡遗留灵异不复活 (643.522919ms)
+2026-10-31T03:08:34.3902842Z ✔ 极高复苏且理解压制可以选择长期留车，现实再停可离开 (928.853929ms)
+2026-10-31T03:08:34.3903410Z ✔ JSON恢复停站窗口、熄火和命运结果，不重新初始化 (710.245864ms)
+2026-10-31T03:08:34.3904028Z ✔ 未知车辆不在UI直接显示全部厉鬼/等级，网络没有传送按钮 (474.646739ms)
+2026-10-31T03:08:34.3904562Z ✔ 损坏公交、乘客、出口、资源和命运结果拒绝导入 (492.94416ms)
+2026-10-31T03:08:34.3905123Z ✔ 地点出口结构缺失或内容非法时拒绝存档，不在后续停站崩溃 (473.915688ms)
+2026-10-31T03:08:34.3905719Z ✔ 六公交地标捕获为可校验的完整副本，导出结构保留世界和逐鬼数据 (657.375239ms)
+2026-10-31T03:08:34.3906224Z ✔ 再次保存不覆盖既有锚点，副本不共享后来变动 (408.262135ms)
+2026-10-31T03:08:34.3906731Z ✔ 导入过去地标不得用当前数据伪造过去的完整快照 (439.820471ms)
+2026-10-31T03:08:34.4078178Z ✔ 正式遭遇行动条推进源头，不给鬼添加HP；普通人可完整限制 (198.867592ms)
+2026-10-31T03:08:34.4079154Z ✔ 无证据可避险，不因此认证规律；普通攻击无法击杀 (121.968536ms)
+2026-10-31T03:08:34.4079934Z ✔ 相同输入复现行动条、日志、材料和结果 (259.227206ms)
+2026-10-31T03:08:34.4080735Z ✔ 规则对抗高权重阻断、相等部分阻断、低权重失败 (0.36504ms)
+2026-10-31T03:08:34.4081466Z ✔ 战斗与致死待定在刷新后恢复；资源反应耗用一次 (132.019214ms)
+2026-10-31T03:08:34.4091492Z ✔ 无资源死亡提交不可普通复活，历史仍保留 (125.07638ms)
+2026-10-31T03:08:34.4092318Z ✔ 援助不纳入负荷，次数耗尽后不可继续调用 (99.862975ms)
+2026-10-31T03:08:34.4093107Z ✔ 封存可取回改为驾驭，重复点击不能复制材料或实例 (76.645912ms)
+2026-10-31T03:08:34.4093885Z ✔ 单鬼开发、复苏独立；档案开发只有一次且封顶100 (50.170081ms)
+2026-10-31T03:08:34.4094578Z ✔ 章节逐级开放，撤离与刷新不重置证据和阶段 (103.124077ms)
+2026-10-31T03:08:34.4095291Z ✔ 商场、俱乐部、黄岗村无二鬼也可离开，NPC实例未成为玩家奖励 (384.358448ms)
+2026-10-31T03:08:34.4095983Z ✔ 第二鬼经过限制、匹配和失衡；植入不降低第一鬼78% (301.931138ms)
+2026-10-31T03:08:34.4096612Z ✔ 结合保留两实例负荷代价，独立次鬼按钮被组合规则取代 (339.576073ms)
+2026-10-31T03:08:34.4097238Z ✔ 大量使用A偏移，另一只能力或外部媒介能修正而不回退复苏 (316.992746ms)
+2026-10-31T03:08:34.4098640Z ✔ 单向强压制是伪平衡，不因点击完成观察变成真正平衡 (501.618002ms)
+2026-10-31T03:08:34.4099424Z ✔ 植入拒绝不添加实例，重试同上下文不重新抽签 (324.762192ms)
+2026-10-31T03:08:34.4100103Z ✔ 危险95%首鬼触发双鬼复苏，逐只封存不删除剩余鬼进度 (315.306823ms)
+2026-10-31T03:08:34.4100863Z ✔ 低相容出现反客为主或无法植入，不按评级当相容 (2188.25897ms)
+2026-10-31T03:08:34.4101798Z ✔ 失衡期可领取原有有限补给后放弃第二鬼，不回退第一鬼累计进度 (305.012067ms)
+2026-10-31T03:08:34.4102475Z ✔ 命运只依赖相关上下文，不使用点击节点时间重Roll (0.422925ms)
+2026-10-31T03:08:34.4103118Z ✔ 权柄与重启契约只允许临时层，复苏物品命运世界不回滚 (65.52236ms)
+2026-10-31T03:08:34.4103758Z ✔ 旧v2只增加新系统；拒绝畸形战斗、平衡、命运与资源 (50.98ms)
+2026-10-31T03:08:34.4104442Z ✔ 损坏实例拒绝导入而不抛异常；援助超额与零媒介不能绕过消耗 (270.603682ms)
+2026-10-31T03:08:34.4105084Z ✔ B章开始前街区锁定，普通人没有鬼眼 (14.375142ms)
+2026-10-31T03:08:34.4105693Z ✔ inside完整闭环与个人首鬼两路线 (174.619624ms)
+2026-10-31T03:08:34.4106331Z ✔ perimeter完整闭环与个人首鬼两路线 (126.711638ms)
+2026-10-31T03:08:34.4106985Z ✔ 现实玩家可无认证避险，但NPC档案不自动建立 (34.617188ms)
+2026-10-31T03:08:34.4107617Z ✔ 撤离后正史收束但不自动认证杨间能力或重置救援 (71.577248ms)
+2026-10-31T03:08:34.4108469Z ✔ 危险音频失败保留证据，有完整脱离出口 (117.936225ms)
+2026-10-31T03:08:34.4109276Z ✔ 零能量不能救援，重复救援不重复扣除 (45.270027ms)
+2026-10-31T03:08:34.4109878Z ✔ 有限补给不可无限刷，满袋无补给操作 (60.770512ms)
+2026-10-31T03:08:34.4110496Z ✔ JSON刷新恢复章节阶段，不复制世界事件与补给 (84.56578ms)
+2026-10-31T03:08:34.4111143Z ✔ 背景提示各自独立，未授予属性或灵异 (1.117462ms)
+2026-10-31T03:08:34.4111737Z ✔ 旧v2只追加未参与章节，不篡改既有复苏 (2.452345ms)
+2026-10-31T03:08:34.4112369Z ✔ 保存拒绝伪造章节状态与补给额度 (1.030414ms)
+2026-10-31T03:08:34.4113273Z ✔ new character retains five independent creation fields and a valid v2 save (15.8349ms)
+2026-10-31T03:08:34.4114411Z ✔ legacy v2 without traits upgrades without erasing existing save fields (3.285627ms)
+2026-10-31T03:08:34.4115502Z ✔ immediate deaths with no recorded progress never award potential (0.760344ms)
+2026-10-31T03:08:34.4116607Z ✔ death evaluation counts existing progression evidence, not UI claims (0.621839ms)
+2026-10-31T03:08:34.4117593Z ✔ same finalized run never awards death points twice (0.576623ms)
+2026-10-31T03:08:34.4119299Z ✔ points separately increase host slots and mental potential (2.829102ms)
+2026-10-31T03:08:34.4120356Z ✔ next life resets ghosts and story but inherits paid potential (3.123778ms)
+2026-10-31T03:08:34.4121560Z ✔ mental casts refund energy at most once per remaining charge without suppressing revival (1.322064ms)
+2026-10-31T03:08:34.4122830Z ✔ development potential never reduces legacy development that was already earned (1.308304ms)
+2026-10-31T03:08:34.4123946Z ✔ death allocation cannot occur before death is finalized (3.754851ms)
+2026-10-31T03:08:34.4125028Z ✔ real engine death:commit grants exactly one reward with no free resurrection (15.834329ms)
+2026-10-31T03:08:40.9432618Z ✔ CRISIS locked before mirror chronology and legacy upgrade adds empty model only (26.591031ms)
+2026-10-31T03:08:40.9438672Z ✔ CRISIS normal prior-boundary actions reach independent city chapter without new ghosts (162.014944ms)
+2026-10-31T03:08:40.9499671Z ✔ CRISIS guided ordinary route reaches 225 and ends with at most four legal choices (786.079244ms)
+2026-10-31T03:08:40.9529685Z ✔ CRISIS refusal does not freeze world or grant role and source knowledge (602.574574ms)
+2026-10-31T03:08:40.9539418Z ✔ CRISIS appointment preserves Zhao and adds Yang without replacing either by player (201.78845ms)
+2026-10-31T03:08:40.9540850Z ✔ CRISIS official assessment contains only disclosed ability data and real history (208.575213ms)
+2026-10-31T03:08:40.9542080Z ✔ CRISIS death permanently closes old organization trades and preserves past purchases (228.196692ms)
+2026-10-31T03:08:40.9548774Z ✔ CRISIS death world event is not automatic character knowledge (263.195313ms)
+2026-10-31T03:08:40.9589551Z ✔ CRISIS known relationship selects death-message channel without fabricated friendship (285.740133ms)
+2026-10-31T03:08:40.9643390Z ✔ CRISIS five dimensions independent when road disruption begins (362.285856ms)
+2026-10-31T03:08:40.9644646Z ✔ CRISIS frontend projects evidence instead of hidden world facts (691.375806ms)
+2026-10-31T03:08:40.9645685Z ✔ CRISIS baseline and official versus supernatural route evidence remain separate (586.995773ms)
+2026-10-31T03:08:40.9646688Z ✔ CRISIS old road evidence becomes stale without being erased or falsified (154.630386ms)
+2026-10-31T03:08:40.9647712Z ✔ CRISIS unknown route attempts give actionable alternatives and spend one real turn (106.702441ms)
+2026-10-31T03:08:40.9649420Z ✔ CRISIS ordinary local travel reaches actual home without supernatural immunity (589.108182ms)
+2026-10-31T03:08:40.9650421Z ✔ CRISIS preparation consumes once and does not alter host capacity or revival (117.801631ms)
+2026-10-31T03:08:40.9651410Z ✔ CRISIS three independent optional requests preserve identity on refusal (406.498847ms)
+2026-10-31T03:08:40.9652479Z ✔ CRISIS accepted duty has explicit type and requires actual result before completion (412.783989ms)
+2026-10-31T03:08:40.9653498Z ✔ CRISIS finite allocation cannot be obtained twice or exchanged into cash (480.961575ms)
+2026-10-31T03:08:40.9654261Z ✔ CRISIS allocation usable with zero private bags (491.704097ms)
+2026-10-31T03:08:40.9655076Z ✔ CRISIS mutable saved civilians persist while world reaches full lockdown (675.017111ms)
+2026-10-31T03:08:40.9656020Z ✔ CRISIS canon Zhang Liqin never aliases Wang Shanshan or peripheral player case (599.866597ms)
+2026-10-31T03:08:40.9656907Z ✔ CRISIS similar manifestations alone do not prove common source (613.039212ms)
+2026-10-31T03:08:40.9657924Z ✔ CRISIS independent interviews support hypothesis, retain contradiction and gaps (647.148791ms)
+2026-10-31T03:08:40.9659122Z ✔ CRISIS repost origin deduplication does not increase independent source count (670.196314ms)
+2026-10-31T03:08:40.9660051Z ✔ CRISIS local referral leaves source and other cases unresolved (490.64087ms)
+2026-10-31T03:08:40.9660964Z ✔ CRISIS limited conference separates observation theory and decision (473.019263ms)
+2026-10-31T03:08:40.9662003Z ✔ CRISIS delayed transmission does not immediately synchronize recipient knowledge (414.227374ms)
+2026-10-31T03:08:40.9662862Z ✔ CRISIS lost transmission does not invent receipt (510.067636ms)
+2026-10-31T03:08:40.9663842Z ✔ CRISIS occurred versus learned timestamps preserved with late knowledge (487.773169ms)
+2026-10-31T03:08:40.9664688Z ✔ CRISIS all twelve pages and view focus are read-only (411.543146ms)
+2026-10-31T03:08:40.9665538Z ✔ CRISIS active scene excludes automatic combat and unrelated actions (65.702221ms)
+2026-10-31T03:08:40.9666534Z ✔ CRISIS archive stops at225 while authorized H19 adapter continues after reload (478.174912ms)
+2026-10-31T03:08:40.9667494Z ✔ CRISIS same saves and public actions produce stable city consequences (1038.01444ms)
+2026-10-31T03:08:40.9668557Z ✔ CRISIS temporary restart cannot erase deaths roads messages or case results (426.243676ms)
+2026-10-31T03:08:40.9669593Z ✔ CRISIS joint invocation charges each selected spirit once, no extra burden or mastery (373.690183ms)
+2026-10-31T03:08:40.9670694Z ✔ CRISIS advanced existing mastery retained on entry, never rewards a free third spirit (77.591924ms)
+2026-10-31T03:08:40.9672025Z ✔ CRISIS preview language explicitly states permanent costs and optional sharing (72.521045ms)
+2026-10-31T03:08:40.9673159Z ✔ CRISIS invalid import rejects impossible canon, resurrection and invented confirmed root (443.356382ms)
+2026-10-31T03:08:40.9674188Z ✔ CRISIS bounded wait equals public actions and stops on a new chapter (128.007219ms)
+2026-10-31T03:08:40.9675062Z ✔ CRISIS bounded wait stops when delayed knowledge arrives (408.864515ms)
+2026-10-31T03:08:40.9675997Z ✔ CRISIS single legal invocation charges eye only and never guarantees city exit (412.445861ms)
+2026-10-31T03:08:40.9677070Z ✔ CRISIS late closure preserves unrelated independent human-investigation route (293.652297ms)
+2026-10-31T03:08:40.9678362Z ✔ CRISIS evidenced eye-shadow cooperation remains conditional and pays both historical costs (624.094791ms)
+2026-10-31T03:08:40.9679526Z ✔ CRISIS organizational death is idempotent while surviving contacts remain reachable (673.161181ms)
+2026-10-31T03:08:41.0032472Z ✔ 配置重排后已保存的档案编号不指向另一个实例 (5.243742ms)
+2026-10-31T03:08:41.0057202Z ✔ 无存档只提示返回游戏，不创建或写入角色 (0.28397ms)
+2026-10-31T03:08:41.0072231Z ✔ 损坏JSON及无效schema安全保留原始存档 (2.55691ms)
+2026-10-31T03:08:41.0072995Z ✔ 读取被拒绝时维持空态与可恢复说明 (0.188648ms)
+2026-10-31T03:08:41.0073627Z ✔ 正常读取仅升级内存副本，不回写核心键 (13.280384ms)
+2026-10-31T03:08:41.0074279Z ✔ 新角色未知卡不公开内容名称、六档或规则，不创建情报 (5.409878ms)
+2026-10-31T03:08:41.0075379Z ✔ 进入实际现场不等于辨认身份和评级 (54.40293ms)
+2026-10-31T03:08:41.0075980Z ✔ 未核实证词保留来源与状态，不升级为规则 (38.925929ms)
+2026-10-31T03:08:41.0076625Z ✔ 实际调查结算提供媒介、证据、处理记录而非持有 (173.789915ms)
+2026-10-31T03:08:41.0077274Z ✔ 持有实例rank可公开，不将原始配置S潜力冒充评级 (1.240073ms)
+2026-10-31T03:08:41.0077914Z ✔ 未持有同源的评级和能力不由其他实例推出 (0.65637ms)
+2026-10-31T03:08:41.0078657Z ✔ 后台世界资料仅knownBy包含player时公开 (0.781525ms)
+2026-10-31T03:08:41.0079211Z ✔ 公交资料严格使用接收者过滤 (0.767825ms)
+2026-10-31T03:08:41.0079740Z ✔ 未知档案不能保存目标或笔记 (2.005845ms)
+2026-10-31T03:08:41.0080325Z ✔ 个人笔记和目标不修改存档、证据、时间或持有 (126.297301ms)
+2026-10-31T03:08:41.0080962Z ✔ 角色标记分区、笔记长度限制与坏JSON安全回退 (119.486006ms)
+2026-10-31T03:08:41.0081585Z ✔ 存储失败不得报告已保存或修改原存档 (121.362716ms)
+2026-10-31T03:08:41.0082279Z ✔ 存档导出与旧存档upgrade仍保持format2且合法 (128.36646ms)
+2026-10-31T03:08:41.0082881Z ✔ 图鉴正式评级只有六档 (1.767143ms)
+2026-10-31T03:08:41.0083454Z ✔ 未知身份、规律、插画和评级不泄露后台值 (0.848294ms)
+2026-10-31T03:08:41.0084050Z ✔ 未发现但已有评级情报的档案只公开获准评级 (0.311931ms)
+2026-10-31T03:08:41.0084672Z ✔ 发现不等于身份、规律和评级全部确认 (0.168349ms)
+2026-10-31T03:08:41.0085286Z ✔ 非法评级即便带证据也不加入正式等级 (0.239764ms)
+2026-10-31T03:08:41.0085848Z ✔ 风险与评级独立：低评级仍可高危 (0.283379ms)
+2026-10-31T03:08:41.0086408Z ✔ 六档筛选不会包含无证据的未知评级 (9.251687ms)
+2026-10-31T03:08:41.0086945Z ✔ 搜索不会匹配未公开身份或规则 (0.494071ms)
+2026-10-31T03:08:41.0087507Z ✔ 已发现/未发现/接触过滤及组合筛选 (0.461131ms)
+2026-10-31T03:08:41.0089137Z ✔ 搜索覆盖公开线索、空态与分页边界 (2.138091ms)
+2026-10-31T03:08:41.0089775Z ✔ 评级排序将无评级放最后，完整度排序不伪造未知进度 (0.306243ms)
+2026-10-31T03:08:41.0090407Z ✔ 输出转义档案内容与标识，拒绝外部/可执行插画地址 (0.316348ms)
+2026-10-31T03:08:41.0091013Z ✔ 组件演示依赖不导入引擎或存档读写模块 (19.301776ms)
+2026-10-31T03:08:41.0091614Z ✔ 投影和筛选不改变输入，未知进度渲染0/??? (0.697782ms)
+2026-10-31T03:08:41.0092259Z ✔ 接线严格只读，引擎合法动作可用；普通人没有厉鬼技能 (24.014563ms)
+2026-10-31T03:08:41.0093116Z ✔ 已启用鬼的开发技能来自引擎，复苏按各鬼分别列出 (49.608742ms)
+2026-10-31T03:08:41.0093786Z ✔ 逐鬼复苏不与总体负荷混淆、组合取代的二鬼调用保持禁用 (17.841568ms)
+2026-10-31T03:08:41.0094402Z ✔ 真实行动、存档往返、限制结算与撤离均遵从原引擎 (67.006314ms)
+2026-10-31T03:09:01.7952380Z ✔ AR24 entry fixes316 empty actions without forcing stranded survivor or dead return (8.230489ms)
+2026-10-31T03:09:01.7979979Z ✔ AR24 migration attaches empty modules at actual current calendar anchor (4.517539ms)
+2026-10-31T03:09:01.8016835Z ✔ AR24 communications separate send receive HQ registration and legal access (193.581045ms)
+2026-10-31T03:09:01.8017704Z ✔ AR24 no同行报告不会伪造观察; X分类不等于S灵异 (247.136162ms)
+2026-10-31T03:09:01.8018601Z ✔ EV24 historical text exists while truth remains unverified (218.858129ms)
+2026-10-31T03:09:01.8026981Z ✔ CT24 request response binding claim recognition delivery remain separate (22.380978ms)
+2026-10-31T03:09:01.8106120Z ✔ CT24 source cannot bind player or reuse arbitrary source rules (21.48573ms)
+2026-10-31T03:09:01.8107397Z ✔ CT24 trial new obligation fulfilled then legally terminated; closing UI cannot terminate (299.179234ms)
+2026-10-31T03:09:01.8108716Z ✔ FC24 unique cupboard moves via roof to tower, no player ownership or mirror duplicate (359.854633ms)
+2026-10-31T03:09:01.8109865Z ✔ AS24 sealed containers separate from unknown source and actual canonical custodian (610.815965ms)
+2026-10-31T03:09:01.8110888Z ✔ AS24 unauthorized failed payment leaves complete snapshot intact (609.290619ms)
+2026-10-31T03:09:01.8111723Z ✔ AS24 atomic recognized payment consumes one unique package once (615.200767ms)
+2026-10-31T03:09:01.8112695Z ✔ AU24 transcript evidence is unverified statement, never global sound damage (781.837949ms)
+2026-10-31T03:09:01.8113651Z ✔ EV24 later world facts do not leak before receiving updated evidence (813.257958ms)
+2026-10-31T03:09:01.8114676Z ✔ CA24 full ordinary path delivers13 photo, keeps Yang debt and exact328 boundary (1047.588779ms)
+2026-10-31T03:09:01.8115664Z ✔ SV24 whole save reload deterministic no repeated physical delivery (1107.778789ms)
+2026-10-31T03:09:01.8116511Z ✔ SV24 reset preserves contract registry and deadline (1072.914291ms)
+2026-10-31T03:09:01.8117334Z ✔ TIME24 year uses calendar not365 clicks and leap day clamps (1052.700839ms)
+2026-10-31T03:09:01.8118394Z ✔ TIME24 only world actions advance duration; new-game calendar starts empty (927.65544ms)
+2026-10-31T03:09:01.8119206Z ✔ UX24 each page pure main scene <=4 choices (965.313318ms)
+2026-10-31T03:09:01.8119803Z ✔ SV24 rejects malformed calendar (971.739468ms)
+2026-10-31T03:09:01.8120348Z ✔ SV24 rejects malformed actor (1057.981835ms)
+2026-10-31T03:09:01.8120901Z ✔ SV24 rejects malformed deadline (1021.078106ms)
+2026-10-31T03:09:01.8121455Z ✔ SV24 rejects malformed duplicate (719.661708ms)
+2026-10-31T03:09:01.8121992Z ✔ SV24 rejects malformed source (757.004947ms)
+2026-10-31T03:09:01.8122526Z ✔ SV24 rejects malformed facility (807.008983ms)
+2026-10-31T03:09:01.8123067Z ✔ SV24 rejects malformed unknown (738.695247ms)
+2026-10-31T03:09:01.8123593Z ✔ SV24 rejects malformed relay (760.656616ms)
+2026-10-31T03:09:01.8124573Z ✔ SV24 rejects malformed oldreport (725.303329ms)
+2026-10-31T03:09:01.8125410Z ✔ B24 five builds have no contract immunity and burden/revival not rewritten (1015.064146ms)
+2026-10-31T03:09:01.8126430Z ✔ QA24 generates local test boundary from real engine actions, never browser save (828.690666ms)
+2026-10-31T03:09:01.8127428Z ✔ SAVE24 failed storage never shows candidate delivery or mutates previous state (782.985709ms)
+2026-10-31T03:09:01.8128972Z ✔ AUDIO24 verified rules resolve only actual recipient channel and site; canonical claim unverified (0.323741ms)
+2026-10-31T03:09:01.8130061Z ✔ CT24 trial cannot be fulfilled without actually recorded canonical cost (295.448659ms)
+2026-10-31T03:09:01.8131047Z ✔ EV24 actual written response evidence does not reveal all cupboard truth (292.188423ms)
+2026-10-31T03:09:01.8132019Z ✔ PHYSICAL24 returning from company keeps contracts assets and due dates (737.710166ms)
+2026-10-31T03:09:01.8133064Z ✔ CRISIS24 completed bus does not trap revival crisis or overwrite past bus record (1073.514431ms)
+2026-10-31T03:09:01.8134221Z ✔ BUILD24 alien and perfect mastery legal states get neither extra contract assets nor immunity (45.263628ms)
+2026-10-31T03:09:01.8135391Z ✔ EARLY24 actual early escape waits for canon convergence without inventing bus knowledge (1016.889757ms)
+2026-10-31T03:09:01.8159876Z ✔ TIME24 due boundary changes deadline status but does not invent death or cancel debt (1055.008813ms)
+2026-10-31T03:09:01.8160903Z ✔ SV24 incomplete transaction and fabricated future expiry rejected (1613.342126ms)
+2026-10-31T03:09:01.8161969Z ✔ EV24 real bus appearance observation may link photo but never establishes identity (3022.740592ms)
+2026-10-31T03:09:01.8590364Z ✔ HUB-01/02 普通人进入城市不授予厉鬼、代号或强制合作 (99.8296ms)
+2026-10-31T03:09:01.8595042Z ✔ 真实七中撤离的三名学生成为实际联系人，历史不变 (812.983457ms)
+2026-10-31T03:09:01.8595675Z ✔ 0.10旧存档追加空城市，不虚构旧参与和获救名单 (56.467555ms)
+2026-10-31T03:09:01.8596374Z ✔ HUB-03/07 官方只获得主动披露实例，部分披露不会泄露第二鬼 (59.128089ms)
+2026-10-31T03:09:01.8597182Z ✔ HUB-04/05 普通人拒绝合作后仍能完成生活闭环和商场入口 (85.686504ms)
+2026-10-31T03:09:01.8597889Z ✔ HUB-06 接线员未知规律仍UNKNOWN，不给远程答案 (49.929997ms)
+2026-10-31T03:09:01.8598736Z ✔ HUB-08 地下帖与转发同源，不冒充独立证据和现场验证 (51.240806ms)
+2026-10-31T03:09:01.8599370Z ✔ HUB-09 每个城市实际行动只推进一次并按单鬼统一结算 (49.536986ms)
+2026-10-31T03:09:01.8600053Z ✔ HUB-10 页面、笔记、草稿与标记不推进且输入转义 (53.348282ms)
+2026-10-31T03:09:01.8601537Z ✔ HUB-11/12 记忆冲突不改写七中历史，交叉核查不宣布永久治疗 (798.802241ms)
+2026-10-31T03:09:01.8602196Z ✔ 记忆来源由种子稳定控制，未触发时不伪造知识 (65.550417ms)
+2026-10-31T03:09:01.8602804Z ✔ 普通住宅停留有持续干扰，暂避不删除异常来源 (66.689171ms)
+2026-10-31T03:09:01.8603423Z ✔ HUB-13 玩家已有接触痕迹跨场景持久，交接不是封存 (803.789245ms)
+2026-10-31T03:09:01.8604074Z ✔ HUB-14 实际获救学生的后续痕迹须通话后获知，不改写存活 (812.593205ms)
+2026-10-31T03:09:01.8604726Z ✔ HUB-15/17 实际公开调用产生目击传闻，隐藏不删除事实 (53.169998ms)
+2026-10-31T03:09:01.8605298Z ✔ 住所内私下调用不被后台全知地记录为公开目击 (51.824549ms)
+2026-10-31T03:09:01.8605869Z ✔ HUB-16 联系人深夜可失联，白天实际重试才更新观察 (809.33103ms)
+2026-10-31T03:09:01.8606435Z ✔ HUB-18 忽略线索不冻结城市，商场停在下一版入口 (97.428869ms)
+2026-10-31T03:09:01.8607456Z ✔ 代号候选、改名历史与拒绝登记，不授予属性且长度有界 (67.798071ms)
+2026-10-31T03:09:01.8610684Z ✔ 自定义代号草稿不消费，登记才推进并允许明确拒绝 (35.155489ms)
+2026-10-31T03:09:01.8611385Z ✔ 披露后的鬼被放弃，官方仍保留历史而存档可恢复 (38.528476ms)
+2026-10-31T03:09:01.8612010Z ✔ 有限普通工具交易先验货、扣款一次，重复无效 (38.019233ms)
+2026-10-31T03:09:01.8612649Z ✔ Level0住所存放取回守恒，物品不在身上不能当现场资源 (38.637007ms)
+2026-10-31T03:09:01.8613334Z ✔ 普通医疗只治疗身体，无法清复苏或永久破坏结构 (34.533368ms)
+2026-10-31T03:09:01.8613956Z ✔ 旧高级设施保留，新城不得新造高级安全屋或刷供给任务 (35.933339ms)
+2026-10-31T03:09:01.8614612Z ✔ Restart只恢复白名单临时状态，不改城市时间、交易与档案 (34.706845ms)
+2026-10-31T03:09:01.8615257Z ✔ 无效城市动作不推进，离开普通地点后不能远程交易 (34.487781ms)
+2026-10-31T03:09:01.8615869Z ✔ 五页不泄露原著后台节点、固定概率与未观察学生结局 (32.825863ms)
+2026-10-31T03:09:01.8616502Z ✔ 损坏城市导入字段拒绝，避免页面崩溃与存储复制 (37.248364ms)
+2026-10-31T03:09:01.8617079Z ✔ 平衡观察履历不把当次稳定认证成长期稳定 (38.904663ms)
+2026-10-31T03:09:01.8617667Z ✔ 开发期空观察履历只追加，不伪造旧验证且可以重新核对 (37.801491ms)
+2026-10-31T03:09:01.8618407Z ✔ 门规则仅在门内通过有效门回应异常询问时触发 (1.038405ms)
+2026-10-31T03:09:01.8619007Z ✔ 未知规律普通人可沉默撤离，不自动获得知识或源头 (50.315718ms)
+2026-10-31T03:09:01.8619608Z ✔ 说话与非语言敲门均即时标记，单纯观察不标记 (56.30246ms)
+2026-10-31T03:09:01.8620189Z ✔ 换房和撤离保留追踪，脱离现场仍进入死亡反应 (77.188327ms)
+2026-10-31T03:09:01.8620745Z ✔ 有效空搜索推进一次，重复与无效行动不消耗窗口 (12.87489ms)
+2026-10-31T03:09:01.8621336Z ✔ 完整事实链确认复合触发与媒介，原始证词解释不是规律 (153.761625ms)
+2026-10-31T03:09:01.8621955Z ✔ 错误假设只根据可见反例被推翻，不改变世界真相 (26.766864ms)
+2026-10-31T03:09:01.8622821Z ✔ 私人笔记和辅助设置不消耗行动，HTML不会注入 (18.648908ms)
+2026-10-31T03:09:01.8623432Z ✔ 知识共享只是传播已提出判断，未共享者不自动读玩家档案 (165.997239ms)
+2026-10-31T03:09:01.8624059Z ✔ 普通人结构调整无需知识解锁，原标记与累计复苏保留 (416.13058ms)
+2026-10-31T03:09:01.8624649Z ✔ 普通人可疏散封锁并部分控制，不获得源头 (37.609777ms)
+2026-10-31T03:09:01.8625259Z ✔ 零新增伤亡完整封存，有代价有限援助，奖励只发一次 (237.691111ms)
+2026-10-31T03:09:01.8625955Z ✔ 驾驭独立主动选择，封存后才开放，不通过旧release绕过 (278.380724ms)
+2026-10-31T03:09:01.8626812Z ✔ 承载不足不植入，处理方案提示真实缺口 (249.184903ms)
+2026-10-31T03:09:01.8627400Z ✔ 调用A只结算A的使用复苏，承载不因调查改变 (13.184372ms)
+2026-10-31T03:09:01.8628268Z ✔ 源头窗口过期后不能限制，普通等待不生成Boss战 (193.581976ms)
+2026-10-31T03:09:01.8628910Z ✔ 离场后居民后果不泄露，长期失管升级并被官方限制 (119.174282ms)
+2026-10-31T03:09:01.8631823Z ✔ 刷新恢复证据、种子和标记，不重抽；旧存档追加独立空事件 (180.236236ms)
+2026-10-31T03:09:01.8632420Z ✔ 重启只恢复临时状态，不动事件与逐鬼历史 (168.759388ms)
+2026-10-31T03:09:01.8632983Z ✔ 未知信息不出现在六分页，不暴露隐藏追踪值或鬼身份 (6.82471ms)
+2026-10-31T03:09:01.8633584Z ✔ 损坏证据、状态、假设、NPC和UI偏好拒绝导入 (169.096752ms)
+2026-10-31T03:09:01.8634207Z ✔ 现场变化后可重新搜索，但不伪造过去伤亡 (123.994003ms)
+2026-10-31T03:09:01.8634808Z ✔ 官方介入后可回访，只取得有限报告，不获得玩家封存奖励 (146.98195ms)
+2026-10-31T03:09:01.8635372Z ✔ 奖励写入现有材料库存与官方信任，不是仅UI计数 (188.374857ms)
+2026-10-31T03:09:01.8635914Z ✔ 三项首次提示可关闭，关闭不推进世界，读档保持 (313.916628ms)
+2026-10-31T03:09:01.8636454Z ✔ 畸形调查数据返回false，不让导入验证崩溃 (600.761765ms)
+2026-10-31T03:09:01.8636975Z ✔ 双鬼历史复苏逐只显示，活动与趋势独立派生 (80.780854ms)
+2026-10-31T03:09:01.8637503Z ✔ 低复苏可以高活动，不根据阶段硬推安静 (48.989712ms)
+2026-10-31T03:09:01.8638768Z ✔ 方向箭头与压制文字同时存在，非只靠颜色 (46.899956ms)
+2026-10-31T03:09:01.8639349Z ✔ 未知关系不公开后台强度 (51.317169ms)
+2026-10-31T03:09:01.8639894Z ✔ 平衡与宿主超载合法共存，并有独立警告 (46.86176ms)
+2026-10-31T03:09:01.8640429Z ✔ 低负荷不消除双鬼冲突 (45.484964ms)
+2026-10-31T03:09:01.8641179Z ✔ 一侧压制强、另一侧弱时显示伪平衡 (45.083961ms)
+2026-10-31T03:09:01.8641745Z ✔ 刚离村与只点击复核不能升级稳定 (59.974781ms)
+2026-10-31T03:09:01.8642290Z ✔ 村内不能进行离村后的长期验证 (45.780551ms)
+2026-10-31T03:09:01.8642870Z ✔ 普通调用只为所选鬼支付调用增长，时间结算一次 (49.226928ms)
+2026-10-31T03:09:01.8643445Z ✔ 高强度验证必须实际付能量身体与复苏 (48.211976ms)
+2026-10-31T03:09:01.8644145Z ✔ 能量不足不能伪造高强度样本 (46.523019ms)
+2026-10-31T03:09:01.8644713Z ✔ 没有真实外部环境证据，即使时间充足仍未验证 (78.490049ms)
+2026-10-31T03:09:01.8645288Z ✔ 五种实际上下文与足够世界时间可验证稳定 (113.279922ms)
+2026-10-31T03:09:01.8645858Z ✔ 稳定记录遇到新超载立即降级，不自动减少复苏 (104.722492ms)
+2026-10-31T03:09:01.8646416Z ✔ 复核识别伪平衡，而非成功升级 (48.476267ms)
+2026-10-31T03:09:01.8646973Z ✔ 新观察周期保留旧履历、不退还成本或复苏 (90.02276ms)
+2026-10-31T03:09:01.8647474Z ✔ 组合变化使旧平衡结论失效 (94.585135ms)
+2026-10-31T03:09:01.8648146Z ✔ 未验证期安全自动策略暂停，不进行持久结构操作 (39.195277ms)
+2026-10-31T03:09:01.8648746Z ✔ 候选尚未实测负荷不能精确预告42或26% (39.760732ms)
+2026-10-31T03:09:01.8649298Z ✔ 释放媒介独立分类，不无证据连到源头 (42.275681ms)
+2026-10-31T03:09:01.8649837Z ✔ 情报交换不公开NPC私人内容数量 (37.929465ms)
+2026-10-31T03:09:01.8650411Z ✔ 有界情报交换只得到待验证片段，不消耗灵异资源 (40.773039ms)
+2026-10-31T03:09:01.8650975Z ✔ 快速分享只传播已观察事实，收到不等于确信 (39.818467ms)
+2026-10-31T03:09:01.8651524Z ✔ 实际证词与救援反证才生成矛盾，处理不删除证据 (41.038311ms)
+2026-10-31T03:09:01.8652079Z ✔ 全部新页面纯渲染，不结算时间、不泄漏后期身份 (39.161276ms)
+2026-10-31T03:09:01.8652589Z ✔ 空旧模型追加不伪造长期验证 (39.200874ms)
+2026-10-31T03:09:01.8653164Z ✔ 导入拒绝越界履历、虚构证据和非法结果 (128.327064ms)
+2026-10-31T03:09:01.8653718Z ✔ E需黄岗村提交；旧内容v2只追加独立城市与高级状态 (523.78434ms)
+2026-10-31T03:09:01.8654298Z ✔ 城市不是实时倒计时；退出、重入与JSON恢复不重置 (429.419831ms)
+2026-10-31T03:09:01.8654977Z ✔ 普通人救援通讯运输真正改变局势，不能重复领奖 (437.01594ms)
+2026-10-31T03:09:01.8655618Z ✔ 道路环回与交通成本有用，校核路线能脱离环回 (386.917184ms)
+2026-10-31T03:09:01.8656216Z ✔ 安全屋不是无限补给，内部异常有身体代价且不清复苏 (498.024577ms)
+2026-10-31T03:09:01.8656825Z ✔ 队员按规则角色加入，独立复苏过高后不能继续调用 (400.245384ms)
+2026-10-31T03:09:01.8657436Z ✔ 原创队员死亡生成唯一遗留厉鬼，失联不冒充死亡 (386.304848ms)
+2026-10-31T03:09:01.8684483Z ✔ 五窗口按序，不是QTE；能力不足允许外围支援，不自动赠S鬼 (422.011347ms)
+2026-10-31T03:09:01.8685209Z ✔ 撤出后普通动作仍推进世界，36节点正史收束与残余保存 (460.722869ms)
+2026-10-31T03:09:01.8686132Z ✔ 残余调查与两种收束有有限成本，刷新/重复点击不重发片段 (440.460573ms)
+2026-10-31T03:09:01.8686834Z ✔ 资料调查保持推测层次，不把未观察信息认证；所有合法按钮有中文 (384.93971ms)
+2026-10-31T03:09:01.8687506Z ✔ 高级承载只消费一次，媒介只影响未来偏移不降低负荷和复苏 (534.72167ms)
+2026-10-31T03:09:01.8688337Z ✔ 命运池II要求档案、贡献、承载、双鬼、媒介；不是Boss掉落 (530.5009ms)
+2026-10-31T03:09:01.8689043Z ✔ 高级命运只提交一次，结果稳定；第三鬼仍有独立负荷复苏和控制上限 (538.208665ms)
+2026-10-31T03:09:01.8689905Z ✔ 第三鬼不受不相关两鬼关系的偏移冲突影响 (458.916018ms)
+2026-10-31T03:09:01.8690523Z ✔ 身体拼图两阶段有开发门槛、有限代价和一次性承载收益 (515.02481ms)
+2026-10-31T03:09:01.8691134Z ✔ 重启契约不回滚城市、残余、命运、资源与高级成长 (311.991603ms)
+2026-10-31T03:09:01.8691746Z ✔ 畸形城市、重复任务/残余、资源与命运篡改拒绝导入 (263.407711ms)
+2026-10-31T03:09:01.8692329Z ✔ 普通人开局，背景不改变身体属性或授予厉鬼 (90.516842ms)
+2026-10-31T03:09:01.8692926Z ✔ 不能跳过调查限制直接驾驭；无效行动不推进时间 (30.85054ms)
+2026-10-31T03:09:01.8693446Z ✔ 调查不足的推测允许后续复核 (34.783485ms)
+2026-10-31T03:09:01.8694014Z ✔ 撤离再进入保留限制阶段，不能重复扣除隔离袋 (40.826443ms)
+2026-10-31T03:09:01.8694602Z ✔ 驾驭提交结果与命运状态；重复操作不重复获取 (36.08634ms)
+2026-10-31T03:09:01.8695208Z ✔ 休整不降低累计复苏，能力不无限调用 (42.208286ms)
+2026-10-31T03:09:01.8695854Z ✔ 单鬼100复苏进入危机，禁止普通休整；压制有身体代价 (36.146039ms)
+2026-10-31T03:09:01.8696446Z ✔ 致命规则触发保留个人档案，不删除存档 (30.60391ms)
+2026-10-31T03:09:01.8697019Z ✔ 灵异保护只抵挡一次触发，仍不能杀死事件源 (36.274924ms)
+2026-10-31T03:09:01.8697624Z ✔ 两种首鬼可自由在事件内选择，已持有时不追加第二只 (47.830113ms)
+2026-10-31T03:09:01.8698379Z ✔ 存档往返保持现场状态；拒绝未知版本与损坏数据 (32.185564ms)
+2026-10-31T03:09:01.8699505Z ✔ 旧合法存档追加空框架，不伪造结构、完美驾驭或清零复苏 (403.673702ms)
+2026-10-31T03:09:01.8700204Z ✔ 数量资格先于权重，神灵异与完美整合仍计数 (0.195128ms)
+2026-10-31T03:09:01.8700839Z ✔ 鬼差未知配额、区域聚集、时间片重查与外围限制形成真实闭环 (317.41757ms)
+2026-10-31T03:09:01.8701489Z ✔ 规则压制切断有向边，历史复苏和基础负荷保留，不能调用被压制鬼 (470.425037ms)
+2026-10-31T03:09:01.8702133Z ✔ 第三鬼逐对实验、容量、用途、植入与观察，不替代二鬼进度 (477.282711ms)
+2026-10-31T03:09:01.8702773Z ✔ 关系知识只来自实际观察，页面不泄漏未知相容与有向压制系数 (478.527212ms)
+2026-10-31T03:09:01.8703421Z ✔ 身体结构转移、锚点与验证才成为异类，结构和驾驭两轴独立 (466.716621ms)
+2026-10-31T03:09:01.8704043Z ✔ 意识路线明确标注原创，混合结构保留两个支撑节点 (486.181237ms)
+2026-10-31T03:09:01.8704662Z ✔ 完整专属驾驭包括独立测试和观察期，71复苏不因完美归零 (477.128834ms)
+2026-10-31T03:09:01.8705298Z ✔ 整合过载会失去收益，给反应窗口，不是无限无风险调用 (444.620273ms)
+2026-10-31T03:09:01.8705865Z ✔ 结构规则被压制会失去支撑容量，永久结构并未还原人类 (472.406493ms)
+2026-10-31T03:09:01.8706405Z ✔ 等待错过反应窗口导致自我失去，普通休整不能复活 (461.499307ms)
+2026-10-31T03:09:01.8706952Z ✔ 专属任务不能在公交里启动，普通自动不能决定高阶路径 (469.117771ms)
+2026-10-31T03:09:01.8707518Z ✔ 结构、主导、关系与任务完整JSON恢复，损坏状态拒绝导入 (477.831282ms)
+2026-10-31T03:09:01.8708330Z ✔ 取得同源鬼差需要独立研究和容量，不能从源头掉落，重复取得无效 (459.686583ms)
+2026-10-31T03:09:01.8708963Z ✔ 正常有限资源可以成长到完美候选，专属实验只授一次开发 (525.431929ms)
+2026-10-31T03:09:01.8709653Z ✔ 异类致死必须验证结构与锚点并付代价，自我丢失不能用普通反应复活 (431.64965ms)
+2026-10-31T03:09:01.8710315Z ✔ 过强关系压制会使节点停用并关闭出边，不能通过强压制造假稳定 (386.808158ms)
+2026-10-31T03:09:01.8710905Z ✔ 两个房间锚点均可从安全出生点沿有效地面到达 (2.072941ms)
+2026-10-31T03:09:01.8711520Z ✔ 越界、墙体、非整数位置均无法行走，坏UI档恢复安全点 (0.841261ms)
+2026-10-31T03:09:01.8712223Z ✔ 附近交互同时要求距离和引擎合法性，普通人无伪能力 (27.600456ms)
+2026-10-31T03:09:01.8712872Z ✔ 地图移动、寻路、展示与帮助不改核心时间/复苏/事实 (10.297989ms)
+2026-10-31T03:09:01.8713464Z ✔ 整个新手路线每个地图对象动作可达且按原规则单次结算 (110.069167ms)
+2026-10-31T03:09:01.8714300Z ✔ 地图可视变化只投影已经发生的接线和源头状态 (57.635672ms)
+2026-10-31T03:10:06.2427689Z ✔ F20 empty migration and early timeline locked (25.186924ms)
+2026-10-31T03:10:06.2449601Z ✔ F20 H19 report opens250 without touching historical249 (1121.2257ms)
+2026-10-31T03:10:06.2450716Z ✔ F20 ordinary route completes15 anchors and no future277 (1782.176228ms)
+2026-10-31T03:10:06.2455698Z ✔ F20 refusal completes canon without awarding hidden knowledge (1410.260479ms)
+2026-10-31T03:10:06.2456527Z ✔ F20 death and active crisis block ordinary actions (686.580289ms)
+2026-10-31T03:10:06.2457331Z ✔ F20 guide never exceeds four legal actions across chronology (1924.864268ms)
+2026-10-31T03:10:06.2488989Z ✔ F20 clocks never duplicate anchors after reload (1903.66423ms)
+2026-10-31T03:10:06.2489882Z ✔ F20 same272 has two distinct eventIDs and windows (1975.480898ms)
+2026-10-31T03:10:06.2490834Z ✔ F20 exceptional transaction records before,after,retained and immutable audit (1704.038803ms)
+2026-10-31T03:10:06.2491905Z ✔ F20 unauthorized source/scope/fields/snapshot denied without mutation (1939.498686ms)
+2026-10-31T03:10:06.2492805Z ✔ F20 transaction is idempotent and returns whole valid state (1596.278387ms)
+2026-10-31T03:10:06.2493805Z ✔ F20 temporal reversion preserves unrelated world,resources,fate and player build (1979.136226ms)
+2026-10-31T03:10:06.2494814Z ✔ F20 Yang awareness does not grant player or Wang automatic memory (2016.556571ms)
+2026-10-31T03:10:06.2495689Z ✔ F20 current witnessed window permits player anomaly awareness (1840.764733ms)
+2026-10-31T03:10:06.2496602Z ✔ F20 unobserved player learns only supported official temporal report (2034.078797ms)
+2026-10-31T03:10:06.2497491Z ✔ F20 ordinary restart whitelist unchanged and finale history persistent (1989.943046ms)
+2026-10-31T03:10:06.2498520Z ✔ F20 unique artifact stays with canon user and unknown owner (2197.993205ms)
+2026-10-31T03:10:06.2499303Z ✔ F20 no premature containment without all rule conditions (989.880772ms)
+2026-10-31T03:10:06.2500282Z ✔ F20 containment atomic and repeat commit cannot duplicate custody or recovery (2216.907628ms)
+2026-10-31T03:10:06.2501750Z ✔ F20 contained source exists independently of incident and city (2017.293937ms)
+2026-10-31T03:10:06.2528857Z ✔ F20 source custody only transfers after275 receipt (2104.33646ms)
+2026-10-31T03:10:06.2559144Z ✔ F20 wish spirit,door source and old organization unchanged by hungry containment (2140.50892ms)
+2026-10-31T03:10:06.2560374Z ✔ F20 all historical instances retained and reassessed separately (1673.947781ms)
+2026-10-31T03:10:06.2588962Z ✔ F20 roads unknown after containment and fresh observation expires (1545.242933ms)
+2026-10-31T03:10:06.2619060Z ✔ F20 checking one recovery zone cannot open every other region (1414.811008ms)
+2026-10-31T03:10:06.2620299Z ✔ F20 missing remain missing and formal request is not survival response (1515.557724ms)
+2026-10-31T03:10:06.2621389Z ✔ F20 hidden missing state not automatically disclosed (1509.328848ms)
+2026-10-31T03:10:06.2627343Z ✔ F20 Yang references existing facility without mutating old Zhang Wei identity (1608.376892ms)
+2026-10-31T03:10:06.2628528Z ✔ F20 no Yang detail revealed to uninformed player (1508.825515ms)
+2026-10-31T03:10:06.2629559Z ✔ F20 prior school evidence is retained and revisit requires actual action (1362.141487ms)
+2026-10-31T03:10:06.2630637Z ✔ F20 cooperation records actual known evidence and peripheral contribution (1015.192103ms)
+2026-10-31T03:10:06.2631508Z ✔ F20 no safe automatic strategy (991.221283ms)
+2026-10-31T03:10:06.2632356Z ✔ F20 six settlement projections and all20 pages are pure (2177.89717ms)
+2026-10-31T03:10:06.2633385Z ✔ F20 displayed containment requires actual current official report (2175.265333ms)
+2026-10-31T03:10:06.2634436Z ✔ F20 partial/malformed transaction and custody states rejected (2207.896026ms)
+2026-10-31T03:10:06.2635606Z ✔ F20 deterministic same save and same choice returns same result (1999.573298ms)
+2026-10-31T03:10:06.2636716Z ✔ F20 invalid click cannot move time or resources (998.443608ms)
+2026-10-31T03:10:06.2637671Z ✔ F20 bounded wait performs actual ticks and stops on next chapter (1003.034627ms)
+2026-10-31T03:10:06.2638827Z ✔ F20 bounded wait stops at containment and does not skip recovery (1846.157025ms)
+2026-10-31T03:10:06.2640007Z ✔ F20 two player spirits keep separate revival and burden through temporal and containment (1542.543315ms)
+2026-10-31T03:10:06.2643873Z ✔ F20 malformed timeline or skipped stage rejected (2267.027453ms)
+2026-10-31T03:10:06.2673519Z ✔ F20 lost knowledge and prior research persist across final settlement (2299.336883ms)
+2026-10-31T03:10:06.2679022Z ✔ F20 actual earlier rescue and material costs survive temporal and custody resolution (2198.396854ms)
+2026-10-31T03:10:06.2680260Z ✔ F20 established advanced controller fixture survives full chronology without free build upgrades (2516.909515ms)
+2026-10-31T03:10:06.3121388Z ✔ actual 0.24.4 baseline active save migrates without losing encounter/history/resources and resumes once (66.490106ms)
+2026-10-31T03:10:06.3122955Z ✔ formal new save: three distinct archives, no granted ghosts/equipment/research (1.496986ms)
+2026-10-31T03:10:06.3124173Z ✔ formal illegal controls remain identical objects and cost nothing (1.833766ms)
+2026-10-31T03:10:06.3125283Z ✔ formal preview and cancelled details are pure, unknown NPC rules stay hidden (0.936943ms)
+2026-10-31T03:10:06.3126560Z ✔ formal blood acquired through existing legal actions, no second copy or ownership crossover (514.446107ms)
+2026-10-31T03:10:06.3127781Z ✔ formal visual foe cannot manufacture body contact or suppression evidence (388.684123ms)
+2026-10-31T03:10:06.3129518Z ✔ SIMULATED body foe: legal action pays baseline invocation cost, captures result, no unlock on percentage (428.29245ms)
+2026-10-31T03:10:06.3130827Z ✔ SIMULATED body foe: repeat same result deduplicates; research B1 costs actual energy and time only once (472.650249ms)
+2026-10-31T03:10:06.3131999Z ✔ SIMULATED legal failure: insufficient ward pays real cost, failed result does not open B1 (437.836851ms)
+2026-10-31T03:10:06.3133189Z ✔ old save migration attaches empty archives idempotently and preserves active settlement/history (413.160309ms)
+2026-10-31T03:10:06.3134403Z ✔ SIMULATED records persist across retreat/rest/export/import; no source/reward/percentage rollback (448.000016ms)
+2026-10-31T03:10:06.3135413Z ✔ corrupt or invented evidence/state is rejected, including unsupported lifecycle injection (3.164008ms)
+2026-10-31T03:10:06.3136540Z ✔ SIMULATED malformed contact provenance/future node/unknown target/duplicate is rejected (453.506257ms)
+2026-10-31T03:10:06.3137779Z ✔ existing chapter FIXTURE + real actions: three observation archives, dedup and bounded research, no mastery (1480.335559ms)
+2026-10-31T03:10:06.3139209Z ✔ balance R1 exactly two approved numeric changes; thresholds, all costs, rope and isolation unchanged (4.083847ms)
+2026-10-31T03:10:06.3140427Z ✔ balance R1 c002dff production saves import exactly without recalculating history or losing fields (131.050375ms)
+2026-10-31T03:10:06.3141954Z ✔ balance R1 blood coefficient 10 applies to new effective exposure only, one node once (293.984574ms)
+2026-10-31T03:10:06.3143066Z ✔ balance R1 imported old W98 never drops to new formula W96; next threshold still 100 (80.616334ms)
+2026-10-31T03:10:06.3144246Z ✔ balance R1 old blood warning, loss of control and irreversible source event survive reduced coefficient (64.890394ms)
+2026-10-31T03:10:06.3145447Z ✔ balance R1 old shroud erosion and peak retained, next real protection adds exactly 3+6 (20.071634ms)
+2026-10-31T03:10:06.3146636Z ✔ balance R1 S3 historical floor and one-session isolation unchanged for a real old high-erosion save (8.009191ms)
+2026-10-31T03:10:06.3147777Z ✔ balance R1 old shroud 100 crisis cannot be cured by importing or ordinary isolation (1.445197ms)
+2026-10-31T03:10:06.3148917Z ✔ balance R1 old completed request stays idempotent after export/import (1.949682ms)
+2026-10-31T03:10:06.3150011Z ✔ balance R1 original UI controls unchanged on old states; folded formula text synchronized to +6 (48.129454ms)
+2026-10-31T03:10:06.3151259Z ✔ FORMAL gates: candidate actions/states cannot be imported or reached, blood route remains published (555.230616ms)
+2026-10-31T03:10:06.3152376Z ✔ SIM R0 controlled and contact coexist, exact cost once, expiry ends contact only (477.276065ms)
+2026-10-31T03:10:06.3153501Z ✔ SIM R1/R2 require contact/end and typed behavior proof; repeat research cannot advance (459.946932ms)
+2026-10-31T03:10:06.3154613Z ✔ SIM restraint consumes only one typed applicable action, passive action continues (408.799564ms)
+2026-10-31T03:10:06.3155239Z ✔ SIM rope relation failure creates one source event, rest cannot restore control (314.857136ms)
+2026-10-31T03:10:06.3155862Z ✔ SIM blood starts E0/W actual R; next node E1; cross-battle and rest preserve risk (301.638951ms)
+2026-10-31T03:10:06.3156516Z ✔ SIM blood W warning/uncontrolled monotonic; no ordinary recovery or duplicate owned ghost (319.407228ms)
+2026-10-31T03:10:06.3157191Z ✔ SIM severed control prevents recovery now, independent uncontrolled event at next node (344.306161ms)
+2026-10-31T03:10:06.3157821Z ✔ SIM lawful recovery stops E, pays actual +3 base/+1 load, never refunds history (361.060613ms)
+2026-10-31T03:10:06.3159058Z ✔ SIM recovery opposed failure pays and advances real exposure; illegal recovery pays nothing (430.202121ms)
+2026-10-31T03:10:06.3160119Z ✔ SIM shroud identity/permission required, wear is optional, no player ghost created (404.068482ms)
+2026-10-31T03:10:06.3161229Z ✔ SIM shroud pre-result protection, once-per-node extra erosion, passive zero energy/load (429.609197ms)
+2026-10-31T03:10:06.3162279Z ✔ SIM unsupported attack proceeds, failed protection never refunds damage (344.561656ms)
+2026-10-31T03:10:06.3163317Z ✔ SIM rest continues erosion, authorized isolation stops future ticks but retains E (288.573658ms)
+2026-10-31T03:10:06.3164382Z ✔ SIM shroud crisis enters existing crisis flag, only authorized isolation remains (293.123626ms)
+2026-10-31T03:10:06.3165433Z ✔ SIM action idempotency: same request never pays twice; reload/preview zero time (301.612405ms)
+2026-10-31T03:10:06.3166664Z ✔ SIM B1/B2 require external release, actual suppression, exposure and recovered case; dedup cannot yield B3 (344.144255ms)
+2026-10-31T03:10:06.3168169Z ✔ SIM duplicate time settlement is idempotent and candidate actors never bypass inactive/disabled eligibility (325.351201ms)
+2026-10-31T03:10:06.3169510Z ✔ SIM authorized ghost wearer exemption needs an actual authorized carrier, never ordinary ghost ownership (420.724932ms)
+2026-10-31T03:10:06.3170740Z ✔ SIM lawful blood abandonment does not erase external medium or break save ownership references (435.814821ms)
+2026-10-31T03:10:06.3172022Z ✔ SIM lost control blocks contact/recovery immediately without charging or advancing an illegal command (422.853459ms)
+2026-10-31T03:10:06.3173276Z ✔ SIM rope uses the shared independent crisis predicate, including active lawful suppression (417.355528ms)
+2026-10-31T03:10:06.3174440Z ✔ SIM two encounters with identical life/target/turn still have distinct protection nodes (420.51957ms)
+2026-10-31T03:10:06.3176036Z ✔ production B2 repeats on exactly the same controlled medium, each application pays and affects only typed action (528.979955ms)
+2026-10-31T03:10:06.3177335Z ✔ production B1 cannot repeat application until B2 even after previous matching action consumed (106.124795ms)
+2026-10-31T03:10:06.3178672Z ✔ production duplicate request receipt prevents repeat payment across export/import (38.077672ms)
+2026-10-31T03:10:06.3179839Z ✔ production blood threshold 85, severing owner and existing crisis seal preserve the same leaking source (49.974137ms)
+2026-10-31T03:10:06.3181241Z ✔ production disable source pauses calls without inventing control severance, independent rope revival does sever (32.880816ms)
+2026-10-31T03:10:06.3182678Z ✔ production real UI adapter emits only legal dedicated skills with exact costs; risk details and previews are pure (9.034885ms)
+2026-10-31T03:10:06.3184008Z ✔ production wearing/rest/isolation cycle cannot farm erosion reduction without real hostile event (85.415571ms)
+2026-10-31T03:10:06.3185329Z ✔ production dedicated stages cannot be elevated by save field alone without research and actual evidence (3.734478ms)
+2026-10-31T03:10:06.3186755Z ✔ production clothing-only holder uses original inventory UI and no ghost slot; inactive sources never protect (33.214008ms)
+2026-10-31T03:10:06.3188418Z ✔ production rope cooldown expires by actual effective actions across encounters, no battle-turn reset lock (309.369623ms)
+2026-10-31T03:10:06.3189788Z ✔ production never retypes explicit incompatible Ghost Eye simulation intents into bind/protection or formal blood evidence (44.755016ms)
+2026-10-31T03:10:06.3191119Z ✔ production normal newGame never grants sources; explicit integration saves cannot enter normal UI/engine (262.91815ms)
+2026-10-31T03:10:06.3192426Z ✔ production original mall blood legal replay, normal battle carrier/recovery without any test context (296.723833ms)
+2026-10-31T03:10:06.3193686Z ✔ production illegal ownership/energy/stage/target actions return same object, zero cost (10.292306ms)
+2026-10-31T03:10:06.3194837Z ✔ production rope exact costs independent revival and two effective-round contact expiry (36.907755ms)
+2026-10-31T03:10:06.3196028Z ✔ production rope R2 needs observed real typed action while in contact, no circular prior binding (116.27383ms)
+2026-10-31T03:10:06.3197312Z ✔ production rope bind intercepts one matching action then ends, cooldown remains, source not captured (150.532348ms)
+2026-10-31T03:10:06.3198854Z ✔ production rope legal resisted cast pays, inactive/disabled calls and missing control relation do not (39.748624ms)
+2026-10-31T03:10:06.3200193Z ✔ production rope actual directed control relation break prevents followup and preserves one source event (66.192059ms)
+2026-10-31T03:10:06.3201469Z ✔ production blood B1 uses actual old skill body contact; B2 needs same recovered exposed medium (123.195994ms)
+2026-10-31T03:10:06.3202804Z ✔ production blood B0 cannot self-authorize suppression; controlled media, W and leaks survive encounter/refresh (59.974917ms)
+2026-10-31T03:10:06.3204199Z ✔ production blood legal failed recovery costs real energy/revival/load; unreachable recovery zero cost (48.171948ms)
+2026-10-31T03:10:06.3205469Z ✔ production shroud explicit qualification, one physical garment, no spirit slot or ordinary remove (7.962892ms)
+2026-10-31T03:10:06.3206810Z ✔ production shroud pre-damage typed protection +3/+6; unsupported attack and weak protection resolve damage (84.610989ms)
+2026-10-31T03:10:06.3208328Z ✔ production shroud real failed protection pays time erosion and damage, isolation failure leaves wearer (54.842639ms)
+2026-10-31T03:10:06.3209644Z ✔ production shroud full S1/S2/S3 through actual attack, erosion and successful isolation; no duplicate research (51.96139ms)
+2026-10-31T03:10:06.3211030Z ✔ production shroud S3 real event required per wear session; historical 40/75 floors and 100 crisis cannot reset (440.245532ms)
+2026-10-31T03:10:06.3212659Z ✔ production previews/upgrade/serialize pure, corrupt ownership/stage/media and candidate laundering rejected (24.178836ms)
+2026-10-31T03:10:06.3213899Z ✔ shift reserves real return energy and projected revival, no pay-to-enter dead end (147.019385ms)
+2026-10-31T03:10:06.3214993Z ✔ missing return authority prevents first transfer, source and ownership never guessed (51.35274ms)
+2026-10-31T03:10:06.3216039Z ✔ detached consciousness still settles ALL held ghosts natural revival (44.909515ms)
+2026-10-31T03:10:06.3217082Z ✔ body-targeted consciousness attack misses empty body, tablet-targeted one does not (28.695614ms)
+2026-10-31T03:10:06.3218225Z ✔ smoke never makes held target turn, and caller remains independently paid (41.946334ms)
+2026-10-31T03:10:06.3219327Z ✔ typed participant observation cannot manufacture real blood clues or source containment (30.218054ms)
+2026-10-31T03:10:06.3220490Z ✔ smoke ongoing cost crosses actual crisis, manifestation is lost rather than refundable (10.66682ms)
+2026-10-31T03:10:06.3221598Z ✔ capacity accounting affects next natural growth without lowering independent R (12.754517ms)
+2026-10-31T03:10:06.3222802Z ✔ real directional suppression and Build change weights/costs, no smoke global domination (14.034889ms)
+2026-10-31T03:10:06.3223989Z ✔ smoke severed at departure leaves persistent unresolved source, new battle grants no recovery (26.560096ms)
+2026-10-31T03:10:06.3225425Z ✔ unconnected region, unsupported body, hidden knowledge and high-stage actions stay closed (3.45614ms)
+2026-10-31T03:10:06.3226550Z ✔ forged both evidence and ledger, partial state, foreign owner, state-only authority cannot import (58.41409ms)
+2026-10-31T03:10:06.3227725Z ✔ destroyed shell, lost self and zero host integrity cannot manufacture tablet eligibility (17.921685ms)
+2026-10-31T03:10:06.3228933Z ✔ reserved sources cannot be smuggled into ordinary saves as sealed aids or scenes (1.787252ms)
+2026-10-31T03:10:06.3229894Z ✔ G1-B newGame/old migration never grants ghosts or test authority (22.078652ms)
+2026-10-31T03:10:06.3230926Z ✔ L0→L1 first inspect/shift/return has no stage cycle, detached body takes real hits (92.86356ms)
+2026-10-31T03:10:06.3232044Z ✔ illegal return source/path is zero cost; legally resisted return keeps exchange and pays (50.549633ms)
+2026-10-31T03:10:06.3233108Z ✔ tablet mind/body action routing and L2 evidence, early return remains paid (179.579607ms)
+2026-10-31T03:10:06.3234255Z ✔ calling requires disclosed real identity, behind geometry and hearing; no guessed NPC names (82.394353ms)
+2026-10-31T03:10:06.3235291Z ✔ H0 actual heard/turned/contest versus hold/resist, no automatic kill (100.162581ms)
+2026-10-31T03:10:06.3236361Z ✔ H1→H2 consecutive different known targets opens paid same-target repeat without cycle (231.294206ms)
+2026-10-31T03:10:06.3237474Z ✔ Y0→Y1 entry/stay/leave, Y1 previews only; Y2 real domain evidence permits expansion (336.54352ms)
+2026-10-31T03:10:06.3238753Z ✔ smoke body eligibility, domain direction, friend/player damage and irreversibility (61.449996ms)
+2026-10-31T03:10:06.3239942Z ✔ independent Build/suppression/maintenance, costs and request idempotence survive serialization (20.079012ms)
+2026-10-31T03:10:06.3241053Z ✔ tampered evidence, stage, ownership, timing and high-tier fields are rejected (82.844723ms)
+2026-10-31T03:10:06.3242159Z ✔ caller independent R determines text and real revival crisis, no invented extra risk bar (12.820821ms)
+2026-10-31T03:10:06.3243094Z ✔ ordinary new game has no G1-C ownership or specialized actions (4.189473ms)
+2026-10-31T03:10:06.3243890Z ✔ G1-C holder cannot appear in an ordinary save without isolation (1.607426ms)
+2026-10-31T03:10:06.3244683Z ✔ integration ownership is bound to owner and source (1.518495ms)
+2026-10-31T03:10:06.3245471Z ✔ fire is paid and learns only through real source interactions (6.332051ms)
+2026-10-31T03:10:06.3246346Z ✔ wind contests an explicitly typed domain, never a simulated attack (1.657901ms)
+2026-10-31T03:10:06.3247187Z ✔ pressing a taller ally never silently retargets the enemy (1.69126ms)
+2026-10-31T03:10:06.3247961Z ✔ unknown height or tied tallest target blocks pressure (0.801044ms)
+2026-10-31T03:10:06.3249280Z ✔ two manifested ghosts: zero-energy calm is illegal, but costly retreat remains available (137.335332ms)
+2026-10-31T03:10:06.3250416Z ✔ a player pinned by tallest-body pressure cannot leave or cancel for free at zero energy (81.124415ms)
+2026-10-31T03:10:06.3251532Z ✔ no exhausted-G1C warning for ordinary new games or combat with no manifested ghost (2.46865ms)
+2026-10-31T03:10:06.3252458Z ✔ fire real engine growth 0→1→2; stage3 locked, no circular gate (253.474962ms)
+2026-10-31T03:10:06.3253285Z ✔ wind real engine growth 0→1→2; stage3 locked, no circular gate (175.823796ms)
+2026-10-31T03:10:06.3254113Z ✔ press real engine growth 0→1→2; stage3 locked, no circular gate (180.125955ms)
+2026-10-31T03:10:06.3255161Z ✔ fire changes actual source outcome; resistance and domain evidence only on actual initiative (81.382731ms)
+2026-10-31T03:10:06.3256098Z ✔ equal-weight fire partially suppresses actual damage (37.932583ms)
+2026-10-31T03:10:06.3257169Z ✔ wind refuses body action, safe position and mismatched domain target; real domain is intercepted (155.541575ms)
+2026-10-31T03:10:06.3258494Z ✔ pressure selects taller ally, suppresses ally initiative, never enemy; leave invalidates (66.770361ms)
+2026-10-31T03:10:06.3259621Z ✔ player can be tallest; body actions blocked, paid time struggle fails, lift available (62.465568ms)
+2026-10-31T03:10:06.3260697Z ✔ enemy can break pressure with actual stronger initiative (37.166561ms)
+2026-10-31T03:10:06.3261470Z ✔ unknown/tied height gives zero cost rejection; no guessed target (4.16061ms)
+2026-10-31T03:10:06.3262455Z ✔ costs, persistent burden, Build and directional suppression use shared settlement (129.64188ms)
+2026-10-31T03:10:06.3263519Z ✔ idempotency, ordinary import rejection, corrupted stage and missing ownership (20.243023ms)
+2026-10-31T03:10:06.3264598Z ✔ maintained effect ceases on inactive slot; natural revival of all holders persists (40.558665ms)
+2026-10-31T03:10:06.3265532Z ✔ skill cards expose G1-C actions and actual per-ghost costs (7.609719ms)
+2026-10-31T03:10:06.3266409Z ✔ fire advanced action changes next real contest and pays normal costs (202.794865ms)
+2026-10-31T03:10:06.3267335Z ✔ wind advanced action changes next real contest and pays normal costs (187.415852ms)
+2026-10-31T03:10:06.3268368Z ✔ press advanced action changes next real contest and pays normal costs (192.529591ms)
+2026-10-31T03:10:06.3269366Z ✔ pressure stops actual ally movement, while the same unpressed ally moves out (66.15358ms)
+2026-10-31T03:10:06.3270351Z ✔ over-capacity uses shared multiplier and per-ghost directional suppression (21.678766ms)
+2026-10-31T03:10:06.3271461Z ✔ maintenance reaches independent revival crisis; high fire risk backlash persists after quench (47.072424ms)
+2026-10-31T03:10:06.3272552Z ✔ G1-A blood/rope coexist through real engine without replacing their rules (271.876483ms)
+2026-10-31T03:10:06.3273485Z ✔ G1-B smoke and G1-C fire retain separate ownership, loads and upkeep (32.039006ms)
+2026-10-31T03:10:06.3274515Z ✔ real G1-C battle settlement records exact skills, resources and independent revival (46.903644ms)
+2026-10-31T03:10:06.3275418Z ✔ forged three active slots cannot execute G1-C actions (1.448956ms)
+2026-10-31T03:10:06.3276297Z ✔ ordinary newGame cannot conjure any G1-C formal source or ghost ownership (17.135095ms)
+2026-10-31T03:10:06.3277343Z ✔ all currently authored events lack a G1-C formal domain/height/burn qualification (3.86614ms)
+2026-10-31T03:10:06.3278626Z ✔ real school audio declaration remains audio, NOT a domain/body/ghost-fire grant (0.383176ms)
+2026-10-31T03:10:06.3279644Z ✔ forged domain/height saved in combat state cannot be upgraded to formal source (0.274465ms)
+2026-10-31T03:10:06.3280531Z ✔ a simulated ghost-eye domain never counts as formal opponent action (0.295957ms)
+2026-10-31T03:10:06.3281544Z ✔ G1-C formal prerequisites remain explicit and must not be inferred from source names (0.172826ms)
+2026-10-31T03:10:06.3282580Z ✔ round4 fire: mental refund follows full independent revival and load cost (56.785141ms)
+2026-10-31T03:10:06.3283778Z ✔ round4 wind: mental refund follows full independent revival and load cost (18.100686ms)
+2026-10-31T03:10:06.3284778Z ✔ round4 press: mental refund follows full independent revival and load cost (17.245232ms)
+2026-10-31T03:10:06.3285800Z ✔ round4 mental rule bonus affects actual domain contest but pays revival (51.267775ms)
+2026-10-31T03:10:06.3286822Z ✔ round4 maximum mental potential never bypasses fire backlash or revival crisis (40.452067ms)
+2026-10-31T03:10:06.3287939Z ✔ round4 G1-C death commits once, survives reload, allocates points and inherits no ghosts (9.690195ms)
+2026-10-31T03:10:06.3289200Z ✔ round4 legacy isolated holder above default slots remains valid without ordinary eligibility (16.784892ms)
+2026-10-31T03:10:06.3290188Z ✔ round4 maximum constitution grants no G1-C ownership or ordinary actions (1.194045ms)
+2026-10-31T03:10:06.3290939Z ✔ 全新普通人不用改状态即可完成调查、遭遇、关押、结算与下一主线 (137.941277ms)
+2026-10-31T03:10:06.3291447Z ✔ 初始指引只提供现有入口，不泄露广播触发规律 (1.784478ms)
+2026-10-31T03:10:06.3291954Z ✔ 每一步提示都是合法行动，查看指引、代价与渲染均不改变状态 (90.158084ms)
+2026-10-31T03:10:06.3292402Z ✔ 现场期间不能嵌套开始七中或其他调查 (6.302086ms)
+2026-10-31T03:10:06.3292849Z ✔ 行动回执区分本次新增材料与仅有旧线索 (23.081349ms)
+2026-10-31T03:10:06.3293299Z ✔ 普通人不会获得灵异能力、组合或鬼域按钮 (6.570638ms)
+2026-10-31T03:10:06.3293772Z ✔ 灵异调用回执记录能量、被调用鬼复苏，负荷不变化 (15.98878ms)
+2026-10-31T03:10:06.3294745Z ✔ 零能量关闭能力，重复不合法请求不扣资源也不推进 (6.251862ms)
+2026-10-31T03:10:06.3295230Z ✔ 缺少容器有明确阻碍与撤离选择，不循环推荐关押 (38.32696ms)
+2026-10-31T03:10:06.3295692Z ✔ 普通撤离保留未解决的源头，并允许重返或选择主线 (16.76606ms)
+2026-10-31T03:10:06.3296164Z ✔ 主动回应可致死，指引转到已有反应资源或明确结局 (38.509119ms)
+2026-10-31T03:10:06.3296635Z ✔ 教案没有把既有标记保护说成治愈或全员成功撤离 (85.598464ms)
+2026-10-31T03:10:06.3297087Z ✔ 人在室内时不伪造走廊黑痕形成的直接观察 (24.666833ms)
+2026-10-31T03:10:06.3297545Z ✔ 保存恢复中途任务、遭遇、材料与下个建议一致 (69.725615ms)
+2026-10-31T03:10:06.3316603Z ✔ 旧合法存档不补造历史回执，未来实际行动才追加 (6.450616ms)
+2026-10-31T03:10:06.3317295Z ✔ 缺少旧调查模块的合法v2存档仍能开始真实行动并生成回执 (7.848026ms)
+2026-10-31T03:10:06.3317806Z ✔ 动作回执是该次引擎事实，日志满100条后仍取得新事实 (5.715068ms)
+2026-10-31T03:10:06.3318725Z ✔ 损坏回执拒绝导入，正文必须转义，不允许注入按钮 (7.575914ms)
+2026-10-31T03:10:06.3319217Z ✔ 封存重复点击不重复消耗、发奖励或改历史 (83.514377ms)
+2026-10-31T03:10:06.3319778Z ✔ 副路线提前救人不需要等候标记出现，无软锁 (68.877236ms)
+2026-10-31T03:10:06.3320303Z ✔ 常规规则战斗用真实媒介与条件，没有源头HP；冷却关闭能力 (21.144726ms)
+2026-10-31T03:10:06.3320817Z ✔ 七中普通人按指引仍能离场，旧地图不被提示伪造成有效出口 (575.588135ms)
+2026-10-31T03:10:06.3321349Z ✔ 两种最终处置仍可选，驾驭是真实条件门控而不是教程奖励 (40.133235ms)
+2026-10-31T03:10:06.3322392Z ✔ legal acquisition and finite existing research unlock eight layers, with real second spirits (4.53241ms)
+2026-10-31T03:10:06.3323545Z ✔ illegal missing domain, absent ghost and mismatched reaction have absolutely no costs (3.259939ms)
+2026-10-31T03:10:06.3324563Z ✔ V6 replaces usage18; persistent load survives retreat and JSON reload (58.23237ms)
+2026-10-31T03:10:06.3325591Z ✔ observable intent pauses, legal position reaction resumes once without world tick (85.200715ms)
+2026-10-31T03:10:06.3327032Z ✔ propagation and preparation conditions are explicit simulations, failed contest pays and illegal one does not (159.267583ms)
+2026-10-31T03:10:06.3328216Z ✔ successful preparation delay cannot repeat on same intent (110.157457ms)
+2026-10-31T03:10:06.3329195Z ✔ stasis once and reboot shared allowance persist; normal cooldown restores without special allowance (71.41641ms)
+2026-10-31T03:10:06.3330428Z ✔ high revival guards before 100; failed/invalid spell never clamps through critical boundary (3.485382ms)
+2026-10-31T03:10:06.3331521Z ✔ legacy awakening migrates once, decreasing revival grants or revokes no layers (3.95708ms)
+2026-10-31T03:10:06.3332615Z ✔ fifth and eighth affect only reversible target effects, permanent enemy result stays (109.213601ms)
+2026-10-31T03:10:06.3333430Z ✔ explicit domain duration2/3 comparison (178.812384ms)
+2026-10-31T03:10:06.3334179Z ✔ ordinary real threats do not fabricate interruptible intent (53.175996ms)
+2026-10-31T03:10:06.3334978Z ✔ typed state rejects malformed flags and impossible unlocks (1.815654ms)
+2026-10-31T03:10:06.3336024Z ✔ emergency restart at zero energy keeps reaction consumed and ordinary initiative untouched (54.965261ms)
+2026-10-31T03:10:06.3337119Z ✔ settlement records gross consumption and restoration when net energy is zero (85.446289ms)
+2026-10-31T03:10:06.3339392Z ✔ old critical awakening keeps previous eight permission records but crisis prohibits ordinary casts (1.259241ms)
+2026-10-31T03:10:06.3341219Z ✔ fifth layer actually suspends one recurring damage tick then resumes, without deleting effect (67.199336ms)
+2026-10-31T03:10:06.3342464Z ✔ V6.1 changes only domain default duration and eighth energy cost (15.732285ms)
+2026-10-31T03:10:06.3343692Z ✔ eighth layer normal legal energy route needs no simulated top-up and prevents repeat after refresh (65.95048ms)
+2026-10-31T03:10:06.3345068Z ✔ seventh consumes shared allowance and prevents eighth even when energy has recovered (41.236541ms)
+2026-10-31T03:10:06.3346272Z ✔ formal school audio entry is legally reached and not a player source (144.331193ms)
+2026-10-31T03:10:06.3347619Z ✔ formal native audio declaration preserves old damage amount, world tick once, no invented interrupt/stasis (146.969052ms)
+2026-10-31T03:10:06.3349262Z ✔ formal pass executes native damage exactly once and cannot replay the declaration (159.406748ms)
+2026-10-31T03:10:06.3350703Z ✔ persistent load across distinct ordinary encounters is additive, never reset by rest/reload (348.571986ms)
+2026-10-31T03:10:06.3352202Z ✔ real formal lethal audio allows urgent seventh before world commit without rewinding school time (218.052499ms)
+2026-10-31T03:10:06.3353472Z ✔ formal native enemy event authorizes only the documented propagation reaction (769.152315ms)
+2026-10-31T03:10:06.3354879Z ✔ A decision keeps persistent load append-only through retreat, rest, balance and portable reload (494.041997ms)
+2026-10-31T03:10:06.3356200Z ✔ conditional candidate budget scales linearly at 10, 20 and 30 encounters (0.853071ms)
+2026-10-31T03:10:06.3357636Z ✔ V6.3 acquisition audit: eye is acquired after the lawful original pair, never injected as the first spirit (3.053624ms)
+2026-10-31T03:10:06.3359202Z ✔ V6.3 actual second spirit reduces the existing ghost usage growth without resetting its revival (0.199374ms)
+2026-10-31T03:10:06.3360634Z ✔ V6.3 mature network uses three finite residual rewards and pays the existing structural costs (1.305891ms)
+2026-10-31T03:10:06.3361949Z ✔ V6.3 lawful eighth route spends three gross energy; restart keeps load and shared allowance (95.546258ms)
+2026-10-31T03:10:06.3363227Z ✔ V6.3 no formal stasis intent: a sixth-layer request is rejected without charging (45.580448ms)
+2026-10-31T03:10:06.3364552Z ✔ V6.4 each incident eye edge drifts; crossing threshold charges only subsequent timed settlements (5.062093ms)
+2026-10-31T03:10:06.3365752Z ✔ V6.4 reaction has no timed conflict tick, but still shifts both eye relations (1.139254ms)
+2026-10-31T03:10:06.3367069Z ✔ V6.4 lawful balance spends a real barrier; it preserves all revival and persistent load (108.986896ms)
+2026-10-31T03:10:06.3368749Z ✔ V6.4 proposed node cap changes only drift aggregation; static conflict remains additive (1.139214ms)
+2026-10-31T03:10:06.3370210Z ✔ V6.4 ramp candidate preserves threshold warning and reaches the original per-edge maximum at bias100 (4.737943ms)
+2026-10-31T03:10:06.3371564Z ✔ V6.4 choosing a network role is not evidence of an implemented passive bonus (1.796546ms)
+2026-10-31T03:10:06.3372803Z ✔ unobserved graph conceals exact relation parameters; real observation opens only selected edge (7.496701ms)
+2026-10-31T03:10:06.3374296Z ✔ lawful no-intel branch withholds club detail while independent observation remains allowed (317.537369ms)
+2026-10-31T03:10:06.3375727Z ✔ observation preview does not persist or charge; includes every owned ghost (7.457163ms)
+2026-10-31T03:10:06.3377043Z ✔ policy depends only on disclosed category and per-ghost revival, never exact bias (1.071734ms)
+2026-10-31T03:10:06.3378447Z ✔ I1 preview/cancel leaves exact save intact, shows owned physical states without relationship disclosure (8.459535ms)
+2026-10-31T03:10:06.3379802Z ✔ I1 confirmation matches engine exactly, saves once; replay and stale preview are rejected (15.62031ms)
+2026-10-31T03:10:06.3381003Z ✔ I1 failed persistence does not report success; exhausted and combat balance never gain an API bypass (21.603335ms)
+2026-10-31T03:10:06.3382394Z ✔ I2 capacity always follows hostState, including body and paid stable build (1.399849ms)
+2026-10-31T03:10:06.3383393Z ✔ I3 notes remain gated by club intel or individual observation; no hidden thresholds (1.934449ms)
+2026-10-31T03:10:06.3384568Z ✔ I4 eye workshop uses scope text instead of ordinary estimate; other ghosts retain actual estimate (2.554536ms)
+2026-10-31T03:10:06.3385856Z ✔ STUX initial third remains hypothesis, inherited1/2 clear, fourth unknown (438.389506ms)
+2026-10-31T03:10:06.3386700Z ✔ STUX presenter ignores backend stage mutation (1023.578311ms)
+2026-10-31T03:10:06.3387560Z ✔ STUX read-only projections cached by knowledge and do not advance clock (366.704774ms)
+2026-10-31T03:10:06.3388783Z ✔ STUX actual sound observation supports hypothesis without confirming or identifying entity (706.114634ms)
+2026-10-31T03:10:06.3389900Z ✔ SOUX unseen entities, Source identity, derivative classification remain hidden (970.693615ms)
+2026-10-31T03:10:06.3391039Z ✔ SOUX hypothesis graph uses question rather than confirmed edge and limited is not contained (419.28665ms)
+2026-10-31T03:10:06.3392121Z ✔ INUX earlier witness action works before digit knowledge without awarding coordinates (243.060859ms)
+2026-10-31T03:10:06.3393264Z ✔ INUX digit explanations coexist without changing hidden entities (333.384944ms)
+2026-10-31T03:10:06.3394247Z ✔ SHUX unknown authorization does not disclose facility stock, capacity or population (22.796022ms)
+2026-10-31T03:10:06.3395242Z ✔ SHUX rest uses page confirmation and explicitly bounded protection (190.399545ms)
+2026-10-31T03:10:06.3396165Z ✔ CDUX fuel, coverage, effectiveness and observed trend independent (610.507079ms)
+2026-10-31T03:10:06.3397025Z ✔ CDUX extinguishing clears formerly applicable coverage (543.71233ms)
+2026-10-31T03:10:06.3397922Z ✔ TMUX hidden world loss does not become known before communication attempt (651.171297ms)
+2026-10-31T03:10:06.3399194Z ✔ TMUX loss preserves historical location, official request yields no live omniscient answer (713.807177ms)
+2026-10-31T03:10:06.3400224Z ✔ TMUX delayed outbound fact does not read private NPC knowledge (597.107729ms)
+2026-10-31T03:10:06.3401159Z ✔ UX warnings limited3, protection failure prioritized and no death percentage (514.061815ms)
+2026-10-31T03:10:06.3402197Z ✔ UX reload actions deterministic, whitelist reset preserves histories and knowledge (372.025612ms)
+2026-10-31T03:10:06.3403166Z ✔ UX homepage unknown name until actual official bulletin received (34.10324ms)
+2026-10-31T03:10:06.3404214Z ✔ TMUX legacy explicit contact-failure history preserved without revealing unseen losses (665.209049ms)
+2026-10-31T03:10:06.3405195Z ✔ H19 locked before chronology, upgrade adds only empty model (18.205451ms)
+2026-10-31T03:10:06.3406535Z ✔ H19 public prior-boundary finish reaches 226 without granting ghost (30.867635ms)
+2026-10-31T03:10:06.3407407Z ✔ H19 seven bounded windows and 14 once-only anchors end at249 (752.616989ms)
+2026-10-31T03:10:06.3408408Z ✔ H19 refusal still advances whole city without leaking private research (573.267544ms)
+2026-10-31T03:10:06.3409266Z ✔ H19 report cannot claim final containment or future250 (705.921839ms)
+2026-10-31T03:10:06.3410119Z ✔ H19 pause and resume preserve position and history, no hub teleport (50.506198ms)
+2026-10-31T03:10:06.3410827Z ✔ H19 routes require fresh actual observations (60.09881ms)
+2026-10-31T03:10:06.3411604Z ✔ H19 changed space marks history stale and deterministically blocks north (275.61666ms)
+2026-10-31T03:10:06.3412537Z ✔ H19 historical map references both prior regional and city archives (26.263548ms)
+2026-10-31T03:10:06.3413325Z ✔ H19 digit7 unknown until explicitly received (227.538906ms)
+2026-10-31T03:10:06.3414169Z ✔ H19 digit content confirmed, four meanings coexist and remain unknown (150.948306ms)
+2026-10-31T03:10:06.3415099Z ✔ H19 seventh street hypothesis needs witness and spatial comparison (321.029502ms)
+2026-10-31T03:10:06.3415966Z ✔ H19 research not automatically shared with character at234 (231.075906ms)
+2026-10-31T03:10:06.3416821Z ✔ H19 research reading grants cumulative1/2, stage3 stays hypothesis (246.966037ms)
+2026-10-31T03:10:06.3417908Z ✔ H19 world stages neither depend on player XP nor global ghost level (682.333652ms)
+2026-10-31T03:10:06.3418867Z ✔ H19 stage1 evaluates actual cumulative conditions (0.19618ms)
+2026-10-31T03:10:06.3419556Z ✔ H19 stage2 evaluates actual cumulative conditions (0.06088ms)
+2026-10-31T03:10:06.3420277Z ✔ H19 stage3 evaluates actual cumulative conditions (0.041542ms)
+2026-10-31T03:10:06.3421039Z ✔ H19 sound affects third stage independently of being seen (0.096213ms)
+2026-10-31T03:10:06.3421881Z ✔ H19 different instances resolve simultaneous rule target sets (430.573691ms)
+2026-10-31T03:10:06.3422824Z ✔ H19 character view never shows backend Source IDs or unseen population (680.583094ms)
+2026-10-31T03:10:06.3423792Z ✔ H19 observing manifestation does not confirm origin or remove source (269.181536ms)
+2026-10-31T03:10:06.3424738Z ✔ H19 isolated manifestation consumes finite bag without XP/ghost reward (278.564427ms)
+2026-10-31T03:10:06.3425681Z ✔ H19 shelter is limited authorization, not Yang property (161.117825ms)
+2026-10-31T03:10:06.3426544Z ✔ H19 finite shelter stock cannot be claimed twice after consumption (184.535386ms)
+2026-10-31T03:10:06.3427386Z ✔ H19 shelter protects known visual/contact but not sound (469.876321ms)
+2026-10-31T03:10:06.3428279Z ✔ H19 ordinary player can genuinely save a mutable group (170.433968ms)
+2026-10-31T03:10:06.3429119Z ✔ H19 rescue lacking protection reports failure without false saved people (431.928039ms)
+2026-10-31T03:10:06.3430055Z ✔ H19 hospital research records specific exposure and real local risk (356.437544ms)
+2026-10-31T03:10:06.3430992Z ✔ H19 official loan has physical identity separate from prior candle (342.888446ms)
+2026-10-31T03:10:06.3432156Z ✔ H19 candle budget independent from scope, sound can bypass remaining fuel (425.955054ms)
+2026-10-31T03:10:06.3432961Z ✔ H19 candle burns once per physical slice (358.648245ms)
+2026-10-31T03:10:06.3433757Z ✔ H19 rule combination changes fuel pressure, not flat per-ghost fee (603.077375ms)
+2026-10-31T03:10:06.3434618Z ✔ H19 exhaustion reevaluates coverage and damage immediately (610.627609ms)
+2026-10-31T03:10:06.3435407Z ✔ H19 old physical candle budget not mutated by new loan (415.71859ms)
+2026-10-31T03:10:06.3436190Z ✔ H19 team split preserves independent roles and private knowledge (400.211498ms)
+2026-10-31T03:10:06.3436992Z ✔ H19 message delivery is delayed, only selected team receives known facts (413.971718ms)
+2026-10-31T03:10:06.3437873Z ✔ H19 lost contact preserves last-known position, not fictional death (451.774798ms)
+2026-10-31T03:10:06.3438814Z ✔ H19 messages to lost team fail and do not grant knowledge (474.530891ms)
+2026-10-31T03:10:06.3439880Z ✔ H19 two spirits calling one preserves load and distinct revival deltas (27.892408ms)
+2026-10-31T03:10:06.3440724Z ✔ H19 safe auto disabled and bounded waiting stops at a new window (93.714593ms)
+2026-10-31T03:10:06.3441601Z ✔ H19 bounded waiting refuses while candle lit and does not consume state (358.447918ms)
+2026-10-31T03:10:06.3442581Z ✔ H19 restart whitelist preserves city histories and resource outcomes (439.002394ms)
+2026-10-31T03:10:06.3443547Z ✔ H19 every page is read only and current scene has max3 legal choices (16.762513ms)
+2026-10-31T03:10:06.3444329Z ✔ H19 dangerous previews have costs and do not mutate (346.94377ms)
+2026-10-31T03:10:06.3444983Z ✔ H19 validator rejects future chapter (16.297344ms)
+2026-10-31T03:10:06.3445586Z ✔ H19 validator rejects fake containment (15.931073ms)
+2026-10-31T03:10:06.3446180Z ✔ H19 validator rejects invented meaning (17.34269ms)
+2026-10-31T03:10:06.3446773Z ✔ H19 validator rejects fuel duplication (18.006112ms)
+2026-10-31T03:10:06.3447395Z ✔ H19 validator rejects unlimited shelter (16.168504ms)
+2026-10-31T03:10:06.3448185Z ✔ H19 validator rejects unknown stage guide (17.232067ms)
+2026-10-31T03:10:06.3448901Z ✔ I22 new game has empty identity state and no future entry (9.910602ms)
+2026-10-31T03:10:06.3449708Z ✔ I22 missing module appends empty state without inventing history (6.078737ms)
+2026-10-31T03:10:06.3450430Z ✔ I22 entry requires actual postwar archive (1.594097ms)
+2026-10-31T03:10:06.3451160Z ✔ I22 start at291 preserves source containment and old history (29.200651ms)
+2026-10-31T03:10:06.3451860Z ✔ I22 nine anchors capped299 no bus early (664.048764ms)
+2026-10-31T03:10:06.3452576Z ✔ I22 decline allows canon advance without automatic knowledge (666.80571ms)
+2026-10-31T03:10:06.3453195Z ✔ I22 resume does not rewind canon (431.770862ms)
+2026-10-31T03:10:06.3453855Z ✔ I22 actor and facility identifiers remain unique and stable (550.845379ms)
+2026-10-31T03:10:06.3454667Z ✔ I22 history does not fabricate player school relationship (43.855488ms)
+2026-10-31T03:10:06.3455461Z ✔ I22 face match never confirms agency or memory truth (63.285815ms)
+2026-10-31T03:10:06.3456221Z ✔ I22 raw notes stable and truth separate from authorship (395.923594ms)
+2026-10-31T03:10:06.3457037Z ✔ I22 contradictory notes retain both and three explanations (348.834075ms)
+2026-10-31T03:10:06.3457934Z ✔ I22 same notebook source counted once; new observation separately (370.641175ms)
+2026-10-31T03:10:06.3458947Z ✔ I22 hypothesis withdrawal retains raw evidence (396.899898ms)
+2026-10-31T03:10:06.3459697Z ✔ I22 projection never reveals full agency or altered memory (345.29342ms)
+2026-10-31T03:10:06.3460600Z ✔ I22 red paper observations do not create owned spirit or rewrite old actor (354.66604ms)
+2026-10-31T03:10:06.3461439Z ✔ I22 physical notes require actual site and chapter (184.834217ms)
+2026-10-31T03:10:06.3462172Z ✔ I22 no human skin paper control or cupboard shopping (583.922575ms)
+2026-10-31T03:10:06.3462918Z ✔ I22 route permission and room observation are separate (502.99716ms)
+2026-10-31T03:10:06.3463934Z ✔ I22 expert only receives physical handwriting not all evidence (693.786172ms)
+2026-10-31T03:10:06.3464739Z ✔ I22 completed report not visible until actual receipt (778.56773ms)
+2026-10-31T03:10:06.3465382Z ✔ I22 report request not duplicable (692.991807ms)
+2026-10-31T03:10:06.3466067Z ✔ I22 disclosure preview pure and lists actual scope (342.656421ms)
+2026-10-31T03:10:06.3466928Z ✔ I22 official sharing excludes private build and conditional paper offer (608.12234ms)
+2026-10-31T03:10:06.3467801Z ✔ I22 tracking requires department permission and road access (653.303039ms)
+2026-10-31T03:10:06.3468777Z ✔ I22 signal records have gaps not interpolated route or human position (830.956719ms)
+2026-10-31T03:10:06.3469556Z ✔ I22 missing officer never automatically alive (860.950801ms)
+2026-10-31T03:10:06.3470387Z ✔ I22 tracking lead independent of Zhao source and no bus entry yet (813.991558ms)
+2026-10-31T03:10:06.3471183Z ✔ I22 no requirement to collect all notes before finish (825.454667ms)
+2026-10-31T03:10:06.3471925Z ✔ I22 defer keeps unknowns and does not fabricate completion (675.856955ms)
+2026-10-31T03:10:06.3472680Z ✔ I22 reading all pages pure and main action count<=4 (340.065266ms)
+2026-10-31T03:10:06.3473522Z ✔ I22 two spirits preserve burden and charge only the chosen ability (351.682953ms)
+2026-10-31T03:10:06.3474639Z ✔ I22 current main guide retains uncollected notes after world moves on (588.046613ms)
+2026-10-31T03:10:06.3475589Z ✔ I22 rejects invented face observation and unauthorized device history (574.464092ms)
+2026-10-31T03:10:06.3476538Z ✔ I22 save reload preserves case evidence and deterministic next action (276.105486ms)
+2026-10-31T03:10:06.3477438Z ✔ I22 restart cannot delete evidence disclosures or device samples (630.986958ms)
+2026-10-31T03:10:06.3478338Z ✔ I22 rejects malformed save duplicateNotes (347.861242ms)
+2026-10-31T03:10:06.3478956Z ✔ I22 rejects malformed save wrongActor (344.338855ms)
+2026-10-31T03:10:06.3479589Z ✔ I22 rejects malformed save wrongSource (345.050647ms)
+2026-10-31T03:10:06.3480187Z ✔ I22 rejects malformed save fakeAgency (345.066861ms)
+2026-10-31T03:10:06.3480769Z ✔ I22 rejects malformed save deviceHolder (343.824314ms)
+2026-10-31T03:10:06.3481339Z ✔ I22 rejects malformed save futureChapter (344.151789ms)
+2026-10-31T03:10:06.3481958Z ✔ I22 rejects malformed save freeCupboard (343.533695ms)
+2026-10-31T03:10:06.3482552Z ✔ I22 rejects malformed save fakeNote (343.018282ms)
+2026-10-31T03:10:06.3483147Z ✔ I22 rejects malformed save futureTick (343.85502ms)
+2026-10-31T03:10:06.3484162Z ✔ I22 can export explicit test fixture without changing browser saves (6.972248ms)
+2026-10-31T03:10:06.3485001Z ✔ 普通人未知知识可沉默撤离，源头不自动解决 (52.35243ms)
+2026-10-31T03:10:06.3485490Z ✔ 两段触发即时标记、三窗口延迟致死，只有听声不触发 (45.635435ms)
+2026-10-31T03:10:06.3486005Z ✔ 撤离不删除本人延迟标记，离场后世界仍结算 (31.791082ms)
+2026-10-31T03:10:06.3486501Z ✔ 完整五事实链支持正确推测、反例推翻两条错误推测 (81.239138ms)
+2026-10-31T03:10:06.3486947Z ✔ 错误猜测不能改规律，单条证词只得到弱支持 (20.019788ms)
+2026-10-31T03:10:06.3487372Z ✔ 无效点击与重复搜索不推进；有效空搜索推进 (13.036364ms)
+2026-10-31T03:10:06.3487873Z ✔ 正确物理隔离不依赖已确认知识；源头关押需容器且不自动掉落 (41.191639ms)
+2026-10-31T03:10:06.3488481Z ✔ 完成关押才能植入，复苏负荷与实例均有效且不能重复领取 (40.597371ms)
+2026-10-31T03:10:06.3488965Z ✔ 二鬼方案须关系评估与媒介；低相容不植入，已有两鬼只封存 (90.486379ms)
+2026-10-31T03:10:06.3489481Z ✔ 探查只增加被调用鬼的使用复苏，活动状态不混成总复苏 (13.730285ms)
+2026-10-31T03:10:06.3489980Z ✔ NPC死亡在离场后推进且不可被普通重启回滚 (21.783365ms)
+2026-10-31T03:10:06.3490423Z ✔ 重返现场保留事实、时间与伤亡，不重抽或补造过去观察 (26.677802ms)
+2026-10-31T03:10:06.3490861Z ✔ 相同存档动作稳定，损坏事实、枚举、时间和假设拒绝导入 (41.359337ms)
+2026-10-31T03:10:06.3491314Z ✔ 旧合法v2追加空调查，不伪造证据；五分页不暴露隐藏定义 (31.943777ms)
+2026-10-31T03:10:06.3491778Z ✔ 调查适配只映射实际证据，认证仍不自动赠送 (84.648889ms)
+2026-10-31T03:10:06.3492223Z ✔ 离场不把后台新伤亡自动写成人物知识 (34.064547ms)
+2026-10-31T03:10:06.3492692Z ✔ MALL01 假模特只建立载体怀疑，不能自动源头确认 (155.841574ms)
+2026-10-31T03:10:06.3493188Z ✔ MALL02/03 限制躯体导致有序转移，不算事件解决 (137.922372ms)
+2026-10-31T03:10:06.3493685Z ✔ MALL04 转移、复苏和NPC代价读档后相同，不重抽 (146.541244ms)
+2026-10-31T03:10:06.3494182Z ✔ MALL05/06 躺下仅适用衍生体，不提前确认源头 (110.353172ms)
+2026-10-31T03:10:06.3494887Z ✔ MALL07/08 公平反例有警戒提示和实际身体代价 (118.504874ms)
+2026-10-31T03:10:06.3495405Z ✔ MALL09 监控必须现场权限和三段交叉，不单击得到源头 (161.401254ms)
+2026-10-31T03:10:06.3495895Z ✔ MALL10 录像丢帧保留未知，不宣称没有人 (294.100684ms)
+2026-10-31T03:10:06.3496345Z ✔ MALL11 管理方证词与录像冲突独立保存 (274.632671ms)
+2026-10-31T03:10:06.3496973Z ✔ MALL12 没有模特与尸体连续证据不得重建源头 (187.860668ms)
+2026-10-31T03:10:06.3497442Z ✔ MALL13/14 严力有独立援助预算，不能命令牺牲 (182.842071ms)
+2026-10-31T03:10:06.3498085Z ✔ MALL15/27/28 不参加也推进完整正史关押，通报没有补知识 (195.908733ms)
+2026-10-31T03:10:06.3498558Z ✔ MALL16 普通人可完成外围协作，但不授予灵异或替换正史职责 (459.66897ms)
+2026-10-31T03:10:06.3499074Z ✔ MALL17 贡献按证据救援处理计，不使用伤害百分比 (439.585202ms)
+2026-10-31T03:10:06.3499605Z ✔ MALL18 未先隔离就压制会转移，窗口失效 (360.940769ms)
+2026-10-31T03:10:06.3500202Z ✔ MALL19/20 隔离、压制、封存三条件独立 (393.102497ms)
+2026-10-31T03:10:06.3500763Z ✔ MALL21 黄金封口才消耗材料并提交关押，不提前解决 (395.947484ms)
+2026-10-31T03:10:06.3501193Z ✔ MALL22 窗口中断保留实际代价，未封口材料不凭空消失 (397.234777ms)
+2026-10-31T03:10:06.3501611Z ✔ MALL23 协商必须在封存且核查现场之后 (406.428682ms)
+2026-10-31T03:10:06.3502065Z ✔ MALL24 高额补偿留下关系争议，重复点击不重复奖励 (426.304012ms)
+2026-10-31T03:10:06.3502487Z ✔ MALL25 没有源头自动掉落或商场绕过驾驭入口 (438.472236ms)
+2026-10-31T03:10:06.3502936Z ✔ MALL26 最终交接才RESOLVED，记录包含实际获救者 (438.76577ms)
+2026-10-31T03:10:06.3503414Z ✔ MALL29 实际救援历史保留，死亡者不被关押复活 (437.863345ms)
+2026-10-31T03:10:06.3503833Z ✔ MALL30 临时重启不修改关押、物品、NPC与收益 (435.7772ms)
+2026-10-31T03:10:06.3504305Z ✔ 正常时间4单位，危机窗口1单位，每有效行动只推进一次 (330.507607ms)
+2026-10-31T03:10:06.3504786Z ✔ 翻页不推进或泄露后台源头、NPC精确复苏，自动关闭 (74.453235ms)
+2026-10-31T03:10:06.3505245Z ✔ 非法导入拒绝封存跳步、伪造时间线、候选与损坏记录 (285.725387ms)
+2026-10-31T03:10:06.3505736Z ✔ 0.11存档追加空商场，不假定旧简化章参与；时间按旧行动明确补齐 (65.265819ms)
+2026-10-31T03:10:06.3506207Z ✔ 预定五窗口撤退真实执行，反应中断和重入不抹代价 (392.291427ms)
+2026-10-31T03:10:06.3506647Z ✔ 已有灵异仅真实调用者支付使用复苏，共享结算恰好一次 (364.383749ms)
+2026-10-31T03:10:06.3507092Z ✔ 未配置或规则压制的灵异不能用案件按钮绕过 (278.068444ms)
+2026-10-31T03:10:06.3507551Z ✔ 高风险行动致死进入既有反应窗口，不继续关押或免费复活 (360.755585ms)
+2026-10-31T03:10:06.3508145Z ✔ 材料缺失阻止最终计划，不虚构无限容器 (301.994274ms)
+2026-10-31T03:10:06.3508854Z ✔ 外围官方交接只报告已有资料，一次性且不额外转账 (437.227229ms)
+2026-10-31T03:10:06.3509326Z ✔ 撤回外围可补真实容器，库存现金守恒且读档不复制 (70.502584ms)
+2026-10-31T03:10:06.3509798Z ✔ 电梯按自身连接运行而非任意楼层传送，结果固定且有风险 (96.556513ms)
+2026-10-31T03:10:06.3510289Z ✔ 严格证据关系拒绝虚构时间线及未排除候选的源头确认 (229.489787ms)
+2026-10-31T03:10:06.3511158Z ✔ MIRROR ordinary scene guide completes all six windows without owning spirits or canon assets (1660.863931ms)
+2026-10-31T03:10:06.3512196Z ✔ MIRROR current scene gives at most four legal actions throughout (1607.69924ms)
+2026-10-31T03:10:06.3513054Z ✔ MIRROR absent legacy field attaches only empty independent state (96.120229ms)
+2026-10-31T03:10:06.3513911Z ✔ MIRROR old case knowledge does not automatically reveal facility (87.64309ms)
+2026-10-31T03:10:06.3514837Z ✔ MIRROR refusal leaves canon moving and does not acquire player knowledge (213.412518ms)
+2026-10-31T03:10:06.3515652Z ✔ MIRROR no exploration without limited permission (102.79109ms)
+2026-10-31T03:10:06.3516517Z ✔ MIRROR optional home preparation pays exactly once and grants no spirit buff (94.01127ms)
+2026-10-31T03:10:06.3517405Z ✔ MIRROR insufficient resources do not block main investigation (326.949886ms)
+2026-10-31T03:10:06.3518606Z ✔ MIRROR direct and canonical indirect are bounded record paths; ordinary reflection rejected (0.355516ms)
+2026-10-31T03:10:06.3519744Z ✔ MIRROR repeated observation never refreshes first memory or creates record versions (0.332692ms)
+2026-10-31T03:10:06.3520887Z ✔ MIRROR record alone is not reconstruction authority (0.256389ms)
+2026-10-31T03:10:06.3521760Z ✔ MIRROR death and record still require obstruction and external conditions (0.163322ms)
+2026-10-31T03:10:06.3522585Z ✔ MIRROR only selected player spirit pays usage cost (247.882149ms)
+2026-10-31T03:10:06.3523422Z ✔ MIRROR verified old mastery is preserved and resumes after withdrawing (79.067056ms)
+2026-10-31T03:10:06.3524319Z ✔ MIRROR atomic reconstruction is idempotent and preserves death (306.987283ms)
+2026-10-31T03:10:06.3525250Z ✔ MIRROR reconstruction never restores player inventory fate or revival (317.41531ms)
+2026-10-31T03:10:06.3525976Z ✔ MIRROR malformed half commits rejected (350.376211ms)
+2026-10-31T03:10:06.3526685Z ✔ MIRROR memory is separate from death history and later hearsay (349.153864ms)
+2026-10-31T03:10:06.3527566Z ✔ MIRROR disclosure is granular and does not auto synchronize five categories (222.461797ms)
+2026-10-31T03:10:06.3528727Z ✔ MIRROR reporting and perimeter isolation are not source containment (347.100448ms)
+2026-10-31T03:10:06.3529669Z ✔ MIRROR release continues to exist and move without player participation (374.035645ms)
+2026-10-31T03:10:06.3530439Z ✔ MIRROR Ye Feng pays independent shroud and teeth costs (577.678252ms)
+2026-10-31T03:10:06.3531229Z ✔ MIRROR rope uses same prior death source and does not edit past custody (718.917939ms)
+2026-10-31T03:10:06.3531962Z ✔ MIRROR candidate research does not grant mastery (1479.466523ms)
+2026-10-31T03:10:06.3532817Z ✔ MIRROR temporary restart preserves imprints identity release privacy and costs (859.268242ms)
+2026-10-31T03:10:06.3533830Z ✔ MIRROR guided wait exactly equals public settlements and does not mutate caller (457.277094ms)
+2026-10-31T03:10:06.3534792Z ✔ MIRROR exclusive active scene blocks unsafe auto and hub escape (91.016819ms)
+2026-10-31T03:10:06.3535654Z ✔ MIRROR all 18 read-only pages render without advancing state (1568.645865ms)
+2026-10-31T03:10:06.3536491Z ✔ MIRROR save reload produces deterministic canon commits (2445.836456ms)
+2026-10-31T03:10:16.4060004Z ✔ P21 migration is empty and preserves existing modules (6.295728ms)
+2026-10-31T03:10:16.4066389Z ✔ P21 future chapter unavailable at new game (4.939434ms)
+2026-10-31T03:10:16.4073447Z ✔ P21 entry preserves old containment and starts277 (22.831368ms)
+2026-10-31T03:10:16.4126428Z ✔ P21 fifteen canon anchors reach290 without291 (723.40953ms)
+2026-10-31T03:10:16.4127452Z ✔ P21 declining does not cancel canon or award hidden knowledge (749.65701ms)
+2026-10-31T03:10:16.4128660Z ✔ P21 Zhao death is current registry while old authority history remains (64.994121ms)
+2026-10-31T03:10:16.4130148Z ✔ P21 Zhao reliable report not wish resolution (71.279104ms)
+2026-10-31T03:10:16.4130954Z ✔ P21 source report requires receipt (34.983517ms)
+2026-10-31T03:10:16.4131871Z ✔ P21 checking one district cannot open others or erase lost people (36.71055ms)
+2026-10-31T03:10:16.4132696Z ✔ P21 independent cases do not merge (36.726354ms)
+2026-10-31T03:10:16.4133517Z ✔ P21 contact does not grant faction membership or Ye relationship (129.021923ms)
+2026-10-31T03:10:16.4199511Z ✔ P21 forum distinct identity from old club with no free resources (161.697948ms)
+2026-10-31T03:10:16.4274253Z ✔ P21 organization cooperation is bounded and consensual (176.558922ms)
+2026-10-31T03:10:16.4275944Z ✔ P21 exact disclosure propagates with delay not omniscience (229.094631ms)
+2026-10-31T03:10:16.4277590Z ✔ P21 hearsay reuse retains one original evidence ID (687.705238ms)
+2026-10-31T03:10:16.4283469Z ✔ P21 Ye profile limited to current organization information (329.792584ms)
+2026-10-31T03:10:16.4284440Z ✔ P21 ordinary sound does not trigger supernatural rule (0.149351ms)
+2026-10-31T03:10:16.4286163Z ✔ P21 supernatural sound requires connection,target and non-isolation (0.096783ms)
+2026-10-31T03:10:16.4287099Z ✔ P21 rope and sound use bounded rule conflict (0.105716ms)
+2026-10-31T03:10:16.4288189Z ✔ P21 audio reference preserves residence and does not damage player (175.391846ms)
+2026-10-31T03:10:16.4289825Z ✔ P21 sound attribution requires observed evidence and communication (188.45428ms)
+2026-10-31T03:10:16.4290762Z ✔ P21 strong build never grants office automatically (430.768578ms)
+2026-10-31T03:10:16.4292384Z ✔ P21 ordinary player receives peripheral route (418.14268ms)
+2026-10-31T03:10:16.4293391Z ✔ P21 contribution-backed invitation grants limited scope (242.049358ms)
+2026-10-31T03:10:16.4324897Z ✔ P21 permission not actual receipt (610.404844ms)
+2026-10-31T03:10:16.4327690Z ✔ P21 generated forecast has actor knowledge only until actual delivery (608.54507ms)
+2026-10-31T03:10:16.4328849Z ✔ P21 forecast calculation pure with bounded scope (531.625069ms)
+2026-10-31T03:10:16.4335362Z ✔ P21 same relevant conditions deterministic through reload (614.455488ms)
+2026-10-31T03:10:16.4336772Z ✔ P21 unrelated world tick does not invalidate relevant premises (640.467797ms)
+2026-10-31T03:10:16.4337813Z ✔ P21 received forecast remains conditional not confirmed fact (640.663647ms)
+2026-10-31T03:10:16.4338942Z ✔ P21 changed intent invalidates before actual result (496.019832ms)
+2026-10-31T03:10:16.4340022Z ✔ P21 unchanged intent has observed actual result without rewriting past forecast (851.601687ms)
+2026-10-31T03:10:16.4341192Z ✔ P21 NPC precognition costs shared spirit growth not mana or player ability (650.260605ms)
+2026-10-31T03:10:16.4342099Z ✔ P21 no unlimited repeat NPC casting (993.500172ms)
+2026-10-31T03:10:16.4343044Z ✔ P21 meeting read-only pages leave world tick untouched (599.676778ms)
+2026-10-31T03:10:16.4343862Z ✔ P21 speech proposal not formal decision (339.853822ms)
+2026-10-31T03:10:16.4344734Z ✔ P21 privacy refusal keeps qualification and known history (624.446278ms)
+2026-10-31T03:10:16.4345610Z ✔ P21 optional duty refusal does not revoke role (630.412347ms)
+2026-10-31T03:10:16.4346485Z ✔ P21 accepted duty persists with object,scope and delivery (640.83378ms)
+2026-10-31T03:10:16.4347385Z ✔ P21 trade request preserves current inventory and owner (248.785979ms)
+2026-10-31T03:10:16.4348395Z ✔ P21 agreement and authorization not delivery (631.041387ms)
+2026-10-31T03:10:16.4367000Z ✔ P21 actual transfer exactly once including reload (367.112569ms)
+2026-10-31T03:10:16.4367878Z ✔ P21 cancel returns no imaginary refund (708.806229ms)
+2026-10-31T03:10:16.4368809Z ✔ P21 no stock means no trade request (232.37069ms)
+2026-10-31T03:10:16.4369743Z ✔ P21 canon candle request does not manufacture unique asset or transfer (784.955312ms)
+2026-10-31T03:10:16.4370651Z ✔ P21 all21 pages pure and no undefined values (1009.766445ms)
+2026-10-31T03:10:16.4371529Z ✔ P21 scene has at most four legal actions and completes ordinary route (1070.024614ms)
+2026-10-31T03:10:16.4372982Z ✔ P21 restart cannot erase society,forecast,assets or meeting (1026.326879ms)
+2026-10-31T03:10:16.4374116Z ✔ P21 malformed membership,permissions,transfer and futureclock rejected (1011.285389ms)
+2026-10-31T03:10:16.4375154Z ✔ P21 early forged start denied and invalid clicks do not tick (27.506204ms)
+2026-10-31T03:10:16.4376084Z ✔ P21 death or revival crisis blocks conference actions (610.376327ms)
+2026-10-31T03:10:16.4377123Z ✔ P21 advanced player structure,burden and history survive full chronology (1213.11271ms)
+2026-10-31T03:10:16.4378497Z ✔ P21 ordinary two ghosts settle natural growth independently not summed revival (40.401047ms)
+2026-10-31T03:10:16.4379671Z ✔ P21 peripheral cannot operate internal agenda or deescalate dispute (758.888502ms)
+2026-10-31T03:10:16.4380624Z ✔ P21 actual outcome requires delivered result summary (858.536222ms)
+2026-10-31T03:10:16.4381572Z ✔ P21 accepted road duty fulfilled only by actual new verification (653.37151ms)
+2026-10-31T03:10:16.4382603Z ✔ P21 actual report keeps original evidence and excludes private build (377.518359ms)
+2026-10-31T03:10:16.4383726Z ✔ P21 Huang contact requires actual Luo channel and not all-member access (281.362896ms)
+2026-10-31T03:10:16.4729292Z ✔ GUIDE ordinary current choices rescue and exit (527.434118ms)
+2026-10-31T03:10:16.4731093Z ✔ GUIDE independent rescue without official supplies (429.707529ms)
+2026-10-31T03:10:16.4732101Z ✔ GUIDE peripheral can finish without entering (1100.306896ms)
+2026-10-31T03:10:16.4733029Z ✔ GUIDE opening does not reveal undiscovered people (1.155488ms)
+2026-10-31T03:10:16.4733987Z ✔ GUIDE wait equals normal settlement and does not mutate input (112.388145ms)
+2026-10-31T03:10:16.4734842Z ✔ GUIDE wait stops on revival crisis (22.940998ms)
+2026-10-31T03:10:16.4740627Z ✔ GUIDE late independent arrival misses demonstration without invented knowledge (356.547312ms)
+2026-10-31T03:10:16.4741779Z ✔ GUIDE waiting cannot skip an already available next step (68.295524ms)
+2026-10-31T03:10:16.4742778Z ✔ GUIDE waiting never burns an active candle automatically (253.103692ms)
+2026-10-31T03:10:17.4756676Z ✔ REG 新角色没有城市救援入口 (4.093723ms)
+2026-10-31T03:10:17.4763023Z ✔ REG 普通人可在对应世界阶段选择参与 (128.369373ms)
+2026-10-31T03:10:17.4769903Z ✔ REG 旧城市样板不能绕过新城市时间线 (53.807995ms)
+2026-10-31T03:10:17.4773010Z ✔ REG 旧样板活动存档隔离但不清空历史 (46.708678ms)
+2026-10-31T03:10:17.4789012Z ✔ REG 拒绝参与正史仍到183且无现场知识 (137.01131ms)
+2026-10-31T03:10:17.4789879Z ✔ REG 正史不能因个人next提前跳窗 (55.438296ms)
+2026-10-31T03:10:17.4790756Z ✔ HIST 未参加七中不赠送历史完整规律 (90.150446ms)
+2026-10-31T03:10:17.4791567Z ✔ HIST 已支持声音假设自动引用，不需重刷线索 (57.043428ms)
+2026-10-31T03:10:17.4792347Z ✔ HIST 当前对照独立支持并保留旧记录 (317.490988ms)
+2026-10-31T03:10:17.4793076Z ✔ REG 观江花园不并入鬼域地图 (286.292191ms)
+2026-10-31T03:10:17.4794207Z ✔ REG 未发现群体不显示名字或全城数量 (275.279218ms)
+2026-10-31T03:10:17.4795011Z ✔ RESCUE 当前观察只发现一处群体 (375.863772ms)
+2026-10-31T03:10:17.4795729Z ✔ CANDLE 授权之前不能领取，不拿杨间资产 (64.664096ms)
+2026-10-31T03:10:17.4884320Z ✔ CANDLE 官方借用只有一份，来源显式游戏改编 (398.200697ms)
+2026-10-31T03:10:17.4886697Z ✔ CANDLE 燃料与已消耗守恒 (374.643217ms)
+2026-10-31T03:10:17.4887367Z ✔ CANDLE 同一tick多次世界推进不会重复扣费 (376.631897ms)
+2026-10-31T03:10:17.4888196Z ✔ CANDLE 移动后原群体不在覆盖范围 (357.613469ms)
+2026-10-31T03:10:17.4888841Z ✔ CANDLE 用烛不改变负荷、不减少复苏 (390.12076ms)
+2026-10-31T03:10:17.4889537Z ✔ CANDLE 燃尽立即结束覆盖并保留成本 (638.897575ms)
+2026-10-31T03:10:17.4890210Z ✔ CANDLE 并发未识别威胁时燃料有余仍非完全有效 (589.711473ms)
+2026-10-31T03:10:17.4890842Z ✔ RESCUE 无路线不能准备或执行方案 (267.272822ms)
+2026-10-31T03:10:17.4891492Z ✔ RESCUE 实际两段护送提交存活而非Source关押 (375.96664ms)
+2026-10-31T03:10:17.4892105Z ✔ RESCUE 已救群体不能重复刷救援 (378.423813ms)
+2026-10-31T03:10:17.4892719Z ✔ RESCUE 移动暂停方案，不能远程带人 (377.137ms)
+2026-10-31T03:10:17.4893341Z ✔ RESCUE 异常切换使路线过期，旧记录仍保留 (590.797568ms)
+2026-10-31T03:10:17.4893959Z ✔ RESCUE 取消/只读派生不结算时间和资源 (350.412249ms)
+2026-10-31T03:10:17.4894564Z ✔ TONG 未联络不泄露NPC能力和位置记录 (255.950081ms)
+2026-10-31T03:10:17.4895171Z ✔ TONG 有自身目标，未知路线时拒绝不降低关系 (281.061076ms)
+2026-10-31T03:10:17.4895781Z ✔ TONG 核对路线才可护送自己群体 (358.354351ms)
+2026-10-31T03:10:17.4897146Z ✔ ROPE 王岳死亡只创建一次独立Source (545.854382ms)
+2026-10-31T03:10:17.4915013Z ✔ ROPE 后台死亡不自动变成角色确认 (462.197508ms)
+2026-10-31T03:10:17.4921915Z ✔ ROPE 关押鬼绳不关押敲门鬼也不赠送战利品 (477.632129ms)
+2026-10-31T03:10:17.4927918Z ✔ ROPE 并发视图未知时不读取后台源头名 (400.538689ms)
+2026-10-31T03:10:17.4928801Z ✔ BUILD 使用A只付A调用增长，B仅自然增长 (345.883002ms)
+2026-10-31T03:10:17.4930075Z ✔ BUILD 现场不开放安全自动及远程训练 (281.729995ms)
+2026-10-31T03:10:17.4932977Z ✔ SAVE/Reload 确定且不复制借用品、死亡或救援 (367.82298ms)
+2026-10-31T03:10:17.4933731Z ✔ SAVE 模块缺失升级为空，不捏造剧情 (48.407439ms)
+2026-10-31T03:10:17.4934675Z ✔ SAVE 损坏燃料/位置/重复死亡/假救援拒绝 (407.477418ms)
+2026-10-31T03:10:17.4936219Z ✔ UI 十二页无未实现按钮标签，所有行动中文有名称 (366.102947ms)
+2026-10-31T03:10:17.4936947Z ✔ UX 预览提供真实调用成本，不更改状态 (304.390297ms)
+2026-10-31T03:10:17.4937800Z ✔ TIME 救援阶段使用细时间片，普通行动4单位 (641.437878ms)
+2026-10-31T03:10:17.4954032Z ✔ EXIT 不允许未核验保护的直接传送 (295.548575ms)
+2026-10-31T03:10:17.4954701Z ✔ EXIT 已核验普通人可以提前离开，结果保留 (330.233214ms)
+2026-10-31T03:10:17.4955271Z ✔ EXIT 完整七窗普通人流程与全部锚点 (1199.889792ms)
+2026-10-31T03:10:17.4955848Z ✔ EXIT 异常路口可沿已核验后段撤离 (436.505322ms)
+2026-10-31T03:10:17.4956411Z ✔ EXIT 普通移动也不能绕过撤离核验 (394.036529ms)
+2026-10-31T03:10:17.4956944Z ✔ BUILD 未开发的任意灵异不能充当万能护送 (520.759841ms)
+2026-10-31T03:10:17.4957533Z ✔ KNOWLEDGE 未联络官方不私自同步童倩交换 (448.697868ms)
+2026-10-31T03:10:17.4958347Z ✔ RESTART 白名单不回滚救援/燃料/死亡/世界 (1149.770237ms)
+2026-10-31T03:10:17.4988526Z ✔ CANDLE 识别鬼绳不等于验证保护适用 (585.731554ms)
+2026-10-31T03:10:17.5032373Z ✔ KNOWLEDGE 历史声音判断可直接避险，当前结论仍未确认 (383.481594ms)
+2026-10-31T03:10:17.5033227Z ✔ CRISIS 复苏危机暂停现场，解决后必须先恢复现场 (310.085348ms)
+2026-10-31T03:10:17.5033858Z ✔ BUILD 既有异类结构与完美驾驭不因入场被清空 (62.344398ms)
+2026-10-31T03:10:17.5034513Z ✔ REPORT 实际提交连接城市记录与幸存者联系人，只记一次 (387.779218ms)
+2026-10-31T03:10:17.5035178Z ✔ RESIDENCE 查询独立资产线索不赠房产或鬼域区域 (122.189591ms)
+2026-10-31T03:10:17.5459836Z ✔ 未到村庄后阶段不开放后续，不强制获得第二鬼 (91.628989ms)
+2026-10-31T03:10:17.5470152Z ✔ 普通人能完成四人聚会基线，入场不自动是事件 (135.227158ms)
+2026-10-31T03:10:17.5527875Z ✔ 第五套餐具产生矛盾而非完整鬼身份 (136.994089ms)
+2026-10-31T03:10:17.5528582Z ✔ NPC认人不改写原始世界名单 (145.799388ms)
+2026-10-31T03:10:17.5539837Z ✔ 身份记录矛盾后仍可交谈，不强制战斗 (158.756194ms)
+2026-10-31T03:10:17.5540627Z ✔ 肉眼捕捉失败，即使高级开发也不能自动看见 (155.098106ms)
+2026-10-31T03:10:17.5541359Z ✔ 普通人合法反射面渠道发现对应实体 (152.386988ms)
+2026-10-31T03:10:17.5542205Z ✔ 镜面发现不确认完整身份和攻击规律 (134.324163ms)
+2026-10-31T03:10:17.5542809Z ✔ 镜中声音与反射具有相同来源，不能伪造独立佐证 (142.56751ms)
+2026-10-31T03:10:17.5543434Z ✔ 摄像头未知不成为电子识鬼器 (118.216067ms)
+2026-10-31T03:10:17.5544115Z ✔ 未调查渠道前UI全部未知，不泄露完整perceptionProfile (108.384622ms)
+2026-10-31T03:10:17.5544792Z ✔ 灵异感知只得到部分异常并真实支付调用 (121.431581ms)
+2026-10-31T03:10:17.5545399Z ✔ 单鬼与双鬼探查差异来自已有压制，不直接抹除复苏 (74.582467ms)
+2026-10-31T03:10:17.5545987Z ✔ 操作/支撑可调整，不改主动位或开发度 (64.408025ms)
+2026-10-31T03:10:17.5546523Z ✔ 不同主动位限制可操作节点 (54.710788ms)
+2026-10-31T03:10:17.5547089Z ✔ 基线和反射证据缺失不能跳营救阶段 (108.805684ms)
+2026-10-31T03:10:17.5547663Z ✔ 普通人提前核对通道可完整营救三位原创同学 (190.203717ms)
+2026-10-31T03:10:17.5548477Z ✔ 晚确认通道会耗去一个窗口，未带出不假报死亡 (179.893926ms)
+2026-10-31T03:10:17.5549070Z ✔ 双鬼在有限保护人数上有实际优势，非无限光环 (195.011656ms)
+2026-10-31T03:10:17.5549603Z ✔ 超载不能调用双鬼保护绕过宿主限制 (136.974782ms)
+2026-10-31T03:10:17.5550203Z ✔ 离开营救现场不重置窗口与留场结果 (158.565532ms)
+2026-10-31T03:10:17.5550769Z ✔ 现场忙时不能插入休息、交易或另一剧情 (113.905985ms)
+2026-10-31T03:10:17.5551328Z ✔ 拒绝聚会不补造基线和营救，个人流程可继续 (110.059668ms)
+2026-10-31T03:10:17.5551879Z ✔ 拒绝整段个人路线仍推进正史与严力后果 (444.558831ms)
+2026-10-31T03:10:17.5552702Z ✔ 死亡提交幂等，不重复释放、不释放结构部分 (45.980099ms)
+2026-10-31T03:10:17.5553263Z ✔ 后台死亡先发生但人物档案没有自动宣布 (86.693973ms)
+2026-10-31T03:10:17.5553757Z ✔ 失联事实与死亡确认分开 (207.049313ms)
+2026-10-31T03:10:17.5554262Z ✔ 可靠渠道不足不能确认严力死亡 (304.688378ms)
+2026-10-31T03:10:17.5554812Z ✔ 官方可靠核对后才显示死亡处置，重复按钮消失 (317.447401ms)
+2026-10-31T03:10:17.5555405Z ✔ 死亡释放按定位/限制/移交/档案真实扣袋，仅提交一次 (358.230253ms)
+2026-10-31T03:10:17.5555985Z ✔ 非会员且没有实际邀请不能参加会议 (200.404671ms)
+2026-10-31T03:10:17.5556545Z ✔ 会员等正史会议开放后可提出立场，组织判断独立 (347.102453ms)
+2026-10-31T03:10:17.5557108Z ✔ 未公开第二鬼时对方不能读取后台 (231.941844ms)
+2026-10-31T03:10:17.5557645Z ✔ 疑似双鬼只改变谨慎，不产生精确能力 (64.82182ms)
+2026-10-31T03:10:17.5558301Z ✔ 对抗能谈判降级，不强制死亡 (223.689184ms)
+2026-10-31T03:10:17.5558892Z ✔ 实际对抗调用成本与首次针对证据分离 (246.118102ms)
+2026-10-31T03:10:17.5559468Z ✔ 已目击媒介才形成针对，不利用另一个隐藏鬼 (254.269673ms)
+2026-10-31T03:10:17.5560032Z ✔ 致命阶段可产生独立原创驭鬼者死亡后果 (253.242204ms)
+2026-10-31T03:10:17.5560614Z ✔ 双节点高强度仍会破坏关系并支付各自复苏 (205.814118ms)
+2026-10-31T03:10:17.5561186Z ✔ 世界时间危机每步1，非危机4，公共结算一次 (147.936234ms)
+2026-10-31T03:10:17.5561795Z ✔ 城市实际事件写入双鬼Review外部环境证据 (72.786384ms)
+2026-10-31T03:10:17.5562391Z ✔ 伴随案件换场景仍存在，肉眼失败不销案 (184.753282ms)
+2026-10-31T03:10:17.5562997Z ✔ 两处地点反射支持持续跟随，旧证据过期保留 (184.734285ms)
+2026-10-31T03:10:17.5563568Z ✔ 提交阶段不解决持续案件或得到第三鬼 (192.584109ms)
+2026-10-31T03:10:17.5564110Z ✔ 拒绝官方职责仍能继续个人经历 (42.323329ms)
+2026-10-31T03:10:17.5564672Z ✔ 鬼眼自身重启不回滚世界死亡/附着/披露 (170.243591ms)
+2026-10-31T03:10:17.5565247Z ✔ 旧存档补空状态，不凭高级角色补造聚会证据 (26.708265ms)
+2026-10-31T03:10:17.5565833Z ✔ 存档非法channel与源头已关押伪造被拒绝 (248.066722ms)
+2026-10-31T03:10:17.5566582Z ✔ 存档不能把失联伪造成已验证死亡 (26.403173ms)
+2026-10-31T03:10:17.5567079Z ✔ 存档重复死亡实例被拒绝 (52.140763ms)
+2026-10-31T03:10:17.5567623Z ✔ 十二页渲染只读，不改变世界时间或负荷 (97.259886ms)
+2026-10-31T03:10:17.5568574Z ✔ 高危采用页面预览标识，普通探查不假称复活 (113.202775ms)
+2026-10-31T03:10:17.5569166Z ✔ 已营救或已撤离不能重开窗口改写结果 (128.152125ms)
+2026-10-31T03:10:17.5569783Z ✔ 普通人真实值班室到接线室、战术调查、关押、封存连续可玩 (240.180053ms)
+2026-10-31T03:10:17.5570425Z ✔ 原创续接入口不能跳过第一事件或进入正在进行的其他事件 (128.692023ms)
+2026-10-31T03:10:17.5571060Z ✔ 25开发技巧支付能量和独立复苏，且与基础调用共用冷却 (13.32508ms)
+2026-10-31T03:10:17.5571977Z ✔ 50开发收束退出触发区域，恢复存档保留代价与冷却 (16.12561ms)
+2026-10-31T03:10:17.5572580Z ✔ 技巧不授予未研究、未启用、被组合替代或原著同源实例 (3.831194ms)
+2026-10-31T03:10:17.5573127Z ✔ 零能量与低能量不能绕过代价 (1.288835ms)
+2026-10-31T03:10:17.5573667Z ✔ 不匹配媒介的强化不能成为万能压制 (11.509175ms)
+2026-10-31T03:10:17.5574252Z ✔ 两鬼组合分别承担真实代价且次鬼独立技巧关闭 (11.905982ms)
+2026-10-31T03:10:17.5574858Z ✔ 拼图工坊、背包和战术视图只读；持鬼状态与普通人空态真实 (4.132158ms)
+2026-10-31T03:10:17.5575401Z ✔ 背包转换守恒与非法重复操作 (22.055887ms)
+2026-10-31T03:10:17.5575967Z ✔ 工坊筛选只读，启用和停用按钮与合法行动一致 (2.063821ms)
+2026-10-31T03:10:17.5576558Z ✔ 启用顺序决定节点和关系坐标，空槽使用独立封印素材 (1.44102ms)
+2026-10-31T03:10:28.2305612Z ✔ 六个窗口与第1—19章有依赖顺序，硬条件允许错过场景 (863.196818ms)
+2026-10-31T03:10:28.2308299Z ✔ 无效动作不推进，搜索同一区域的空调查与等待推进 (28.455848ms)
+2026-10-31T03:10:28.2321670Z ✔ soft满足最小停留后提前推进，没有固定每十回合跳转 (57.51627ms)
+2026-10-31T03:10:28.2340533Z ✔ 普通人可独立离开，不依赖杨间、周正或羊皮纸 (836.472819ms)
+2026-10-31T03:10:28.2365074Z ✔ 提前隔离声音无需知识认证，音频风险真实且可反制 (272.171719ms)
+2026-10-31T03:10:28.2365895Z ✔ 地图异常明确反馈，相同窗口路线稳定，旧记录STALE后复核 (217.760609ms)
+2026-10-31T03:10:28.2366638Z ✔ 周正可错过，二手资料来源低于现场，未观察正史不漏到前台 (717.279669ms)
+2026-10-31T03:10:28.2367286Z ✔ 临时交汇只记录Flags，不加入正史角色到小组 (420.074503ms)
+2026-10-31T03:10:28.2367925Z ✔ 救六人组中普通学生真正保存，不因锚点抹掉结果 (900.903128ms)
+2026-10-31T03:10:28.2368738Z ✔ 群体慌乱影响移动计划，安抚与确认知识不是善恶刷分 (175.183883ms)
+2026-10-31T03:10:28.2369379Z ✔ 羊皮纸只支持推测，验证后动机标签仍保留 (561.293593ms)
+2026-10-31T03:10:28.2370070Z ✔ 普通留白主动准备才能驾驭，最多一次且扣容器而非免费奖励 (518.854626ms)
+2026-10-31T03:10:28.2370709Z ✔ 驾驭准备缺失有真实失败但不自动死亡、重抽与重复领取 (247.111461ms)
+2026-10-31T03:10:28.2371333Z ✔ 已有高级实例保持，首鬼转为档案，不额外赠送 (235.754511ms)
+2026-10-31T03:10:28.2372617Z ✔ Fate鬼眼罕见种子和行为双门控，玩家实例不删除正史鬼眼 (555.801959ms)
+2026-10-31T03:10:28.2373271Z ✔ 真实鬼调用仅对应使用复苏，干涉只影响显现不解决源头 (241.077831ms)
+2026-10-31T03:10:28.2374452Z ✔ 敌对正史人物有实际后果与替代路径，不杀可变学生补锚点 (795.612266ms)
+2026-10-31T03:10:28.2375158Z ✔ 离开条件包括窗口、有效路线和真实位置，提前出口不直接通关 (793.993984ms)
+2026-10-31T03:10:28.2375756Z ✔ 错过普通撤离进入有限残余路线，仍可复核出口离开 (948.879196ms)
+2026-10-31T03:10:28.2376400Z ✔ 校外世界继续、场景可错过，未经历不伪造知识 (668.921376ms)
+2026-10-31T03:10:28.2377119Z ✔ 笔记提示翻页不推进、重启不回滚Canon/Knowledge/Fate/资源 (226.960639ms)
+2026-10-31T03:10:28.2377815Z ✔ 刷新保持同种子结果、窗口与场景，旧存档只追加空适配器 (522.248043ms)
+2026-10-31T03:10:28.2378578Z ✔ 六页不暴露窗口编号、命运概率与未观察后台死亡 (746.076552ms)
+2026-10-31T03:10:28.2379182Z ✔ 损坏类型、事实、窗口、实例与命运拒绝导入 (24.695119ms)
+2026-10-31T03:10:28.2379815Z ✔ 个人死亡提交后正史结局继续，不能复活或新增角色知识 (180.032571ms)
+2026-10-31T03:10:28.2380442Z ✔ 成功结算的历史字段损坏时拒绝导入，避免记录页崩溃 (819.283481ms)
+2026-10-31T03:10:50.6209299Z ✔ 旧公交重试保留原有付费和次数资格，错过车辆不伪装再次通关 (769.416015ms)
+2026-10-31T03:10:50.6215454Z ✔ 旧格式进行中章节只记录接续后的真实窗口，不伪造缺失起点 (844.201321ms)
+2026-10-31T03:10:50.6217438Z ✔ 公交完成后兼容锚点在结算绑定前初始化，刷新不改变已保存核心 (8481.481223ms)
+2026-10-31T03:10:50.6219199Z ✔ 专用结算合法动作与保存对账 school-escape-newGame (972.533848ms)
+2026-10-31T03:10:50.6220718Z ✔ 专用结算合法动作与保存对账 mall-handoff-newGame (580.321749ms)
+2026-10-31T03:10:50.6222542Z ✔ 专用结算合法动作与保存对账 bus-leave-v1helpers-legit (599.793882ms)
+2026-10-31T03:10:50.6223168Z ✔ 专用结算合法动作与保存对账 investigation-seal-newGame (58.220323ms)
+2026-10-31T03:10:50.6225687Z ✔ 专用结算合法动作与保存对账 door-seal-newGame (272.526915ms)
+2026-10-31T03:10:50.6229908Z ✔ 专用结算合法动作与保存对账 full-chain (10418.207689ms)
+2026-10-31T03:10:50.6230275Z ✔ 专用结算合法动作与保存对账 regional-full (2668.421683ms)
+2026-10-31T03:10:50.6230593Z ✔ 专用结算合法动作与保存对账 identity-full (7118.006236ms)
+2026-10-31T03:10:50.6230906Z ✔ 专用结算合法动作与保存对账 school-death (148.474428ms)
+2026-10-31T03:10:50.6233064Z ✔ 门案第二鬼驾驭保留到真实失衡观察，逐鬼起点不伪造为零 (408.192648ms)
+2026-10-31T03:10:50.6233708Z ✔ 合法进入后续章节不会丢失未提交的黄岗事后账本，收益不串章 (700.57204ms)
+2026-10-31T03:10:50.6567889Z ✔ 真实第二鬼全链自动保存唯一结算，进行中 JSON 载入保留完整起点 (371.283752ms)
+2026-10-31T03:10:50.6568993Z ✔ 拒绝匹配重试及取消不补造驾驭，完整账本保留到真实出口 (325.703268ms)
+2026-10-31T03:10:50.6569493Z ✔ 普通封存与撤离只按合法终局归档，临时限制不算通关 (550.468902ms)
+2026-10-31T03:10:50.6570034Z ✔ 旧核心存档缺历史明确不可恢复，升级不修改权威资源和驾驭 (279.507592ms)
+2026-10-31T03:10:50.6570623Z ✔ 合法封存映射稳定 sealed，刷新/重载保持且引擎再次挑战仍禁止 (326.220466ms)
+2026-10-31T03:10:50.6571119Z ✔ 真实限制只显示有效压制，不能标通关或获得驾驭 (257.519998ms)
+2026-10-31T03:10:50.6571594Z ✔ 真实第二鬼植入显示观察中，观察后显示驾驭成功，不绕过限制 (375.639086ms)
+2026-10-31T03:10:50.6572043Z ✔ 真实援助目标完成保持独立 objective，有限援助不变为玩家鬼 (251.848854ms)
+2026-10-31T03:10:50.6572405Z ✔ 旧字符串只在兼容边界映射，不成为新解锁依据 (0.272102ms)
+2026-10-31T03:10:50.6572890Z ✔ 取回已封存实例重新处置时显示当前限制，历史封存不冒充当前终局 (251.597603ms)
+2026-10-31T03:10:50.6573404Z ✔ 真实撤离不误标完成且资格仍可用；死亡提交显示失败且不能重试 (438.122672ms)
+2026-10-31T03:10:50.6573859Z ✔ 结算 schema 初始化具有确定性，显式角色 ID 独立且旧存档不补造历史 (2.068628ms)
+2026-10-31T03:10:50.6574224Z ✔ CoreToken 有界、排序稳定、排除历史并保留角色身份及真实字段变化 (9.239119ms)
+2026-10-31T03:10:50.6574592Z ✔ 合法驾驭结算快照随 JSON 导出导入保留逐鬼成本、实际收益与使用次数 (4.089806ms)
+2026-10-31T03:10:50.6575084Z ✔ 重复追加与重复导入幂等，同遭遇冲突拒绝且未发放第二只鬼或奖励 (6.570193ms)
+2026-10-31T03:10:50.6575528Z ✔ 跨角色、跨存档、错误源种子或未来行动记录拒绝读取 (4.673089ms)
+2026-10-31T03:10:50.6575977Z ✔ 历史结果、收益、逐鬼复苏、次数和日志任一损坏均检出 (7.194907ms)
+2026-10-31T03:10:50.6576930Z ✔ 已进行合法匹配或失衡观察存档仅保存 active，不成为已完成历史 (300.597094ms)
+2026-10-31T03:10:50.6577464Z ✔ 32 条历史数量上限裁剪最早记录，保留最新和清晰裁剪计数 (127.762104ms)
+2026-10-31T03:10:50.6577938Z ✔ 256 KiB 历史总容量有限，超大单条和损坏容量拒绝 (70.814293ms)
+2026-10-31T03:10:50.6578597Z ✔ 封存只读记录拒绝 NaN、未知结果、重复厉鬼 ID 与未知核心绑定格式 (2.73982ms)
+2026-10-31T03:10:50.6579375Z ✔ 完整合法第二鬼流程：匹配、植入、观察刷新均保留战斗起点，最后仅结算一次 (436.544329ms)
+2026-10-31T03:10:50.6579871Z ✔ 合法结合保留两实例和负荷，观察完成才结算实际已结合 (310.675934ms)
+2026-10-31T03:10:50.6580370Z ✔ 合法受伤导致植入拒绝，同上下文重试仍拒绝，无假驾驭或成功结算 (328.552052ms)
+2026-10-31T03:10:50.6580863Z ✔ 合法取消匹配保留代价与证据，未获得第二鬼、不误完成 (258.423384ms)
+2026-10-31T03:10:50.6581374Z ✔ 失衡期实际补给和封存退出，记录新鬼离体前值，不伪造驾驭收益 (301.958787ms)
+2026-10-31T03:10:50.6581861Z ✔ 真实单向压制造成伪平衡，完成观察也不能显示挑战成功 (400.917048ms)
+2026-10-31T03:10:50.6582332Z ✔ 合法低相容反客为主，完成观察记录失衡而不是成功 (1996.243173ms)
+2026-10-31T03:10:50.6582837Z ✔ 合法练习增长到临界再植入导致双鬼复苏，危机退出如实保留剩余复苏 (299.569645ms)
+2026-10-31T03:10:50.6583373Z ✔ 观察期间同seed/tick不同存档拒绝账本，非法重复植入不推进 (281.338882ms)
+2026-10-31T03:10:50.6583927Z ✔ 取消后按引擎资格重新进入已限制现场，新尝试仍可完整结算 (331.695279ms)
+2026-10-31T03:10:50.6584416Z ✔ 旧版缺失账本的失衡存档可继续并明确范围，不能伪造已丢失起点 (274.506421ms)
+2026-10-31T03:10:50.6586794Z ✔ 临时防护与合法限制不冒充通关结算 (109.121976ms)
+2026-10-31T03:10:50.6587279Z ✔ 合法封存记录实际收益、线索与原引擎结果，界面不写奖 (95.848402ms)
+2026-10-31T03:10:50.6587737Z ✔ 两只厉鬼独立复苏、能量、负荷和实际开发成长严格对账 (71.077291ms)
+2026-10-31T03:10:50.6588401Z ✔ 重复能力调用保留实际次数，援助不是玩家驾驭技能 (57.001411ms)
+2026-10-31T03:10:50.6588838Z ✔ 撤离空收益、空逐鬼列表、普通人无伪技能 (11.818313ms)
+2026-10-31T03:10:50.6589290Z ✔ 失败仅在死亡提交后结算，死亡待定保留真实反应窗口 (35.106762ms)
+2026-10-31T03:10:50.6589776Z ✔ 已有反应资源成功拦截致死后，结果是紧急撤离 (32.66327ms)
+2026-10-31T03:10:50.6590214Z ✔ 战斗中及限制后刷新保持整个会话起点和代价 (73.729332ms)
+2026-10-31T03:10:50.6590658Z ✔ 同seed同tick不同存档与回滚会话拒绝串档 (24.265004ms)
+2026-10-31T03:10:50.6591154Z ✔ 旧存档缺少UI字段照常升级，载入中途战斗明确标记记录范围 (13.182469ms)
+2026-10-31T03:10:50.6591627Z ✔ 重试资格由当前引擎重新计算，资格变化使旧结算失效 (104.814648ms)
+2026-10-31T03:10:50.6592091Z ✔ 不合法行动不累积计数、不推进、不写结算 (3.444923ms)
+2026-10-31T03:10:50.6592526Z ✔ 自愿驾驭与有限援助是目标处置，不冒充合法关押 (138.711111ms)
+2026-10-31T03:10:50.6593219Z ✔ 开始战斗的自然复苏结算也包含在原始起点对账内 (19.228117ms)
+2026-10-31T03:10:50.6593620Z ✔ UX-S stage 72 (15.908069ms)
+2026-10-31T03:10:50.6593981Z ✔ UX-S stage 80 (13.121329ms)
+2026-10-31T03:10:50.6594338Z ✔ UX-S stage 95 (10.263153ms)
+2026-10-31T03:10:50.6595014Z ✔ UX-S reduce use forecast retains historical revival and no death hours (16.290043ms)
+2026-10-31T03:10:50.6596040Z ✔ UX-S unknown method not acquisition objective; known theory includes additional risk (8.301392ms)
+2026-10-31T03:10:50.6596828Z ✔ UX-S 79 to 80 warning once and not critical (16.022448ms)
+2026-10-31T03:10:50.6597648Z ✔ UX-E direct recipient known immediately and hidden propagation not public UI (20.882313ms)
+2026-10-31T03:10:50.6598604Z ✔ UX-E ghost display does not reveal hidden reset (12.128261ms)
+2026-10-31T03:10:50.6599153Z ✔ UX-E official grouping only actual report and no fabricated identity (10.180341ms)
+2026-10-31T03:10:50.6599670Z ✔ UX-CL observe low risk but genuine action; no NPC exact revival (12.340174ms)
+2026-10-31T03:10:50.6600257Z ✔ UX-CL people and observed atmosphere before trade; repeat visit retains once warning (13.885508ms)
+2026-10-31T03:10:50.6600795Z ✔ UX-C buy claim then inquire source; no premature root (13.815214ms)
+2026-10-31T03:10:50.6601267Z ✔ UX-C link statements does not make independent evidence or fact (16.117378ms)
+2026-10-31T03:10:50.6601933Z ✔ UX-C three supported statements still count two original sources (18.220027ms)
+2026-10-31T03:10:50.6602405Z ✔ UX-C ask motive actual testimony but not verification (10.11894ms)
+2026-10-31T03:10:50.6602885Z ✔ UX-C false seller dispute retains cash and bounded historical flags (14.928831ms)
+2026-10-31T03:10:50.6603428Z ✔ UX-C unproven accusation is rumor; evidence-backed is supported not fact (25.826632ms)
+2026-10-31T03:10:50.6603985Z ✔ UX-T previews and views pure; actual trade once and no item phantom (13.050824ms)
+2026-10-31T03:10:50.6604491Z ✔ UX-T checks no automatic identification or candidate drive (13.451056ms)
+2026-10-31T03:10:50.6604975Z ✔ UX-T probe actual owned ghost cost and direct witness only (10.794819ms)
+2026-10-31T03:10:50.6605418Z ✔ UX-P ready is not actual cast; only natural growth (12.816037ms)
+2026-10-31T03:10:50.6605986Z ✔ UX-P warn no supernatural use and allows deescalation (13.27084ms)
+2026-10-31T03:10:50.6606734Z ✔ UX-P already hostile NPC refuses effortless deescalation (13.652924ms)
+2026-10-31T03:10:50.6607632Z ✔ UX-P high revival does not hard lock valid ability and lethal not ordinary pvp (23.695552ms)
+2026-10-31T03:10:50.6608785Z ✔ UX-H supernatural proof alone does not infer actor knowledge/motive (7.709327ms)
+2026-10-31T03:10:50.6609750Z ✔ UX-H partial understanding derived from actual testimony not full source control (8.276927ms)
+2026-10-31T03:10:50.6610770Z ✔ UX consultation share only known theory, actual exposure no advanced NPC award (6.206116ms)
+2026-10-31T03:10:50.6611764Z ✔ UX consultation prior information withholding alters real followup response (6.000331ms)
+2026-10-31T03:10:50.6612593Z ✔ UX pages/reload pure and fixed claims/exposure/choices (17.546551ms)
+2026-10-31T03:10:50.6613448Z ✔ UX legacy addon has explicit empty evidence, no fabricated observations (10.271595ms)
+2026-10-31T03:10:50.6614179Z ✔ UX malformed persisted evidence is rejected (74.41132ms)
+2026-10-31T03:10:50.6614718Z ✔ SURV01 读取派生生存问题不修改单鬼复苏 (9.024592ms)
+2026-10-31T03:10:50.6615227Z ✔ SURV02/03 停止近期调用只改善预测，不倒退历史复苏 (32.193745ms)
+2026-10-31T03:10:50.6615686Z ✔ SURV04 没有死亡天数或寿命百分比 (4.821448ms)
+2026-10-31T03:10:50.6615967Z ✔ SURV05 高级结构与完美主导不强制第二鬼教程 (2.44211ms)
+2026-10-31T03:10:50.6616244Z ✔ 生存普通、单双多鬼目标分别派生 (2.686031ms)
+2026-10-31T03:10:50.6616525Z ✔ 严力初次联系不补商场友情，咨询只新增理论 (5.243382ms)
+2026-10-31T03:10:50.6616802Z ✔ SOCIAL01 未披露能力不被对方后台读取 (15.783164ms)
+2026-10-31T03:10:50.6617166Z ✔ SOCIAL02 实际观察不能被离场或对话删除 (17.412132ms)
+2026-10-31T03:10:50.6617522Z ✔ SOCIAL03 出售能力先接收者获知，再实际时间传播 (17.671506ms)
+2026-10-31T03:10:50.6617858Z ✔ 已传播能力情报实际改变规则对抗，不只改变说明文字 (21.526645ms)
+2026-10-31T03:10:50.6618414Z ✔ SOCIAL04/05 拒绝或会员都不阻断正史，无免费战斗加成 (80.324623ms)
+2026-10-31T03:10:50.6618988Z ✔ TRADE01 买入说法不是确认，预算只扣一次 (11.239437ms)
+2026-10-31T03:10:50.6619335Z ✔ TRADE02 相同来源转述不升级，独立来源支持异常报告 (15.950902ms)
+2026-10-31T03:10:50.6619695Z ✔ TRADE03/04 未知封存物独立保管，候选不绕过承载匹配 (14.523742ms)
+2026-10-31T03:10:50.6620020Z ✔ TRADE05 资金不足、无库存与伪造动作不改核心 (9.710677ms)
+2026-10-31T03:10:50.6620306Z ✔ 物品有限库存与随身容量守恒 (11.843088ms)
+2026-10-31T03:10:50.6620747Z ✔ 虚假会员保证可被核查否定，不免费治疗 (12.731883ms)
+2026-10-31T03:10:50.6621092Z ✔ PVP01 实际调用只让调用鬼承担调用增长，公共结算一次 (10.724175ms)
+2026-10-31T03:10:50.6621443Z ✔ 大厅鬼域只开放已拥有层数，承担显式额外预算和一次公共使用结算 (12.627148ms)
+2026-10-31T03:10:50.6621767Z ✔ PVP02 无生命条决斗和装备掉落 (20.145829ms)
+2026-10-31T03:10:50.6622088Z ✔ PVP03 驭鬼者死亡创建独立源头残余事件，无灵异继承 (16.211366ms)
+2026-10-31T03:10:50.6622462Z ✔ PVP04/05 大厅释放产生目击和后续反制，不读取私密属性 (13.024856ms)
+2026-10-31T03:10:50.6622778Z ✔ 死后残余可以实际消耗隔离袋处理，不是提示接口 (17.489761ms)
+2026-10-31T03:10:50.6623119Z ✔ HUMAN01/02 原规律与人为路径分组，不能提前停止分发 (12.978939ms)
+2026-10-31T03:10:50.6623428Z ✔ HUMAN03 操作者同样会被传播规则牵连 (26.435703ms)
+2026-10-31T03:10:50.6623741Z ✔ 人为事件可闭合交接，但不假称源头被关押 (16.698322ms)
+2026-10-31T03:10:50.6624081Z ✔ HUMAN04 重启不回滚传播、销售、交易和死亡 (11.972911ms)
+2026-10-31T03:10:50.6624413Z ✔ CANON1301/02 原著身份和俱乐部存在，不授予管理权 (17.018955ms)
+2026-10-31T03:10:50.6624801Z ✔ CANON1303/04 不进入社会菜单世界也继续，官方消息不会自动变知识 (55.678345ms)
+2026-10-31T03:10:50.6625201Z ✔ CANON1305 拒绝村庄仍保留后续世界，没有第二鬼奖励剧透 (60.132941ms)
+2026-10-31T03:10:50.6625564Z ✔ 六个页面不推进状态、不显示NPC后台复苏或后台章节 (13.856836ms)
+2026-10-31T03:10:50.6625905Z ✔ 普通人不强制驾驭，可以交易协商和四项准备 (99.000653ms)
+2026-10-31T03:10:50.6626230Z ✔ 大厅和事件禁用异地刷技能与自动战斗，危机反应仍可用 (9.937061ms)
+2026-10-31T03:10:50.6626545Z ✔ 存档恢复不重抽或抹去来源、交易和世界 (14.230789ms)
+2026-10-31T03:10:50.6626851Z ✔ 旧存档只追加空社会模型，不伪造经历 (4.027895ms)
+2026-10-31T03:10:50.6627129Z ✔ 非法社会导入拒绝跳步、重复库存和虚假阶段 (30.018966ms)
+2026-10-31T03:10:50.6627422Z ✔ 正式分段覆盖全部整数与小数，63为高风险 (1.056702ms)
+2026-10-31T03:10:50.6627688Z ✔ 承载连续边界无空档 (0.14914ms)
+2026-10-31T03:10:50.6628147Z ✔ 45+40负荷85，独立78/18复苏，不存在公共总复苏 (11.966461ms)
+2026-10-31T03:10:50.6628505Z ✔ 使用A只增加A；休息保留全部累计进度 (13.483413ms)
+2026-10-31T03:10:50.6628791Z ✔ 双向关系压制增长，不回退78或降低负荷 (2.236316ms)
+2026-10-31T03:10:50.6629255Z ✔ 超载仅通过自然增长修正，不封顶负荷100 (0.572446ms)
+2026-10-31T03:10:50.6629539Z ✔ 紧急压制保留100，过期危机返回 (5.43107ms)
+2026-10-31T03:10:50.6629811Z ✔ 高危单鬼不会被另一个低复苏平均掩盖 (1.84634ms)
+2026-10-31T03:10:50.6630121Z ✔ 旧混合字段保留记录，负荷取内容，复苏明确重建；输入不变 (2.190508ms)
+2026-10-31T03:10:50.6630415Z ✔ 存档拒绝无效承载、复苏和自指关系 (2.905285ms)
+2026-10-31T03:10:50.6630894Z ✔ T23 new game and upgrade attach empty transit without earlier journey facts (14.067387ms)
+2026-10-31T03:10:50.6631484Z ✔ T23 entry requires299 archive but not fabricated device evidence (1.253914ms)
+2026-10-31T03:10:50.6632003Z ✔ T23 starting preserves old cloth X archive and registry (21.055268ms)
+2026-10-31T03:10:50.6632478Z ✔ T23 unknown vehicle does not expose interior roster (22.093032ms)
+2026-10-31T03:10:50.6632984Z ✔ T23 boarding is actual action and does not grant all knowledge (41.792196ms)
+2026-10-31T03:10:50.6633532Z ✔ T23 refusal advances canon without automatic character knowledge (1393.830414ms)
+2026-10-31T03:10:50.6634100Z ✔ T23 four counts separate and internal ghosts not passengers (59.195895ms)
+2026-10-31T03:10:50.6634621Z ✔ T23 visible unknown humans do not count as ghost occupants (58.561417ms)
+2026-10-31T03:10:50.6635166Z ✔ T23 counter reads have provenance and interpretation requires Xu information (339.290363ms)
+2026-10-31T03:10:50.6635855Z ✔ T23 unseen passenger has no precise seat or front-end card (245.924035ms)
+2026-10-31T03:10:50.6636435Z ✔ T23 Xu and Lin are independent supported identities not omniscient labels (272.741853ms)
+2026-10-31T03:10:50.6637304Z ✔ T23 first stop has finite actual action window, return possible (392.323863ms)
+2026-10-31T03:10:50.6638280Z ✔ T23 missed bus strands player and does not teleport at chapter316 (1343.14473ms)
+2026-10-31T03:10:50.6638949Z ✔ T23 stranded ordinary route requires three real surveys and lasting cost (587.170344ms)
+2026-10-31T03:10:50.6639608Z ✔ T23 shutdown not ordinary stop and no repair or automatic combat (507.260303ms)
+2026-10-31T03:10:50.6640146Z ✔ T23 revival suppression does not reduce burden capacity or history (98.452387ms)
+2026-10-31T03:10:50.6640666Z ✔ T23 100 revival can remain temporarily maintained while running (65.968581ms)
+2026-10-31T03:10:50.6641184Z ✔ T23 weak facility order cannot blanket-maintain completed revival (58.082434ms)
+2026-10-31T03:10:50.6641692Z ✔ T23 shutdown re-evaluates each ghost with other valid conditions (515.768519ms)
+2026-10-31T03:10:50.6642204Z ✔ T23 shield uses inventory and does not remove historical revival (532.090456ms)
+2026-10-31T03:10:50.6642670Z ✔ T23 actual ability charges only selected spirit usage (534.145453ms)
+2026-10-31T03:10:50.6643168Z ✔ T23 seven layer reset does not restart vehicle or recover consumables (534.04179ms)
+2026-10-31T03:10:50.6643717Z ✔ T23 crying and bride are separate sources with co-presence not same origin (866.477447ms)
+2026-10-31T03:10:50.6644254Z ✔ T23 restarting preserves actual harms and consumes no new items (987.549438ms)
+2026-10-31T03:10:50.6644762Z ✔ T23 unique cloth belongs to Yang and does not become player loot (1006.771841ms)
+2026-10-31T03:10:50.6645284Z ✔ T23 cemetery is passed not automatically stopped mapped or entered (894.262106ms)
+2026-10-31T03:10:50.6645812Z ✔ T23 Yang disembarks without forcing Xu Lin or player (1243.152076ms)
+2026-10-31T03:10:50.6646320Z ✔ T23 reality leave survives archive while bus remains existing and lost (1123.595829ms)
+2026-10-31T03:10:50.6646846Z ✔ T23 survivor remains after Yang and can later leave real stop (1188.996364ms)
+2026-10-31T03:10:50.6647348Z ✔ T23 all views and confirmation previews are pure <=4 main actions (348.793498ms)
+2026-10-31T03:10:50.6647888Z ✔ T23 reload produces same next outcome and restart preserves new histories (337.177487ms)
+2026-10-31T03:10:50.6648522Z ✔ T23 rejects malformed save entity (42.09585ms)
+2026-10-31T03:10:50.6648861Z ✔ T23 rejects malformed save seat (44.311445ms)
+2026-10-31T03:10:50.6649223Z ✔ T23 rejects malformed save chapter (40.789849ms)
+2026-10-31T03:10:50.6649571Z ✔ T23 rejects malformed save capacity (43.189827ms)
+2026-10-31T03:10:50.6650066Z ✔ T23 rejects malformed save owner (42.845579ms)
+2026-10-31T03:10:50.6650391Z ✔ T23 rejects malformed save anchor (41.89337ms)
+2026-10-31T03:10:50.6650729Z ✔ T23 rejects malformed save exists (42.788404ms)
+2026-10-31T03:10:50.6651060Z ✔ T23 rejects malformed save future (41.660206ms)
+2026-10-31T03:10:50.6651492Z ✔ T23 export explicit QA boundary without touching browser saves (1.619765ms)
+2026-10-31T03:10:50.6651919Z ✔ 新UI完整普通人闭环只展示合法操作，全部视图不更改存档 (256.672816ms)
+2026-10-31T03:10:50.6652241Z ✔ 未调查战斗不公开源头身份、触发规律或提供虚假能力 (130.016747ms)
+2026-10-31T03:10:50.6652541Z ✔ 调查板保留实际假设文本和证据状态，不补充未记录假设 (30.714388ms)
+2026-10-31T03:10:50.6652836Z ✔ 技能卡遵循开发、启用、能量与冷却门控，确认预览不结算 (148.707029ms)
+2026-10-31T03:10:50.6653142Z ✔ 构筑槽位反映实际启用顺序，持有与启用不混淆 (137.432591ms)
+2026-10-31T03:10:50.6653438Z ✔ 玩家名称和材料以文本转义，不能注入假操作 (1.018445ms)
+2026-10-31T03:10:50.6653718Z ✔ 六构筑首次免费、改配扣款且移除旧承载收益 (26.21729ms)
+2026-10-31T03:10:50.6654008Z ✔ 知识须先现场支持再认证，购买和认证不可重复领奖 (401.56882ms)
+2026-10-31T03:10:50.6654311Z ✔ 设施实际授予隔离资源，有限库存与交易没有刷钱循环 (5.558658ms)
+2026-10-31T03:10:50.6654618Z ✔ 阵营任务只提交一次，现金和组织记录同步保存 (396.275876ms)
+2026-10-31T03:10:50.6654902Z ✔ 鬼眼命运有失败分支，提交后不能重抽 (379.661573ms)
+2026-10-31T03:10:50.6655195Z ✔ 鬼眼完成调查限制后驾驭，八层可由有限证据正常成长达到 (439.631944ms)
+2026-10-31T03:10:50.6655513Z ✔ 第三只被动鬼承担负荷，主动最多两只且战斗不显示未配置调用 (445.458487ms)
+2026-10-31T03:10:50.6656043Z ✔ V6拒绝旧七层回滚行动条入口，临界反应由V6领域与额度门控 (461.769652ms)
+2026-10-31T03:10:50.6656352Z ✔ V6拒绝旧八层回滚敌行动条入口，永久NPC结果保持 (437.236883ms)
+2026-10-31T03:10:50.6656615Z ✔ 已提交死亡不提供重启入口 (416.207863ms)
+2026-10-31T03:10:50.6656908Z ✔ V6鬼域展开替代旧通用调用，基础代价1而非旧22 (430.529026ms)
+2026-10-31T03:10:50.6657208Z ✔ 苏醒100触发危机，关系压制不能把100当成普通活动 (387.017748ms)
+2026-10-31T03:10:50.6657493Z ✔ 安全自动对未知、神灵异和高复苏停止 (707.442061ms)
+2026-10-31T03:10:50.6657782Z ✔ 新增状态与快照拒绝非法导入，旧合法存档只追加系统 (497.770716ms)
+2026-10-31T03:10:50.6658206Z ✔ 镇压和规则构筑进入实际对抗权重 (371.517806ms)
+2026-10-31T03:10:50.6658474Z ✔ 新分页复用布局，战斗仅七个分类入口 (406.216476ms)
+2026-10-31T03:10:50.6658789Z ✔ 七中允许异地接触路线，死亡不免费恢复身体 (5.986079ms)
+2026-10-31T03:10:50.6659072Z ✔ 高阶双规则可提前介入，核心返回与限制锚点仍提交 (357.525985ms)
+2026-10-31T03:10:50.6659375Z ✔ V6展开不凭旧三层选择伪造敌规律认证 (438.376242ms)
+2026-10-31T03:10:50.6659654Z ✔ HG入口：未取得报告、未核查准备不能直接入村 (7.216797ms)
+2026-10-31T03:10:50.6659938Z ✔ 普通人无需等级或会员，可完成不驾驭路线与责任交接 (244.240181ms)
+2026-10-31T03:10:50.6660227Z ✔ HG-C拒绝不冻结正史，世界完成而个人知识仍空 (133.675642ms)
+2026-10-31T03:10:50.6660533Z ✔ 错过现场可登记事后资料，不补写参战或灵异 (198.998268ms)
+2026-10-31T03:10:50.6660799Z ✔ 玩家并行无头影不改变杨间正史锚点 (220.259524ms)
+2026-10-31T03:10:50.6661074Z ✔ 晚到者从当前窗口开始，不复制错过的私人调查 (89.130067ms)
+2026-10-31T03:10:50.6661355Z ✔ HG-K接触不分享私人知识，显式交换才得到有限证词 (38.225964ms)
+2026-10-31T03:10:50.6661623Z ✔ 保留信息不会自动导入NPC全部线索 (35.884442ms)
+2026-10-31T03:10:50.6661882Z ✔ 旧社会隐瞒关系改变联络员本次交换 (36.655843ms)
+2026-10-31T03:10:50.6662171Z ✔ 真实证据交换影响对方已知，不从后台读取武魂式构筑 (47.787086ms)
+2026-10-31T03:10:50.6662452Z ✔ 紧急合并保留未分享片段，不直接认证回棺 (137.189615ms)
+2026-10-31T03:10:50.6662725Z ✔ 单一NPC证词不替代多区域与棺态验证 (187.854486ms)
+2026-10-31T03:10:50.6663039Z ✔ HG-D死亡提交唯一事件与新媒介，不编造贺胜精确能力 (34.870914ms)
+2026-10-31T03:10:50.6663345Z ✔ 结构灵异不变成物理掉落，携带者才释放独立媒介 (37.971757ms)
+2026-10-31T03:10:50.6663760Z ✔ 失联不等于确认死亡，不自动增加灵异 (55.468631ms)
+2026-10-31T03:10:50.6664032Z ✔ 救原创联络员消耗隔离袋，世界不会强行补死 (81.551194ms)
+2026-10-31T03:10:50.6664318Z ✔ 放弃已触发危机产生原创独立回声，不合并到源头 (81.171763ms)
+2026-10-31T03:10:50.6664604Z ✔ 候选池无必得：特定命运与无释放媒介时没有新鬼 (96.866873ms)
+2026-10-31T03:10:50.6664875Z ✔ 命运释放实例固定，重新载入不重抽 (117.588483ms)
+2026-10-31T03:10:50.6665255Z ✔ GC鬼棺唯一，不出现在背包装备与封存灵异 (324.559385ms)
+2026-10-31T03:10:50.6665510Z ✔ GC未观察棺态不能直接开棺 (123.54013ms)
+2026-10-31T03:10:50.6665784Z ✔ GC开棺永久并真实付身体成本，重启不关棺 (81.075682ms)
+2026-10-31T03:10:50.6666067Z ✔ 遗像记录保存前后外观，不静默覆盖旧记录 (106.022286ms)
+2026-10-31T03:10:50.6666352Z ✔ B环境只改活动和未来增长，开棺不减负荷或历史复苏 (100.288771ms)
+2026-10-31T03:10:50.6666635Z ✔ 环境图与宿主关系独立，不伪造宿主双鬼关系 (60.259892ms)
+2026-10-31T03:10:50.6666898Z ✔ S未核查规律不能直接限制或引入 (100.252928ms)
+2026-10-31T03:10:50.6667164Z ✔ S限制消耗一次，无效重复点击不扣袋或时间 (132.829361ms)
+2026-10-31T03:10:50.6667437Z ✔ S取消不返还已用媒介，也不生成第二鬼 (147.703957ms)
+2026-10-31T03:10:50.6667732Z ✔ S第一鬼78历史保留，候选建立内容表自己的负荷与复苏 (147.673603ms)
+2026-10-31T03:10:50.6668172Z ✔ S限制引入平衡三阶段不能跳过 (144.411932ms)
+2026-10-31T03:10:50.6668459Z ✔ S成功只是暂时平衡，独立边与原有复苏保留 (154.215692ms)
+2026-10-31T03:10:50.6668753Z ✔ S平衡与宿主超载可以同时成立，负荷不封顶 (154.603926ms)
+2026-10-31T03:10:50.6669039Z ✔ S眼系不能无条件复制他人的配方，关系缺口真实存在 (153.438463ms)
+2026-10-31T03:10:50.6669315Z ✔ S单向关系是伪平衡，不冒充完美驾驭 (152.091974ms)
+2026-10-31T03:10:50.6669611Z ✔ S身体不足明确崩溃，不按成功概率重抽 (142.196466ms)
+2026-10-31T03:10:50.6669887Z ✔ S已引入但未平衡可用剩余媒介撤出，成本保留 (152.142088ms)
+2026-10-31T03:10:50.6670163Z ✔ S放弃候选仍能继续调查，不强迫驾驭 (117.959891ms)
+2026-10-31T03:10:50.6670434Z ✔ 已有双鬼参与网络检查，无第三鬼奖励 (107.36437ms)
+2026-10-31T03:10:50.6670701Z ✔ 三鬼与异类保留既有结构，村庄不重置角色 (110.80819ms)
+2026-10-31T03:10:50.6670988Z ✔ SRC冯全身份须证词与交叉核查，不提前显示完整后台 (125.376875ms)
+2026-10-31T03:10:50.6671291Z ✔ SRC源头方案必须三条来源关系，不是默认按钮 (217.902821ms)
+2026-10-31T03:10:50.6671591Z ✔ SRC回棺是暂时解决而非永久封存，世界切片随后变化 (250.943045ms)
+2026-10-31T03:10:50.6671881Z ✔ SRC贪调查会失去出口，城市和安全屋行动不可用 (217.744881ms)
+2026-10-31T03:10:50.6672175Z ✔ 被困路线依赖此前实际联系，求援不能随意传送 (194.711891ms)
+2026-10-31T03:10:50.6672601Z ✔ 先建立联络再被困，求援可引导到外围，仍保留代价 (293.911337ms)
+2026-10-31T03:10:50.6673312Z ✔ 离村不回血、不重置逐鬼复苏，环境压制解除 (70.22308ms)
+2026-10-31T03:10:50.6673734Z ✔ 护送职责与资料权不等于棺材所有权 (297.685326ms)
+2026-10-31T03:10:50.6674104Z ✔ 拒绝事后交易可提交，重复协商不刷钱 (324.361481ms)
+2026-10-31T03:10:50.6674579Z ✔ 正式村庄交接接上城市个人路线，关闭旧灾难捷径且不伪造旧参与 (324.004683ms)
+2026-10-31T03:10:50.6675072Z ✔ 死亡提交后自己的携带和结构分别记录，重启不复活 (155.398324ms)
+2026-10-31T03:10:50.6675364Z ✔ 刷新恢复所有永久选择、世界状态和独立关系 (157.920773ms)
+2026-10-31T03:10:50.6675641Z ✔ 旧存档仅追加空模型，不猜测之前参与村庄 (1.342304ms)
+2026-10-31T03:10:50.6675919Z ✔ 非法存档拒绝重复棺材、死亡、超范围与跳步 (169.640057ms)
+2026-10-31T03:10:50.6676233Z ✔ 十页纯渲染不推进行动，不泄漏private、配额和后台世界节点 (210.927362ms)
+2026-10-31T03:10:50.6676546Z ✔ 不可逆确认文案包含真实后果，预览不调用引擎 (130.084092ms)
+2026-10-31T03:10:50.6676852Z ✔ 村内只公共结算一次，调用不会增加另一鬼使用代价或官方异地目击 (216.529153ms)
+2026-10-31T03:10:50.6677151Z ✔ 独立释放媒介沉默观察没有伤害，回应才真实侵蚀 (80.684355ms)
+2026-10-31T03:10:50.6677427Z ✔ 独立媒介隔离不解决村庄，不复制源头或奖励新鬼 (80.229272ms)
+2026-10-31T03:10:50.6677729Z ✔ 本人的眼系开发、空间层与实际交流齐备，才出现独立分离配方 (183.916212ms)
+2026-10-31T03:10:50.6678155Z ✔ 源头回棺不能清除独立释放灵异或死亡历史 (182.427521ms)
+2026-10-31T03:10:50.6678529Z ✔ 有限结构研究可执行一次，真实成本、不授予异类或鬼差 (175.59396ms)
+2026-10-31T03:10:50.6678758Z ℹ tests 1271
+2026-10-31T03:10:50.6678940Z ℹ suites 0
+2026-10-31T03:10:50.6679115Z ℹ pass 1271
+2026-10-31T03:10:50.6679291Z ℹ fail 0
+2026-10-31T03:10:50.6679479Z ℹ cancelled 0
+2026-10-31T03:10:50.6679801Z ℹ skipped 0
+2026-10-31T03:10:50.6679972Z ℹ todo 0
+2026-10-31T03:10:50.6680174Z ℹ duration_ms 149553.898558
+2026-10-31T03:10:50.6721396Z ##[group]Run node scripts/g1c-closure-audit.mjs
+2026-10-31T03:10:50.6721717Z [36;1mnode scripts/g1c-closure-audit.mjs[0m
+2026-10-31T03:10:50.6721982Z [36;1mnode scripts/g1c-audit.mjs --stress-only[0m
+2026-10-31T03:10:50.6740698Z shell: /usr/bin/bash -e {0}
+2026-10-31T03:10:50.6740903Z env:
+2026-10-31T03:10:50.6741074Z   G1C_OUTPUT: ./tmp-g1c-ci
+2026-10-31T03:10:50.6741270Z ##[endgroup]
+2026-10-31T03:10:51.1464046Z {
+2026-10-31T03:10:51.1464365Z   "runs": [
+2026-10-31T03:10:51.1464627Z     {
+2026-10-31T03:10:51.1465090Z       "ownership": [
+2026-10-31T03:10:51.1465424Z         "fire",
+2026-10-31T03:10:51.1465759Z         "wind"
+2026-10-31T03:10:51.1466024Z       ],
+2026-10-31T03:10:51.1466640Z       "classification": "retreat with uncontrolled ghost; not safe completion",
+2026-10-31T03:10:51.1467165Z       "energy": 0,
+2026-10-31T03:10:51.1467482Z       "states": {
+2026-10-31T03:10:51.1467796Z         "fire": "CLOSED",
+2026-10-31T03:10:51.1468337Z         "wind": "UNCONTROLLED",
+2026-10-31T03:10:51.1468688Z         "press": "CLOSED"
+2026-10-31T03:10:51.1468977Z       }
+2026-10-31T03:10:51.1469231Z     },
+2026-10-31T03:10:51.1469488Z     {
+2026-10-31T03:10:51.1469735Z       "ownership": [
+2026-10-31T03:10:51.1469998Z         "fire",
+2026-10-31T03:10:51.1470275Z         "press"
+2026-10-31T03:10:51.1470539Z       ],
+2026-10-31T03:10:51.1471028Z       "classification": "retreat with uncontrolled ghost; not safe completion",
+2026-10-31T03:10:51.1471590Z       "energy": 0,
+2026-10-31T03:10:51.1471880Z       "states": {
+2026-10-31T03:10:51.1472185Z         "fire": "CLOSED",
+2026-10-31T03:10:51.1472505Z         "wind": "CLOSED",
+2026-10-31T03:10:51.1472878Z         "press": "UNCONTROLLED"
+2026-10-31T03:10:51.1473210Z       }
+2026-10-31T03:10:51.1473436Z     },
+2026-10-31T03:10:51.1473689Z     {
+2026-10-31T03:10:51.1473976Z       "ownership": [
+2026-10-31T03:10:51.1474308Z         "wind",
+2026-10-31T03:10:51.1474592Z         "press"
+2026-10-31T03:10:51.1474862Z       ],
+2026-10-31T03:10:51.1475365Z       "classification": "retreat with uncontrolled ghost; not safe completion",
+2026-10-31T03:10:51.1475920Z       "energy": 0,
+2026-10-31T03:10:51.1476232Z       "states": {
+2026-10-31T03:10:51.1476531Z         "fire": "CLOSED",
+2026-10-31T03:10:51.1476852Z         "wind": "CLOSED",
+2026-10-31T03:10:51.1477207Z         "press": "UNCONTROLLED"
+2026-10-31T03:10:51.1477551Z       }
+2026-10-31T03:10:51.1477785Z     },
+2026-10-31T03:10:51.1478201Z     {
+2026-10-31T03:10:51.1478494Z       "ownership": [
+2026-10-31T03:10:51.1478803Z         "fire",
+2026-10-31T03:10:51.1479084Z         "wind",
+2026-10-31T03:10:51.1479359Z         "press"
+2026-10-31T03:10:51.1479632Z       ],
+2026-10-31T03:10:51.1480144Z       "classification": "retreat with uncontrolled ghost; not safe completion",
+2026-10-31T03:10:51.1480716Z       "energy": 0,
+2026-10-31T03:10:51.1480997Z       "states": {
+2026-10-31T03:10:51.1481657Z         "fire": "CLOSED",
+2026-10-31T03:10:51.1482011Z         "wind": "UNCONTROLLED",
+2026-10-31T03:10:51.1482365Z         "press": "CLOSED"
+2026-10-31T03:10:51.1482664Z       }
+2026-10-31T03:10:51.1482923Z     },
+2026-10-31T03:10:51.1483176Z     {
+2026-10-31T03:10:51.1483447Z       "ownership": [
+2026-10-31T03:10:51.1483744Z         "fire",
+2026-10-31T03:10:51.1484016Z         "press"
+2026-10-31T03:10:51.1484279Z       ],
+2026-10-31T03:10:51.1484848Z       "classification": "trapped player: legal struggle performed, no guaranteed escape",
+2026-10-31T03:10:51.1485464Z       "energy": 0,
+2026-10-31T03:10:51.1485749Z       "states": {
+2026-10-31T03:10:51.1486023Z         "fire": "CLOSED",
+2026-10-31T03:10:51.1486337Z         "wind": "CLOSED",
+2026-10-31T03:10:51.1486663Z         "press": "CONTROLLED"
+2026-10-31T03:10:51.1486995Z       }
+2026-10-31T03:10:51.1487248Z     }
+2026-10-31T03:10:51.1487475Z   ],
+2026-10-31T03:10:51.1487756Z   "output": "./tmp-g1c-ci"
+2026-10-31T03:10:51.1488253Z }
+2026-10-31T03:11:08.8645766Z [
+2026-10-31T03:11:08.8646065Z   {
+2026-10-31T03:11:08.8646322Z     "ownership": [
+2026-10-31T03:11:08.8647041Z       "fire"
+2026-10-31T03:11:08.8647298Z     ],
+2026-10-31T03:11:08.8647526Z     "requested": 5,
+2026-10-31T03:11:08.8647787Z     "completed": 5,
+2026-10-31T03:11:08.8648262Z     "stop": "requested count reached"
+2026-10-31T03:11:08.8648562Z   },
+2026-10-31T03:11:08.8648766Z   {
+2026-10-31T03:11:08.8648972Z     "ownership": [
+2026-10-31T03:11:08.8649244Z       "fire"
+2026-10-31T03:11:08.8649468Z     ],
+2026-10-31T03:11:08.8649686Z     "requested": 10,
+2026-10-31T03:11:08.8649954Z     "completed": 10,
+2026-10-31T03:11:08.8650256Z     "stop": "requested count reached"
+2026-10-31T03:11:08.8650529Z   },
+2026-10-31T03:11:08.8650710Z   {
+2026-10-31T03:11:08.8650907Z     "ownership": [
+2026-10-31T03:11:08.8651138Z       "fire"
+2026-10-31T03:11:08.8651334Z     ],
+2026-10-31T03:11:08.8651546Z     "requested": 20,
+2026-10-31T03:11:08.8651767Z     "completed": 14,
+2026-10-31T03:11:08.8652046Z     "stop": "unavailable g1cp:fire:ignite"
+2026-10-31T03:11:08.8652316Z   },
+2026-10-31T03:11:08.8652503Z   {
+2026-10-31T03:11:08.8652696Z     "ownership": [
+2026-10-31T03:11:08.8652904Z       "wind"
+2026-10-31T03:11:08.8653159Z     ],
+2026-10-31T03:11:08.8653345Z     "requested": 5,
+2026-10-31T03:11:08.8653560Z     "completed": 5,
+2026-10-31T03:11:08.8669159Z     "stop": "requested count reached"
+2026-10-31T03:11:08.8669576Z   },
+2026-10-31T03:11:08.8669789Z   {
+2026-10-31T03:11:08.8670047Z     "ownership": [
+2026-10-31T03:11:08.8670306Z       "wind"
+2026-10-31T03:11:08.8670537Z     ],
+2026-10-31T03:11:08.8670824Z     "requested": 10,
+2026-10-31T03:11:08.8671120Z     "completed": 10,
+2026-10-31T03:11:08.8671462Z     "stop": "requested count reached"
+2026-10-31T03:11:08.8671784Z   },
+2026-10-31T03:11:08.8672014Z   {
+2026-10-31T03:11:08.8672257Z     "ownership": [
+2026-10-31T03:11:08.8672508Z       "wind"
+2026-10-31T03:11:08.8672757Z     ],
+2026-10-31T03:11:08.8672991Z     "requested": 20,
+2026-10-31T03:11:08.8673280Z     "completed": 14,
+2026-10-31T03:11:08.8673615Z     "stop": "unavailable g1cp:wind:raise"
+2026-10-31T03:11:08.8673973Z   },
+2026-10-31T03:11:08.8674208Z   {
+2026-10-31T03:11:08.8674428Z     "ownership": [
+2026-10-31T03:11:08.8674695Z       "press"
+2026-10-31T03:11:08.8674925Z     ],
+2026-10-31T03:11:08.8675182Z     "requested": 5,
+2026-10-31T03:11:08.8675458Z     "completed": 5,
+2026-10-31T03:11:08.8675784Z     "stop": "requested count reached"
+2026-10-31T03:11:08.8676084Z   },
+2026-10-31T03:11:08.8676313Z   {
+2026-10-31T03:11:08.8676554Z     "ownership": [
+2026-10-31T03:11:08.8676818Z       "press"
+2026-10-31T03:11:08.8677073Z     ],
+2026-10-31T03:11:08.8677329Z     "requested": 10,
+2026-10-31T03:11:08.8677591Z     "completed": 10,
+2026-10-31T03:11:08.8677918Z     "stop": "requested count reached"
+2026-10-31T03:11:08.8678372Z   },
+2026-10-31T03:11:08.8678609Z   {
+2026-10-31T03:11:08.8678829Z     "ownership": [
+2026-10-31T03:11:08.8679090Z       "press"
+2026-10-31T03:11:08.8679560Z     ],
+2026-10-31T03:11:08.8679809Z     "requested": 20,
+2026-10-31T03:11:08.8680068Z     "completed": 12,
+2026-10-31T03:11:08.8680408Z     "stop": "unavailable g1cp:press:fall"
+2026-10-31T03:11:08.8680766Z   },
+2026-10-31T03:11:08.8680994Z   {
+2026-10-31T03:11:08.8681210Z     "ownership": [
+2026-10-31T03:11:08.8681482Z       "fire",
+2026-10-31T03:11:08.8681734Z       "wind"
+2026-10-31T03:11:08.8681954Z     ],
+2026-10-31T03:11:08.8682199Z     "requested": 5,
+2026-10-31T03:11:08.8682490Z     "completed": 0,
+2026-10-31T03:11:08.8682822Z     "stop": "unavailable g1cp:wind:calm"
+2026-10-31T03:11:08.8683157Z   },
+2026-10-31T03:11:08.8683368Z   {
+2026-10-31T03:11:08.8683602Z     "ownership": [
+2026-10-31T03:11:08.8683867Z       "fire",
+2026-10-31T03:11:08.8684105Z       "wind"
+2026-10-31T03:11:08.8684357Z     ],
+2026-10-31T03:11:08.8684604Z     "requested": 10,
+2026-10-31T03:11:08.8684868Z     "completed": 0,
+2026-10-31T03:11:08.8685205Z     "stop": "unavailable g1cp:wind:calm"
+2026-10-31T03:11:08.8685545Z   },
+2026-10-31T03:11:08.8685781Z   {
+2026-10-31T03:11:08.8686023Z     "ownership": [
+2026-10-31T03:11:08.8686261Z       "fire",
+2026-10-31T03:11:08.8686678Z       "wind"
+2026-10-31T03:11:08.8686924Z     ],
+2026-10-31T03:11:08.8687159Z     "requested": 20,
+2026-10-31T03:11:08.8687410Z     "completed": 0,
+2026-10-31T03:11:08.8687739Z     "stop": "unavailable g1cp:wind:calm"
+2026-10-31T03:11:08.8688171Z   },
+2026-10-31T03:11:08.8688376Z   {
+2026-10-31T03:11:08.8688620Z     "ownership": [
+2026-10-31T03:11:08.8688887Z       "fire",
+2026-10-31T03:11:08.8689112Z       "wind"
+2026-10-31T03:11:08.8689365Z     ],
+2026-10-31T03:11:08.8689613Z     "requested": 5,
+2026-10-31T03:11:08.8689871Z     "completed": 5,
+2026-10-31T03:11:08.8690198Z     "stop": "requested count reached"
+2026-10-31T03:11:08.8690526Z   },
+2026-10-31T03:11:08.8690756Z   {
+2026-10-31T03:11:08.8690975Z     "ownership": [
+2026-10-31T03:11:08.8691248Z       "fire",
+2026-10-31T03:11:08.8691504Z       "wind"
+2026-10-31T03:11:08.8691713Z     ],
+2026-10-31T03:11:08.8691960Z     "requested": 10,
+2026-10-31T03:11:08.8692221Z     "completed": 10,
+2026-10-31T03:11:08.8692533Z     "stop": "requested count reached"
+2026-10-31T03:11:08.8692872Z   },
+2026-10-31T03:11:08.8693124Z   {
+2026-10-31T03:11:08.8693374Z     "ownership": [
+2026-10-31T03:11:08.8693639Z       "fire",
+2026-10-31T03:11:08.8693875Z       "wind"
+2026-10-31T03:11:08.8694125Z     ],
+2026-10-31T03:11:08.8694370Z     "requested": 20,
+2026-10-31T03:11:08.8694646Z     "completed": 20,
+2026-10-31T03:11:08.8694975Z     "stop": "requested count reached"
+2026-10-31T03:11:08.8695309Z   },
+2026-10-31T03:11:08.8695550Z   {
+2026-10-31T03:11:08.8695774Z     "ownership": [
+2026-10-31T03:11:08.8696048Z       "fire",
+2026-10-31T03:11:08.8696314Z       "press"
+2026-10-31T03:11:08.8696570Z     ],
+2026-10-31T03:11:08.8696794Z     "requested": 5,
+2026-10-31T03:11:08.8697079Z     "completed": 0,
+2026-10-31T03:11:08.8697425Z     "stop": "unavailable g1cp:press:lift"
+2026-10-31T03:11:08.8697775Z   },
+2026-10-31T03:11:08.8698143Z   {
+2026-10-31T03:11:08.8698384Z     "ownership": [
+2026-10-31T03:11:08.8698660Z       "fire",
+2026-10-31T03:11:08.8698915Z       "press"
+2026-10-31T03:11:08.8699149Z     ],
+2026-10-31T03:11:08.8699379Z     "requested": 10,
+2026-10-31T03:11:08.8699664Z     "completed": 0,
+2026-10-31T03:11:08.8699998Z     "stop": "unavailable g1cp:press:lift"
+2026-10-31T03:11:08.8700352Z   },
+2026-10-31T03:11:08.8700556Z   {
+2026-10-31T03:11:08.8700801Z     "ownership": [
+2026-10-31T03:11:08.8701069Z       "fire",
+2026-10-31T03:11:08.8701370Z       "press"
+2026-10-31T03:11:08.8701603Z     ],
+2026-10-31T03:11:08.8701858Z     "requested": 20,
+2026-10-31T03:11:08.8702145Z     "completed": 0,
+2026-10-31T03:11:08.8702501Z     "stop": "unavailable g1cp:press:lift"
+2026-10-31T03:11:08.8702850Z   },
+2026-10-31T03:11:08.8703058Z   {
+2026-10-31T03:11:08.8703312Z     "ownership": [
+2026-10-31T03:11:08.8703585Z       "fire",
+2026-10-31T03:11:08.8703840Z       "press"
+2026-10-31T03:11:08.8704065Z     ],
+2026-10-31T03:11:08.8704304Z     "requested": 5,
+2026-10-31T03:11:08.8704758Z     "completed": 5,
+2026-10-31T03:11:08.8705080Z     "stop": "requested count reached"
+2026-10-31T03:11:08.8705419Z   },
+2026-10-31T03:11:08.8705675Z   {
+2026-10-31T03:11:08.8705906Z     "ownership": [
+2026-10-31T03:11:08.8706174Z       "fire",
+2026-10-31T03:11:08.8706428Z       "press"
+2026-10-31T03:11:08.8706655Z     ],
+2026-10-31T03:11:08.8706897Z     "requested": 10,
+2026-10-31T03:11:08.8707176Z     "completed": 10,
+2026-10-31T03:11:08.8707516Z     "stop": "requested count reached"
+2026-10-31T03:11:08.8707849Z   },
+2026-10-31T03:11:08.8708188Z   {
+2026-10-31T03:11:08.8708435Z     "ownership": [
+2026-10-31T03:11:08.8708699Z       "fire",
+2026-10-31T03:11:08.8708931Z       "press"
+2026-10-31T03:11:08.8709180Z     ],
+2026-10-31T03:11:08.8709439Z     "requested": 20,
+2026-10-31T03:11:08.8709696Z     "completed": 20,
+2026-10-31T03:11:08.8710020Z     "stop": "requested count reached"
+2026-10-31T03:11:08.8710350Z   },
+2026-10-31T03:11:08.8710580Z   {
+2026-10-31T03:11:08.8710826Z     "ownership": [
+2026-10-31T03:11:08.8711076Z       "wind",
+2026-10-31T03:11:08.8711326Z       "press"
+2026-10-31T03:11:08.8711705Z     ],
+2026-10-31T03:11:08.8711963Z     "requested": 5,
+2026-10-31T03:11:08.8712211Z     "completed": 0,
+2026-10-31T03:11:08.8712556Z     "stop": "unavailable g1cp:press:lift"
+2026-10-31T03:11:08.8712911Z   },
+2026-10-31T03:11:08.8713140Z   {
+2026-10-31T03:11:08.8713384Z     "ownership": [
+2026-10-31T03:11:08.8713642Z       "wind",
+2026-10-31T03:11:08.8713872Z       "press"
+2026-10-31T03:11:08.8714120Z     ],
+2026-10-31T03:11:08.8714373Z     "requested": 10,
+2026-10-31T03:11:08.8714638Z     "completed": 0,
+2026-10-31T03:11:08.8714963Z     "stop": "unavailable g1cp:press:lift"
+2026-10-31T03:11:08.8715307Z   },
+2026-10-31T03:11:08.8715541Z   {
+2026-10-31T03:11:08.8715788Z     "ownership": [
+2026-10-31T03:11:08.8716023Z       "wind",
+2026-10-31T03:11:08.8716285Z       "press"
+2026-10-31T03:11:08.8716552Z     ],
+2026-10-31T03:11:08.8716799Z     "requested": 20,
+2026-10-31T03:11:08.8717070Z     "completed": 0,
+2026-10-31T03:11:08.8717399Z     "stop": "unavailable g1cp:press:lift"
+2026-10-31T03:11:08.8717750Z   },
+2026-10-31T03:11:08.8718141Z   {
+2026-10-31T03:11:08.8718396Z     "ownership": [
+2026-10-31T03:11:08.8718645Z       "wind",
+2026-10-31T03:11:08.8718903Z       "press"
+2026-10-31T03:11:08.8719143Z     ],
+2026-10-31T03:11:08.8719359Z     "requested": 5,
+2026-10-31T03:11:08.8719630Z     "completed": 5,
+2026-10-31T03:11:08.8719961Z     "stop": "requested count reached"
+2026-10-31T03:11:08.8720288Z   },
+2026-10-31T03:11:08.8720495Z   {
+2026-10-31T03:11:08.8720742Z     "ownership": [
+2026-10-31T03:11:08.8721004Z       "wind",
+2026-10-31T03:11:08.8721245Z       "press"
+2026-10-31T03:11:08.8721475Z     ],
+2026-10-31T03:11:08.8721728Z     "requested": 10,
+2026-10-31T03:11:08.8722004Z     "completed": 10,
+2026-10-31T03:11:08.8722320Z     "stop": "requested count reached"
+2026-10-31T03:11:08.8722624Z   },
+2026-10-31T03:11:08.8722855Z   {
+2026-10-31T03:11:08.8723090Z     "ownership": [
+2026-10-31T03:11:08.8723353Z       "wind",
+2026-10-31T03:11:08.8723600Z       "press"
+2026-10-31T03:11:08.8723833Z     ],
+2026-10-31T03:11:08.8724065Z     "requested": 20,
+2026-10-31T03:11:08.8724349Z     "completed": 20,
+2026-10-31T03:11:08.8724672Z     "stop": "requested count reached"
+2026-10-31T03:11:08.8725002Z   },
+2026-10-31T03:11:08.8725236Z   {
+2026-10-31T03:11:08.8725453Z     "ownership": [
+2026-10-31T03:11:08.8725705Z       "fire",
+2026-10-31T03:11:08.8725926Z       "wind",
+2026-10-31T03:11:08.8726176Z       "press"
+2026-10-31T03:11:08.8726428Z     ],
+2026-10-31T03:11:08.8726654Z     "requested": 5,
+2026-10-31T03:11:08.8726934Z     "completed": 0,
+2026-10-31T03:11:08.8727262Z     "stop": "unavailable g1cp:wind:calm"
+2026-10-31T03:11:08.8727608Z   },
+2026-10-31T03:11:08.8727842Z   {
+2026-10-31T03:11:08.8728191Z     "ownership": [
+2026-10-31T03:11:08.8728439Z       "fire",
+2026-10-31T03:11:08.8728701Z       "wind",
+2026-10-31T03:11:08.8728950Z       "press"
+2026-10-31T03:11:08.8729173Z     ],
+2026-10-31T03:11:08.8729572Z     "requested": 10,
+2026-10-31T03:11:08.8729857Z     "completed": 0,
+2026-10-31T03:11:08.8730196Z     "stop": "unavailable g1cp:wind:calm"
+2026-10-31T03:11:08.8730549Z   },
+2026-10-31T03:11:08.8730777Z   {
+2026-10-31T03:11:08.8731016Z     "ownership": [
+2026-10-31T03:11:08.8731262Z       "fire",
+2026-10-31T03:11:08.8731516Z       "wind",
+2026-10-31T03:11:08.8731767Z       "press"
+2026-10-31T03:11:08.8731988Z     ],
+2026-10-31T03:11:08.8732251Z     "requested": 20,
+2026-10-31T03:11:08.8732534Z     "completed": 0,
+2026-10-31T03:11:08.8732866Z     "stop": "unavailable g1cp:wind:calm"
+2026-10-31T03:11:08.8733198Z   },
+2026-10-31T03:11:08.8733409Z   {
+2026-10-31T03:11:08.8733659Z     "ownership": [
+2026-10-31T03:11:08.8733934Z       "fire",
+2026-10-31T03:11:08.8734189Z       "wind",
+2026-10-31T03:11:08.8734419Z       "press"
+2026-10-31T03:11:08.8734670Z     ],
+2026-10-31T03:11:08.8734922Z     "requested": 5,
+2026-10-31T03:11:08.8735206Z     "completed": 5,
+2026-10-31T03:11:08.8735524Z     "stop": "requested count reached"
+2026-10-31T03:11:08.8735871Z   },
+2026-10-31T03:11:08.8736086Z   {
+2026-10-31T03:11:08.8736468Z     "ownership": [
+2026-10-31T03:11:08.8736741Z       "fire",
+2026-10-31T03:11:08.8736990Z       "wind",
+2026-10-31T03:11:08.8737247Z       "press"
+2026-10-31T03:11:08.8737467Z     ],
+2026-10-31T03:11:08.8737735Z     "requested": 10,
+2026-10-31T03:11:08.8738135Z     "completed": 10,
+2026-10-31T03:11:08.8738457Z     "stop": "requested count reached"
+2026-10-31T03:11:08.8738784Z   },
+2026-10-31T03:11:08.8738986Z   {
+2026-10-31T03:11:08.8739240Z     "ownership": [
+2026-10-31T03:11:08.8739523Z       "fire",
+2026-10-31T03:11:08.8739771Z       "wind",
+2026-10-31T03:11:08.8739999Z       "press"
+2026-10-31T03:11:08.8740247Z     ],
+2026-10-31T03:11:08.8740502Z     "requested": 20,
+2026-10-31T03:11:08.8740765Z     "completed": 20,
+2026-10-31T03:11:08.8741101Z     "stop": "requested count reached"
+2026-10-31T03:11:08.8741442Z   }
+2026-10-31T03:11:08.8741675Z ]
+2026-10-31T03:11:08.9000360Z ##[group]Run actions/upload-artifact@v4
+2026-10-31T03:11:08.9000718Z with:
+2026-10-31T03:11:08.9000891Z   name: g1c-replay-41163026806
+2026-10-31T03:11:08.9001092Z   path: tmp-g1c-ci
+2026-10-31T03:11:08.9001287Z   retention-days: 14
+2026-10-31T03:11:08.9001528Z   if-no-files-found: warn
+2026-10-31T03:11:08.9001724Z   compression-level: 6
+2026-10-31T03:11:08.9001901Z   overwrite: false
+2026-10-31T03:11:08.9002105Z   include-hidden-files: false
+2026-10-31T03:11:08.9002360Z ##[endgroup]
+2026-10-31T03:11:09.0440060Z (node:2780) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-31T03:11:09.0440706Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-31T03:11:09.0512280Z With the provided path, there will be 2 files uploaded
+2026-10-31T03:11:09.0516758Z Artifact name is valid!
+2026-10-31T03:11:09.0517326Z Root directory input is valid!
+2026-10-31T03:11:09.3910063Z Beginning upload of artifact content to blob storage
+2026-10-31T03:11:09.4249594Z (node:2780) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-31T03:11:09.7791664Z Uploaded bytes 49010
+2026-10-31T03:11:09.8448579Z Finished uploading artifact content to blob storage!
+2026-10-31T03:11:09.8449587Z SHA256 digest of uploaded artifact zip is 0c368b2c8d2cd1b40de4d77c0853cb4c6f52437123e63c6db97dd85b3c31f29c
+2026-10-31T03:11:09.8450299Z Finalizing artifact upload
+2026-10-31T03:11:10.2539352Z Artifact g1c-replay-41163026806.zip successfully finalized. Artifact ID 13027623739
+2026-10-31T03:11:10.2540206Z Artifact g1c-replay-41163026806 has been successfully uploaded! Final size is 49010 bytes. Artifact ID is 13027623739
+2026-10-31T03:11:10.2541005Z Artifact download URL: https://github.com/bishouyi254-source/supernatural-era/actions/runs/41163026806/artifacts/13027623739
+2026-10-31T03:11:10.2732002Z Post job cleanup.
+2026-10-31T03:11:10.3764558Z (node:2793) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-31T03:11:10.3765254Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-31T03:11:10.3963921Z Post job cleanup.
+2026-10-31T03:11:10.4716134Z [command]/usr/bin/git version
+2026-10-31T03:11:10.4779429Z git version 2.56.0
+2026-10-31T03:11:10.4803682Z Temporarily overriding HOME='/home/runner/work/_temp/2216d9bf-d8a4-42ac-8837-d55ea0c6843c' before making global git config changes
+2026-10-31T03:11:10.4804999Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-31T03:11:10.4807080Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/supernatural-era/supernatural-era
+2026-10-31T03:11:10.4874495Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-31T03:11:10.4956929Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-31T03:11:10.5299600Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-31T03:11:10.5339187Z http.https://github.com/.extraheader
+2026-10-31T03:11:10.5411700Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-31T03:11:10.5414317Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-31T03:11:10.5689662Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-31T03:11:10.5730435Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-31T03:11:10.6107854Z Cleaning up orphan processes
+2026-10-31T03:11:10.6418402Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+

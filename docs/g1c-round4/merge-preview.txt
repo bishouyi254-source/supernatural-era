@@ -1,0 +1,929 @@
+added in remote
+  their  100644 484de16ae276182ee552027619f247e560998051 .github/workflows/character-potential.yml
+@@ -0,0 +1,72 @@
++name: Character potential candidate
++on:
++  push:
++    branches: [feature/character-potential-death-loop, main]
++  pull_request:
++    paths:
++      - 'src/character-potential*'
++      - 'src/engine.js'
++      - 'src/progression.js'
++      - 'src/combat.js'
++      - 'src/app.js'
++      - 'tests/character-potential.test.mjs'
++      - '.github/workflows/character-potential.yml'
++jobs:
++  character-potential:
++    runs-on: ubuntu-latest
++    permissions:
++      contents: read
++      pull-requests: write
++    steps:
++      - uses: actions/checkout@v4
++      - uses: actions/setup-node@v4
++        with:
++          node-version: '22'
++      - name: Syntax checks
++        run: |
++          node --check src/character-potential.js
++          node --check src/character-potential-ui.js
++          node --check src/engine.js
++          node --check src/progression.js
++          node --check src/combat.js
++          node --check src/app.js
++      - name: Character and death regression tests
++        run: node --test tests/character-potential.test.mjs
++      - name: Install isolated browser harness
++        run: |
++          npm install --no-save playwright@1.56.1
++          npx playwright install --with-deps chromium
++      - name: Browser smoke on four viewports
++        run: |
++          mkdir -p candidate-artifacts
++          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/character-http.log 2>&1 &
++          if ! node tests/character-potential.browser.mjs > candidate-artifacts/browser-smoke.log 2>&1; then
++            cat candidate-artifacts/browser-smoke.log
++            exit 1
++          fi
++          cat candidate-artifacts/browser-smoke.log
++          for name in desktop tablet mobile compact; do
++            for stage in creation character death next-life; do
++              test -s "candidate-artifacts/${name}-${stage}.png" || { echo "Missing screenshot: ${name}-${stage}"; exit 1; }
++            done
++          done
++          test "$(find candidate-artifacts -name '*-visual-metrics.json' | wc -l)" -eq 4
++          ls -lh candidate-artifacts/
++      - name: Report candidate browser failure in draft PR
++        if: failure() && github.event_name == 'pull_request'
++        env:
++          GH_TOKEN: ${{ github.token }}
++          PR_NUMBER: ${{ github.event.pull_request.number }}
++        run: |
++          if [ -f candidate-artifacts/browser-smoke.log ]; then
++            { echo "### Browser smoke blocker (automated candidate evidence)"; echo '~~~'; tail -n 40 candidate-artifacts/browser-smoke.log; echo '~~~'; } > /tmp/character-smoke-comment.md
++            gh pr comment "$PR_NUMBER" --body-file /tmp/character-smoke-comment.md
++          fi
++      - name: Upload candidate browser evidence
++        if: always()
++        uses: actions/upload-artifact@v4
++        with:
++          name: character-potential-browser-evidence
++          path: candidate-artifacts/
++          if-no-files-found: ignore
++
+merged
+  result 100644 1855f279fbc5eebdff403b822f09d770df2476ed README.md
+  our    100644 164bbfcb138a23dbba9ca3fe82241be90235bbcd README.md
+@@ -2,7 +2,7 @@
+ 
+ 
+ 
+-版本0.24.6，静态浏览器游戏。GitHub Pages使用main分支根目录；index.html为主入口，backpack-live.html为拼图背包入口。
++版本0.24.7，静态浏览器游戏。GitHub Pages使用main分支根目录；index.html为主入口，backpack-live.html为拼图背包入口。
+ 
+ 
+ 
+@@ -37,3 +37,12 @@
+ 灵位鬼、喊人鬼、鬼烟的战斗规律与独立实证成长已接入生产引擎。三鬼普通获取仍未开放，缺少真实回返协助、目标行为或地理连接的资格仅在显式隔离状态验收；测试页面、人工持有存档和内部GDD不随网站发布。开局不会赠送新鬼。
+ 
+ 鬼眼V6.5.1、鬼血原商场获取与B0使用、鬼血系数10、寿衣防护+6与时间+3、原有地图美术和存档格式2保留。三鬼初始平衡、获取剧情与高阶拼图没有被宣称完整开放。
++
++
++## 0.24.7 · 角色五维潜质与死亡轮回正式集成
++
++角色创建新增身高、体重、年龄三个静态特征，以及体质、初始精神基础值两个独立成长潜质。体质决定厉鬼驾驭容量门槛，精神潜质影响额外灵异调用、规则对抗加成与能力开发上限，原有逐鬼负荷/复苏代价不变。死亡结算使用真实行动记录评定 D/C/B/A/S 并发放永久潜质点；死亡正式提交后分配奖励，下一轮角色继承潜质，不自动继承厉鬼、事件和物资。
++
++0.24.6 旧格式 2 浏览器存档可继续读取。首次升级时，在 localStorage 的 `supernatural-era.prototype.v2.before-character-v1` 保留原始存档副本后保存新版；建议玩家自行导出独立备份。已合法持有多鬼的旧档不会因新容量门槛被删除既有厉鬼，但今后新增仍须满足体质门槛。常规剧情实际可驾驭数量仍受既有剧情、素材和获取规则限制，体质上限不是自动获得第三鬼授权。
++
++现实姿态、动态身高、实时位置与鬼压人的静态杀人规律尚未接入；G1-C PR #3 继续保持隔离。四种视口（320/390/768/1440）浏览器验收及 Node 测试由隔离候选验证。仓库根目录的 `RELEASE_MANIFEST.json` 保留为 0.24.6 版本封存清单，历史摘要哈希不应伪装成新版完整发布清单。
+merged
+  result 100644 4014b39c767c15b4ce465548004703f5f602fdca index.html
+  our    100644 d1f214f72d71e2e32bc6264bd72e382199047efb index.html
+@@ -1,2 +1,2 @@
+ <!doctype html>
+-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="src/published-sidebar.css" data-published-sidebar><link rel="preload" href="src/codex/codex.css" as="style"><title>神秘复苏：灵异时代 · 规则原型</title><link rel="stylesheet" href="./src/style.css" data-game-style><link rel="stylesheet" href="./src/workshop-responsive.css" data-game-style><link rel="stylesheet" href="src/backpack/backpack.css" data-backpack-style><link rel="stylesheet" href="src/backpack/live.css" data-backpack-style><link rel="stylesheet" href="./src/combat-stage4.css"><link rel="stylesheet" href="./src/combat-visual-refit.css"><link rel="stylesheet" href="./src/settlement-ui/styles.css"><link rel="stylesheet" href="./src/settlement-live.css"></head><body><svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs><filter id="brush-edge" x="-5%" y="-8%" width="110%" height="116%"><feTurbulence type="fractalNoise" baseFrequency=".06 .45" numOctaves="2" seed="7" result="grain"/><feDisplacementMap in="SourceGraphic" in2="grain" scale="1.7" xChannelSelector="R" yChannelSelector="G"/></filter></defs></svg><div id="app"></div><script type="module" src="./src/app.js"></script></body></html>
++<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="src/published-sidebar.css" data-published-sidebar><link rel="preload" href="src/codex/codex.css" as="style"><title>神秘复苏：灵异时代 · 规则原型</title><link rel="stylesheet" href="./src/style.css" data-game-style><link rel="stylesheet" href="./src/workshop-responsive.css" data-game-style><link rel="stylesheet" href="src/backpack/backpack.css" data-backpack-style><link rel="stylesheet" href="src/backpack/live.css" data-backpack-style><link rel="stylesheet" href="./src/combat-stage4.css"><link rel="stylesheet" href="./src/combat-visual-refit.css"><link rel="stylesheet" href="./src/settlement-ui/styles.css"><link rel="stylesheet" href="./src/settlement-live.css"><link rel="stylesheet" href="./src/character-potential.css" data-game-style></head><body><svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs><filter id="brush-edge" x="-5%" y="-8%" width="110%" height="116%"><feTurbulence type="fractalNoise" baseFrequency=".06 .45" numOctaves="2" seed="7" result="grain"/><feDisplacementMap in="SourceGraphic" in2="grain" scale="1.7" xChannelSelector="R" yChannelSelector="G"/></filter></defs></svg><div id="app"></div><script type="module" src="./src/app.js"></script></body></html>
+changed in both
+  base   100644 d0c5bad72e27048abea71dddff45393060ae5f7e src/app.js
+  our    100644 9b42be16b8fd770d9d414d97752c14c9e2b93835 src/app.js
+  their  100644 7d76a9224bb6c60c345b1c2082d052baf8ea84d8 src/app.js
+@@ -1,7 +1,7 @@
+ import {g1cLabel} from './g1c-production.js';
+ import {g1bLabel} from './g1b-production.js';
+ import {productionLabel} from './g1a-production.js';
+-import {historyRecord} from './settlement-save.js';
++import {historyRecord,settlementCoreToken} from './settlement-save.js';
+ import {chapterRetryAction} from './settlement-chapters.js';
+ import {migratePresentationCache} from './settlement-controller.js';
+ import {mountSettlement} from './settlement-ui/SettlementView.mjs';
+@@ -87,6 +87,8 @@
+ import {busLabel,busView,busArchiveView,busNetworkView} from './views-bus.js';
+ import { events, backgrounds } from './content.js';
+ import { newGame, act as engineAct, available, knowledge, validate, migrateLegacy,upgrade } from './engine.js';
++import {spendDeathPoint,nextLifeOptions} from './character-potential.js';
++import {fiveTraitInputs,characterPotentialView,deathPotentialView} from './character-potential-ui.js';
+ import { hostState, revivalStage, suppressionFor, growthFor } from './spirits.js';
+ import { attachChapter, chapterState, chapterTitle, stages, routes, chapterLabels, chapterDescription, backgroundHints } from './chapter.js';
+ import {eventUnlocked} from './journey.js';
+@@ -111,7 +113,27 @@
+ const esc = x => String(x).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+ try {
+   const saved = localStorage.getItem(key);
+-  if (saved) { const parsed = JSON.parse(saved); if (!validate(parsed)) throw Error(); state = upgrade(parsed);if(!parsed.settlement){let cache=null;try{cache=JSON.parse(localStorage.getItem(settlementKey)||'null');}catch{}state=migratePresentationCache(state,cache);try{localStorage.setItem(key,JSON.stringify(state));}catch{notice='旧存档结算历史升级尚未保存，请先导出副本。';}}lastCommittedState=state; }
++  if (saved) {
++      const parsed = JSON.parse(saved);
++      if (!validate(parsed)) throw Error('无效的原存档');
++      state = upgrade(parsed);
++      if (!parsed.settlement) {
++        let cache=null;
++        try{cache=JSON.parse(localStorage.getItem(settlementKey)||'null');}catch{}
++        state=migratePresentationCache(state,cache);
++      }
++      if (!validate(state)) throw Error('升级后的存档无效');
++      const needsUpgrade=!parsed.settlement||!parsed.traits&&!parsed.lineage;
++      if(needsUpgrade){
++        try {
++          // The original v2 save is retained before the first Character V1 migration.
++          const backupKey=key+'.before-character-v1';
++          if(!localStorage.getItem(backupKey))localStorage.setItem(backupKey,saved);
++          localStorage.setItem(key,JSON.stringify(state));
++        }catch{notice='旧存档已读取，但自动升级未能完整保存。原始存档保留，请先导出副本。';}
++      }
++      lastCommittedState=state;
++    }
+   if (!saved && localStorage.getItem(legacyKey)) notice = '发现旧版混合字段存档。可保留原副本并明确转换；新复苏按试验初始值重建，不是无损恢复。';
+ } catch { notice = '现有存档无法读取，原始内容未覆盖。可先导出原始存档，再创建新角色。'; }
+ // Core save owns history and the unfinished session; cache is a disposable mirror.
+@@ -192,7 +214,7 @@
+   return state.spirits.map(g => '<div class="spirit-card"><h3>' + esc(g.name) + '</h3><dl><dt>负荷</dt><dd>' + g.burden + '</dd><dt>复苏</dt><dd>' + g.revivalProgress + '%</dd><dt>状态</dt><dd>' + revivalStage(g.revivalProgress) + '</dd><dt>受到压制</dt><dd>' + Math.round(suppressionFor(state,g)*100) + '%</dd><dt>当前活动</dt><dd>' + esc(g.activityLevel) + '</dd><dt>自然增长</dt><dd>' + growthFor(state,g).toFixed(2) + ' / 节点</dd><dt>调用增长</dt><dd>' + growthFor(state,g,true).toFixed(2) + ' / 次</dd></dl></div>').join('') + (state.compatibility ? '<p class="muted">旧版转换档：复苏已按新试验值重建，旧混合值仅作兼容记录。</p>' : '');
+ }
+ function extraView() {
+-  if (tab === '角色') return `<article class="character-card"><h2>${esc(state.name)}</h2><p>${esc(hostProfile(state).stage)} · ${esc(state.background)}</p><div class="stat-grid"><div><span>身体状态</span><strong>${state.life} / 100</strong></div><div><span>灵异承载</span><strong>${hostState(state).effectiveBurden} / ${hostState(state).hostCapacity}</strong></div><div><span>综合风险</span><strong>${hostState(state).hostRisk}</strong></div><div><span>行动能量</span><strong>${state.energy} / 3</strong></div></div><button data-tab="双鬼结构">查看灵异结构与复核</button>${spiritCards()}<p>${esc(state.spirits[0] ? events[state.spirits[0].sourceId].ability : '通过现场调查、限制与驾驭，建立自己的灵异路线。')}</p></article>`;
++  if (tab === '角色') return `<article class="character-card"><h2>${esc(state.name)}</h2><p>${esc(hostProfile(state).stage)} · ${esc(state.background)}</p><div class="stat-grid"><div><span>身体状态</span><strong>${state.life} / 100</strong></div><div><span>灵异承载</span><strong>${hostState(state).effectiveBurden} / ${hostState(state).hostCapacity}</strong></div><div><span>综合风险</span><strong>${hostState(state).hostRisk}</strong></div><div><span>行动能量</span><strong>${state.energy} / 3</strong></div></div><button data-tab="双鬼结构">查看灵异结构与复核</button>${spiritCards()}<p>${esc(state.spirits[0] ? events[state.spirits[0].sourceId].ability : '通过现场调查、限制与驾驭，建立自己的灵异路线。')}</p>${characterPotentialView(state)}</article>`;
+   const allowed = available(state).filter(a => ['rest','retreat','suppress','abandon','chapter:supply'].includes(a));
+   return `<article><h2>街区安全屋</h2><p>${state.scene === 'hub' ? '封存与恢复设施仍可使用。休整恢复身体与行动能力，累计复苏不下降。' : '你仍在灵异现场。需要先撤回安全屋，才能休整。'}</p><div class="actions">${allowed.map(a => `<button data-action="${a}">${esc(label(a))}</button>`).join('')}</div><p>本章剩余补给额度：${chapterState(state).supplyCredits}；隔离袋最多持有2份。</p><h3>处理记录</h3>${Object.entries(state.outcomes).map(([id,result]) => `<p>${esc(events[id].spirit)}：${esc(result)}</p>`).join('') || '<p class="muted">暂无封存、驾驭或援助记录。</p>'}</article>`;
+ }
+@@ -233,6 +255,7 @@
+ function socialRiskPrompt(a){const id=a==='social:domain'?state.spirits.find(g=>g.sourceId==='eye')?.id:a.startsWith('social:asset:probe:')?a.slice(19):a.startsWith('social:cast:')?a.slice(12):null,g=state.spirits.find(g=>g.id===id);return g?g.name+'当前复苏 '+g.revivalProgress+'%【'+revivalStage(g.revivalProgress)+'】；本次调用按当前条件增长约 '+(growthFor(state,g,true)+(a==='social:domain'?6+state.v1.eye.layer*2:0)).toFixed(2)+'%，消耗能量1并留下目击，可能引起其他驭鬼者反应。是否实际调用？':'当面威胁可能引起对方灵异回应和失控，历史披露会保留。是否继续？';}
+ function hgConfirmation(){return hgPreview&&available(state).includes(hgPreview)?'<article class="danger" role="region" aria-label="高风险操作确认"><h2>确认本次高风险操作</h2><p>'+esc(hgPreview.startsWith('dual:stress:')?'高强度验证消耗能量2、身体4、对应鬼额外复苏4，另按实际调用增长；可能破坏平衡，是否执行？':villageRiskPrompt(state,hgPreview))+'</p><p>查看与取消不推进时间、不扣资源。</p><button data-hg-confirm>确认执行本次操作</button><button data-hg-cancel>取消，保持当前状态</button></article>':'';}
+ function workspaceView() {
++  if(state?.systems?.death==='committed'&&tab!=='结算历史'&&!viewingHistoryId)return deathPotentialView(state)+'<details class="potential-death-legacy"><summary>查看原有死亡状态说明</summary>'+deathView(state,cdButtons)+'</details>';
+  if(tab==='结算历史'&&!viewingHistoryId)return settlementHistoryView();
+  if(liveSettlement())return '<div id="live-settlement-root" class="page" aria-label="真实战斗结算"></div>';
+  if(state.combat&&state.systems.death!=='alive')return deathView(state,cdButtons);
+@@ -255,7 +278,7 @@
+  if(tab==='背包与装备')return '<article><button data-tab="拼图背包">打开厉鬼拼图背包</button></article>'+workshopView(state,available(state),label,true);
+  if(state.systems.death==='alive'&&!state.crisis&&state.scene==='echo'&&!state.combat&&state.phase!=='限制'&&['首页','现场'].includes(tab))return preparationView(state,label);
+  if(state.systems.death==='alive'&&!state.crisis){
+-  if(!state.school.started&&!state.dachang.started&&!state.investigation.active&&tab==='角色')return '<article><h2>技能与装备</h2><button data-tab="技能工坊">技能工坊</button><button data-tab="背包与装备">背包与装备</button></article>'+ '<article><h2>当前身份与能力</h2><p>先学习调查、道具与撤离。驾驭必须由你主动选择；不会因为完成教程自动获得技能。</p></article>'+compactHost(state)+spiritCards();
++  if(!state.school.started&&!state.dachang.started&&!state.investigation.active&&tab==='角色')return '<article><h2>技能与装备</h2><button data-tab="技能工坊">技能工坊</button><button data-tab="背包与装备">背包与装备</button></article>'+ '<article><h2>当前身份与能力</h2><p>先学习调查、道具与撤离。驾驭必须由你主动选择；不会因为完成教程自动获得技能。</p></article>'+compactHost(state)+characterPotentialView(state)+spiritCards();
+   if(firstContact(state)&&tab==='首页')return newcomerView(state,label);
+   if(state.investigation.active&&tab==='调查现场')return encounterView(state,label,playPreview);
+   if(state.scene==='hub'&&state.investigation.resolution&&!state.school.started&&['首页','调查现场','调查档案'].includes(tab))return investigationSummary(state,label)+'<details><summary>展开原有调查档案与历史</summary>'+investigationView(state,'调查档案')+'</details>';
+@@ -319,7 +342,7 @@
+  if(liveBackpack){try{state=readLive(localStorage).state;}catch{notice='存档无法读取，原始内容未覆盖。';}if(tab!=='拼图背包')backpackRoot.remove();}
+  codexUI.refresh();
+  const isBackpack=tab==='拼图背包';
+- document.querySelectorAll('link[data-game-style]').forEach(link=>{if(link.sheet)link.sheet.disabled=isBackpack||!!liveSettlement();});
++ document.querySelectorAll('link[data-game-style]').forEach(link=>{if(link.sheet)link.sheet.disabled=isBackpack||state?.systems?.death!=='committed'&&!!liveSettlement();});
+  document.querySelectorAll('link[data-backpack-style]').forEach(link=>{if(link.sheet)link.sheet.disabled=!isBackpack;});
+  if(isBackpack){
+   const root=document.querySelector('#app');root.removeAttribute('data-loop');root.dataset.view=tab;root.dataset.page=tab;
+@@ -355,25 +378,46 @@
+   document.querySelector('#app').dataset.view = tab;
+     document.querySelector('#app').dataset.loop = state&&loopEnabled(state)?'true':'false';
+     document.querySelector('#app').dataset.page = tab;
+-  document.querySelector('#app').dataset.settlement = liveSettlement()?'true':'false';
+-  document.body.classList.toggle('settlement-active',!!liveSettlement());
++  document.querySelector('#app').dataset.settlement = state?.systems?.death!=='committed'&&liveSettlement()?'true':'false';
++  document.body.classList.toggle('settlement-active',state?.systems?.death!=='committed'&&!!liveSettlement());
+   document.querySelector('#app').dataset.battle = state?.combat&&state.systems.death==='alive'&&['首页','现场'].includes(tab)?'true':'false';
+-  const header = `<header><span>大昌市 · 灵异调查</span><h1>神秘复苏<span>灵异时代</span></h1><p>0.24.6 · 鬼眼 V6.5.1 · G1-B机制接入 · 探索、战术与技能研究</p></header>`;
++  const header = `<header><span>大昌市 · 灵异调查</span><h1>神秘复苏<span>灵异时代</span></h1><p>0.24.7 · 五维潜质与死亡结算 · 鬼眼 V6.5.1 · G1-B 保留</p></header>`;
+   if(pendingImport){document.querySelector('#app').innerHTML=header+'<main class="registration rescue-confirm"><h2>确认导入存档副本</h2><p>将导入：'+esc(pendingImport.name)+'。这会替换本地当前进度；已有进度会先导出备份。</p><button data-import-confirm>确认导入</button><button data-import-cancel>取消，保留当前进度</button></main>';document.querySelector('[data-import-confirm]').onclick=()=>{if(state)download(JSON.stringify(state,null,2),'灵异时代-导入前备份.json');state=upgrade(pendingImport);pendingImport=null;resetSettlement();tab='首页';persist();render();};document.querySelector('[data-import-cancel]').onclick=()=>{pendingImport=null;render();};return;}
+   if (!state) {
+-    document.querySelector('#app').innerHTML = `${header}<main class="registration"><h2>建立接触者档案</h2><p>你还没有驾驭任何厉鬼。背景只影响调查提示。</p><form id="create"><label>称呼<input name="name" maxlength="24" placeholder="未登记"></label><label>此前身份<select name="background">${backgrounds.map(b => `<option>${b}</option>`).join('')}</select></label><button>建立档案，选择第一起事件</button></form><label class="file">导入已备份的存档<input id="import" type="file" accept=".json,application/json"></label><button data-command="export">导出原始存档副本</button><button data-command="migrate">明确转换旧版存档（保留原副本）</button><p role="status">${esc(notice)}</p></main>`;
++    document.querySelector('#app').innerHTML = `${header}<main class="registration"><h2>建立接触者档案</h2><p>你还没有驾驭任何厉鬼。背景只影响调查提示。</p><form id="create"><label>称呼<input name="name" maxlength="24" placeholder="未登记"></label><label>此前身份<select name="background">${backgrounds.map(b => `<option>${b}</option>`).join('')}</select></label>${fiveTraitInputs()}<button>建立档案，选择第一起事件</button></form><label class="file">导入已备份的存档<input id="import" type="file" accept=".json,application/json"></label><button data-command="export">导出原始存档副本</button><button data-command="migrate">明确转换旧版存档（保留原副本）</button><p role="status">${esc(notice)}</p></main>`;
+     document.querySelector('#create').onsubmit = e => {
+       e.preventDefault();
+       if (notice.includes('无法读取') && !confirm('原始存档无法读取。创建新角色会替换此原型的本地存档，请先导出副本。是否创建？')) return;
+       const data = new FormData(e.target); const bytes = new Uint32Array(1); crypto.getRandomValues(bytes);
+-      state = newGame(data.get('name'), data.get('background'), bytes[0],crypto.randomUUID());resetSettlement(); persist(); render();
++      state = newGame(data.get('name'), data.get('background'), bytes[0],crypto.randomUUID(),{heightCm:Number(data.get('heightCm')),weightKg:Number(data.get('weightKg')),age:Number(data.get('age'))});resetSettlement(); persist(); render();
+     };
+   } else {
+     const h=hostState(state);
+-    document.querySelector('#app').innerHTML = `<div class="topbar"><div class="identity"><span class="avatar" aria-hidden="true"></span><strong>${esc(state.name)}</strong><span>${state.spirits.length?'驭鬼者':'普通人'} / ${esc(state.background)}</span></div><div class="resource-bar"><span>身体 ${state.life}/100</span><span>能量 ${state.energy}/3</span><span>隔离袋 ${state.bags}</span><span>0.24.6 · G1-B机制接入</span><span>风险 ${h.hostRisk}</span></div></div><main class="layout ${tab==='首页'?'home-layout':''}"><aside>${navigation("side-menu")}<h2>宿主状态</h2><dl><dt>灵异承载</dt><dd>${h.effectiveBurden} / ${hostState(state).hostCapacity}</dd><dt>承载状态</dt><dd>${h.carryingState}</dd><dt>总体平衡</dt><dd>${h.balanceState}</dd><dt>综合风险</dt><dd>${h.hostRisk}</dd></dl></aside><section class="workspace"><div class="view-heading">${esc(tab)}</div>${tab==='首页'&&state.village.escaped&&state.spirits.length===2?'<article><h2>个人事务 · 验证新的双鬼平衡</h2><button data-tab="长期复核">查看观察与未验证条件</button></article>':''}${!finaleReady(state)&&hungryReady(state)&&!hungryBusy(state)&&!hungryPages.includes(tab)?'<article><h2>大昌市 · 城市危机</h2><p>先查看当前位置、当前目标与合法行动。</p><button data-tab="危机现场">查看城市危机</button></article>':''}${!hungryReady(state)&&crisisReady(state)&&!crisisBusy(state)&&!crisisPages.includes(tab)?'<article><h2>大昌市 · 地区行动与城市异常</h2><p>查看当前态势、独立协作与外围调查。</p><button data-tab="城市态势">查看城市当前事务</button></article>':''}${!hungryReady(state)&&!crisisBusy(state)&&!crisisPages.includes(tab)&&mirrorReady(state)&&!mirrorBusy(state)&&!mirrorPages.includes(tab)?'<article><h2>古宅与特殊镜面调查</h2><p>新的调查涉及记录、身份与记忆。先查看当前目标。</p><button data-tab="古宅现场">查看古宅调查</button></article>':''}${!hungryReady(state)&&!crisisBusy(state)&&!crisisPages.includes(tab)&&regionalReady(state)&&!regionalBusy(state)&&!regionalPages.includes(tab)&&!mirrorPages.includes(tab)?'<article><h2>城市事务与紧急救援</h2><p>观江花园：独立居住与资产线索；敲门异常：另一区域的应急救援。个人普通住所继续保留。</p><button data-tab="区域救援">查看城市救援行动</button></article>':''}${(case24Pages.includes(tab)||transitPages.includes(tab)||identityPages.includes(tab)||postwarPages.includes(tab)||finalePages.includes(tab)||hungryPages.includes(tab)||crisisPages.includes(tab)||regionalPages.includes(tab)||mirrorPages.includes(tab))?`<p role="status" class="status rescue-feedback">${esc(notice)}</p>`:""}${state.investigation.active&&tab==='调查现场'&&!playPreview?sceneView(state,scenePosition(state.investigation.zone),available(state),label):''}${loopEnabled(state)?loopNav(state,tab):""}${guideView(state,label,helpOpen)}${compactHost(state)}${workspaceView()}${feedbackView(state,label)}${!case24Pages.includes(tab)&&!transitPages.includes(tab)&&!identityPages.includes(tab)&&!postwarPages.includes(tab)&&!finalePages.includes(tab)&&!hungryPages.includes(tab)&&!crisisPages.includes(tab)&&!regionalPages.includes(tab)&&!mirrorPages.includes(tab)?`<p role="status" class="status">${esc(notice)}</p>`:""}</section></main><section class="save-tools"><button data-command="low-effects" aria-pressed="${display.low}">低特效：${display.low?"已开启":"已关闭"}</button><button data-command="export">复制导出存档</button><button data-open-settlement-history>结算历史</button><label class="file">导入存档副本<input id="import" type="file" accept=".json,application/json"></label>${busAnchorTools()}<small>进度仅保存在当前浏览器，请保留备份。公交锚点先导出，再通过导入恢复；会返回整份存档，不是鬼眼重启。</small></section>${navigation("bottom-menu")}`;
++    document.querySelector('#app').innerHTML = `<div class="topbar"><div class="identity"><span class="avatar" aria-hidden="true"></span><strong>${esc(state.name)}</strong><span>${state.spirits.length?'驭鬼者':'普通人'} / ${esc(state.background)}</span></div><div class="resource-bar"><span>身体 ${state.life}/100</span><span>能量 ${state.energy}/3</span><span>隔离袋 ${state.bags}</span><span>0.24.7 · 五维潜质</span><span>风险 ${h.hostRisk}</span></div></div><main class="layout ${tab==='首页'?'home-layout':''}"><aside>${navigation("side-menu")}<h2>宿主状态</h2><dl><dt>灵异承载</dt><dd>${h.effectiveBurden} / ${hostState(state).hostCapacity}</dd><dt>承载状态</dt><dd>${h.carryingState}</dd><dt>总体平衡</dt><dd>${h.balanceState}</dd><dt>综合风险</dt><dd>${h.hostRisk}</dd></dl></aside><section class="workspace"><div class="view-heading">${esc(tab)}</div>${tab==='首页'&&state.village.escaped&&state.spirits.length===2?'<article><h2>个人事务 · 验证新的双鬼平衡</h2><button data-tab="长期复核">查看观察与未验证条件</button></article>':''}${!finaleReady(state)&&hungryReady(state)&&!hungryBusy(state)&&!hungryPages.includes(tab)?'<article><h2>大昌市 · 城市危机</h2><p>先查看当前位置、当前目标与合法行动。</p><button data-tab="危机现场">查看城市危机</button></article>':''}${!hungryReady(state)&&crisisReady(state)&&!crisisBusy(state)&&!crisisPages.includes(tab)?'<article><h2>大昌市 · 地区行动与城市异常</h2><p>查看当前态势、独立协作与外围调查。</p><button data-tab="城市态势">查看城市当前事务</button></article>':''}${!hungryReady(state)&&!crisisBusy(state)&&!crisisPages.includes(tab)&&mirrorReady(state)&&!mirrorBusy(state)&&!mirrorPages.includes(tab)?'<article><h2>古宅与特殊镜面调查</h2><p>新的调查涉及记录、身份与记忆。先查看当前目标。</p><button data-tab="古宅现场">查看古宅调查</button></article>':''}${!hungryReady(state)&&!crisisBusy(state)&&!crisisPages.includes(tab)&&regionalReady(state)&&!regionalBusy(state)&&!regionalPages.includes(tab)&&!mirrorPages.includes(tab)?'<article><h2>城市事务与紧急救援</h2><p>观江花园：独立居住与资产线索；敲门异常：另一区域的应急救援。个人普通住所继续保留。</p><button data-tab="区域救援">查看城市救援行动</button></article>':''}${(case24Pages.includes(tab)||transitPages.includes(tab)||identityPages.includes(tab)||postwarPages.includes(tab)||finalePages.includes(tab)||hungryPages.includes(tab)||crisisPages.includes(tab)||regionalPages.includes(tab)||mirrorPages.includes(tab))?`<p role="status" class="status rescue-feedback">${esc(notice)}</p>`:""}${state.investigation.active&&tab==='调查现场'&&!playPreview?sceneView(state,scenePosition(state.investigation.zone),available(state),label):''}${loopEnabled(state)?loopNav(state,tab):""}${guideView(state,label,helpOpen)}${compactHost(state)}${workspaceView()}${feedbackView(state,label)}${!case24Pages.includes(tab)&&!transitPages.includes(tab)&&!identityPages.includes(tab)&&!postwarPages.includes(tab)&&!finalePages.includes(tab)&&!hungryPages.includes(tab)&&!crisisPages.includes(tab)&&!regionalPages.includes(tab)&&!mirrorPages.includes(tab)?`<p role="status" class="status">${esc(notice)}</p>`:""}</section></main><section class="save-tools"><button data-command="low-effects" aria-pressed="${display.low}">低特效：${display.low?"已开启":"已关闭"}</button><button data-command="export">复制导出存档</button><button data-open-settlement-history>结算历史</button><label class="file">导入存档副本<input id="import" type="file" accept=".json,application/json"></label>${busAnchorTools()}<small>进度仅保存在当前浏览器，请保留备份。公交锚点先导出，再通过导入恢复；会返回整份存档，不是鬼眼重启。</small></section>${navigation("bottom-menu")}`;
+ 
+   }
+   document.querySelectorAll('[data-action]').forEach(b => b.onclick = () => { if(b.dataset.action==='balance:medium'){openRelationPreview({storage:localStorage,action:'balance:medium',title:'修正平衡偏移',className:'rescue-confirm relation-preview',onUnavailable:()=>{notice='当前不能制衡，未扣资源、未推进。';render();},onCommitted:next=>{state=next;lastCommittedState=next;viewingHistoryId=null;saveSettlementUi();notice='制衡已按预览结算并保存。';render();}});return;} if(['inv:respond','inv:capture'].includes(b.dataset.action)||b.dataset.action.startsWith('inv:probe:')||/^combat:(ability|focus|cover):/.test(b.dataset.action)||b.dataset.action==='combat:combo'){playPreview=b.dataset.action;tab=state.investigation.active?'调查现场':state.combat?'现场':tab;render();return;} if(b.dataset.action.startsWith('cx:')){const r=commitSnapshot(state,act(state,b.dataset.action),v=>localStorage.setItem(key,v),validate);state=r.state;if(r.committed){lastCommittedState=state;saveSettlementUi();}notice=r.committed?(state.contractCase.history.at(-1)||'本次行动已保存。'):r.reason==='INVALID'?'校验失败，本次行动未提交。':'保存失败，本次行动未提交；原进度和交付状态保持不变。';render();return;} if(b.dataset.action.startsWith('tr:')&&transitRisk(b.dataset.action)){transitPreview=b.dataset.action;render();return;} if(b.dataset.action.startsWith('ic:')&&identityRisk(b.dataset.action)){identityPreview=b.dataset.action;render();return;} if(b.dataset.action.startsWith('pw:')&&postwarRisk(b.dataset.action)){postwarPreview=b.dataset.action;render();return;} if(b.dataset.action.startsWith('ff:')&&finaleRisk(b.dataset.action)){finalePreview=b.dataset.action;render();return;} if(b.dataset.action.startsWith('he:')&&hungryRisk(b.dataset.action)){hungryPreview=b.dataset.action;render();return;} if(b.dataset.action.startsWith('cc:')&&crisisRisk(b.dataset.action)){crisisPreview=b.dataset.action;render();return;} if(b.dataset.action.startsWith('gm:')&&mirrorRisk(b.dataset.action)){mirrorPreview=b.dataset.action;render();return;} if(b.dataset.action.startsWith('reg:')&&regionalRisk(b.dataset.action)){regionalPreview=b.dataset.action;render();return;} if(b.dataset.action.startsWith('rj:')&&reunionRisk(b.dataset.action)){reunionPreview=b.dataset.action;render();return;} if(['door:experiment:self','door:experiment:knock'].includes(b.dataset.action)&&!confirm('你正在主动满足一个尚未确认的灵异条件，可能产生永久事件结果。是否继续？'))return; if(b.dataset.action==='door:drive'&&!confirm('主动植入将新增负荷24、初始复苏18%。这不会复制源头完整杀人规律。是否继续？'))return; if(b.dataset.action.startsWith('door:share:')&&!confirmed(state.doorCase,b.dataset.action.split(':')[3])&&!confirm('这条判断尚未确认，可能误导对方。仍要明确告知这是推测吗？'))return; if((b.dataset.action.startsWith('social:cast:')||b.dataset.action.startsWith('social:asset:probe:')||b.dataset.action==='social:domain'||b.dataset.action==='social:conflict:threaten')&&!confirm(socialRiskPrompt(b.dataset.action)))return; if(villageNeedsConfirm(state,b.dataset.action)||b.dataset.action.startsWith('dual:stress:')){hgPreview=b.dataset.action;render();return;}hgPreview=null; state = act(state, b.dataset.action);if(b.dataset.action==='school:engage-audio')tab='现场';if(b.dataset.action.startsWith('tr:')){transitPreview=null;if(!transitPages.includes(tab))tab='公交现场';}if(b.dataset.action.startsWith('ic:')){identityPreview=null;if(!identityPages.includes(tab))tab='赵磊事件';}if(b.dataset.action.startsWith('pw:')){postwarPreview=null;notice=state.postwar.history.at(-1)||'行动已结算。';}if(b.dataset.action.startsWith('ff:'))finalePreview=null;if(b.dataset.action.startsWith('he:')){hungryPreview=null;if(!hungryPages.includes(tab))tab='危机现场';}if(b.dataset.action.startsWith('cc:')){crisisPreview=null;tab='城市态势';}if(b.dataset.action.startsWith('gm:')){mirrorPreview=null;tab='古宅现场';}if(b.dataset.action.startsWith('reg:')){regionalPreview=null;tab='区域救援';}if(['rj:start','rj:next','rj:resume'].includes(b.dataset.action))tab=({A:'城市回归',B:'日常偶遇',C:'同学聚会',D:'营救方案',E:'会议与联络',F:'驭鬼者对抗',G:'伴随调查',DONE:'持续案件'}[state.reunion.phase]);if(b.dataset.action==='hg:balance')tab='双鬼结构';if(b.dataset.action.startsWith('hg:'))tab=state.village.phase==='ESCAPE'||state.village.phase==='LOST'||state.village.phase==='AFTERMATH'||state.village.phase==='DONE'?'撤离与交接':villagePages.includes(tab)?tab:'黄岗村现场'; if(b.dataset.action.startsWith('social:')){socialPreview=null;tab=state.social.conflict.active?'冲突意图':socialPages.includes(tab)?tab:'生存与复盘';} if(b.dataset.action.startsWith('mall:'))tab=state.mall.active?(mallPages.includes(tab)?tab:'商场现场'):'商场档案'; if(b.dataset.action.startsWith('dc:')&&(b.dataset.action==='dc:start'||b.dataset.action.startsWith('dc:signal:')))tab='城市生活'; if(b.dataset.action.startsWith('school:')&&b.dataset.action!=='school:engage-audio')tab=state.school.active?(schoolPages.includes(tab)?tab:'七中现场'):'七中记录'; if(b.dataset.action.startsWith('door:'))tab=state.doorCase.active?tab===''?'公寓现场':doorPages.includes(tab)?tab:'公寓现场':'公寓档案'; if(b.dataset.action.startsWith('enter:')||b.dataset.action.startsWith('combat:')) tab='现场';if(b.dataset.action.startsWith('journey:'))tab='后续章节';if(b.dataset.action.startsWith('second:'))tab='第二鬼';if(b.dataset.action.startsWith('city:'))tab='城市事件';if(b.dataset.action.startsWith('advanced:'))tab='高级路线';if(b.dataset.action.startsWith('bus:'))tab='异常道路';if(b.dataset.action.startsWith('inv:'))tab=state.investigation.active?'调查现场':'调查档案'; persist();if(b.dataset.action.startsWith('tr:')&&notice==='进度已保存到此浏览器。')notice=state.bus.transit.history.at(-1)||'本次观察已记录。';if(b.dataset.action.startsWith('ic:')&&notice==='进度已保存到此浏览器。')notice='行动结果：'+state.identityCase.history.at(-1);if(b.dataset.action.startsWith('pw:')&&notice==='进度已保存到此浏览器。')notice='行动结果：'+state.postwar.history.at(-1);if(b.dataset.action.startsWith('ff:')&&notice==='进度已保存到此浏览器。')notice='行动结果：'+state.finale.history.at(-1);if(b.dataset.action.startsWith('he:')&&notice==='进度已保存到此浏览器。')notice='行动结果：'+state.hungry.history.at(-1);if(b.dataset.action.startsWith('cc:')&&notice==='进度已保存到此浏览器。')notice='行动结果：'+state.cityCrisis.history.at(-1);if(b.dataset.action.startsWith('gm:')&&notice==='进度已保存到此浏览器。')notice='行动结果：'+(state.ghostMirror.history.at(-1)||'已完成'); if(b.dataset.action.startsWith('reg:')&&notice==='进度已保存到此浏览器。')notice=b.dataset.action==='reg:wait'?'已等候一次，时间与自身复苏已结算。':'行动结果：'+(state.regional.history.at(-1)||'本次行动已完成。');render(); });
++  document.querySelectorAll('[data-potential-allocate]').forEach(b=>b.onclick=()=>{
++    const updated=spendDeathPoint(state,b.dataset.potentialAllocate);
++    if(updated===state){notice='没有可分配潜质点，或本项已达到上限。';render();return;}
++    for(const session of [updated.settlement?.active,...Object.values(updated.settlement?.pending||{})])
++      if(session)session.binding=settlementCoreToken(updated);
++    if(!validate(updated)){notice='成长校验未通过；原存档保持不变。';render();return;}
++    state=updated;persist();render();
++  });
++  const nextLifeForm=document.querySelector('#potential-next-life');
++  if(nextLifeForm)nextLifeForm.onsubmit=e=>{
++    e.preventDefault();
++    const form=new FormData(nextLifeForm);
++    if(!confirm('开始下一轮会重置当前角色的厉鬼、剧情及背包；只继承死亡评价的体质和精神潜质。确认？'))return;
++    try{
++      const options=nextLifeOptions(state,{heightCm:Number(form.get('heightCm')),weightKg:Number(form.get('weightKg')),age:Number(form.get('age'))});
++      const bytes=new Uint32Array(1);crypto.getRandomValues(bytes);
++      const next=newGame(form.get('name'),state.background,bytes[0],crypto.randomUUID(),options);
++      if(!validate(next))throw Error('下一轮角色未通过校验');
++      state=next;resetSettlement();tab='首页';persist();render();
++    }catch{notice='创建下一轮失败。死亡存档保持不变，请先导出备份。';render();}
++  };
+   document.querySelectorAll('[data-help]').forEach(b=>b.onclick=()=>{helpOpen=!helpOpen;render();});
+   document.querySelectorAll('[data-play-current]').forEach(b=>b.onclick=()=>{tab=state.combat||events[state.scene]?'现场':state.investigation.active||state.investigation.resolution&&!state.school.started?'调查现场':'首页';render();});
+   document.querySelectorAll('[data-play-confirm]').forEach(b=>b.onclick=()=>{const a=playPreview;playPreview=null;if(available(state).includes(a)){state=act(state,a);persist();}else notice='条件已经变化，此次操作未执行。';render();});
+added in remote
+  their  100644 dc9080f5898d15d9db3119b329d7e344cd5c9197 src/character-potential-ui.js
+@@ -0,0 +1,87 @@
++/**
++ * Editable character/settlement presentation; all authoritative actions remain in the engine.
++ * No posture, dynamic-height, or unapproved ghost trigger logic lives in this UI.
++ */
++import {spiritSlotLimit,mentalChargeLimit,mentalRuleBonus,developmentPotential,POTENTIAL_LIMITS} from './character-potential.js';
++
++const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
++const cap=value=>Number.isFinite(Number(value))?String(value):'—';
++const traitsOf=fields=>({heightCm:175,weightKg:65,age:20,constitution:2,mentalBase:50,...fields});
++
++/** Three editable physical attributes plus two clearly visible inherited/core attributes. */
++export function fiveTraitInputs(fields={}){
++  const t=traitsOf(fields),inherited=Number(t.constitution)>2||Number(t.mentalBase)>50;
++  return '<fieldset class="potential-inputs" aria-label="角色五维属性">'+
++    '<legend>角色五维属性</legend>'+
++    '<div class="potential-section-heading"><span class="potential-eyebrow">01 · 基础特征</span><span class="potential-section-note">可在本轮创建时调整</span></div>'+
++    '<div class="potential-static-inputs">'+
++      '<label>身高 <small>厘米 · Height</small><input required type="number" inputmode="numeric" name="heightCm" min="140" max="210" step="1" value="'+esc(t.heightCm)+'"></label>'+
++      '<label>体重 <small>公斤 · Weight</small><input required type="number" inputmode="numeric" name="weightKg" min="40" max="150" step="1" value="'+esc(t.weightKg)+'"></label>'+
++      '<label>年龄 <small>岁 · Age</small><input required type="number" inputmode="numeric" name="age" min="18" max="65" step="1" value="'+esc(t.age)+'"></label>'+
++    '</div>'+
++    '<div class="potential-section-heading potential-core-heading"><span class="potential-eyebrow">02 · 核心潜质</span><span class="potential-section-note">'+(inherited?'继承上一轮成长':'死亡评价后可永久提升')+'</span></div>'+
++    '<div class="potential-create-core">'+
++      '<div class="potential-create-core-card" data-core-trait="constitution"><div class="potential-core-label"><strong>体质</strong><small>Constitution</small></div><output aria-label="体质">'+esc(t.constitution)+' <small>阶</small></output><p>决定可以驾驭多少只厉鬼；初始容纳 '+esc(t.constitution)+' 只。</p></div>'+
++      '<div class="potential-create-core-card" data-core-trait="mentalBase"><div class="potential-core-label"><strong>初始精神基础值</strong><small>Mental Potential</small></div><output aria-label="初始精神基础值">'+esc(t.mentalBase)+'</output><p>影响灵异调用、规则加成和技能开发潜质。</p></div>'+
++    '</div>'+
++    '<p class="potential-help">核心潜质在开局时不可自由加点，只能通过完成死亡评价获得成长。静态特征暂不接入未验收的厉鬼规律。</p>'+
++    '</fieldset>';
++}
++
++export function characterPotentialView(s){
++  if(!s.traits)return '';
++  const t=s.traits,slots=spiritSlotLimit(s),charges=mentalChargeLimit(s);
++  return '<section class="potential-profile" aria-label="五维角色档案">'+
++    '<div class="potential-section-heading"><div><span class="potential-eyebrow">角色档案 · CHARACTER</span><h3>五维属性</h3></div><span class="potential-status">第 '+esc(s.lineage?.generation??1)+' 轮</span></div>'+
++    '<div class="potential-profile-groups">'+
++      '<div class="potential-physical-group"><h4>基础特征 <small>静态资料</small></h4><dl class="potential-stats potential-physical">'+
++        [['身高',t.heightCm+' cm'],['体重',t.weightKg+' kg'],['年龄',t.age+' 岁']]
++        .map(([label,value])=>'<div><dt>'+esc(label)+'</dt><dd>'+esc(value)+'</dd></div>').join('')+
++      '</dl></div>'+
++      '<div class="potential-core-group"><h4>核心潜质 <small>跨轮回成长</small></h4><dl class="potential-stats potential-core">'+
++        '<div><dt>体质</dt><dd>'+esc(t.constitution)+' <small>阶</small></dd><span>驾驭 '+s.spirits.length+' / '+slots+' 只</span></div>'+
++        '<div><dt>初始精神基础值</dt><dd>'+esc(t.mentalBase)+'</dd><span>额外调用 '+t.mentalCharges+' / '+charges+' 次</span></div>'+
++      '</dl></div>'+
++    '</div>'+
++    '<div class="potential-rule-detail"><strong>精神潜质效果</strong><span>规则对抗 +'+mentalRuleBonus(s)+' · 开发上限 '+developmentPotential(s)+'%</span></div>'+
++    '<p class="potential-help">当前五维资料不执行站立、坐下、蹲下等实时状态判定。特定厉鬼的属性触发条件仍须正式 GDD 验证。</p>'+
++    '</section>';
++}
++
++export function deathPotentialView(s){
++  if(s?.systems?.death!=='committed')return '';
++  const l=s.lineage,last=l?.deaths?.find(d=>d.generation===l.generation);
++  if(!last)return '<article class="potential-death"><h2>死亡结算资料不可用</h2><p>当前存档已保留；无有效结算记录时不发放潜质点。</p></article>';
++  const t=s.traits,cMax=l.potential.constitution>=POTENTIAL_LIMITS.constitution,
++    mMax=l.potential.mentalBase>=POTENTIAL_LIMITS.mentalBase;
++  const exhausted=l.unspent===0||(cMax&&mMax);
++  return '<section class="potential-death" aria-label="死亡潜质结算">'+
++    '<div class="potential-result-hero"><div><span class="potential-eyebrow">第 '+l.generation+' 轮 · DEATH REPORT</span><h2>死亡结算</h2><p>本轮旅程已经结束，以下奖励来自已记录的实际行动。</p></div>'+
++      '<div class="potential-grade-block" aria-label="本轮评价 '+esc(last.grade)+'"><small>本轮评价</small><strong class="potential-grade">'+esc(last.grade)+'</strong><span>'+last.score+' / 100 分</span></div></div>'+
++    '<div class="potential-score-track" role="img" aria-label="表现评分 '+last.score+' 分，满分 100 分"><span style="width:'+Math.max(0,Math.min(100,last.score))+'%"></span></div>'+
++    '<div class="potential-section-heading"><div><span class="potential-eyebrow">01 · 评价依据</span><h3>本轮表现</h3></div><span class="potential-status">系统记录</span></div>'+
++    '<dl class="potential-stats potential-death-stats">'+
++      [['实际行动',last.tick],['最终持鬼',last.ghosts+' 只'],['完成目标记录',last.objectives],['本轮潜质奖励','+'+last.points+' 点']]
++        .map(([label,value])=>'<div><dt>'+esc(label)+'</dt><dd>'+esc(value)+'</dd></div>').join('')+
++    '</dl>'+
++    '<div class="potential-section-heading"><div><span class="potential-eyebrow">02 · 永久成长</span><h3>分配潜质点</h3></div>'+
++      '<span class="potential-point-balance" role="status" aria-live="polite">剩余 <strong>'+l.unspent+'</strong> 点</span></div>'+
++    '<div class="potential-allocations">'+
++      '<div class="potential-allocation-card"><div class="potential-allocation-top"><span class="potential-allocation-icon" aria-hidden="true">Ⅰ</span><div><strong>体质</strong><small>CONSTITUTION</small></div><strong class="potential-current-value">'+t.constitution+' 阶</strong></div>'+
++      '<p>驾驭数量上限：'+spiritSlotLimit(s)+' 只</p>'+
++      '<button type="button" data-potential-allocate="constitution" '+(l.unspent<1||cMax?'disabled':'')+' aria-label="消耗一点潜质提升一阶体质">'+(cMax?'已达到当前上限':'体质 +1 · 消耗 1 点')+'</button></div>'+
++      '<div class="potential-allocation-card"><div class="potential-allocation-top"><span class="potential-allocation-icon" aria-hidden="true">Ⅱ</span><div><strong>精神基础值</strong><small>MENTAL POTENTIAL</small></div><strong class="potential-current-value">'+t.mentalBase+'</strong></div>'+
++      '<p>额外调用：'+mentalChargeLimit(s)+' 次 · 开发上限：'+developmentPotential(s)+'%</p>'+
++      '<button type="button" data-potential-allocate="mentalBase" '+(l.unspent<1||mMax?'disabled':'')+' aria-label="消耗一点潜质提升十点精神基础值">'+(mMax?'已达到当前上限':'精神 +10 · 消耗 1 点')+'</button></div></div>'+
++    '<p class="potential-help">累计获得 '+l.pointsEarned+' 点，已分配 '+l.pointsSpent+' 点。未使用的点数可留到之后的轮回。</p>'+
++    '<div class="potential-section-heading"><div><span class="potential-eyebrow">03 · 新的开始</span><h3>创建下一轮角色</h3></div><span class="potential-status">永久潜质继承</span></div>'+
++    '<p class="potential-inheritance-note">保留体质、初始精神基础值与潜质历史；厉鬼、资源、剧情和当前角色的开发进度不自动继承。</p>'+
++    '<form id="potential-next-life" class="potential-next-life">'+
++      '<label>新角色称呼<input required name="name" maxlength="24" value="'+esc(s.name)+'" autocomplete="off"></label>'+
++      fiveTraitInputs(t)+
++      '<div class="potential-next-actions"><p>开启新一轮将重置当前角色进度。建议先导出死亡结算存档备份。</p>'+
++        '<button type="submit">确认开启下一轮</button></div></form>'+
++    '<details class="potential-evaluation-guide"><summary>查看评价与潜质点规则</summary>'+
++      '<p>评分依据真实行动和已记录的进展。D=0、C=1、B=2、A=3、S=4 潜质点；无有效进展时不能反复死亡刷取奖励。数值仍属于待平衡的候选设计。</p>'+
++    '</details></section>';
++}
+added in remote
+  their  100644 ae31e79f2322f641d6549c1721f322c6261d7b3c src/character-potential.css
+@@ -0,0 +1,104 @@
++/* Character V1: self-contained creation/profile/death interface.
++   Existing game art, mechanics and the live battle settlement remain unchanged. */
++#app :is(.potential-inputs,.potential-profile,.potential-death){--potential-gold:#e5ba79;--potential-text:#f2e9dc;--potential-dim:#c1b8ad;--potential-border:#766457;--potential-bg:#0d1118;color:var(--potential-text);min-width:0;max-width:100%;box-sizing:border-box;font-family:'Microsoft YaHei','PingFang SC',sans-serif}
++#app .potential-inputs{display:block;min-width:0;border:1px solid var(--potential-border);border-radius:12px;background:linear-gradient(145deg,#1d2530,#11151b);padding:clamp(13px,2vw,22px);margin:15px 0;box-shadow:inset 0 1px #ffffff10}
++#app .potential-inputs legend{font-size:1rem;font-weight:700;letter-spacing:.04em;padding:0 8px;color:var(--potential-gold)}
++#app .potential-section-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin:0 0 13px}
++#app .potential-section-heading h3{font-size:clamp(20px,2vw,27px);line-height:1.25;margin:4px 0 0;color:#faf0e5}
++#app .potential-eyebrow{font-weight:700;font-size:11px;letter-spacing:.13em;color:var(--potential-gold);line-height:1.5}
++#app .potential-section-note,#app .potential-status{font-size:12px;color:var(--potential-dim);white-space:normal;text-align:right}
++#app .potential-core-heading{border-top:1px solid #87705b55;padding-top:17px;margin-top:19px}
++#app .potential-static-inputs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;min-width:0}
++#app .potential-static-inputs label,#app .potential-next-life>label{display:flex;flex-direction:column;gap:5px;min-width:0;font-size:14px;font-weight:650;color:var(--potential-text)}
++#app .potential-static-inputs label small{font-weight:400;font-size:11px;color:var(--potential-dim)}
++#app .potential-static-inputs input,#app .potential-next-life>label input{width:100%;min-width:0;max-width:100%;min-height:46px;border:1px solid #948371;border-radius:8px;box-sizing:border-box;background:#0a0e14;color:#fff5e9;padding:10px 12px;font:600 16px/1.4 'Microsoft YaHei','PingFang SC',sans-serif;box-shadow:inset 0 1px 6px #0009}
++#app .potential-static-inputs input:focus-visible,#app .potential-next-life input:focus-visible,#app .potential-death button:focus-visible{outline:3px solid #fff2b8;outline-offset:3px}
++#app .potential-create-core{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
++#app .potential-create-core-card{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;align-items:start;gap:6px 10px;min-width:0;border:1px solid #92795b7a;border-radius:10px;background:#2b292a;padding:15px}
++#app .potential-core-label{display:grid;gap:2px}
++#app .potential-core-label strong{font-size:15px;font-weight:700;color:#ffe9cb}
++#app .potential-core-label small{font-size:10px;color:#cdbdad;letter-spacing:.05em}
++#app .potential-create-core-card output{font-size:clamp(26px,3vw,34px);font-weight:800;color:var(--potential-gold);line-height:1.1;white-space:nowrap}
++#app .potential-create-core-card output small{font-size:12px;font-weight:600}
++#app .potential-create-core-card p{grid-column:1 / -1;margin:4px 0 0;font-size:12px;line-height:1.6;color:#d0c8bf;overflow-wrap:anywhere}
++#app .potential-help{font-size:12px;line-height:1.8;color:var(--potential-dim);margin:12px 0 0;overflow-wrap:anywhere}
++#app .potential-profile,#app .potential-death{border:1px solid #90775888;background:linear-gradient(157deg,#202831 0%,#131820 52%,#0b0d13 100%);padding:clamp(17px,3vw,30px);border-radius:14px;margin:15px 0 25px;box-shadow:inset 0 1px #ffffff10,0 15px 32px #0005}
++#app .potential-profile h4{font-size:15px;color:#f0e6d7;margin:0 0 7px}
++#app .potential-profile h4 small{font-size:11px;color:var(--potential-dim);margin-left:8px;font-weight:400}
++#app .potential-profile-groups{display:grid;grid-template-columns:1fr;gap:15px}
++#app .potential-stats{display:grid;gap:10px;margin:10px 0 14px;min-width:0}
++#app dl.potential-stats{padding:0}
++#app .potential-physical{grid-template-columns:repeat(3,minmax(0,1fr))}
++#app .potential-core{grid-template-columns:repeat(2,minmax(0,1fr))}
++#app .potential-stats>div{display:flex;flex-direction:column;justify-content:center;min-width:0;gap:5px;background:#2a303a;border:1px solid #93817144;border-radius:9px;padding:12px 13px;min-height:73px}
++#app .potential-core>div{border-color:#b6946d77;background:linear-gradient(115deg,#332d2a,#252931)}
++#app .potential-stats dt{font-size:12px;font-weight:500;color:#cdc4ba;line-height:1.45;overflow-wrap:anywhere}
++#app .potential-stats dd{font-size:clamp(17px,2vw,23px);font-weight:750;line-height:1.3;color:#fff1d7;margin:0;overflow-wrap:anywhere}
++#app .potential-stats dd small{font-size:13px;font-weight:400}
++#app .potential-core>div span{font-size:11px;color:#e0c9a9}
++#app .potential-rule-detail{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;border-top:1px solid #87705b55;padding:13px 2px 0;font-size:13px}
++#app .potential-rule-detail strong{color:#f6e5ce}
++#app .potential-rule-detail span{color:var(--potential-dim)}
++/* Result grade is presented before the legacy death note. */
++#app .potential-result-hero{display:flex;justify-content:space-between;align-items:center;gap:18px;padding-bottom:15px}
++#app .potential-result-hero h2{font-size:clamp(27px,4vw,43px);line-height:1.18;margin:7px 0;color:#fff0db}
++#app .potential-result-hero p{font-size:13px;color:#d1c1ae;margin:8px 0 0;max-width:440px;line-height:1.7}
++#app .potential-grade-block{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:112px;padding:11px 17px;background:radial-gradient(circle at 50% 25%,#5d4535,#28262b 70%);border:1px solid #ac8357;border-radius:12px;box-shadow:inset 0 0 25px #e8ba7820}
++#app .potential-grade-block small{font-size:12px;color:#e0c5a5}
++#app .potential-grade{font-family:Georgia,'Times New Roman',serif;color:#f6cd88;font-size:clamp(57px,7vw,87px);line-height:1;font-weight:800;text-shadow:0 2px 18px #b38a5a55}
++#app .potential-grade-block>span{font-size:12px;color:#f0d4ad}
++#app .potential-score-track{height:8px;border:1px solid #87745c;border-radius:9px;background:#0a0b0f;margin:0 0 30px;overflow:hidden}
++#app .potential-score-track span{height:100%;display:block;background:linear-gradient(90deg,#8c6252,#e8bd78);border-radius:8px}
++#app .potential-death>.potential-section-heading{border-top:1px solid #85705b44;padding-top:18px}
++#app .potential-death-stats{grid-template-columns:repeat(4,minmax(0,1fr));margin:12px 0 22px}
++#app .potential-point-balance{border:1px solid #af8655;border-radius:999px;background:#3d3328;padding:6px 12px;color:#f2d9b0;font-size:13px;white-space:nowrap;align-self:center}
++#app .potential-point-balance strong{font-size:19px;color:#fff1cf;margin:0 3px}
++#app .potential-allocations{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-bottom:9px}
++#app .potential-allocation-card{display:flex;flex-direction:column;gap:12px;min-width:0;background:linear-gradient(145deg,#302c2b,#1a1f28);border:1px solid #ab8a654a;border-radius:12px;padding:16px}
++#app .potential-allocation-top{display:flex;align-items:center;gap:10px;min-width:0}
++#app .potential-allocation-top>div{min-width:0;display:grid;gap:2px;flex:1}
++#app .potential-allocation-top>div strong{font-size:16px;line-height:1.4;color:#ffe9ca}
++#app .potential-allocation-top small{font-size:10px;color:#c6bdb3;letter-spacing:.08em}
++#app .potential-allocation-icon{display:grid;place-items:center;width:35px;height:35px;flex:0 0 auto;border:1px solid #b18c61;background:#493628;color:#f5cc8f;border-radius:8px;font-size:18px;font-family:serif}
++#app .potential-current-value{font-size:21px;white-space:nowrap;color:#ffd999}
++#app .potential-allocation-card p{font-size:12px;color:#d7cdc3;margin:0;min-height:2.3em}
++#app .potential-allocation-card button,#app .potential-next-actions button{display:block;width:100%;min-width:0;min-height:48px;border-radius:9px;border:1px solid #e7bd82;background:linear-gradient(180deg,#e9c58e,#bd955e);color:#1a1a1c;cursor:pointer;font-size:14px;font-weight:800;padding:11px 13px;line-height:1.45;white-space:normal}
++#app .potential-allocation-card button:disabled{background:#343238;border-color:#656063;color:#c6bec0;cursor:not-allowed}
++#app .potential-allocation-card button:not(:disabled):hover,#app .potential-next-actions button:hover{filter:brightness(1.1)}
++#app .potential-inheritance-note{font-size:13px;line-height:1.7;color:#d8cbbb;margin:8px 0 12px;border-left:3px solid #be915c;padding:7px 12px;background:#302a263f}
++#app .potential-next-life{display:grid;gap:10px}
++#app .potential-next-life>label{max-width:440px}
++#app .potential-next-life .potential-inputs{margin:4px 0 9px}
++#app .potential-next-actions{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px;border:1px solid #99806655;border-radius:10px;background:#2b25236c}
++#app .potential-next-actions p{font-size:12px;line-height:1.7;max-width:380px;color:#dbbda2;margin:0}
++#app .potential-next-actions button{flex:0 0 235px;width:235px}
++#app .potential-evaluation-guide{margin-top:18px;border-top:1px solid #a6875a55;padding-top:14px;color:#ccc2b7;font-size:12px}
++#app .potential-evaluation-guide summary{cursor:pointer;min-height:44px;display:flex;align-items:center;color:#d6c6ad}
++#app .potential-evaluation-guide p{line-height:1.8}
++#app .potential-death-legacy{margin:5px 0 20px;color:#bdb3aa;border:1px solid #594b43;border-radius:10px;padding:8px 12px}
++#app .potential-death-legacy>summary{cursor:pointer;min-height:35px;display:flex;align-items:center}
++#app .potential-death-legacy article{border:0;background:transparent;padding:10px 0;box-shadow:none}
++@media(max-width:900px){#app .potential-death-stats{grid-template-columns:repeat(2,minmax(0,1fr))}#app .potential-next-actions{flex-direction:column;align-items:stretch}#app .potential-next-actions button{flex:0 0 auto;width:100%}}
++@media(max-width:650px){
++  #app .potential-inputs{padding:13px}
++  #app .potential-static-inputs{grid-template-columns:1fr;gap:10px}
++  #app .potential-create-core{grid-template-columns:1fr;gap:9px}
++  #app .potential-profile,#app .potential-death{padding:14px}
++  #app .potential-core{grid-template-columns:repeat(2,minmax(0,1fr))}
++  #app .potential-death-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
++  #app .potential-allocations{grid-template-columns:1fr}
++  #app .potential-result-hero{align-items:flex-start}
++  #app .potential-grade-block{min-width:91px;padding:10px 9px}
++  #app .potential-grade{font-size:60px}
++  #app .potential-section-heading{gap:8px}
++  #app .potential-section-note{max-width:49%}
++}
++@media(max-width:370px){
++  #app .potential-physical{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
++  #app .potential-core{grid-template-columns:1fr}
++  #app .potential-stats>div{padding:9px}
++  #app .potential-result-hero h2{font-size:25px}
++  #app .potential-grade-block{min-width:80px}
++  #app .potential-point-balance{font-size:11px;padding:4px 7px}
++}
++@media(prefers-reduced-motion:reduce){#app .potential-death *{scroll-behavior:auto}}
+added in remote
+  their  100644 dcb4d89d34b57ae09c19afd8cf5d6ee23bee67a3 src/character-potential.js
+@@ -0,0 +1,145 @@
++/**
++ * Character potential and death-to-next-life progression.
++ * Game tuning only; no ghost kill condition or canonical ghost statistics are inferred.
++ * No dynamic height, posture or position tracking in this version.
++ */
++const isInt=(value,min,max)=>Number.isSafeInteger(value)&&value>=min&&value<=max;
++const safe=(value,minimum,maximum,fallback)=>isInt(Number(value),minimum,maximum)?Number(value):fallback;
++export const TRAIT_DEFAULTS=Object.freeze({heightCm:175,weightKg:65,age:20,constitution:2,mentalBase:50});
++export const POTENTIAL_LIMITS=Object.freeze({constitution:6,mentalBase:150,history:24});
++
++export function spiritSlotLimit(s){
++  return Math.min(POTENTIAL_LIMITS.constitution,s?.traits?.constitution??TRAIT_DEFAULTS.constitution);
++}
++export function mentalChargeLimit(s){
++  const base=s?.traits?.mentalBase??TRAIT_DEFAULTS.mentalBase;
++  return Math.min(4,Math.max(0,Math.floor((base-50)/10)));
++}
++export function mentalRuleBonus(s){
++  return Math.min(3,Math.max(0,Math.floor(((s?.traits?.mentalBase??50)-50)/20)));
++}
++export function developmentPotential(s){
++  return Math.min(100,60+Math.max(0,Math.floor(((s?.traits?.mentalBase??50)-50)/10))*4);
++}
++export function initialTraits(input={},lineage=null){
++  const prev=lineage?.potential;
++  return {
++    heightCm:safe(input.heightCm,140,210,175),
++    weightKg:safe(input.weightKg,40,150,65),
++    age:safe(input.age,18,65,20),
++    constitution:prev?.constitution??TRAIT_DEFAULTS.constitution,
++    mentalBase:prev?.mentalBase??TRAIT_DEFAULTS.mentalBase,
++    mentalCharges:Math.min(4,Math.floor(Math.max(0,(prev?.mentalBase??50)-50)/10))
++  };
++}
++export function initialLineage(previous=null){
++  if(previous&&validLineage(previous)){
++    return {...structuredClone(previous),generation:previous.generation+1};
++  }
++  return {generation:1,pointsEarned:0,pointsSpent:0,unspent:0,
++    potential:{constitution:TRAIT_DEFAULTS.constitution,mentalBase:TRAIT_DEFAULTS.mentalBase},
++    deaths:[]};
++}
++export function attachPotential(s){
++  if(s.traits!==undefined||s.lineage!==undefined)return s;
++  return {...s,traits:initialTraits(),lineage:initialLineage()};
++}
++export function validLineage(l){
++  return !!l&&isInt(l.generation,1,100000)&&isInt(l.pointsEarned,0,100000)&&
++    isInt(l.pointsSpent,0,100000)&&isInt(l.unspent,0,100000)&&
++    l.pointsEarned===l.pointsSpent+l.unspent&&
++    !!l.potential&&isInt(l.potential.constitution,2,6)&&
++    isInt(l.potential.mentalBase,50,150)&&
++    Array.isArray(l.deaths)&&l.deaths.length<=POTENTIAL_LIMITS.history&&
++    l.deaths.every(d=>d&&typeof d.runId==='string'&&d.runId.length>0&&d.runId.length<=160&&
++      isInt(d.generation,1,100000)&&isInt(d.tick,0,1e9)&&isInt(d.score,0,100)&&
++      ['D','C','B','A','S'].includes(d.grade)&&isInt(d.points,0,4)&&
++      isInt(d.ghosts,0,100)&&isInt(d.objectives,0,1000))&&
++    new Set(l.deaths.map(d=>d.runId)).size===l.deaths.length;
++}
++export function validPotential(s){
++  if(s.traits===undefined&&s.lineage===undefined)return true; // read-only legacy save support
++  const t=s.traits,l=s.lineage;
++  return !!t&&validLineage(l)&&
++    isInt(t.heightCm,140,210)&&isInt(t.weightKg,40,150)&&isInt(t.age,18,65)&&
++    isInt(t.constitution,2,6)&&isInt(t.mentalBase,50,150)&&
++    t.constitution===l.potential.constitution&&t.mentalBase===l.potential.mentalBase&&
++    isInt(t.mentalCharges,0,mentalChargeLimit(s));
++}
++
++/** Evaluate recorded achievements, never time alone. No reward for immediate death farming. */
++export function evaluateDeath(s){
++  const ghosts=Math.min(100,s.spirits?.length??0);
++  const outcomeCount=Object.keys(s.outcomes||{}).length;
++  const completed=Object.values(s.journey?.chapters||{}).filter(c=>c?.completed).length;
++  const investigation=(s.investigation?.records||[]).filter(r=>r?.result==='Contained'||r?.result==='Resolved').length;
++  const researched=s.systems?.research?.length||0;
++  const battles=(s.settlement?.records||[]).filter(r=>r?.outcome==='objective').length;
++  const objectives=Math.min(1000,outcomeCount+completed+investigation+battles);
++  const meaningful=ghosts>0||objectives>0||researched>0;
++  const score=!meaningful||s.tick<10?0:Math.min(100,
++    Math.min(20,Math.floor(s.tick/8))+
++    Math.min(28,ghosts*14)+
++    Math.min(36,objectives*9)+
++    Math.min(16,researched*4));
++  const grade=score>=80?'S':score>=60?'A':score>=40?'B':score>=20?'C':'D';
++  const points={D:0,C:1,B:2,A:3,S:4}[grade];
++  return {score,grade,points,ghosts,objectives};
++}
++export function grantDeathReward(s){
++  if(s.systems?.death!=='committed')return s;
++  const runId=s.settlement?.ownerId||('seed-'+s.seed+'-generation-'+s.lineage.generation);
++  if(s.lineage.deaths.some(r=>r.runId===runId))return s; // idempotent
++  const result=evaluateDeath(s);
++  s.lineage.deaths=[...s.lineage.deaths,{
++    runId,generation:s.lineage.generation,tick:s.tick,...result
++  }].slice(-POTENTIAL_LIMITS.history);
++  s.lineage.pointsEarned+=result.points;
++  s.lineage.unspent+=result.points;
++  s.journal.push('死亡评价 '+result.grade+'（'+result.score+'分），获得潜质点 '+result.points+'；下一轮可继承。');
++  return s;
++}
++export function spendDeathPoint(input,trait){
++  if(input?.systems?.death!=='committed'||!['constitution','mentalBase'].includes(trait)||
++    !input.lineage?.deaths?.some(d=>d.generation===input.lineage.generation)||
++    input.lineage.unspent<1)return input;
++  const s=structuredClone(input),potential=s.lineage.potential;
++  if(trait==='constitution'){
++    if(potential.constitution>=POTENTIAL_LIMITS.constitution)return input;
++    potential.constitution++;
++  }else{
++    if(potential.mentalBase>=POTENTIAL_LIMITS.mentalBase)return input;
++    potential.mentalBase+=10;
++  }
++  s.lineage.unspent--;s.lineage.pointsSpent++;
++  s.traits.constitution=potential.constitution;
++  s.traits.mentalBase=potential.mentalBase;
++  s.traits.mentalCharges=Math.min(s.traits.mentalCharges,mentalChargeLimit(s));
++  return s;
++}
++export function nextLifeOptions(s,fields){
++  if(s.systems?.death!=='committed'||!s.lineage.deaths.some(d=>d.generation===s.lineage.generation))
++    throw Error('当前角色未完成死亡结算，不能进行轮回');
++  return {heightCm:fields.heightCm,weightKg:fields.weightKg,age:fields.age,
++    lineage:structuredClone(s.lineage)};
++}
++export function restrictDevelopment(before,s){
++  const cap=developmentPotential(s);
++  for(const g of s.spirits||[]){
++    const prior=before.spirits?.find(old=>old.id===g.id)?.development??0;
++    if(g.development>cap&&g.development>prior){
++      g.development=Math.max(prior,cap);
++      s.journal.push('精神潜质限制：'+g.name+'的开发度达到当前上限 '+Math.max(prior,cap)+'%。');
++    }
++  }
++}
++export function applyMentalCastBonus(before,s,action,usedId){
++  if(!usedId||!s.traits?.mentalCharges||s.energy>=before.energy)return;
++  const recognized=action==='ability'||action==='practice'||action.startsWith('practice:')||
++    action.startsWith('combat:ability:')||action.startsWith('combat:focus:')||
++    action.startsWith('combat:cover:')||action==='combat:combo'||action.startsWith('eye6:cast:');
++  if(!recognized)return;
++  s.energy=Math.min(3,s.energy+1);
++  s.traits.mentalCharges--;
++  s.journal.push('精神基础值加成：本次灵异调用返还 1 点行动能量，剩余额外次数 '+s.traits.mentalCharges+'。');
++}
+changed in both
+  base   100644 9ab68903581778d948a880572121ed288e9ef038 src/combat.js
+  our    100644 4ef9b1af4de3b42df2c0b4e5a77bedd278038d26 src/combat.js
+  their  100644 ef6c95cfa844964658d64f9265618d4e21fc90ca src/combat.js
+@@ -1,5 +1,6 @@
+ import {g1cEnemy,g1cIntent} from './g1c-production.js';
+ import {g1bEnemy} from './g1b-production.js';
++import {mentalRuleBonus} from './character-potential.js';
+ import {productionEnemy,productionIntent} from './g1a-production.js';
+ import {candidateEnemy,candidateIntent} from './g1a-candidate.js';
+ import {recordBloodContest} from './g1a-archives.js';
+@@ -39,10 +40,10 @@
+  if(k==='avoid'){c.position='safe';log('玩家','避开触发媒介；行为避险不要求证据认证。');}
+  if(k==='force'){c.position='exposed';log('玩家','普通力量无法消灭厉鬼，源头没有气血或击杀经验。');}
+  if(k==='risk'){c.position='exposed';log('玩家',events[c.eventId].riskText);}
+- if(k.startsWith('ability:')){const g=s.spirits.find(v=>v.id===k.slice(8)),own=ruleFor(g.sourceId,events[g.sourceId]);s.energy--;used=[g.id];develop(g,3);c.wardWeight=v1Ward(s,g,c.eventId);c.wardMedium=own.medium;c.cooldowns[g.id]=2;log('玩家',g.name+'对抗媒介，开发度＋3；自身独立复苏照常结算。');}
++ if(k.startsWith('ability:')){const g=s.spirits.find(v=>v.id===k.slice(8)),own=ruleFor(g.sourceId,events[g.sourceId]);s.energy--;used=[g.id];develop(g,3);c.wardWeight=Math.min(10,v1Ward(s,g,c.eventId)+mentalRuleBonus(s));c.wardMedium=own.medium;c.cooldowns[g.id]=2;log('玩家',g.name+'对抗媒介，开发度＋3；自身独立复苏照常结算。');}
+  if(k.startsWith('focus:')||k.startsWith('cover:')){
+   const cover=k.startsWith('cover:'),g=s.spirits.find(g=>g.id===k.slice(6)),own=ruleFor(g.sourceId,events[g.sourceId]);
+-  s.energy-=cover?2:1;used=[g.id];develop(g,3);c.wardWeight=Math.min(10,v1Ward(s,g,c.eventId)+(cover?0:1));c.wardMedium=own.medium;c.cooldowns[g.id]=3;
++  s.energy-=cover?2:1;used=[g.id];develop(g,3);c.wardWeight=Math.min(10,v1Ward(s,g,c.eventId)+(cover?0:1)+mentalRuleBonus(s));c.wardMedium=own.medium;c.cooldowns[g.id]=3;
+   if(cover)c.position='safe';
+   log('玩家',g.name+(cover?'收束掩护：撤出触发区域，保留同媒介防护；能量－2。':'集中压制：同媒介权重＋1；能量－1。')+'开发＋3，调用复苏独立结算；不关押或消灭源头。');
+  }
+changed in both
+  base   100644 121570b51cd6645fa0c255528aacd12d04cd6b89 src/engine.js
+  our    100644 6bec576b965127bafeb34cf524a9bce7df0ba214 src/engine.js
+  their  100644 7a63f519abebe491295ef6a1dc861147f1100e19 src/engine.js
+@@ -60,18 +60,20 @@
+ import {develop} from './rules.js';
+ import {newCity,attachCity,cityAvailable,applyCity,advanceCity,validCity} from './city.js';
+ import {newAdvanced,attachAdvanced,advancedAvailable,applyAdvanced,validAdvanced} from './advanced.js';
+-import {newV1,attachV1,v1Available,applyV1,validV1,eyeMax,activeIds} from './v1.js';
++import {newV1,attachV1,v1Available,applyV1,validV1,eyeMax,activeIds} from './v1.js';
++import {initialTraits,initialLineage,attachPotential,validPotential,spiritSlotLimit,restrictDevelopment,applyMentalCastBonus,mentalChargeLimit,grantDeathReward} from './character-potential.js';
+ export const VERSION = 2;
+ const clone = value => structuredClone(value);
+-export function newGame(name = '未登记', background = '普通职员', seed = 1, saveId = undefined) {
++export function newGame(name = '未登记', background = '普通职员', seed = 1, saveId = undefined, options = {}) {
+   if (!backgrounds.includes(background)) throw Error('未知背景');
+   const s=attachCase24({ version: VERSION, name: String(name).trim().slice(0, 24) || '未登记', background, seed: seed >>> 0,
+-    tick: 0, revision: 0, life: 100, energy: 3, bags: 2, ward: 0, scene: 'hub', phase: '异常', crisis: false,
++    tick: 0, revision: 0, life: 100, energy: 3, bags: 2, ward: 0, scene: 'hub', phase: '异常', crisis: false,
++    traits:initialTraits(options,options.lineage),lineage:initialLineage(options.lineage),
+     ghostEyeV6:newEyeV6(),contentVersion:1,identityCase:newIdentityCase(),postwar:newPostwar(),finale:newFinale(),hungry:newHungry(),cityCrisis:newCityCrisis(),ghostMirror:newMirror(),regional:newRegional(),reunion:newReunion(),dual:newDual(),village:newVillage(),social:newSocial(),mall:newMall(),dachang:newDachang(),school:newSchool(),doorCase:newDoorCase(),investigation:newInvestigation(),evolution:newEvolution(),bus:newBus(),v1:newV1(),city:newCity(),advanced:newAdvanced(),chapter: newChapter(), journey:newJourney(), systems:newSystems(),combat:null, hostCapacity: tuning.hostCapacity, spirits: [], relations: [], compatibility: null, knowledge: {}, restricted: {}, outcomes: {}, fate: {}, journal: ['你作为普通人抵达住宅区。档案尚未建立。'] });
+   const current=attachG1A(s);return {...current,settlement:initialSettlement(current,{id:saveId})};
+ }
+ const upgradeCore = s=>attachSchool(attachDoorCase(attachInvestigation(attachEvolution({...attachBus(attachV1(attachAdvanced(attachCity(attachJourney(attachSystems(attachChapter(s))))))),contentVersion:1}))));
+-export const upgrade=s=>{const n=attachIdentityCase(attachPostwar(attachFinale(attachHungry(attachCityCrisis(attachMirror(attachRegional(attachReunion(attachDual(attachVillage(attachSocial(attachMall(attachDachang(upgradeCore(s))))))))))))));const core=attachSettlement(attachCase24(n.dachang.started&&n.city.active?{...n,city:{...n.city,active:false}}:n));const migrated=attachG1A(attachEyeV6(core));if(migrated!==core&&validSettlement(core)){migrated.settlement=structuredClone(core.settlement);for(const session of [migrated.settlement.active,...Object.values(migrated.settlement.pending||{})])if(session)session.binding=settlementCoreToken(migrated);}return migrated;};
++export const upgrade=s=>{const n=attachIdentityCase(attachPostwar(attachFinale(attachHungry(attachCityCrisis(attachMirror(attachRegional(attachReunion(attachDual(attachVillage(attachSocial(attachMall(attachDachang(upgradeCore(s))))))))))))));const core=attachSettlement(attachCase24(n.dachang.started&&n.city.active?{...n,city:{...n.city,active:false}}:n));const migrated=attachG1A(attachEyeV6(core));if(migrated!==core&&validSettlement(core)){migrated.settlement=structuredClone(core.settlement);for(const session of [migrated.settlement.active,...Object.values(migrated.settlement.pending||{})])if(session)session.binding=settlementCoreToken(migrated);}const withPotential=attachPotential(migrated);if(withPotential!==migrated&&validSettlement(migrated)){withPotential.settlement=structuredClone(migrated.settlement);for(const session of [withPotential.settlement.active,...Object.values(withPotential.settlement.pending||{})])if(session)session.binding=settlementCoreToken(withPotential);}return withPotential;};
+ export function knowledge(s, id) { return s.knowledge[id] || { clues: [], hypotheses: {} }; }
+ function baseAvailable(s) {
+   s=upgrade(s);if(s.investigation.active&&s.systems.death==='alive'&&!s.crisis)return investigationAvailable(s);if(busBusy(s))return busAvailable(s);const system=systemsAvailable(s);
+@@ -173,7 +175,7 @@
+     if (s.background === '安保') log('背景线索：可从值班记录开始调查。');
+     if (s.background === '医疗相关') log('背景线索：侵蚀可能同时影响身体与意识。');
+   } else if (action === 'rest') {
+-    s.life = Math.min(100, s.life + (s.v1.build==='body'||s.advanced.alienStage===2||s.evolution.host.form===3?10:20)); s.energy = 3;
++    s.life = Math.min(100, s.life + (s.v1.build==='body'||s.advanced.alienStage===2||s.evolution.host.form===3?10:20)); s.energy = 3; s.traits.mentalCharges=mentalChargeLimit(s);
+     log('安全屋恢复身体和行动能力；累计复苏不下降。');
+   } else if (action === 'practice' || action.startsWith('practice:') || action === 'ability') {
+     const spirit=action.startsWith('practice:')?s.spirits.find(g=>g.id===action.slice(9)):s.spirits[0];
+@@ -260,6 +262,10 @@
+   // Persist the same existing compatibility defaults that a reload/available()
+   // would attach, before binding the completed encounter snapshot.
+   Object.assign(s,attachCase24(s));
++  if(s.spirits.length>spiritSlotLimit(before)&&s.spirits.length>before.spirits.length)return input; // Preserve previously valid holders; reject new capacity overflow.
++  restrictDevelopment(before,s);
++  applyMentalCastBonus(before,s,action,usedId);
++  if(action==='death:commit')grantDeathReward(s);
+   s.revision++;
+   if(!eyeResult){s.ghostEyeV6.energySpent+=Math.max(0,before.energy-s.energy);s.ghostEyeV6.energyRestored+=Math.max(0,s.energy-before.energy);}
+   s.actionReceipt=actionReceipt(before,s,action);
+@@ -268,8 +274,13 @@
+ function systemAction(a){return ['second:','release:','abandon:','reaction:','death:','balance:','study:'].some(p=>a.startsWith(p));}
+ 
+ export function validate(s,context=null) {
++<<<<<<< .our
+   if(!validG1B(s,context)||!validG1C(s,context))return false;
+   if(!s||!validG1A(s)||!validCandidate(s,context)||!validProduction(s,context)||!validEyeV6(s)||!validReceipt(s)||!validSettlement(s))return false;
++=======
++  if(!validG1B(s,context))return false;
++  if(!s||!validPotential(s)||!validG1A(s)||!validCandidate(s,context)||!validProduction(s,context)||!validEyeV6(s)||!validReceipt(s)||!validSettlement(s))return false;
++>>>>>>> .their
+   if(s.spirits.some(g=>g.sourceId==='g1a-rope-candidate')&&!candidateEnabled(context)&&!(s.g1a?.production?.testOnly&&integrationAllowed(s,context)))return false;
+   if(!s||!Array.isArray(s.spirits)||!Array.isArray(s.relations))return false;
+   if(!validCase24(s)||!validCalendar(s)||!validWorldRegistry(s)||!validContracts(s)||!validXArchives(s)||!validIdentityCase(s)||!validPostwar(s)||!validFinale(s)||!validHungry(s)||!validCityCrisis(s)||!validMirror(s)||!validRegional(s)||!validReunion(s)||!validDual(s)||!validVillage(s)||!validSocial(s)||!validMall(s)||!validDachang(s)||!validSchool(s)||!validDoorCase(s)||!validInvestigation(s)||!validEvolution(s))return false;
+merged
+  result 100644 3083091650fa070b95202e4b3e9063fd0bcb0d12 src/progression.js
+  our    100644 da9cb73a84838365cac0d376c2dbe0df15ac57d0 src/progression.js
+@@ -1,5 +1,6 @@
+ import { events } from './content.js';
+-import { fateResult } from './rules.js';
++import { fateResult } from './rules.js';
++import {spiritSlotLimit} from './character-potential.js';
+ export function newSystems(){return {death:'alive',sealed:[],aids:{},items:{barrier:2},combinations:[],second:null,decisions:{},research:[]};}
+ export function attachSystems(s){return s.systems?s:{...s,systems:newSystems(),combat:null};}
+ export function makeSpirit(id){const e=events[id];if(e.playerOwnable===false)throw Error('正史源头不可作为玩家实例');return {id:'player-'+id,sourceId:id,ruleId:'rule-'+id,instanceType:'player',rank:e.grade==='S潜力'?'S':e.grade,name:e.spirit,burden:e.load,revivalProgress:e.initialRevival,naturalRevivalRate:e.naturalRevivalRate,usageRevivalRate:e.usageRevivalRate,activityLevel:'正常',suppressionReceived:0,suppressionRemaining:0,development:0,stability:'稳定',...(id==='eye'?{awakeningProgress:1}:{})};}
+@@ -13,7 +14,7 @@
+ };
+ export function relationship(a,b){const sorted=[a.sourceId,b.sourceId].sort(),p=pairs[sorted.join('|')]||[.35,.1,.1,1,1];const direct=a.sourceId===sorted[0];
+  return {spiritA:a.id,spiritB:b.id,compatibility:p[0],suppressionAtoB:p[direct?1:2],suppressionBtoA:p[direct?2:1],conflictAtoB:p[direct?3:4],conflictBtoA:p[direct?4:3],burdenSynergy:0,specialInteraction:null,bias:0};}
+-export function canSecond(s){return !!s.journey?.chapters.club.completed&&s.spirits.length===1;}
++export function canSecond(s){return !!s.journey?.chapters.club.completed&&s.spirits.length===1&&s.spirits.length<spiritSlotLimit(s);}
+ export function systemsAvailable(s){
+  const x=s.systems||newSystems(); if(x.death==='committed')return [];
+  if(x.death==='pending')return [...(x.items.barrier>0?['reaction:item']:[]),...Object.keys(x.aids).filter(id=>x.aids[id].remaining>0).map(id=>'reaction:aid:'+id), 'death:commit'];
+added in remote
+  their  100644 c6e147c826e1264800d41bb489f9f3ae0f8180ca tests/character-potential.browser.mjs
+@@ -0,0 +1,109 @@
++import {chromium} from 'playwright';
++import assert from 'node:assert/strict';
++import {mkdir,writeFile} from 'node:fs/promises';
++
++const BASE='http://127.0.0.1:8765/';
++await mkdir('candidate-artifacts',{recursive:true});
++const browser=await chromium.launch({headless:true});
++try{
++  for(const [name,viewport] of [['desktop',{width:1440,height:900}],['tablet',{width:768,height:1024}],['mobile',{width:390,height:844}],['compact',{width:320,height:720}]]){
++    const context=await browser.newContext({viewport,acceptDownloads:true});
++    const page=await context.newPage();
++    const errors=[];page.on('pageerror',e=>errors.push(e.message));
++    const evidence={viewport,stages:{}};
++    async function checkVisual(stage,selector){
++      const snapshot=await page.locator(selector).evaluate(el=>{
++        const all=[el,...el.querySelectorAll('.potential-inputs,.potential-static-inputs,.potential-create-core,.potential-profile,.potential-stats,.potential-death,.potential-allocations,.potential-allocation-card,.potential-next-actions')];
++        return all.filter(n=>n.getClientRects().length).map(n=>{
++          const b=n.getBoundingClientRect();
++          return {tag:n.tagName,className:n.className,clientWidth:n.clientWidth,scrollWidth:n.scrollWidth,left:Math.round(b.left),right:Math.round(b.right),width:Math.round(b.width)};
++        });
++      });
++      evidence.stages[stage]=snapshot;
++      for(const item of snapshot){
++        assert.ok(item.scrollWidth-item.clientWidth<=3,name+' '+stage+' horizontal clipping in '+item.className+': '+JSON.stringify(item));
++        assert.ok(item.width>0&&item.left>=-3&&item.right<=viewport.width+3,
++          name+' '+stage+' rendered outside viewport: '+JSON.stringify(item));
++      }
++    }
++    page.on('dialog',dialog=>dialog.accept());
++    await page.goto(BASE,{waitUntil:'domcontentloaded'});
++    await page.locator('#create').waitFor({timeout:20000});
++    assert.equal(await page.locator('#create .potential-create-core-card').count(),2,name+' must show both core potential cards');
++    assert.equal(await page.locator('#create .potential-static-inputs input').count(),3,name+' must show three editable physical traits');
++    await checkVisual('creation','#create .potential-inputs');
++    await page.screenshot({path:'candidate-artifacts/'+name+'-creation.png',fullPage:true});
++    await page.locator('#create [name="name"]').fill('开发测试员');
++    await page.locator('#create [name="heightCm"]').fill('182');
++    await page.locator('#create [name="weightKg"]').fill('70');
++    await page.locator('#create [name="age"]').fill('22');
++    await page.locator('#create button').click();
++    await page.locator('.topbar .identity').waitFor({timeout:20000});
++    await page.locator('[data-tab="角色"]:visible').first().click();
++    await page.locator('.potential-profile').waitFor({timeout:20000});
++    const profile=await page.locator('.potential-profile').textContent();
++    assert.match(profile,/182 cm/);assert.match(profile,/体质/);
++    await checkVisual('character','.potential-profile');
++    await page.screenshot({path:'candidate-artifacts/'+name+'-character.png',fullPage:true});
++
++    // Browser-only final-death fixture. Verified against the real engine's save validator.
++    // This is NOT ordinary player progression and does not grant access to locked ghosts.
++    await page.evaluate(async()=>{
++      const {validate}=await import('/src/engine.js');
++      const {grantDeathReward}=await import('/src/character-potential.js');
++      const key='supernatural-era.prototype.v2';
++      const s=JSON.parse(localStorage.getItem(key));
++      s.systems.death='committed';s.life=0;s.tick=240;s.outcomes.echo='已封存';
++      grantDeathReward(s);
++      if(!validate(s))throw Error('death fixture failed save validation');
++      localStorage.setItem(key,JSON.stringify(s));
++    });
++    await page.reload({waitUntil:'domcontentloaded'});
++    await page.locator('.potential-death').waitFor({timeout:20000});
++    const panel=await page.locator('.potential-death').textContent();
++    assert.match(panel,/死亡结算/);assert.match(panel,/潜质/);
++    assert.equal(await page.locator('.potential-grade').textContent(),'C');
++    assert.ok(await page.locator('.potential-death').evaluate(n=>n.getBoundingClientRect().top<=document.querySelector('.potential-death-legacy').getBoundingClientRect().top),'grade must precede legacy warning');
++    assert.equal(await page.locator('.potential-allocations button').count(),2);
++    const taps=await page.locator('.potential-allocations button').evaluateAll(nodes=>nodes.map(n=>Math.round(n.getBoundingClientRect().height)));
++    assert.ok(taps.every(n=>n>=44),name+' allocation buttons must meet 44px hit target');
++    await checkVisual('death','.potential-death');
++    await page.screenshot({path:'candidate-artifacts/'+name+'-death.png',fullPage:true});
++    await page.locator('[data-potential-allocate="mentalBase"]').click();
++    const afterAllocate=await page.evaluate(()=>JSON.parse(localStorage.getItem('supernatural-era.prototype.v2')));
++    assert.equal(afterAllocate.traits.mentalBase,60);
++    assert.equal(afterAllocate.lineage.unspent,0);
++
++    await page.locator('#potential-next-life [name="name"]').fill('第二轮角色');
++    await page.locator('#potential-next-life [name="heightCm"]').fill('168');
++    await page.locator('#potential-next-life button[type="submit"]').click();
++    await page.locator('.topbar .identity').waitFor({timeout:20000});
++    const next=await page.evaluate(()=>JSON.parse(localStorage.getItem('supernatural-era.prototype.v2')));
++    assert.equal(next.name,'第二轮角色');assert.equal(next.traits.heightCm,168);
++    assert.equal(next.traits.mentalBase,60);assert.equal(next.lineage.generation,2);
++    assert.equal(next.spirits.length,0);assert.equal(next.tick,0);
++    assert.deepEqual(errors,[],name+' browser page errors');
++    // Existing browser saves from 0.24.6 must be backed up and migrated in place.
++    await page.evaluate(()=>{
++      const key='supernatural-era.prototype.v2';
++      const legacy=JSON.parse(localStorage.getItem(key));
++      delete legacy.traits;delete legacy.lineage;
++      localStorage.removeItem(key+'.before-character-v1');
++      localStorage.setItem(key,JSON.stringify(legacy));
++    });
++    await page.reload({waitUntil:'domcontentloaded'});
++    await page.locator('.topbar .identity').waitFor({timeout:20000});
++    const migration=await page.evaluate(()=>{
++      const key='supernatural-era.prototype.v2';
++      return {current:JSON.parse(localStorage.getItem(key)),
++        backup:JSON.parse(localStorage.getItem(key+'.before-character-v1'))};
++    });
++    assert.equal(migration.backup.traits,undefined);
++    assert.equal(migration.current.traits.constitution,2);
++    assert.equal(migration.current.name,'第二轮角色');
++    await page.screenshot({path:'candidate-artifacts/'+name+'-next-life.png',fullPage:true});
++    await writeFile('candidate-artifacts/'+name+'-visual-metrics.json',JSON.stringify(evidence,null,2),'utf8');
++    console.log(name+': five-trait creation → character → grade/layout → allocation → next life: PASS');
++    await context.close();
++  }
++}finally{await browser.close();}
+added in remote
+  their  100644 4c105232e6fb44055f15912b26475d706bf3f740 tests/character-potential.test.mjs
+@@ -0,0 +1,116 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import {newGame,upgrade,validate,available,act} from '../src/engine.js';
++import {
++  spiritSlotLimit,mentalChargeLimit,mentalRuleBonus,developmentPotential,
++  evaluateDeath,grantDeathReward,spendDeathPoint,nextLifeOptions,
++  applyMentalCastBonus,restrictDevelopment
++} from '../src/character-potential.js';
++
++const fresh=(id='save-candidate')=>newGame('候选玩家','普通职员',101,id,{heightCm:182,weightKg:70,age:22});
++const dead=(id='save-deceased')=>{
++  const s=fresh(id);s.systems.death='committed';s.life=0;
++  s.tick=240;s.outcomes.echo='已封存';s.spirits=[{id:'player-test',name:'试验鬼',development:5}];
++  return grantDeathReward(s);
++};
++
++test('new character retains five independent creation fields and a valid v2 save',()=>{
++  const s=fresh();assert.equal(s.traits.heightCm,182);assert.equal(s.traits.weightKg,70);
++  assert.equal(s.traits.age,22);assert.equal(s.traits.constitution,2);
++  assert.equal(s.traits.mentalBase,50);assert.equal(spiritSlotLimit(s),2);
++  assert.equal(mentalChargeLimit(s),0);assert.equal(developmentPotential(s),60);
++  assert.ok(validate(s));
++});
++
++test('legacy v2 without traits upgrades without erasing existing save fields',()=>{
++  const old=fresh('save-old');delete old.traits;delete old.lineage;
++  assert.ok(validate(old));
++  const upgraded=upgrade(old);
++  assert.ok(validate(upgraded));assert.equal(upgraded.settlement.ownerId,old.settlement.ownerId);
++  assert.equal(upgraded.lineage.generation,1);assert.equal(upgraded.traits.constitution,2);
++});
++
++test('immediate deaths with no recorded progress never award potential',()=>{
++  const s=fresh('save-farm');s.systems.death='committed';s.life=0;s.tick=8;
++  grantDeathReward(s);
++  assert.equal(s.lineage.deaths[0].grade,'D');
++  assert.equal(s.lineage.unspent,0);
++});
++
++test('death evaluation counts existing progression evidence, not UI claims',()=>{
++  const s=dead();const result=evaluateDeath(s);
++  assert.ok(result.score>=40);assert.equal(result.grade,'B');
++  assert.equal(s.lineage.deaths[0].points,2);
++  assert.equal(s.lineage.unspent,2);
++});
++
++test('same finalized run never awards death points twice',()=>{
++  const s=dead('save-once');grantDeathReward(s);grantDeathReward(s);
++  assert.equal(s.lineage.deaths.length,1);assert.equal(s.lineage.pointsEarned,2);
++});
++
++test('points separately increase host slots and mental potential',()=>{
++  const s=dead('save-spend');const first=spendDeathPoint(s,'constitution');
++  assert.equal(first.traits.constitution,3);assert.equal(spiritSlotLimit(first),3);
++  const second=spendDeathPoint(first,'mentalBase');
++  assert.equal(second.traits.mentalBase,60);
++  assert.equal(second.lineage.unspent,0);
++  assert.equal(mentalChargeLimit(second),1);
++  assert.equal(developmentPotential(second),64);
++  assert.strictEqual(spendDeathPoint(second,'mentalBase'),second);
++});
++
++test('next life resets ghosts and story but inherits paid potential',()=>{
++  const s=spendDeathPoint(spendDeathPoint(dead('save-next'),'constitution'),'mentalBase');
++  const fields=nextLifeOptions(s,{heightCm:168,weightKg:62,age:19});
++  const next=newGame('新轮回','普通职员',102,'save-next-new',fields);
++  assert.ok(validate(next));assert.equal(next.spirits.length,0);
++  assert.equal(next.tick,0);assert.equal(next.lineage.generation,2);
++  assert.equal(next.traits.heightCm,168);assert.equal(next.traits.constitution,3);
++  assert.equal(next.traits.mentalBase,60);assert.equal(next.traits.mentalCharges,1);
++  assert.equal(next.lineage.deaths.length,1);
++});
++
++test('mental casts refund energy at most once per remaining charge without suppressing revival',()=>{
++  const before=fresh('save-mental');before.traits.mentalBase=70;
++  before.lineage.potential.mentalBase=70;before.traits.mentalCharges=2;
++  before.energy=3;
++  const after=structuredClone(before);after.energy=2;
++  applyMentalCastBonus(before,after,'practice:player-eye','player-eye');
++  assert.equal(after.energy,3);assert.equal(after.traits.mentalCharges,1);
++  applyMentalCastBonus(before,after,'rest','player-eye');
++  assert.equal(after.traits.mentalCharges,1);
++  assert.equal(mentalRuleBonus(after),1);
++});
++
++test('development potential never reduces legacy development that was already earned',()=>{
++  const before=fresh('save-cap');
++  before.spirits=[{id:'player-eye',name:'鬼眼',development:88}];
++  const after=structuredClone(before);after.spirits[0].development=91;
++  restrictDevelopment(before,after);
++  assert.equal(after.spirits[0].development,88);
++  assert.ok(after.journal.some(x=>x.includes('精神潜质限制')));
++});
++
++test('death allocation cannot occur before death is finalized',()=>{
++  const s=fresh('save-alive');
++  assert.strictEqual(spendDeathPoint(s,'constitution'),s);
++  assert.throws(()=>nextLifeOptions(s,{heightCm:180,weightKg:70,age:22}));
++});
++
++
++test('real engine death:commit grants exactly one reward with no free resurrection',()=>{
++  const s=fresh('save-engine-death');s.tick=240;s.life=0;s.systems.death='pending';s.outcomes.echo='已封存';
++  assert.ok(validate(s),'pending death fixture must be a valid original engine state');
++  assert.ok(available(s).includes('death:commit'));
++  const result=act(s,'death:commit');
++  assert.notStrictEqual(result,s);
++  assert.equal(result.systems.death,'committed');
++  assert.equal(result.life,0);
++  assert.equal(result.lineage.deaths.length,1);
++  assert.ok(result.lineage.unspent>0);
++  assert.ok(validate(result),'death reward must remain a valid real game save');
++  const repeated=act(result,'death:commit');
++  assert.strictEqual(repeated,result);
++  assert.equal(repeated.lineage.deaths.length,1);
++});

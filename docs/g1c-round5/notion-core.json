@@ -1,0 +1,16 @@
+{
+  "id": "3f1e1d3578fb81d59643ed49428cde52",
+  "title": "核心玩法",
+  "text": "Here is the result of \"fetch\" for the Page with URL https://app.notion.com/p/3f1e1d3578fb81d59643ed49428cde52 as of 2026-10-06T21:26:14.478Z:\n<page url=\"https://app.notion.com/p/3f1e1d3578fb81d59643ed49428cde52\">\n<ancestor-path>\n<parent-page url=\"https://app.notion.com/p/3f1e1d3578fb814d871dcf6f8605284f\" title=\"游戏设计\"/>\n<ancestor-2-page url=\"https://app.notion.com/p/3f1e1d3578fb8143be81dc7c0654fc9b\" title=\"《神秘复苏》游戏设计总文档\"/>\n</ancestor-path>\n<properties>\n{\"title\":\"核心玩法\"}\n</properties>\n<iconMetadata>null</iconMetadata>\n<content>\n整理说明：下方正文按原版本保留，未合并或改写。版本间规则差异以原文中的优先级声明为准。\n\n原文入口：<mention url=\"https://app.notion.com/p/3f1e1d3578fb80b3a25bf09cf058a378\" />\n\n# V1.1 原文\n\n# 56. V1.1玩家主流程\n\n```txt\n普通人\n   ↓\n七中事件爆发\n   ↓\n第一次认识灵异世界\n   ↓\n第一只鬼\n   ↓\n成为驭鬼者\n   ↓\n官方/论坛/档案体系\n   ↓\n自由探索大昌市\n   ↓\n商场事件\n   ↓\n关键灵异第一次大量出现\n   ↓\n复苏开始加剧\n   ↓\n小强俱乐部\n   ↓\n认识其他驭鬼者Build\n   ↓\n寻找第二只鬼\n   ↓\n黄岗村\n   ↓\n第一次真正建立双鬼平衡\n   ↓\n成熟驭鬼者\n```\n\n---\n\n# 57. V1.1隐藏流程\n\n同时可能存在：\n\n```txt\n普通人\n   ↓\n命运事件\n   ↓\n获得关键灵异\n   ↓\n特殊Build\n   ↓\n与正史宿主产生同源反应\n   ↓\n独立命运支线\n```\n\n例如：\n\n# 鬼眼玩家路线。\n\n这不取代：\n\n> 杨间路线。\n\n而是：\n\n> 两条鬼眼成长线同时存在。\n\n---\n\n# V1.2 原文\n\n# 76. GDD V1.2最终核心循环\n\n```txt\n原著事件发生\n        ↓\n玩家调查世界\n        ↓\n发现普通/关键灵异\n        ↓\n建立档案\n        ↓\n理解规律\n        ↓\n创造驾驭机会\n        ↓\n驾驭 / 封存 / 放弃 / 交易\n        ↓\n建立Build\n        ↓\n复苏加剧\n        ↓\n寻找第二只鬼\n        ↓\n形成平衡\n        ↓\n命运事件出现\n        ↓\n获得原著关键灵异的玩家实例\n        ↓\n与正史角色产生同源互动\n        ↓\n形成属于玩家自己的驭鬼路线\n```\n\n---\n</content>\n</page>",
+  "url": "https://app.notion.com/p/3f1e1d3578fb81d59643ed49428cde52?pvs=204",
+  "metadata": {
+    "type": "page"
+  },
+  "cover": null,
+  "icon": null,
+  "path": "《神秘复苏》游戏设计总文档 / 游戏设计",
+  "verification": {
+    "state": "unverified"
+  },
+  "page_last_edited_at": "2026-10-06T21:26:14.336Z"
+}

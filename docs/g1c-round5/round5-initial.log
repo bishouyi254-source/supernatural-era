@@ -1,0 +1,64 @@
+✔ well-shaped source still has no approved GDD/action binding; caller approval cannot unlock (5.578ms)
+✔ formal adapter rejects wrong encounter without mutating state (0.5984ms)
+✔ formal adapter rejects wrong source without mutating state (0.3847ms)
+✔ formal adapter rejects missing action without mutating state (0.3897ms)
+✔ formal adapter rejects stale trigger without mutating state (0.3428ms)
+✔ formal adapter rejects cancelled without mutating state (0.3286ms)
+✔ formal adapter rejects unknown medium without mutating state (0.2995ms)
+✔ formal adapter rejects wrong region without mutating state (0.2889ms)
+✔ formal adapter rejects unknown action resistance without mutating state (0.4073ms)
+✔ formal adapter rejects incomplete bodies without mutating state (0.5086ms)
+✔ formal adapter rejects missing player without mutating state (0.3739ms)
+✔ formal adapter rejects duplicate body without mutating state (0.3365ms)
+✔ formal adapter rejects unknown height without mutating state (0.2559ms)
+✔ formal adapter rejects stale body snapshot without mutating state (0.227ms)
+✔ formal adapter rejects missing posture source without mutating state (0.2202ms)
+✔ formal adapter rejects unknown body resistance without mutating state (0.2305ms)
+✔ formal adapter rejects tied tallest without mutating state (0.2605ms)
+✔ formal adapter rejects wrong target without mutating state (0.2091ms)
+✔ formal adapter rejects simulation without mutating state (0.1959ms)
+✔ fire and wind require the actual medium, never a domain weight or name alone (0.2521ms)
+✔ shadow, isolated holder and ghost-eye simulation stay non-formal (0.368ms)
+✔ malformed proposals fail closed (1.4079ms)
+✔ evidence intake projects traceable pending records and drops caller approval (0.4779ms)
+✔ zero energy retreat binds unresolved ledger to original encounter, source and region (266.7767ms)
+✖ rest, reload, duplicate requests and scene restart cannot resolve lost control (177.9703ms)
+✔ tampering with sealed consequence fails validation and cannot mutate on action (173.7688ms)
+✔ old lost-control ledger remains byte-compatible and unknown location blocks optimistic re-entry (0.3417ms)
+✔ ordinary v0.24.7 has no candidate consequences or new state fields (2.2712ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 27
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1063.4867
+
+✖ failing tests:
+
+test at tests\g1c-round5.test.mjs:69:1
+✖ rest, reload, duplicate requests and scene restart cannot resolve lost control (177.9703ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      'enter:blood',
+  +   'combat:start',
+      'rest'
+    ]
+  
+      at TestContext.<anonymous> (file:///C:/Users/ziho/Documents/Codex/2026-10-30/referenced-chatgpt-conversation-this-is-an/work/g1c-round4/tests/g1c-round5.test.mjs:71:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'enter:blood', 'combat:start', 'rest' ],
+    expected: [ 'enter:blood', 'rest' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
