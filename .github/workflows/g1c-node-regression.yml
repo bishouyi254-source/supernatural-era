@@ -53,7 +53,9 @@ jobs:
       - name: Build typed G1-C test fixtures without modifying ordinary saves
         env:
           G1C_OUTPUT: ./tmp-g1c-browser
-        run: node scripts/g1c-audit.mjs
+        run: |
+          node scripts/g1c-audit.mjs
+          node scripts/g1c-round4-evidence.mjs
       - name: Start local test server
         shell: bash
         run: |
@@ -66,6 +68,13 @@ jobs:
           PLAYWRIGHT_MODULE: playwright
           G1C_URL: http://127.0.0.1:4353
         run: node scripts/qa-g1c-chrome.mjs
+      - name: Fourth-round zero energy, trapped player and mental revival boundaries
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+          PLAYWRIGHT_MODULE: playwright
+          G1C_URL: http://127.0.0.1:4353
+          G1C_EDGE_OUTPUT: ./tmp-g1c-edges
+        run: node scripts/g1c-round4-browser.mjs
       - name: Stage browser report inside the checked-out workspace
         if: always()
         shell: bash
@@ -85,6 +94,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: g1c-chrome-${{ github.run_id }}
-          path: ci-browser-evidence
+          path: |
+            ci-browser-evidence
+            tmp-g1c-edges
           retention-days: 14
           if-no-files-found: warn

@@ -1,0 +1,2255 @@
+{
+  "version": 2,
+  "name": "G1-C ISOLATED ONLY",
+  "background": "学生",
+  "seed": 3,
+  "tick": 4,
+  "revision": 4,
+  "life": 84,
+  "energy": 1,
+  "bags": 2,
+  "ward": 0,
+  "scene": "hub",
+  "phase": "异常",
+  "crisis": false,
+  "traits": {
+    "heightCm": 175,
+    "weightKg": 65,
+    "age": 20,
+    "constitution": 2,
+    "mentalBase": 50,
+    "mentalCharges": 0
+  },
+  "lineage": {
+    "generation": 1,
+    "pointsEarned": 0,
+    "pointsSpent": 0,
+    "unspent": 0,
+    "potential": {
+      "constitution": 2,
+      "mentalBase": 50
+    },
+    "deaths": []
+  },
+  "ghostEyeV6": {
+    "format": 1,
+    "unlocks": {},
+    "persistentLoad": 0,
+    "sequence": 0,
+    "energySpent": 2,
+    "energyRestored": 0,
+    "events": []
+  },
+  "contentVersion": 1,
+  "identityCase": {
+    "format": 1,
+    "started": false,
+    "participating": false,
+    "startUnits": null,
+    "chapter": 291,
+    "zone": "city",
+    "anchors": [],
+    "history": [],
+    "evidence": [],
+    "disclosures": [],
+    "hypotheses": [],
+    "closed": false,
+    "registry": {
+      "actor": "CANON-ZHAO-LEI",
+      "source": "CANON-RED-NEWSPAPER",
+      "paper": "CANON-HUMAN-SKIN-PAPER",
+      "site": "CANON-HISTORICAL-HOUSE",
+      "mirror": "CANON-GHOST-MIRROR",
+      "cupboard": "CANON-GHOST-CUPBOARD",
+      "device": "CANON-MISSING-OFFICER-DEVICE"
+    },
+    "identity": {
+      "actorId": "CANON-ZHAO-LEI",
+      "appearance": "UNKNOWN",
+      "historical": "七中既有同学身份（正史引用）",
+      "memory": "UNVERIFIED",
+      "agency": "UNKNOWN",
+      "influence": "UNKNOWN"
+    },
+    "memories": [],
+    "documents": [],
+    "offer": null,
+    "house": {
+      "siteId": "CANON-HISTORICAL-HOUSE",
+      "mirrorId": "CANON-GHOST-MIRROR",
+      "cupboardId": "CANON-GHOST-CUPBOARD",
+      "routeKnown": false,
+      "permission": false,
+      "roomObserved": false,
+      "cupboardObserved": false
+    },
+    "analysis": {
+      "status": "NONE",
+      "submitted": [],
+      "submittedAt": null,
+      "dueUnits": null,
+      "readyAt": null,
+      "receivedAt": null,
+      "result": null
+    },
+    "tracking": {
+      "deviceId": "CANON-MISSING-OFFICER-DEVICE",
+      "registeredOwner": "CANON-MISSING-OFFICER",
+      "holder": null,
+      "permission": false,
+      "status": "UNKNOWN",
+      "observations": [],
+      "verifications": [],
+      "entryKnown": false
+    },
+    "outcome": null
+  },
+  "postwar": {
+    "format": 1,
+    "started": false,
+    "participating": false,
+    "startUnits": null,
+    "chapter": 277,
+    "anchors": [],
+    "history": [],
+    "facts": [],
+    "messages": [],
+    "contacts": [],
+    "recovery": {
+      "checked": [],
+      "contributions": []
+    },
+    "authority": {
+      "zhao": "HISTORICAL",
+      "current": [
+        "CANON-YANG"
+      ]
+    },
+    "forum": {
+      "id": "SUPERNATURAL-FORUM",
+      "homeCity": "DAHAI",
+      "relationship": "UNKNOWN",
+      "membership": false,
+      "cooperation": null
+    },
+    "personal": {
+      "luo": "NOT_CONTACTED",
+      "lin": "NOT_CONTACTED",
+      "huang": "NOT_CONTACTED",
+      "ye": "NOT_CONTACTED",
+      "xiong": "NOT_CONTACTED"
+    },
+    "knownBy": {
+      "player": [],
+      "luo": [],
+      "lin": [],
+      "huang": [],
+      "ye": [],
+      "official": [],
+      "wang": [],
+      "xiong": []
+    },
+    "reputation": {
+      "official": [],
+      "forum": [],
+      "community": []
+    },
+    "audio": [],
+    "forecast": null,
+    "npcUse": [],
+    "conference": {
+      "id": "HQ-S-REVIEW-277",
+      "hostOrganizationId": "OFFICIAL-HQ",
+      "status": "NOT_STARTED",
+      "role": "NONE",
+      "access": [],
+      "sharedEvidence": [],
+      "proposals": [],
+      "decisions": [],
+      "commitments": [],
+      "disputeIntent": "PRESS",
+      "actualResult": null
+    },
+    "negotiation": {
+      "id": "P21-BARRIER-EXCHANGE",
+      "status": "NONE",
+      "asset": null,
+      "terms": null,
+      "transfers": []
+    },
+    "canonCandleRequest": null,
+    "network": {
+      "id": "PLAYER-P21",
+      "contacts": [],
+      "cooperativeActors": [],
+      "commitments": []
+    },
+    "settled": false
+  },
+  "finale": {
+    "format": 1,
+    "started": false,
+    "active": false,
+    "declined": false,
+    "startUnits": null,
+    "lastTick": 0,
+    "chapter": 250,
+    "zone": "center",
+    "anchors": [],
+    "facts": [],
+    "history": [],
+    "source": {
+      "id": "H19-SOURCE",
+      "state": "ACTIVE",
+      "restriction": "NONE"
+    },
+    "incident": "ONGOING",
+    "city": "DISRUPTED",
+    "ambient": "ACTIVE",
+    "current": {
+      "sourcePosition": "SCHOOL_APPROACH",
+      "attemptState": "NOT_STARTED",
+      "localThreat": "ACTIVE"
+    },
+    "causal": [],
+    "transactions": [],
+    "awareness": {
+      "yang": [],
+      "player": [],
+      "wang": []
+    },
+    "strategy": {
+      "received": false,
+      "shared": [],
+      "role": "NONE",
+      "communication": "UNKNOWN",
+      "checkedAt": null
+    },
+    "yang": {
+      "actorId": "CANON-YANG",
+      "facilityId": "CANON-GHOST-MIRROR",
+      "transformation": null
+    },
+    "zhao": {
+      "actorId": "CANON-ZHAO",
+      "publicRole": "官方负责人历史身份",
+      "privateGoal": "UNVERIFIED",
+      "exposure": []
+    },
+    "wish": {
+      "id": "CANON-WISH-SOURCE",
+      "state": "UNRESOLVED"
+    },
+    "artifact": {
+      "id": "CANON-COFFIN-NAIL",
+      "owner": null,
+      "holder": null,
+      "authorizedUser": null,
+      "custodian": null,
+      "valid": false,
+      "transfers": []
+    },
+    "custody": {
+      "id": "H19-SOURCE-CUSTODY",
+      "owner": null,
+      "holder": null,
+      "custodian": null,
+      "transfers": []
+    },
+    "entities": [],
+    "recovery": {
+      "zones": {
+        "center": {
+          "environment": "DISRUPTED",
+          "transport": "UNKNOWN",
+          "official": "ACTIVE",
+          "social": "DISRUPTED",
+          "supernatural": "UNVERIFIED",
+          "checkedAt": null
+        },
+        "east": {
+          "environment": "DISRUPTED",
+          "transport": "UNKNOWN",
+          "official": "ACTIVE",
+          "social": "DISRUPTED",
+          "supernatural": "UNVERIFIED",
+          "checkedAt": null
+        },
+        "west": {
+          "environment": "DISRUPTED",
+          "transport": "UNKNOWN",
+          "official": "ACTIVE",
+          "social": "DISRUPTED",
+          "supernatural": "UNVERIFIED",
+          "checkedAt": null
+        },
+        "north": {
+          "environment": "DISRUPTED",
+          "transport": "UNKNOWN",
+          "official": "ACTIVE",
+          "social": "DISRUPTED",
+          "supernatural": "UNVERIFIED",
+          "checkedAt": null
+        },
+        "south": {
+          "environment": "DISRUPTED",
+          "transport": "UNKNOWN",
+          "official": "ACTIVE",
+          "social": "DISRUPTED",
+          "supernatural": "UNVERIFIED",
+          "checkedAt": null
+        }
+      },
+      "tasks": [],
+      "missing": [],
+      "consequences": []
+    },
+    "contributions": [],
+    "startRevival": {},
+    "resolution": null
+  },
+  "hungry": {
+    "format": 1,
+    "started": false,
+    "active": false,
+    "declined": false,
+    "startUnits": null,
+    "lastTick": 0,
+    "zone": "center",
+    "world": {
+      "chapter": 225,
+      "anchors": [],
+      "events": [],
+      "sourceState": "NOT_CONTAINED",
+      "crisis": "CITY_LOCKDOWN",
+      "ambient": "ACTIVE",
+      "transport": "SEVERELY_REDUCED",
+      "official": "ACTIVE",
+      "publicSafety": "DETERIORATING"
+    },
+    "zones": {
+      "north": {
+        "environment": "阴霾持续",
+        "communication": "DELAYED",
+        "lastObserved": null,
+        "knownCases": [],
+        "protection": "UNKNOWN"
+      },
+      "east": {
+        "environment": "阴霾持续",
+        "communication": "DELAYED",
+        "lastObserved": null,
+        "knownCases": [],
+        "protection": "UNKNOWN"
+      },
+      "south": {
+        "environment": "阴霾持续",
+        "communication": "DELAYED",
+        "lastObserved": null,
+        "knownCases": [],
+        "protection": "UNKNOWN"
+      },
+      "west": {
+        "environment": "阴霾持续",
+        "communication": "DELAYED",
+        "lastObserved": null,
+        "knownCases": [],
+        "protection": "UNKNOWN"
+      },
+      "center": {
+        "environment": "阴霾持续",
+        "communication": "DELAYED",
+        "lastObserved": null,
+        "knownCases": [],
+        "protection": "UNKNOWN"
+      }
+    },
+    "facts": [],
+    "routes": [],
+    "historical": [],
+    "manifestations": [],
+    "relations": [],
+    "stageKnowledge": [],
+    "digit": null,
+    "spatial": {
+      "observed": false,
+      "compared": false,
+      "exposure": 0,
+      "hypothesis": "UNKNOWN"
+    },
+    "shelter": {
+      "id": "H19-PERIPHERAL",
+      "owner": "外围接应组织",
+      "holder": null,
+      "authorization": null,
+      "capacity": 6,
+      "occupants": [],
+      "integrity": 100,
+      "resources": 0,
+      "access": "UNKNOWN",
+      "isolationRules": [
+        "VISUAL",
+        "CONTACT"
+      ],
+      "threatAssessment": "UNKNOWN"
+    },
+    "teams": [
+      {
+        "id": "research",
+        "name": "研究行动组",
+        "participants": [
+          "王小明",
+          "杨间"
+        ],
+        "objective": "调查源头与保护研究",
+        "zone": "center",
+        "communication": "UNKNOWN",
+        "lastKnown": null,
+        "known": [],
+        "outcomes": [],
+        "risk": "UNKNOWN"
+      },
+      {
+        "id": "support",
+        "name": "外围支援组（可变实例）",
+        "participants": [
+          "接应人员"
+        ],
+        "objective": "接应已登记的市民",
+        "zone": "east",
+        "communication": "UNKNOWN",
+        "lastKnown": null,
+        "known": [],
+        "outcomes": [],
+        "risk": "UNKNOWN"
+      }
+    ],
+    "messages": [],
+    "task": "NONE",
+    "candle": {
+      "id": "H19-LOAN-CANDLE",
+      "owner": "外围支援物资库",
+      "holder": null,
+      "authorization": null,
+      "initial": 36,
+      "resource": 36,
+      "consumed": 0,
+      "active": false,
+      "lastSlice": 0,
+      "history": [],
+      "coverage": [],
+      "effectiveness": "INACTIVE"
+    },
+    "people": [
+      {
+        "id": "east-family",
+        "name": "东区求助者（可变实例）",
+        "zone": "east",
+        "members": 2,
+        "known": false,
+        "state": "WAITING"
+      },
+      {
+        "id": "west-workers",
+        "name": "西区滞留者（可变实例）",
+        "zone": "west",
+        "members": 3,
+        "known": false,
+        "state": "WAITING"
+      }
+    ],
+    "protection": null,
+    "ruleResults": [],
+    "history": [],
+    "outcome": null,
+    "startRevival": {}
+  },
+  "cityCrisis": {
+    "format": 1,
+    "started": false,
+    "active": false,
+    "startUnits": null,
+    "lastTick": 0,
+    "world": {
+      "chapter": 207,
+      "anchors": [],
+      "events": []
+    },
+    "phase": "NORMAL",
+    "dimensions": {
+      "environment": "普通光照",
+      "mobility": "区域正常",
+      "communication": "CONNECTED",
+      "publicSafety": "尚无新个案记录",
+      "officialResponse": "常规联络"
+    },
+    "authority": {
+      "controllers": [
+        "zhao-kaiming"
+      ],
+      "scopes": {
+        "zhao-kaiming": [
+          "地区负责人"
+        ]
+      },
+      "playerRole": "INDEPENDENT",
+      "assessment": null,
+      "tasks": [],
+      "allocations": [],
+      "conflicts": []
+    },
+    "organization": {
+      "leader": "ALIVE",
+      "state": "OPERATING",
+      "contacts": [
+        "informant",
+        "trader",
+        "volatile"
+      ],
+      "transactions": "AVAILABLE",
+      "assetDispute": false,
+      "deathRecord": null,
+      "contacted": []
+    },
+    "roads": {
+      "north": {
+        "baseline": "正常道路",
+        "official": "UNKNOWN",
+        "observed": "UNKNOWN",
+        "evidence": []
+      },
+      "airport": {
+        "baseline": "正常道路",
+        "official": "UNKNOWN",
+        "observed": "UNKNOWN",
+        "evidence": []
+      },
+      "local": {
+        "baseline": "正常道路",
+        "official": "UNKNOWN",
+        "observed": "UNKNOWN",
+        "evidence": []
+      }
+    },
+    "facts": [],
+    "communications": [],
+    "audiences": {
+      "operator": [],
+      "research": [],
+      "public": [],
+      "private": []
+    },
+    "cases": [],
+    "graph": {
+      "links": [],
+      "source": "UNKNOWN"
+    },
+    "cooperation": {
+      "state": "UNTESTED",
+      "trials": [],
+      "scope": null
+    },
+    "prepared": false,
+    "familyContact": false,
+    "conference": false,
+    "history": [],
+    "outcome": null
+  },
+  "ghostMirror": {
+    "format": 1,
+    "started": false,
+    "active": false,
+    "declined": false,
+    "phase": "A",
+    "zone": "road",
+    "lastTick": 4,
+    "startUnits": null,
+    "world": {
+      "chapter": 183,
+      "anchors": []
+    },
+    "facts": [],
+    "history": [],
+    "home": {
+      "prepared": false,
+      "cost": 0
+    },
+    "facility": {
+      "id": "CANON-GHOST-MIRROR",
+      "owner": "杨间正史实例",
+      "controller": "杨间正史实例",
+      "location": "古宅封闭区域",
+      "containment": "SEALED",
+      "exposure": "CLOSED",
+      "access": false,
+      "contacts": [],
+      "returnConditions": {
+        "obstruction": "UNKNOWN",
+        "external": "UNVERIFIED"
+      },
+      "entities": [
+        "mirror-unknown-01"
+      ],
+      "hypotheses": {
+        "storage": "UNTESTED",
+        "restriction": "UNTESTED",
+        "space": "UNTESTED"
+      },
+      "imprints": [],
+      "link": "UNKNOWN"
+    },
+    "identity": {
+      "subjectId": "zhang-wei-canon",
+      "activeInstance": "zhang-wei-original",
+      "instances": [
+        {
+          "id": "zhang-wei-original",
+          "status": "ALIVE"
+        }
+      ],
+      "timeline": [],
+      "memoryGap": [],
+      "hearsay": []
+    },
+    "commits": [],
+    "releases": [],
+    "rope": {
+      "sourceId": "wang-yue-canon:rope",
+      "custody": "PRIOR_CONTAINED",
+      "history": []
+    },
+    "ye": {
+      "spirits": [
+        {
+          "id": "ye-shroud",
+          "name": "鬼寿衣",
+          "burden": 38,
+          "revivalProgress": 52,
+          "uses": 0,
+          "activity": "QUIET"
+        },
+        {
+          "id": "ye-teeth",
+          "name": "鬼牙",
+          "burden": 34,
+          "revivalProgress": 44,
+          "uses": 0,
+          "activity": "QUIET"
+        }
+      ],
+      "effects": [],
+      "balance": "未验证",
+      "balanceBias": 8,
+      "effectiveBurden": 72,
+      "ended": false
+    },
+    "privacy": {
+      "existence": [],
+      "location": [],
+      "function": [],
+      "cost": [],
+      "access": []
+    },
+    "research": {
+      "state": "UNVERIFIED",
+      "source": null,
+      "intent": "UNKNOWN",
+      "evidence": []
+    },
+    "report": false,
+    "outcome": null
+  },
+  "regional": {
+    "format": 1,
+    "lastTick": 4,
+    "startUnits": null,
+    "started": false,
+    "active": false,
+    "declined": false,
+    "phase": "A",
+    "route": null,
+    "zone": "cordon",
+    "world": {
+      "chapter": 160,
+      "anchors": [],
+      "rope": "DORMANT",
+      "knocking": "ACTIVE",
+      "residence": false,
+      "evacuated": false
+    },
+    "facts": [],
+    "historical": [],
+    "routes": [],
+    "groups": [
+      {
+        "id": "shop",
+        "name": "商业街求助群（可变实例）",
+        "zone": "shops",
+        "members": 3,
+        "known": false,
+        "state": "WAITING",
+        "panic": "紧张",
+        "cooperation": "UNKNOWN"
+      },
+      {
+        "id": "house",
+        "name": "建筑内求助群（可变实例）",
+        "zone": "building",
+        "members": 2,
+        "known": false,
+        "state": "WAITING",
+        "panic": "紧张",
+        "cooperation": "UNKNOWN"
+      },
+      {
+        "id": "tong",
+        "name": "童倩当前保护的群体",
+        "zone": "hotpot",
+        "members": 4,
+        "known": false,
+        "state": "WAITING",
+        "panic": "紧张",
+        "cooperation": "UNKNOWN"
+      }
+    ],
+    "official": {
+      "contacted": false,
+      "authorized": false,
+      "issued": false,
+      "shared": [],
+      "reports": []
+    },
+    "tong": {
+      "contacted": false,
+      "knowledge": [],
+      "agreement": null,
+      "request": null,
+      "status": "PROTECTING",
+      "revival": 62,
+      "calls": 0
+    },
+    "candle": {
+      "id": "R16-SUPPORT-CANDLE",
+      "owner": "官方支援",
+      "holder": null,
+      "authorization": null,
+      "adaptation": true,
+      "resource": 48,
+      "initial": 48,
+      "active": false,
+      "zone": null,
+      "coverage": [],
+      "effectiveness": "INACTIVE",
+      "consumed": 0,
+      "lastSlice": 0,
+      "lastBurn": 0,
+      "history": []
+    },
+    "plan": null,
+    "departed": false,
+    "protected": [],
+    "saved": [],
+    "deaths": [],
+    "contributions": [],
+    "outcome": null,
+    "startRevival": {},
+    "teachings": [],
+    "history": []
+  },
+  "reunion": {
+    "format": 1,
+    "lastTick": 4,
+    "startUnits": null,
+    "started": false,
+    "active": false,
+    "declined": false,
+    "phase": "A",
+    "assessed": false,
+    "operational": null,
+    "stabilizer": null,
+    "responsibility": "SURVIVOR",
+    "responsibilityDecision": null,
+    "reputation": {
+      "official": [],
+      "club": [],
+      "classmates": []
+    },
+    "world": {
+      "nodes": [],
+      "anchors": [],
+      "yanDead": false,
+      "meeting": false
+    },
+    "facts": [],
+    "baseline": null,
+    "identity": {
+      "apparentIdentity": null,
+      "claimedIdentity": null,
+      "confidence": "UNKNOWN",
+      "worldRecordState": "UNKNOWN",
+      "socialRecognitionState": "UNKNOWN",
+      "reflectionState": "UNKNOWN",
+      "contradictions": []
+    },
+    "perception": {},
+    "party": {
+      "state": "SOCIAL_SCENE",
+      "talked": false,
+      "inviteSeen": false,
+      "declined": false,
+      "protected": [],
+      "rescued": [],
+      "left": [],
+      "protectionRule": null,
+      "windows": 0,
+      "resolution": null,
+      "source": "UNCONTAINED"
+    },
+    "encounter": {
+      "observed": false,
+      "protected": false
+    },
+    "contact": {
+      "yan": "UNKNOWN",
+      "verified": false
+    },
+    "deaths": [],
+    "decision": {
+      "access": false,
+      "attended": false,
+      "issue": null,
+      "knownFacts": [],
+      "participants": [],
+      "proposals": [],
+      "position": null,
+      "outcome": null
+    },
+    "conflict": {
+      "active": false,
+      "stage": "THREAT",
+      "opponent": "邵临（原创驭鬼者）",
+      "revival": 82,
+      "knownAbilities": [],
+      "secondRumor": false,
+      "counter": null,
+      "result": null,
+      "uses": 0
+    },
+    "case": {
+      "id": "PC-1501",
+      "opened": false,
+      "attachedTarget": "张伟",
+      "entityId": "reflection-companion",
+      "followState": "UNKNOWN",
+      "attackState": "UNKNOWN",
+      "transferState": "UNKNOWN",
+      "location": "城市街头",
+      "lastObservationLocation": null,
+      "lastEvidenceTick": null,
+      "observations": [],
+      "openQuestions": [
+        "为什么跟随",
+        "何时发动",
+        "是否能转移",
+        "如何解除"
+      ],
+      "resolutionState": "OPEN"
+    },
+    "history": []
+  },
+  "dual": {
+    "format": 1,
+    "taught": false,
+    "ratingTaught": false,
+    "lastTick": 4,
+    "shares": [],
+    "statements": [],
+    "contradictions": [],
+    "reviewHistory": [],
+    "review": {
+      "pair": [],
+      "start": null,
+      "samples": [],
+      "verdict": "UNVERIFIED",
+      "evaluatedAt": null
+    }
+  },
+  "village": {
+    "format": 1,
+    "started": false,
+    "active": false,
+    "participated": false,
+    "declined": false,
+    "opportunityChecked": false,
+    "linOutcome": null,
+    "startUnits": null,
+    "lastTick": 0,
+    "phase": "PREP",
+    "world": {
+      "slice": "HUANGGANG_EARLY",
+      "nodes": [],
+      "anchors": [],
+      "status": "UNREVEALED",
+      "sourceReturned": false,
+      "vanished": false
+    },
+    "prep": {
+      "participants": false,
+      "intel": false
+    },
+    "evidence": [],
+    "hypotheses": [],
+    "people": {
+      "zhang": {
+        "met": false,
+        "known": [],
+        "private": [],
+        "shared": false,
+        "withheld": false,
+        "role": null
+      },
+      "han": {
+        "met": false,
+        "known": [],
+        "private": [],
+        "shared": false,
+        "withheld": false,
+        "role": null
+      },
+      "he": {
+        "met": false,
+        "known": [],
+        "private": [],
+        "shared": false,
+        "withheld": false,
+        "role": null
+      },
+      "yang": {
+        "met": false,
+        "known": [],
+        "private": [],
+        "shared": false,
+        "withheld": false,
+        "role": null
+      },
+      "feng": {
+        "met": false,
+        "known": [],
+        "private": [],
+        "shared": false,
+        "withheld": false,
+        "role": null
+      },
+      "lin": {
+        "met": false,
+        "known": [],
+        "private": [],
+        "shared": false,
+        "withheld": false,
+        "role": null
+      }
+    },
+    "registry": [],
+    "deaths": [],
+    "coffin": {
+      "id": "HG-COFFIN-UNIQUE",
+      "open": false,
+      "openedAt": null,
+      "observed": false,
+      "assetControl": "IN_PLACE",
+      "ownership": "UNDETERMINED",
+      "informationRights": false
+    },
+    "portrait": [],
+    "environment": {
+      "broken": false,
+      "active": false
+    },
+    "candidate": null,
+    "driving": {
+      "stage": "NONE",
+      "plan": null,
+      "outcome": null,
+      "hostOverload": false,
+      "embedded": false,
+      "costs": 0,
+      "firstBefore": null,
+      "verification": false
+    },
+    "feng": {
+      "heard": false,
+      "checked": false
+    },
+    "merge": false,
+    "cooperated": false,
+    "contribution": null,
+    "escapeWindows": 0,
+    "escaped": false,
+    "missed": false,
+    "aftermath": {
+      "files": false,
+      "wu": false,
+      "questioned": false,
+      "decision": null,
+      "payment": 0,
+      "review": false,
+      "submitted": false
+    },
+    "costs": {
+      "bags": 0,
+      "energy": 0,
+      "life": 0
+    },
+    "startRevival": {},
+    "history": [],
+    "lastSamples": []
+  },
+  "social": {
+    "format": 1,
+    "ux": {
+      "format": 1,
+      "visits": 0,
+      "observations": [],
+      "shared": [],
+      "withheld": false,
+      "followup": false,
+      "asked": [],
+      "challenged": false,
+      "refused": false,
+      "accusation": null,
+      "linked": false,
+      "sourceAsked": false,
+      "compared": false,
+      "probed": [],
+      "humanTestimony": false,
+      "escalation": "DISAGREEMENT",
+      "ready": false,
+      "intent": null,
+      "alerts": [],
+      "memories": []
+    },
+    "started": false,
+    "startUnits": null,
+    "lastTick": 0,
+    "inside": false,
+    "affiliation": "NONE",
+    "declined": false,
+    "rulesRead": false,
+    "reviewed": false,
+    "yanContact": false,
+    "yanConsulted": false,
+    "knowledge": [],
+    "samples": [],
+    "canonNodes": [],
+    "anchors": [],
+    "officialChanged": false,
+    "villageSignal": false,
+    "officialRead": false,
+    "villageKnown": false,
+    "preparation": {
+      "intent": null,
+      "contact": false,
+      "resources": false,
+      "risk": false,
+      "retreat": false
+    },
+    "claims": [],
+    "bought": [],
+    "verified": [],
+    "exposures": [],
+    "spread": [],
+    "sales": [],
+    "trade": {
+      "checked": false,
+      "sourceChecked": false,
+      "sealedBought": false,
+      "candidate": false,
+      "stock": {
+        "gold": 1,
+        "medium": 1,
+        "record": 1
+      },
+      "assetStock": 1
+    },
+    "knownBy": {
+      "wang": [],
+      "yan": [],
+      "informant": [],
+      "trader": [],
+      "volatile": []
+    },
+    "conflict": {
+      "active": false,
+      "stage": 0,
+      "probed": false,
+      "leverage": null,
+      "flags": [],
+      "result": null,
+      "records": []
+    },
+    "controller": {
+      "dead": false,
+      "revival": 82,
+      "spirits": [
+        {
+          "id": "npc-volatile-echo",
+          "sourceId": "echo",
+          "burden": 30,
+          "structure": "CARRIED"
+        }
+      ],
+      "structuralSpirits": [],
+      "reaction": "尚未观察"
+    },
+    "residuals": [],
+    "human": {
+      "active": false,
+      "discovered": false,
+      "evidence": [],
+      "distributionStopped": false,
+      "isolated": false,
+      "warned": false,
+      "referred": false,
+      "operatorExposed": false,
+      "operatorCaught": false,
+      "spread": 0,
+      "status": "UNKNOWN"
+    },
+    "history": []
+  },
+  "mall": {
+    "format": 1,
+    "started": false,
+    "active": false,
+    "zone": "entry",
+    "phase": "INVESTIGATION",
+    "status": "UNREVEALED",
+    "startUnits": null,
+    "lastUnits": 0,
+    "canonNodes": [],
+    "anchors": [],
+    "canonContained": false,
+    "canonResolved": false,
+    "observedFinal": false,
+    "evidence": [],
+    "searched": [],
+    "cameras": [],
+    "timeline": false,
+    "elevator": "NORMAL",
+    "elevatorTrips": 0,
+    "elevatorRides": 0,
+    "containerStock": 1,
+    "vessel": "mannequin",
+    "vesselHistory": [],
+    "restrictedVessels": [],
+    "exposed": false,
+    "isolated": false,
+    "suppressed": false,
+    "containerStarted": false,
+    "sealed": false,
+    "secured": false,
+    "negotiated": false,
+    "handedOff": false,
+    "plan": {
+      "role": null,
+      "retreat": null,
+      "assets": null,
+      "ready": false
+    },
+    "npc": {
+      "yanMet": false,
+      "yanUses": 0,
+      "yanWithdrawn": false,
+      "relations": [],
+      "jiangMet": false,
+      "managerMet": false
+    },
+    "victims": {
+      "a": "MISSING",
+      "b": "MISSING",
+      "c": "UNKNOWN"
+    },
+    "knownVictims": {},
+    "rescued": [],
+    "candidates": [],
+    "excluded": [],
+    "ruleTested": false,
+    "counterexample": false,
+    "crisisWindows": 0,
+    "windowAtBegin": 0,
+    "normalActions": 0,
+    "contribution": [],
+    "costs": {
+      "bags": 0,
+      "cash": 0,
+      "uses": 0
+    },
+    "startRevival": {},
+    "records": [],
+    "reward": 0,
+    "reported": false,
+    "notes": [],
+    "journal": []
+  },
+  "dachang": {
+    "format": 1,
+    "started": false,
+    "enteredAt": null,
+    "lastTick": 0,
+    "elapsed": 0,
+    "timeUnits": 0,
+    "zone": "street",
+    "baseline": null,
+    "schoolHistory": null,
+    "contacts": [],
+    "official": {
+      "attempted": false,
+      "verified": false,
+      "relationship": "NONE",
+      "route": null,
+      "reports": [],
+      "knownSpirits": [],
+      "witnessed": [],
+      "knowledge": [],
+      "requested": [],
+      "supportUsed": false
+    },
+    "codename": null,
+    "codeHistory": [],
+    "candidate": "",
+    "home": {
+      "confirmed": false,
+      "kind": null,
+      "level": 0
+    },
+    "storage": {
+      "record": 0,
+      "gold": 0,
+      "film": 0,
+      "medium": 0,
+      "seal": 0,
+      "voucher": 0
+    },
+    "feeds": [],
+    "bookmarks": {},
+    "facts": [],
+    "rumors": [],
+    "residuals": [],
+    "intrusion": {
+      "eligible": null,
+      "state": "DORMANT",
+      "memory": null,
+      "checked": [],
+      "tension": 0
+    },
+    "clock": {
+      "day": 1,
+      "period": "傍晚"
+    },
+    "canonNodes": [],
+    "signal": {
+      "known": false,
+      "stage": "UNREVEALED",
+      "decision": null,
+      "inquired": false
+    },
+    "trade": {
+      "sellerChecked": false,
+      "itemChecked": false,
+      "stock": 1,
+      "completed": false
+    },
+    "flashlight": false,
+    "balanceObservations": [],
+    "riskReviewed": false,
+    "setupCompleted": false,
+    "notes": "",
+    "history": []
+  },
+  "school": {
+    "format": 1,
+    "started": false,
+    "active": false,
+    "participated": false,
+    "zone": "classroom",
+    "window": 0,
+    "windowTicks": 0,
+    "elapsed": 0,
+    "canonResolved": false,
+    "playerEscaped": false,
+    "result": null,
+    "residual": false,
+    "residualTicks": 0,
+    "nodes": [],
+    "anchors": [],
+    "canonInstances": [],
+    "actors": {
+      "yang": {
+        "zone": "lecture",
+        "goal": "应对异常"
+      },
+      "zhou": {
+        "zone": "lecture",
+        "goal": "临时讲课"
+      }
+    },
+    "missedScenes": [],
+    "contacts": [],
+    "relationships": {
+      "yang": [],
+      "zhou": []
+    },
+    "convergence": {
+      "state": "NONE",
+      "routes": []
+    },
+    "evidence": [],
+    "hypotheses": [],
+    "mapEdges": [],
+    "search": {},
+    "visited": [],
+    "tools": {
+      "map": false,
+      "key": false,
+      "cotton": false,
+      "light": false,
+      "marks": false
+    },
+    "earsCovered": false,
+    "audioStopped": false,
+    "pressure": 0,
+    "shield": 0,
+    "group": {
+      "members": [],
+      "trust": 1,
+      "panic": 0,
+      "knownRules": [],
+      "zone": "classroom",
+      "followState": "FOLLOWING"
+    },
+    "npcs": {
+      "he": {
+        "zone": "classroom",
+        "state": "ALIVE",
+        "warned": false
+      },
+      "lu": {
+        "zone": "office",
+        "state": "ALIVE",
+        "warned": false
+      },
+      "xu": {
+        "zone": "hall",
+        "state": "ALIVE",
+        "warned": false
+      },
+      "qiao": {
+        "zone": "toilet",
+        "state": "ALIVE",
+        "warned": false
+      },
+      "su": {
+        "zone": "stairs",
+        "state": "ALIVE",
+        "warned": false
+      },
+      "lin": {
+        "zone": "yard",
+        "state": "ALIVE",
+        "warned": false
+      }
+    },
+    "knownNPC": {},
+    "opportunities": [],
+    "fate": null,
+    "drivingCount": 0,
+    "startOwned": 0,
+    "startResources": null,
+    "startRevival": {},
+    "records": [],
+    "history": [],
+    "hint": "standard",
+    "notes": ""
+  },
+  "doorCase": {
+    "format": 1,
+    "started": false,
+    "active": false,
+    "seed": null,
+    "elapsed": 0,
+    "zone": "hall",
+    "phase": "ARRIVAL",
+    "worldStatus": "DORMANT",
+    "grade": "C",
+    "source": "HIDDEN",
+    "manifestUntil": 0,
+    "restricted": false,
+    "sealed": false,
+    "driven": false,
+    "removedDoors": false,
+    "evacuated": false,
+    "locked": false,
+    "official": false,
+    "rewarded": false,
+    "fragment": 0,
+    "permission": 0,
+    "experiments": [],
+    "evidence": [],
+    "hypotheses": [],
+    "search": {},
+    "npcs": {
+      "lin": {
+        "state": "ALIVE",
+        "mark": null,
+        "warned": false,
+        "knowledge": [],
+        "supportUsed": 0
+      },
+      "chen": {
+        "state": "ALIVE",
+        "mark": null,
+        "warned": false,
+        "knowledge": [],
+        "supportUsed": 0
+      },
+      "manager": {
+        "state": "ALIVE",
+        "mark": null,
+        "warned": false,
+        "knowledge": [],
+        "supportUsed": 0
+      },
+      "li": {
+        "state": "ALIVE",
+        "mark": {
+          "depth": 0,
+          "age": 0
+        },
+        "warned": false,
+        "knowledge": [],
+        "supportUsed": 0
+      },
+      "observer": {
+        "state": "ALIVE",
+        "mark": null,
+        "warned": false,
+        "knowledge": [],
+        "supportUsed": 0
+      }
+    },
+    "knownNPC": {},
+    "playerMark": null,
+    "observerRevival": 63,
+    "journal": [],
+    "records": [],
+    "hint": "standard",
+    "notes": "",
+    "focus": null,
+    "tutorial": [],
+    "startRevival": {}
+  },
+  "investigation": {
+    "format": 1,
+    "eventSeed": null,
+    "started": false,
+    "active": false,
+    "elapsed": 0,
+    "zone": "hall",
+    "medium": "ACTIVE",
+    "source": "HIDDEN",
+    "broadcast": false,
+    "heard": false,
+    "playerMark": null,
+    "escalation": "DORMANT",
+    "resolution": null,
+    "evidence": [],
+    "hypotheses": {},
+    "contradictions": [],
+    "search": {
+      "hall": "UNSEARCHED",
+      "office": "UNSEARCHED"
+    },
+    "npcKnowledge": {
+      "lu": "ALIVE",
+      "chen": "ALIVE",
+      "lin": "ALIVE",
+      "wu": "ALIVE"
+    },
+    "npcs": [
+      {
+        "id": "lu",
+        "name": "陆安",
+        "state": "ALIVE",
+        "mark": null
+      },
+      {
+        "id": "chen",
+        "name": "陈宁",
+        "state": "ALIVE",
+        "mark": null
+      },
+      {
+        "id": "lin",
+        "name": "林岚",
+        "state": "ALIVE",
+        "mark": null
+      },
+      {
+        "id": "wu",
+        "name": "吴叔",
+        "state": "ALIVE",
+        "mark": null
+      }
+    ],
+    "evacuated": false,
+    "protected": false,
+    "pairTest": false,
+    "records": [],
+    "startRevival": {}
+  },
+  "evolution": {
+    "format": 1,
+    "nodes": {
+      "player-ghost-wind": {
+        "structure": "CARRIED",
+        "role": "FLEX",
+        "studied": false,
+        "mastery": 2,
+        "verified": false,
+        "stress": 0,
+        "integrity": 100,
+        "capacity": 0
+      }
+    },
+    "observed": [],
+    "third": null,
+    "encounter": null,
+    "officer": {
+      "stage": 0,
+      "quota": 1
+    },
+    "host": {
+      "form": 0,
+      "route": null,
+      "core": null,
+      "anchor": null,
+      "integrity": 100,
+      "continuity": "稳定",
+      "step": 0
+    },
+    "mastery": null,
+    "cascade": null,
+    "history": [],
+    "authorityIntegration": {
+      "status": "未开放"
+    }
+  },
+  "bus": {
+    "transit": {
+      "format": 1,
+      "entityId": "CANON-GHOST-BUS",
+      "started": false,
+      "participating": false,
+      "completed": false,
+      "window": 0,
+      "progress": 0,
+      "anchors": [],
+      "knowledge": [],
+      "evidence": [],
+      "counterHistory": [],
+      "counterMeaning": "UNKNOWN",
+      "capacityKnowledge": "UNKNOWN",
+      "seatCapacity": 36,
+      "passengers": [],
+      "position": "middle",
+      "stop": null,
+      "windows": 0,
+      "stranded": false,
+      "exploration": 0,
+      "route": "FIRST",
+      "cycle": 0,
+      "exists": true,
+      "visibility": "UNKNOWN",
+      "yangDisembarked": false,
+      "cloth": {
+        "id": "CANON-CRYING-CLOTH",
+        "owner": null,
+        "holder": null,
+        "observed": false
+      },
+      "sourceLinks": [],
+      "history": [],
+      "initialRevivals": {},
+      "record": null,
+      "protection": 0,
+      "soundIsolation": false,
+      "legacy": null,
+      "deathRecorded": false
+    },
+    "format": 1,
+    "started": false,
+    "active": false,
+    "completed": false,
+    "onBus": false,
+    "phase": 0,
+    "canonProgress": 0,
+    "busState": "APPROACHING",
+    "stability": 85,
+    "stopWindows": 0,
+    "currentStop": null,
+    "previousStops": [],
+    "route": "first",
+    "cycle": 0,
+    "cycleStep": 0,
+    "traceCount": 0,
+    "traceDecision": null,
+    "seat": "middle",
+    "observations": [],
+    "flags": {
+      "BUS_IS_SUPERNATURAL": "UNKNOWN",
+      "BUS_CAN_RUN_WITHOUT_DRIVER": "UNKNOWN",
+      "BUS_CAN_CARRY_SPIRITS": "UNKNOWN",
+      "BUS_STOPS_AT_SUPERNATURAL_LOCATIONS": "UNKNOWN",
+      "BUS_SUPPRESSES_SPIRITS": "UNKNOWN",
+      "ENGINE_OFF_IS_HIGH_RISK": "UNKNOWN",
+      "NORMAL_CITY_STOP_IS_EXIT_OPPORTUNITY": "UNKNOWN",
+      "BUS_CANNOT_BE_SUMMONED_NORMALLY": "UNKNOWN"
+    },
+    "passengers": [],
+    "locations": {},
+    "location": null,
+    "stranded": false,
+    "survey": 0,
+    "cover": 0,
+    "debuff": null,
+    "cloth": {
+      "stage": 0,
+      "result": null,
+      "decision": null
+    },
+    "xArchive": 0,
+    "shutdowns": 0,
+    "stops": 0,
+    "checkpoints": [],
+    "snapshot": null,
+    "worldAnchors": [],
+    "history": [],
+    "initialRevivals": {},
+    "record": null,
+    "knowledgeGraph": [],
+    "deathRecorded": false
+  },
+  "v1": {
+    "format": 1,
+    "cash": 500,
+    "build": null,
+    "active": [
+      "player-ghost-wind"
+    ],
+    "facilities": [],
+    "items": {
+      "record": 0,
+      "gold": 0,
+      "film": 0,
+      "medium": 0,
+      "seal": 0,
+      "voucher": 0
+    },
+    "stock": {
+      "record": 2,
+      "gold": 2,
+      "film": 2,
+      "medium": 2,
+      "seal": 2,
+      "voucher": 2
+    },
+    "trust": {
+      "official": 0,
+      "civil": 0,
+      "trader": 0,
+      "survivors": 0
+    },
+    "missions": [],
+    "contacts": [],
+    "certified": [],
+    "insights": [],
+    "eye": {
+      "fate": null,
+      "decision": null,
+      "step": 0,
+      "layer": 0
+    },
+    "worldRecords": []
+  },
+  "city": {
+    "format": 1,
+    "started": false,
+    "active": false,
+    "completed": false,
+    "elapsed": 0,
+    "phase": 0,
+    "location": "shelter",
+    "pollution": 20,
+    "domain": 25,
+    "communication": 75,
+    "transport": 70,
+    "reliability": 70,
+    "survivors": "正常",
+    "growth": 15,
+    "slaves": [
+      {
+        "id": "slave-1",
+        "kind": "初生",
+        "restricted": false
+      },
+      {
+        "id": "slave-2",
+        "kind": "成熟",
+        "restricted": false
+      },
+      {
+        "id": "slave-3",
+        "kind": "高级",
+        "restricted": false
+      }
+    ],
+    "safehouse": {
+      "seal": 70,
+      "supplies": 3,
+      "internal": false
+    },
+    "resources": {
+      "protection": 3,
+      "medium": 2,
+      "fragments": 0
+    },
+    "tasks": [],
+    "evidence": [],
+    "contribution": 0,
+    "team": [],
+    "npcs": {
+      "locator": {
+        "revivalProgress": 35,
+        "status": "可行动",
+        "calls": 0
+      },
+      "suppressor": {
+        "revivalProgress": 50,
+        "status": "可行动",
+        "calls": 0
+      },
+      "protector": {
+        "revivalProgress": 45,
+        "status": "可行动",
+        "calls": 0
+      }
+    },
+    "window": null,
+    "windowHistory": [],
+    "milestones": [],
+    "residuals": [],
+    "history": [],
+    "settlement": null
+  },
+  "advanced": {
+    "format": 1,
+    "body": false,
+    "alienStage": 0,
+    "mediaStudy": false,
+    "hungryFate": null,
+    "hungryDecision": null,
+    "consumed": 0,
+    "servants": 0
+  },
+  "chapter": {
+    "route": null,
+    "stage": 0,
+    "evidence": [],
+    "npcObservations": [],
+    "rescued": false,
+    "failed": false,
+    "claims": [],
+    "worldHistory": [],
+    "personalHistory": [],
+    "supplyCredits": 2,
+    "supplyCount": 0,
+    "canonInstances": [],
+    "completed": false
+  },
+  "journey": {
+    "active": null,
+    "chapters": {
+      "mall": {
+        "stage": 0,
+        "evidence": [],
+        "completed": false,
+        "withdrawals": 0
+      },
+      "club": {
+        "stage": 0,
+        "evidence": [],
+        "completed": false,
+        "withdrawals": 0
+      },
+      "village": {
+        "stage": 0,
+        "evidence": [],
+        "completed": false,
+        "withdrawals": 0
+      }
+    },
+    "worldHistory": [],
+    "personalHistory": [],
+    "npcObservations": [],
+    "canonInstances": []
+  },
+  "systems": {
+    "death": "alive",
+    "sealed": [],
+    "aids": {},
+    "items": {
+      "barrier": 2
+    },
+    "combinations": [],
+    "second": null,
+    "decisions": {},
+    "research": []
+  },
+  "combat": null,
+  "hostCapacity": 100,
+  "spirits": [
+    {
+      "id": "player-ghost-wind",
+      "sourceId": "ghost-wind",
+      "ruleId": "rule-ghost-wind",
+      "instanceType": "player",
+      "rank": "B",
+      "name": "鬼风（玩家实例）",
+      "burden": 0,
+      "revivalProgress": 7,
+      "naturalRevivalRate": 0,
+      "usageRevivalRate": 3,
+      "activityLevel": "正常",
+      "suppressionReceived": 0,
+      "suppressionRemaining": 0,
+      "development": 0,
+      "stability": "稳定"
+    }
+  ],
+  "relations": [],
+  "compatibility": null,
+  "knowledge": {},
+  "restricted": {},
+  "outcomes": {},
+  "fate": {},
+  "journal": [
+    "你作为普通人抵达住宅区。档案尚未建立。",
+    "唤起鬼风：实际行动已付费；未获得额外厉鬼或剧情资格。",
+    "本行动的独立复苏由宿主结算；行动条与复苏百分比分离。",
+    "隔离参与者观察：不获取计时外壳的正式剧情线索。",
+    "源头按媒介条件结算，不因玩家点击数随机更换规则。",
+    "规则对抗：未能阻断，身体损伤8。",
+    "环境媒介检查结束，未创建递归反击链。",
+    "本行动的独立复苏由宿主结算；行动条与复苏百分比分离。",
+    "平息鬼风：实际行动已付费；未获得额外厉鬼或剧情资格。",
+    "源头按媒介条件结算，不因玩家点击数随机更换规则。",
+    "规则对抗：未能阻断，身体损伤8。",
+    "环境媒介检查结束，未创建递归反击链。",
+    "本行动的独立复苏由宿主结算；行动条与复苏百分比分离。",
+    "退出规则遭遇，现场、证据和消耗保留。"
+  ],
+  "xArchives": {
+    "format": 1,
+    "report": null,
+    "canonicalReport": [],
+    "canonicalSteps": [],
+    "revisions": [],
+    "authorized": false,
+    "requestAt": null
+  },
+  "contracts": {
+    "format": 1,
+    "entries": {},
+    "settlements": []
+  },
+  "worldRegistry": {
+    "format": 1,
+    "facilities": {
+      "CANON-GHOST-CUPBOARD": {
+        "id": "CANON-GHOST-CUPBOARD",
+        "location": "CANON-HISTORICAL-HOUSE",
+        "owner": null,
+        "holder": null,
+        "custodian": null,
+        "transfers": []
+      }
+    },
+    "assets": {},
+    "evidence": {},
+    "relays": [],
+    "claims": [],
+    "relations": []
+  },
+  "calendar": {
+    "format": 1,
+    "id": "GAME-CALENDAR-1",
+    "anchorUnits": 0,
+    "anchorSeconds": 0,
+    "adoptedAt": 0,
+    "origin": "FICTIONAL_ADOPTION_ANCHOR"
+  },
+  "contractCase": {
+    "format": 1,
+    "started": false,
+    "window": 0,
+    "progress": 0,
+    "startUnits": null,
+    "completed": false,
+    "role": "UNDECIDED",
+    "authorization": false,
+    "findings": [],
+    "history": [],
+    "anchors": [],
+    "currentLocation": "REALITY_ARCHIVE",
+    "sealedIntake": false,
+    "outcome": null,
+    "audio": {
+      "id": "C24-PREACHER-RECORDING",
+      "recordType": "CLAIMED_CURSED_AUDIO",
+      "publisher": "CLAIMED-PREACHER",
+      "sourceId": null,
+      "claimId": "C24-AUDIO",
+      "rule": null,
+      "observations": []
+    },
+    "convergenceAt": null
+  },
+  "g1a": {
+    "format": 1,
+    "rope": {
+      "studied": []
+    },
+    "blood": {
+      "contacts": [],
+      "studied": []
+    },
+    "shroud": {
+      "studied": []
+    }
+  },
+  "g1c": {
+    "format": 1,
+    "testOnly": true,
+    "ownerId": "save-91f64827bab0c1ab",
+    "load": 3,
+    "sequence": 4,
+    "events": [
+      {
+        "seq": 1,
+        "tick": 1,
+        "battleId": "save-91f64827bab0c1ab:g1c:1:0",
+        "kind": "wind",
+        "type": "paid",
+        "data": {
+          "verb": "raise",
+          "cost": [
+            1,
+            3,
+            2
+          ]
+        }
+      },
+      {
+        "seq": 2,
+        "tick": 1,
+        "battleId": "save-91f64827bab0c1ab:g1c:1:0",
+        "kind": "wind",
+        "type": "manifested",
+        "data": {
+          "region": "exposed"
+        }
+      },
+      {
+        "seq": 3,
+        "tick": 3,
+        "battleId": "save-91f64827bab0c1ab:g1c:1:0",
+        "kind": "wind",
+        "type": "paid",
+        "data": {
+          "verb": "calm",
+          "cost": [
+            1,
+            2,
+            1
+          ]
+        }
+      },
+      {
+        "seq": 4,
+        "tick": 3,
+        "battleId": "save-91f64827bab0c1ab:g1c:1:0",
+        "kind": "wind",
+        "type": "ceased",
+        "data": {
+          "previousTarget": null
+        }
+      }
+    ],
+    "completed": [],
+    "positions": {},
+    "participantActions": {
+      "source:shadow": {
+        "attempts": 2,
+        "blocked": 0,
+        "completed": 2
+      }
+    },
+    "fire": {
+      "actorId": null,
+      "stage": 0,
+      "load": 0,
+      "evidence": [],
+      "state": "CLOSED",
+      "battleId": null,
+      "region": null,
+      "targetId": null
+    },
+    "wind": {
+      "actorId": "player-ghost-wind",
+      "stage": 0,
+      "load": 3,
+      "evidence": [
+        {
+          "seq": 1,
+          "tick": 1,
+          "battleId": "save-91f64827bab0c1ab:g1c:1:0",
+          "kind": "wind",
+          "type": "paid",
+          "data": {
+            "verb": "raise",
+            "cost": [
+              1,
+              3,
+              2
+            ]
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 1,
+          "battleId": "save-91f64827bab0c1ab:g1c:1:0",
+          "kind": "wind",
+          "type": "manifested",
+          "data": {
+            "region": "exposed"
+          }
+        },
+        {
+          "seq": 3,
+          "tick": 3,
+          "battleId": "save-91f64827bab0c1ab:g1c:1:0",
+          "kind": "wind",
+          "type": "paid",
+          "data": {
+            "verb": "calm",
+            "cost": [
+              1,
+              2,
+              1
+            ]
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 3,
+          "battleId": "save-91f64827bab0c1ab:g1c:1:0",
+          "kind": "wind",
+          "type": "ceased",
+          "data": {
+            "previousTarget": null
+          }
+        }
+      ],
+      "state": "CLOSED",
+      "battleId": null,
+      "region": null,
+      "targetId": null
+    },
+    "press": {
+      "actorId": null,
+      "stage": 0,
+      "load": 0,
+      "evidence": [],
+      "state": "CLOSED",
+      "battleId": null,
+      "region": null,
+      "targetId": null
+    },
+    "seal": "d23cf0da"
+  },
+  "settlement": {
+    "format": 1,
+    "ownerId": "save-91f64827bab0c1ab",
+    "owner": {
+      "seed": 3,
+      "name": "G1-C ISOLATED ONLY",
+      "background": "学生"
+    },
+    "nextEncounter": 2,
+    "active": null,
+    "pending": {},
+    "latestId": "save-91f64827bab0c1ab:1",
+    "records": [
+      {
+        "format": 2,
+        "id": "save-91f64827bab0c1ab:1",
+        "sourceTick": 4,
+        "sourceSeed": 3,
+        "sourceAction": "combat:retreat",
+        "sourceState": "core-v1:7992bd9fc55418e3:30095",
+        "eventId": "shadow",
+        "outcome": "escaped",
+        "missionCompleted": false,
+        "encounter": "G1-C 隔离类型化战斗（非正式关卡）",
+        "secondResolution": null,
+        "coverageLabel": "代价与次数仅覆盖本次载入后的行动",
+        "target": "从规则遭遇撤离",
+        "ruleResult": "已撤离，源头未关押",
+        "abilitiesUsed": [
+          "唤起鬼风",
+          "平息鬼风"
+        ],
+        "cost": {
+          "energy": {
+            "before": 3,
+            "after": 1,
+            "consumed": 2,
+            "restored": 0
+          },
+          "burden": {
+            "before": 0,
+            "after": 3
+          },
+          "ghosts": [
+            {
+              "id": "player-ghost-wind",
+              "name": "鬼风（玩家实例）",
+              "before": 0,
+              "after": 7,
+              "origin": "start",
+              "removed": false
+            }
+          ]
+        },
+        "rewards": [],
+        "log": [
+          {
+            "stage": "记录范围",
+            "text": "原存档缺少战斗起点，仅记录本次载入后的行动与代价。"
+          },
+          {
+            "stage": "行动 1",
+            "text": "唤起鬼风：实际行动已付费；未获得额外厉鬼或剧情资格。"
+          },
+          {
+            "stage": "行动 1",
+            "text": "本行动的独立复苏由宿主结算；行动条与复苏百分比分离。"
+          },
+          {
+            "stage": "行动 1",
+            "text": "行动能量：3 → 2"
+          },
+          {
+            "stage": "行动 1",
+            "text": "鬼风（玩家实例）复苏：0.00% → 4.00%"
+          },
+          {
+            "stage": "行动 2",
+            "text": "隔离参与者观察：不获取计时外壳的正式剧情线索。"
+          },
+          {
+            "stage": "行动 2",
+            "text": "源头按媒介条件结算，不因玩家点击数随机更换规则。"
+          },
+          {
+            "stage": "行动 2",
+            "text": "规则对抗：未能阻断，身体损伤8。"
+          },
+          {
+            "stage": "行动 2",
+            "text": "环境媒介检查结束，未创建递归反击链。"
+          },
+          {
+            "stage": "行动 2",
+            "text": "本行动的独立复苏由宿主结算；行动条与复苏百分比分离。"
+          },
+          {
+            "stage": "行动 2",
+            "text": "身体：100 → 92"
+          },
+          {
+            "stage": "行动 2",
+            "text": "鬼风（玩家实例）复苏：4.00% → 5.00%"
+          },
+          {
+            "stage": "行动 3",
+            "text": "平息鬼风：实际行动已付费；未获得额外厉鬼或剧情资格。"
+          },
+          {
+            "stage": "行动 3",
+            "text": "源头按媒介条件结算，不因玩家点击数随机更换规则。"
+          },
+          {
+            "stage": "行动 3",
+            "text": "规则对抗：未能阻断，身体损伤8。"
+          },
+          {
+            "stage": "行动 3",
+            "text": "环境媒介检查结束，未创建递归反击链。"
+          },
+          {
+            "stage": "行动 3",
+            "text": "本行动的独立复苏由宿主结算；行动条与复苏百分比分离。"
+          },
+          {
+            "stage": "行动 3",
+            "text": "身体：92 → 84"
+          },
+          {
+            "stage": "行动 3",
+            "text": "行动能量：2 → 1"
+          },
+          {
+            "stage": "行动 3",
+            "text": "鬼风（玩家实例）复苏：5.00% → 7.00%"
+          },
+          {
+            "stage": "行动 4",
+            "text": "退出规则遭遇，现场、证据和消耗保留。"
+          }
+        ],
+        "actions": {
+          "returnToMap": true,
+          "retry": false
+        },
+        "resultCode": "escaped",
+        "startTick": 0,
+        "ownerId": "save-91f64827bab0c1ab",
+        "encounterId": "save-91f64827bab0c1ab:1",
+        "checksum": "ef3f711a96fd2be6"
+      }
+    ],
+    "legacyHistory": "unavailable",
+    "prunedCount": 0
+  },
+  "actionReceipt": {
+    "format": 1,
+    "action": "combat:retreat",
+    "tick": 4,
+    "legal": true,
+    "facts": [
+      "退出规则遭遇，现场、证据和消耗保留。"
+    ],
+    "changes": []
+  }
+}

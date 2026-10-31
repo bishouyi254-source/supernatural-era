@@ -1,0 +1,19 @@
+✔ new character retains five independent creation fields and a valid v2 save (30.0615ms)
+✔ legacy v2 without traits upgrades without erasing existing save fields (5.0417ms)
+✔ immediate deaths with no recorded progress never award potential (1.2218ms)
+✔ death evaluation counts existing progression evidence, not UI claims (0.938ms)
+✔ same finalized run never awards death points twice (1.2363ms)
+✔ points separately increase host slots and mental potential (4.3369ms)
+✔ next life resets ghosts and story but inherits paid potential (5.4345ms)
+✔ mental casts refund energy at most once per remaining charge without suppressing revival (2.0368ms)
+✔ development potential never reduces legacy development that was already earned (2.6383ms)
+✔ death allocation cannot occur before death is finalized (0.9795ms)
+✔ real engine death:commit grants exactly one reward with no free resurrection (28.1794ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 399.0075

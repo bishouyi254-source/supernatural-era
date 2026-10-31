@@ -1,0 +1,76 @@
+35:✖ 单鬼开发、复苏独立；档案开发只有一次且封顶100 (235.942ms)
+294:✖ 高级命运只提交一次，结果稳定；第三鬼仍有独立负荷复苏和控制上限 (1384.3405ms)
+314:✖ 第三鬼逐对实验、容量、用途、植入与观察，不替代二鬼进度 (1670.6624ms)
+324:✖ 取得同源鬼差需要独立研究和容量，不能从源头掉落，重复取得无效 (1585.9108ms)
+393:✖ balance R1 c002dff production saves import exactly without recalculating history or losing fields (118.1548ms)
+400:✖ balance R1 old completed request stays idempotent after export/import (5.9187ms)
+562:✖ tests\ghost-eye-v6.test.mjs (2464.6617ms)
+583:✖ tests\ghost-eye-v61.test.mjs (2599.7085ms)
+584:✖ formal native enemy event authorizes only the documented propagation reaction (2848.8953ms)
+585:✖ A decision keeps persistent load append-only through retreat, rest, balance and portable reload (2193.1205ms)
+604:✖ tests\ghost-eye-v63-growth.test.mjs (3553.4828ms)
+628:✖ tests\ghost-eye-v65-information.test.mjs (3682.1619ms)
+647:✖ tests\ghost-eye-v651-information.test.mjs (3421.0768ms)
+1246:✖ 鬼眼完成调查限制后驾驭，八层可由有限证据正常成长达到 (5163.322ms)
+1247:✖ 第三只被动鬼承担负荷，主动最多两只且战斗不显示未配置调用 (5187.1527ms)
+1248:✖ V6拒绝旧七层回滚行动条入口，临界反应由V6领域与额度门控 (3611.504ms)
+1249:✖ V6拒绝旧八层回滚敌行动条入口，永久NPC结果保持 (3372.0265ms)
+1250:✖ 已提交死亡不提供重启入口 (2530.7558ms)
+1251:✖ V6鬼域展开替代旧通用调用，基础代价1而非旧22 (2662.1007ms)
+1252:✖ 苏醒100触发危机，关系压制不能把100当成普通活动 (2907.2847ms)
+1253:✖ 安全自动对未知、神灵异和高复苏停止 (3079.2521ms)
+1254:✖ 新增状态与快照拒绝非法导入，旧合法存档只追加系统 (3547.8079ms)
+1256:✖ 新分页复用布局，战斗仅七个分类入口 (3119.814ms)
+1259:✖ V6展开不凭旧三层选择伪造敌规律认证 (2849.9981ms)
+1321:ℹ tests 1228
+1323:ℹ pass 1204
+1324:ℹ fail 24
+1330:✖ failing tests:
+1332:test at tests\cd.test.mjs:20:1
+1333:✖ 单鬼开发、复苏独立；档案开发只有一次且封顶100 (235.942ms)
+1353:test at tests\ef.test.mjs:27:1
+1354:✖ 高级命运只提交一次，结果稳定；第三鬼仍有独立负荷复苏和控制上限 (1384.3405ms)
+1374:test at tests\evolution.test.mjs:15:1
+1375:✖ 第三鬼逐对实验、容量、用途、植入与观察，不替代二鬼进度 (1670.6624ms)
+1393:test at tests\evolution.test.mjs:25:1
+1394:✖ 取得同源鬼差需要独立研究和容量，不能从源头掉落，重复取得无效 (1585.9108ms)
+1404:test at tests\g1a-balance-r1.test.mjs:10:1
+1405:✖ balance R1 c002dff production saves import exactly without recalculating history or losing fields (118.1548ms)
+1427:test at tests\g1a-balance-r1.test.mjs:17:1
+1428:✖ balance R1 old completed request stays idempotent after export/import (5.9187ms)
+1450:test at tests\ghost-eye-v6.test.mjs:1:1
+1451:✖ tests\ghost-eye-v6.test.mjs (2464.6617ms)
+1454:test at tests\ghost-eye-v61.test.mjs:1:1
+1455:✖ tests\ghost-eye-v61.test.mjs (2599.7085ms)
+1458:test at tests\ghost-eye-v62-coverage.test.mjs:6:1
+1459:✖ formal native enemy event authorizes only the documented propagation reaction (2848.8953ms)
+1477:test at tests\ghost-eye-v62-coverage.test.mjs:19:1
+1478:✖ A decision keeps persistent load append-only through retreat, rest, balance and portable reload (2193.1205ms)
+1497:test at tests\ghost-eye-v63-growth.test.mjs:1:1
+1498:✖ tests\ghost-eye-v63-growth.test.mjs (3553.4828ms)
+1501:test at tests\ghost-eye-v65-information.test.mjs:1:1
+1502:✖ tests\ghost-eye-v65-information.test.mjs (3682.1619ms)
+1505:test at tests\ghost-eye-v651-information.test.mjs:1:1
+1506:✖ tests\ghost-eye-v651-information.test.mjs (3421.0768ms)
+1509:test at tests\v1.test.mjs:16:1
+1510:✖ 鬼眼完成调查限制后驾驭，八层可由有限证据正常成长达到 (5163.322ms)
+1529:test at tests\v1.test.mjs:17:1
+1530:✖ 第三只被动鬼承担负荷，主动最多两只且战斗不显示未配置调用 (5187.1527ms)
+1550:test at tests\v1.test.mjs:18:1
+1551:✖ V6拒绝旧七层回滚行动条入口，临界反应由V6领域与额度门控 (3611.504ms)
+1571:test at tests\v1.test.mjs:19:1
+1572:✖ V6拒绝旧八层回滚敌行动条入口，永久NPC结果保持 (3372.0265ms)
+1592:test at tests\v1.test.mjs:20:1
+1593:✖ 已提交死亡不提供重启入口 (2530.7558ms)
+1613:test at tests\v1.test.mjs:21:1
+1614:✖ V6鬼域展开替代旧通用调用，基础代价1而非旧22 (2662.1007ms)
+1634:test at tests\v1.test.mjs:22:1
+1635:✖ 苏醒100触发危机，关系压制不能把100当成普通活动 (2907.2847ms)
+1654:test at tests\v1.test.mjs:23:1
+1655:✖ 安全自动对未知、神灵异和高复苏停止 (3079.2521ms)
+1674:test at tests\v1.test.mjs:24:1
+1675:✖ 新增状态与快照拒绝非法导入，旧合法存档只追加系统 (3547.8079ms)
+1695:test at tests\v1.test.mjs:26:1
+1696:✖ 新分页复用布局，战斗仅七个分类入口 (3119.814ms)
+1715:test at tests\v1.test.mjs:29:1
+1716:✖ V6展开不凭旧三层选择伪造敌规律认证 (2849.9981ms)

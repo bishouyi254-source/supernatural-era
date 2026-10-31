@@ -1,5 +1,6 @@
 import {g1cEnemy,g1cIntent} from './g1c-production.js';
 import {g1bEnemy} from './g1b-production.js';
+import {mentalRuleBonus} from './character-potential.js';
 import {productionEnemy,productionIntent} from './g1a-production.js';
 import {candidateEnemy,candidateIntent} from './g1a-candidate.js';
 import {recordBloodContest} from './g1a-archives.js';
@@ -39,10 +40,10 @@ export function applyCombat(s,action,roundStarted=false){const c=s.combat,r=rule
  if(k==='avoid'){c.position='safe';log('玩家','避开触发媒介；行为避险不要求证据认证。');}
  if(k==='force'){c.position='exposed';log('玩家','普通力量无法消灭厉鬼，源头没有气血或击杀经验。');}
  if(k==='risk'){c.position='exposed';log('玩家',events[c.eventId].riskText);}
- if(k.startsWith('ability:')){const g=s.spirits.find(v=>v.id===k.slice(8)),own=ruleFor(g.sourceId,events[g.sourceId]);s.energy--;used=[g.id];develop(g,3);c.wardWeight=v1Ward(s,g,c.eventId);c.wardMedium=own.medium;c.cooldowns[g.id]=2;log('玩家',g.name+'对抗媒介，开发度＋3；自身独立复苏照常结算。');}
+ if(k.startsWith('ability:')){const g=s.spirits.find(v=>v.id===k.slice(8)),own=ruleFor(g.sourceId,events[g.sourceId]);s.energy--;used=[g.id];develop(g,3);c.wardWeight=Math.min(10,v1Ward(s,g,c.eventId)+mentalRuleBonus(s));c.wardMedium=own.medium;c.cooldowns[g.id]=2;log('玩家',g.name+'对抗媒介，开发度＋3；自身独立复苏照常结算。');}
  if(k.startsWith('focus:')||k.startsWith('cover:')){
   const cover=k.startsWith('cover:'),g=s.spirits.find(g=>g.id===k.slice(6)),own=ruleFor(g.sourceId,events[g.sourceId]);
-  s.energy-=cover?2:1;used=[g.id];develop(g,3);c.wardWeight=Math.min(10,v1Ward(s,g,c.eventId)+(cover?0:1));c.wardMedium=own.medium;c.cooldowns[g.id]=3;
+  s.energy-=cover?2:1;used=[g.id];develop(g,3);c.wardWeight=Math.min(10,v1Ward(s,g,c.eventId)+(cover?0:1)+mentalRuleBonus(s));c.wardMedium=own.medium;c.cooldowns[g.id]=3;
   if(cover)c.position='safe';
   log('玩家',g.name+(cover?'收束掩护：撤出触发区域，保留同媒介防护；能量－2。':'集中压制：同媒介权重＋1；能量－1。')+'开发＋3，调用复苏独立结算；不关押或消灭源头。');
  }

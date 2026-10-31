@@ -3,7 +3,9 @@ import {newGame,act,available,validate,upgrade} from '../src/engine.js';
 import {ready,supported} from './v1-helpers.mjs';
 export function step(s,a,trace=[]){assert.ok(available(s).includes(a),'legal '+a+' '+available(s).join(','));const next=act(s,a);assert.ok(validate(next),'valid '+a);trace.push({action:a,tick:next.tick,revival:next.spirits.find(g=>g.sourceId==='eye')?.revivalProgress,energy:next.energy});return next;}
 export function legalEye(){
+ // Explicit regression fixture qualification; not a normal newGame acquisition claim.
  const trace=[];let s=supported(ready(3,true));
+ s.traits.constitution=3;s.lineage.potential.constitution=3;
  for(const a of ['advanced:body','v1:contact:official','v1:mission:school','v1:mission:mall','v1:mission:village','v1:mission:city','v1:buy:record','v1:certify:shadow','v1:buy:record','v1:certify:echo','v1:eye:seek','v1:eye:observe','v1:eye:verify','v1:eye:restrict','chapter:supply','v1:eye:capture','v1:facility:intel','v1:certify:eye','study:player-eye','v1:resonance:eye'])s=step(s,a,trace);
  for(let n=0;n<7;n++)s=step(s,available(s).find(a=>a.startsWith('v1:eye:research:')),trace);
  s=step(s,'v1:active:remove:player-echo',trace);s=step(s,'v1:active:add:player-eye',trace);s=step(s,'rest',trace);

@@ -6,11 +6,12 @@ import {newGame,available,act,validate,upgrade} from '../src/engine.js';
 import {growthFor,hostState,suppressionFor} from '../src/spirits.js';
 import {EYE_V6,eyeCost} from '../src/ghost-eye-v6.js';
 import {legalEye} from '../tests/ghost-eye-v6-helpers.mjs';
+import {earnedThirdSlotOptions} from '../tests/potential-prior-life.mjs';
 const out=path.resolve(process.argv[2]||'../../outputs/v63-data');await fs.mkdir(out,{recursive:true});
 export const snap=s=>({tick:s.tick,revision:s.revision,scene:s.scene,life:s.life,energy:s.energy,crisis:s.crisis,death:s.systems.death,host:hostState(s),ghosts:s.spirits.map(g=>({id:g.id,revival:g.revivalProgress,development:g.development,awakening:g.awakeningProgress,suppression:suppressionFor(s,g),naturalRate:g.naturalRevivalRate,temporary:g.suppressionRemaining})),relations:structuredClone(s.relations),load:s.ghostEyeV6.persistentLoad,energySpent:s.ghostEyeV6.energySpent,energyRestored:s.ghostEyeV6.energyRestored,casts:s.ghostEyeV6.sequence,cash:s.v1.cash,stock:s.v1.stock,items:s.v1.items,barrier:s.systems.items.barrier,bags:s.bags,resources:s.city.resources,build:s.v1.build,advanced:s.advanced,nodes:s.evolution.nodes,third:s.evolution.third,second:s.systems.second,legal:available(s)});
 export function go(s,a,trace=[]){assert.ok(available(s).includes(a),'unavailable '+a);const before=snap(s),n=act(s,a);assert.ok(validate(n),'invalid '+a);trace.push({a,before,after:snap(n),receipt:n.actionReceipt,journal:n.journal.slice(-3),eyeEvent:n.ghostEyeV6.sequence>s.ghostEyeV6.sequence?n.ghostEyeV6.events.at(-1):null});return n;}
 function journey(s,id,t){s=go(s,'journey:'+id,t);for(let i=0;s.journey.active&&i<30;i++){const av=available(s);s=go(s,['journey:intel','journey:observe','journey:finish','journey:avoid','journey:advance'].find(a=>av.includes(a)),t);}assert.ok(!s.journey.active);return s;}
-export function generate(seed=3){const trace=[],states={};let s=newGame('V6.3合法成长','学生',seed,'v63-seed-'+seed);
+export function generate(seed=3){const trace=[],states={};let s=newGame('V6.3合法成长','学生',seed,'v63-seed-'+seed,earnedThirdSlotOptions());
  for(const a of ['chapter:perimeter','chapter:advance','chapter:avoid','chapter:leave','chapter:finish','enter:shadow','clue:witness','clue:power','theory:true','restrict','capture'])s=go(s,a,trace);states.single=structuredClone(s);
  s=journey(journey(s,'mall',trace),'club',trace);states.beforeSecond=structuredClone(s);
  for(const a of ['enter:echo','clue:witness','clue:power','theory:true','restrict','second:begin','second:match:mutual','second:implant','second:stabilize'])s=go(s,a,trace);states.second=structuredClone(s);

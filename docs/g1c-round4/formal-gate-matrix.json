@@ -1,0 +1,529 @@
+[
+  {
+    "event": "tablet",
+    "kind": "UNTYPED_EVENT",
+    "origin": "G1-B游戏候选，回返资格目前仅隔离验证",
+    "eligible": {
+      "fire": false,
+      "wind": false,
+      "press": false
+    },
+    "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+    "missing": {
+      "fire": [
+        "real enemy source action",
+        "verified spirit medium",
+        "real impact region",
+        "source-side contest weight"
+      ],
+      "wind": [
+        "real enemy source action",
+        "explicit domain-type initiative",
+        "verified domain region",
+        "source-side domain weight"
+      ],
+      "press": [
+        "real body registry",
+        "complete height and posture ordering at the trigger tick",
+        "real in-range bodies",
+        "action target and physical resistance"
+      ]
+    }
+  },
+  {
+    "event": "caller",
+    "kind": "UNTYPED_EVENT",
+    "origin": "G1-B游戏候选；与鬼回头独立",
+    "eligible": {
+      "fire": false,
+      "wind": false,
+      "press": false
+    },
+    "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+    "missing": {
+      "fire": [
+        "real enemy source action",
+        "verified spirit medium",
+        "real impact region",
+        "source-side contest weight"
+      ],
+      "wind": [
+        "real enemy source action",
+        "explicit domain-type initiative",
+        "verified domain region",
+        "source-side domain weight"
+      ],
+      "press": [
+        "real body registry",
+        "complete height and posture ordering at the trigger tick",
+        "real in-range bodies",
+        "action target and physical resistance"
+      ]
+    }
+  },
+  {
+    "event": "smoke",
+    "kind": "UNTYPED_EVENT",
+    "origin": "G1-B游戏候选；李乐平相关鬼烟定位，非鬼雾/鬼风/鬼眼鬼域",
+    "eligible": {
+      "fire": false,
+      "wind": false,
+      "press": false
+    },
+    "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+    "missing": {
+      "fire": [
+        "real enemy source action",
+        "verified spirit medium",
+        "real impact region",
+        "source-side contest weight"
+      ],
+      "wind": [
+        "real enemy source action",
+        "explicit domain-type initiative",
+        "verified domain region",
+        "source-side domain weight"
+      ],
+      "press": [
+        "real body registry",
+        "complete height and posture ordering at the trigger tick",
+        "real in-range bodies",
+        "action target and physical resistance"
+      ]
+    }
+  },
+  {
+    "event": "ghost-fire",
+    "kind": "UNTYPED_EVENT",
+    "origin": "G1-C候选：真实灵异焚烧及宿主反噬；隔离验证",
+    "eligible": {
+      "fire": false,
+      "wind": false,
+      "press": false
+    },
+    "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+    "missing": {
+      "fire": [
+        "real enemy source action",
+        "verified spirit medium",
+        "real impact region",
+        "source-side contest weight"
+      ],
+      "wind": [
+        "real enemy source action",
+        "explicit domain-type initiative",
+        "verified domain region",
+        "source-side domain weight"
+      ],
+      "press": [
+        "real body registry",
+        "complete height and posture ordering at the trigger tick",
+        "real in-range bodies",
+        "action target and physical resistance"
+      ]
+    }
+  },
+  {
+    "event": "ghost-wind",
+    "kind": "UNTYPED_EVENT",
+    "origin": "G1-C候选：侵扰既存鬼域；隔离验证",
+    "eligible": {
+      "fire": false,
+      "wind": false,
+      "press": false
+    },
+    "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+    "missing": {
+      "fire": [
+        "real enemy source action",
+        "verified spirit medium",
+        "real impact region",
+        "source-side contest weight"
+      ],
+      "wind": [
+        "real enemy source action",
+        "explicit domain-type initiative",
+        "verified domain region",
+        "source-side domain weight"
+      ],
+      "press": [
+        "real body registry",
+        "complete height and posture ordering at the trigger tick",
+        "real in-range bodies",
+        "action target and physical resistance"
+      ]
+    }
+  },
+  {
+    "event": "ghost-press",
+    "kind": "UNTYPED_EVENT",
+    "origin": "G1-C候选：有身高关系的条件压制；隔离验证",
+    "eligible": {
+      "fire": false,
+      "wind": false,
+      "press": false
+    },
+    "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+    "missing": {
+      "fire": [
+        "real enemy source action",
+        "verified spirit medium",
+        "real impact region",
+        "source-side contest weight"
+      ],
+      "wind": [
+        "real enemy source action",
+        "explicit domain-type initiative",
+        "verified domain region",
+        "source-side domain weight"
+      ],
+      "press": [
+        "real body registry",
+        "complete height and posture ordering at the trigger tick",
+        "real in-range bodies",
+        "action target and physical resistance"
+      ]
+    }
+  },
+  {
+    "event": "g1a-rope-candidate",
+    "kind": "UNTYPED_EVENT",
+    "origin": "G1-A补完稿；仅隔离模拟，不是获取剧情",
+    "eligible": {
+      "fire": false,
+      "wind": false,
+      "press": false
+    },
+    "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+    "missing": {
+      "fire": [
+        "real enemy source action",
+        "verified spirit medium",
+        "real impact region",
+        "source-side contest weight"
+      ],
+      "wind": [
+        "real enemy source action",
+        "explicit domain-type initiative",
+        "verified domain region",
+        "source-side domain weight"
+      ],
+      "press": [
+        "real body registry",
+        "complete height and posture ordering at the trigger tick",
+        "real in-range bodies",
+        "action target and physical resistance"
+      ]
+    }
+  },
+  {
+    "event": "knocker",
+    "kind": "UNVERIFIED_SCHOOL_SOURCE",
+    "origin": null,
+    "eligible": {
+      "fire": false,
+      "wind": false,
+      "press": false
+    },
+    "reason": "不满足七中真实音频行动的开始/参与条件，不能依据事件名推断正式意图",
+    "missing": {
+      "fire": [
+        "real enemy source action",
+        "verified spirit medium",
+        "real impact region",
+        "source-side contest weight"
+      ],
+      "wind": [
+        "real enemy source action",
+        "explicit domain-type initiative",
+        "verified domain region",
+        "source-side domain weight"
+      ],
+      "press": [
+        "real body registry",
+        "complete height and posture ordering at the trigger tick",
+        "real in-range bodies",
+        "action target and physical resistance"
+      ]
+    }
+  },
+  {
+    "event": "door",
+    "kind": "UNTYPED_EVENT",
+    "origin": "0.9.0原创调查；非原著灵异，数值为测试预算",
+    "eligible": {
+      "fire": false,
+      "wind": false,
+      "press": false
+    },
+    "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+    "missing": {
+      "fire": [
+        "real enemy source action",
+        "verified spirit medium",
+        "real impact region",
+        "source-side contest weight"
+      ],
+      "wind": [
+        "real enemy source action",
+        "explicit domain-type initiative",
+        "verified domain region",
+        "source-side domain weight"
+      ],
+      "press": [
+        "real body registry",
+        "complete height and posture ordering at the trigger tick",
+        "real in-range bodies",
+        "action target and physical resistance"
+      ]
+    }
+  },
+  {
+    "event": "watch",
+    "kind": "UNTYPED_EVENT",
+    "origin": "V2.0 ORIGINAL样板；非原著灵异",
+    "eligible": {
+      "fire": false,
+      "wind": false,
+      "press": false
+    },
+    "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+    "missing": {
+      "fire": [
+        "real enemy source action",
+        "verified spirit medium",
+        "real impact region",
+        "source-side contest weight"
+      ],
+      "wind": [
+        "real enemy source action",
+        "explicit domain-type initiative",
+        "verified domain region",
+        "source-side domain weight"
+      ],
+      "press": [
+        "real body registry",
+        "complete height and posture ordering at the trigger tick",
+        "real in-range bodies",
+        "action target and physical resistance"
+      ]
+    }
+  },
+  {
+    "event": "officer",
+    "kind": "UNTYPED_EVENT",
+    "origin": "V1.6玩家实例；数值与外围事件为游戏改编",
+    "eligible": {
+      "fire": false,
+      "wind": false,
+      "press": false
+    },
+    "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+    "missing": {
+      "fire": [
+        "real enemy source action",
+        "verified spirit medium",
+        "real impact region",
+        "source-side contest weight"
+      ],
+      "wind": [
+        "real enemy source action",
+        "explicit domain-type initiative",
+        "verified domain region",
+        "source-side domain weight"
+      ],
+      "press": [
+        "real body registry",
+        "complete height and posture ordering at the trigger tick",
+        "real in-range bodies",
+        "action target and physical resistance"
+      ]
+    }
+  },
+  {
+    "event": "eye",
+    "kind": "UNTYPED_EVENT",
+    "origin": "V1母文档玩家实例；鬼域、权柄与数值为GDD游戏模型",
+    "eligible": {
+      "fire": false,
+      "wind": false,
+      "press": false
+    },
+    "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+    "missing": {
+      "fire": [
+        "real enemy source action",
+        "verified spirit medium",
+        "real impact region",
+        "source-side contest weight"
+      ],
+      "wind": [
+        "real enemy source action",
+        "explicit domain-type initiative",
+        "verified domain region",
+        "source-side domain weight"
+      ],
+      "press": [
+        "real body registry",
+        "complete height and posture ordering at the trigger tick",
+        "real in-range bodies",
+        "action target and physical resistance"
+      ]
+    }
+  },
+  {
+    "event": "hungry",
+    "kind": "UNTYPED_EVENT",
+    "origin": "GDD饿死鬼玩家实例；高级获取与规则为游戏改编",
+    "eligible": {
+      "fire": false,
+      "wind": false,
+      "press": false
+    },
+    "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+    "missing": {
+      "fire": [
+        "real enemy source action",
+        "verified spirit medium",
+        "real impact region",
+        "source-side contest weight"
+      ],
+      "wind": [
+        "real enemy source action",
+        "explicit domain-type initiative",
+        "verified domain region",
+        "source-side domain weight"
+      ],
+      "press": [
+        "real body registry",
+        "complete height and posture ordering at the trigger tick",
+        "real in-range bodies",
+        "action target and physical resistance"
+      ]
+    }
+  },
+  {
+    "event": "blood",
+    "kind": "UNTYPED_EVENT",
+    "origin": "GDD同源玩家实例；获取路线与限制规律为游戏改编",
+    "eligible": {
+      "fire": false,
+      "wind": false,
+      "press": false
+    },
+    "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+    "missing": {
+      "fire": [
+        "real enemy source action",
+        "verified spirit medium",
+        "real impact region",
+        "source-side contest weight"
+      ],
+      "wind": [
+        "real enemy source action",
+        "explicit domain-type initiative",
+        "verified domain region",
+        "source-side domain weight"
+      ],
+      "press": [
+        "real body registry",
+        "complete height and posture ordering at the trigger tick",
+        "real in-range bodies",
+        "action target and physical resistance"
+      ]
+    }
+  },
+  {
+    "event": "headless",
+    "kind": "UNTYPED_EVENT",
+    "origin": "GDD同源玩家实例；外围路线与规则数值为游戏改编",
+    "eligible": {
+      "fire": false,
+      "wind": false,
+      "press": false
+    },
+    "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+    "missing": {
+      "fire": [
+        "real enemy source action",
+        "verified spirit medium",
+        "real impact region",
+        "source-side contest weight"
+      ],
+      "wind": [
+        "real enemy source action",
+        "explicit domain-type initiative",
+        "verified domain region",
+        "source-side domain weight"
+      ],
+      "press": [
+        "real body registry",
+        "complete height and posture ordering at the trigger tick",
+        "real in-range bodies",
+        "action target and physical resistance"
+      ]
+    }
+  },
+  {
+    "event": "shadow",
+    "kind": "UNTYPED_EVENT",
+    "origin": "游戏原创测试事件",
+    "eligible": {
+      "fire": false,
+      "wind": false,
+      "press": false
+    },
+    "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+    "missing": {
+      "fire": [
+        "real enemy source action",
+        "verified spirit medium",
+        "real impact region",
+        "source-side contest weight"
+      ],
+      "wind": [
+        "real enemy source action",
+        "explicit domain-type initiative",
+        "verified domain region",
+        "source-side domain weight"
+      ],
+      "press": [
+        "real body registry",
+        "complete height and posture ordering at the trigger tick",
+        "real in-range bodies",
+        "action target and physical resistance"
+      ]
+    }
+  },
+  {
+    "event": "echo",
+    "kind": "UNTYPED_EVENT",
+    "origin": "游戏原创测试事件",
+    "eligible": {
+      "fire": false,
+      "wind": false,
+      "press": false
+    },
+    "reason": "普通事件只有媒介/默认权重/行动条，不含G1-C所需的正式灵异类型与身体身高证据",
+    "missing": {
+      "fire": [
+        "real enemy source action",
+        "verified spirit medium",
+        "real impact region",
+        "source-side contest weight"
+      ],
+      "wind": [
+        "real enemy source action",
+        "explicit domain-type initiative",
+        "verified domain region",
+        "source-side domain weight"
+      ],
+      "press": [
+        "real body registry",
+        "complete height and posture ordering at the trigger tick",
+        "real in-range bodies",
+        "action target and physical resistance"
+      ]
+    }
+  }
+]

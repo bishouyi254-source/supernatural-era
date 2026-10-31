@@ -5,6 +5,7 @@ import {activeIds,v1Ward} from './v1.js';
 import {growthFor,revivalCrisisFor} from './spirits.js';
 import {ruleBlocked} from './evolution-model.js';
 import {ruleContest} from './rules.js';
+import {mentalRuleBonus} from './character-potential.js';
 
 export const G1C_SOURCES=Object.freeze({fire:'ghost-fire',wind:'ghost-wind',press:'ghost-press'});
 export const G1C_COSTS=Object.freeze({
@@ -37,7 +38,7 @@ function fact(s,k,type,data={}){
 function enabled(s,k){
  const g=own(s,k);return !!g&&activeIds(s).includes(g.id)&&!revivalCrisisFor(s,g)&&!ruleBlocked(s,g.id)&&!s.systems.combinations.some(v=>v.disabledId===g.id);
 }
-function weight(s,k){const g=own(s,k);return g?Math.min(10,v1Ward(s,g,s.combat?.eventId||'blood')):0;}
+function weight(s,k){const g=own(s,k);return g?Math.min(10,v1Ward(s,g,s.combat?.eventId||'blood')+mentalRuleBonus(s)):0;}
 function affordable(s,k,verb){
  if(!enabled(s,k)||s.energy<G1C_COSTS[verb][0])return false;
  const p=structuredClone(s),g=own(p,k);p.g1c.load+=G1C_COSTS[verb][2];
@@ -212,7 +213,7 @@ export function advanceG1C(before,s,action,c){
   if(k==='fire'&&own(s,k).revivalProgress>=70){s.life=Math.max(0,s.life-2);fact(s,k,'backlash',{damage:2});}
   if(k==='press'){s.life=Math.max(0,s.life-1);fact(s,k,'host-burden',{damage:1,targetId:v.targetId});}
  }
- if(s.life===0)s.systems.death='pending';
+ if(s.life===0&&s.systems.death==='alive')s.systems.death='pending';
  sealState(s);
 }
 export function g1cLabel(a){

@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';import path from 'node:path';import assert from 'node:assert/strict';import {createRequire} from 'node:module';
 import {act,validate} from '../src/engine.js';
-const out=path.resolve('../../outputs/g1-c/browser-g1c'),base=process.env.G1C_URL||'http://127.0.0.1:4353';await fs.mkdir(out,{recursive:true});
+const out=path.resolve(process.env.G1C_BROWSER_OUTPUT||'../../outputs/g1-c/browser-g1c'),base=process.env.G1C_URL||'http://127.0.0.1:4353';await fs.mkdir(out,{recursive:true});
 const fixtures=JSON.parse(await fs.readFile('scripts/g1c-states.json','utf8'));
 const {chromium}=createRequire(import.meta.url)(process.env.PLAYWRIGHT_MODULE||'C:/Users/ziho/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const browser=await chromium.launch({executablePath:process.env.CHROME_PATH||'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true});
