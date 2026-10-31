@@ -1,0 +1,104 @@
+name: G1-C candidate regression
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  node-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: G1-C energy closure
+        run: node --test tests/g1c-energy-closure.test.mjs
+      - name: Fifth-round fail-closed source contracts and persistent consequences
+        run: node --test tests/g1c-round5.test.mjs
+      - name: All checked-in Node regression tests
+        run: node --test tests/*.test.mjs
+      - name: G1-C actual zero-energy closure and 33 scenario replay
+        env:
+          G1C_OUTPUT: ./tmp-g1c-ci
+        run: |
+          node scripts/g1c-closure-audit.mjs
+          node scripts/g1c-audit.mjs --stress-only
+          node scripts/g1c-source-audit.mjs
+      - name: Preserve objective replay outputs for review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g1c-replay-${{ github.run_id }}
+          path: tmp-g1c-ci
+          retention-days: 14
+          if-no-files-found: warn
+
+  browser-regression:
+    needs: node-regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: browser-actions/setup-chrome@v2
+        id: chrome
+        with:
+          chrome-version: stable
+          install-dependencies: true
+      - name: Install isolated test automation dependency
+        run: npm install --no-save --ignore-scripts playwright@1.56.1
+      - name: Build typed G1-C test fixtures without modifying ordinary saves
+        env:
+          G1C_OUTPUT: ./tmp-g1c-browser
+        run: |
+          node scripts/g1c-audit.mjs
+          node scripts/g1c-round4-evidence.mjs
+      - name: Start local test server
+        shell: bash
+        run: |
+          PORT=4353 node server.mjs > "$RUNNER_TEMP/g1c-server.log" 2>&1 &
+          echo $! > "$RUNNER_TEMP/g1c-server.pid"
+          curl --fail --retry 20 --retry-connrefused --retry-delay 1 http://127.0.0.1:4353/scripts/qa-g1c.html -o /dev/null
+      - name: Run 3-viewport Chromium G1-C plus ordinary-import review
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+          PLAYWRIGHT_MODULE: playwright
+          G1C_URL: http://127.0.0.1:4353
+        run: node scripts/qa-g1c-chrome.mjs
+      - name: Zero energy, trapped player, mental revival and fifth-round scene ledger
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+          PLAYWRIGHT_MODULE: playwright
+          G1C_URL: http://127.0.0.1:4353
+          G1C_EDGE_OUTPUT: ./tmp-g1c-edges
+        run: node scripts/g1c-round4-browser.mjs
+      - name: Stage browser report inside the checked-out workspace
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p ci-browser-evidence
+          if [ -f ../../outputs/g1-c/browser-g1c/results.json ]; then
+            cp ../../outputs/g1-c/browser-g1c/results.json ci-browser-evidence/results.json
+          fi
+          if [ -f tmp-g1c-browser/stress.json ]; then
+            cp tmp-g1c-browser/stress.json ci-browser-evidence/stress.json
+          fi
+          if compgen -G "../../outputs/g1-c/browser-g1c/*.png" > /dev/null; then
+            sha256sum ../../outputs/g1-c/browser-g1c/*.png > ci-browser-evidence/screenshot-sha256.txt
+          fi
+      - name: Preserve browser audit evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g1c-chrome-${{ github.run_id }}
+          path: |
+            ci-browser-evidence
+            tmp-g1c-edges
+          retention-days: 14
+          if-no-files-found: warn

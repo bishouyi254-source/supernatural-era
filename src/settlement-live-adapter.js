@@ -4,6 +4,7 @@ import {chapterRetryAction} from './settlement-chapters.js';
 /** Read-only encounter ledger. Engine state owns all costs, outcomes and rewards. */
 import {events} from './content.js';
 import {hostState} from './spirits.js';
+import {g1cLabel} from './g1c-production.js';
 import {available} from './engine.js';
 
 // Exact state binding, including identity, revision and all imported state fields.
@@ -59,13 +60,14 @@ function terminal(session,before,after,action) {
  if(['capture','seal','aid'].includes(action)&&before.scene===id&&before.phase==='限制'&&after.scene==='hub'&&after.outcomes[id]!==before.outcomes[id])return action==='seal'?'sealed':'objective';
  return null;
 }
-export function advanceBattleSettlement(session,before,after,action) {
+export function advanceBattleSettlement(session,before,after,action,context=null) {
  if(!session||!sessionForSavedGame(session,before))return {session:null,record:null};
  if(after===before)return {session,record:null};
- if(after.seed!==before.seed||after.tick!==before.tick+(action.startsWith('eye6:react:')||action==='eye6:pass'?0:1)||after.actionReceipt?.action!==action||after.actionReceipt.tick!==after.tick||!available(before).includes(action))return {session:null,record:null};
+ if(after.seed!==before.seed||after.tick!==before.tick+(action.startsWith('eye6:react:')||action==='eye6:pass'?0:1)||after.actionReceipt?.action!==action||after.actionReceipt.tick!==after.tick||!available(before,context).includes(action))return {session:null,record:null};
  const id=session.eventId;
  const next={...session,lastTick:after.tick,binding:settlementStateToken(after),ghostLedger:updateGhostLedger(session,before,after),used:[...session.used],log:[...session.log]};
  if(action.startsWith('eye6:')&&action!=='eye6:pass')next.used.push(action);
+ if(action.startsWith('g1cp:')&&!action.includes(':research:'))next.used.push(action);
  if(/^(combat:(ability:|focus:|cover:|combo$)|ability$|v1:(domain:cast|seal:cast|reset:))/.test(action))next.used.push(action);
  for(const text of [...after.actionReceipt.facts,...after.actionReceipt.changes])next.log.push({stage:`行动 ${after.tick}`,text});
  next.log=next.log.slice(-200); // Presentation log is bounded; exact ability count is retained.
@@ -88,6 +90,7 @@ export function advanceBattleSettlement(session,before,after,action) {
   else if(g.development>old.development)rewards.push({id:`growth-${g.id}`,icon:'growth',kind:'能力成长',name:`${g.name}开发度`,quantity:`+${Number((g.development-old.development).toFixed(2))}`});
  }
  const abilitiesUsed=next.used.map(a=>{
+  if(a.startsWith('g1cp:'))return g1cLabel(a);
   if(a.startsWith('eye6:'))return EYE_V6[Number(a.split(':')[2])]?.name||'鬼眼反应';
   if(/^combat:(ability|focus|cover):/.test(a)){
    const parts=a.split(':'),name=next.ghostLedger.find(g=>g.id===parts.at(-1))?.name||'已调用厉鬼';
@@ -100,7 +103,7 @@ export function advanceBattleSettlement(session,before,after,action) {
  const interrupted=second&&(action==='abandon'||action.startsWith('abandon:'));
  const secondResolution=second?{stage:after.systems.second?.stage||'closed',plan:second.plan,mode:second.mode,result:second.result,balance:hostState(after).balanceState}:null;
  const record={format:2,id:`${session.seed}-${session.startedAt}-${after.tick}-${action}`,sourceTick:after.tick,sourceSeed:after.seed,sourceAction:action,sourceState:settlementStateToken(after),eventId:id,outcome,
-  missionCompleted:['sealed','objective'].includes(outcome)&&!removed,encounter:events[id]?.title||id,secondResolution,
+  missionCompleted:['sealed','objective'].includes(outcome)&&!removed,encounter:after.g1c?'G1-C 隔离类型化战斗（非正式关卡）':events[id]?.title||id,secondResolution,
   ...(observed?{resultLabel:`观察完成 · ${secondResolution.balance}`} :removed?{resultLabel:'放弃驾驭 · 已封存',title:'挑战已结束'}:cancelled?{resultLabel:'取消第二鬼方案'}:interrupted?{resultLabel:'复苏危机处置 · 流程中止'}:{}),
   coverageLabel:session.resumed?'代价与次数仅覆盖本次载入后的行动':'',
   target:observed?(second.mode==='combine'?'结合已记录，失衡观察完成':'第二鬼已驾驭，失衡观察完成'):removed?'放弃第二鬼并合法封存':cancelled?'取消匹配，退出本次遭遇':interrupted?'处置复苏危机，中止第二鬼流程':outcome==='sealed'?'满足限制后完成合法封存':outcome==='objective'?'提交合法事件处置':outcome==='failed'?'死亡已提交，挑战终止':'从规则遭遇撤离',

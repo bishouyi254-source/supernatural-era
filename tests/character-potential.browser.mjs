@@ -1,10 +1,12 @@
-import {chromium} from 'playwright';
+import {createRequire} from 'node:module';
+const {chromium}=createRequire(import.meta.url)(process.env.PLAYWRIGHT_MODULE||'playwright');
 import assert from 'node:assert/strict';
 import {mkdir,writeFile} from 'node:fs/promises';
 
-const BASE='http://127.0.0.1:8765/';
-await mkdir('candidate-artifacts',{recursive:true});
-const browser=await chromium.launch({headless:true});
+const BASE=process.env.BASE_URL||'http://127.0.0.1:8765/';
+const output=process.env.BROWSER_OUTPUT||'candidate-artifacts';
+await mkdir(output,{recursive:true});
+const browser=await chromium.launch({headless:true,...(process.env.CHROME_PATH?{executablePath:process.env.CHROME_PATH}:{})});
 try{
   for(const [name,viewport] of [['desktop',{width:1440,height:900}],['tablet',{width:768,height:1024}],['mobile',{width:390,height:844}],['compact',{width:320,height:720}]]){
     const context=await browser.newContext({viewport,acceptDownloads:true});
@@ -32,7 +34,7 @@ try{
     assert.equal(await page.locator('#create .potential-create-core-card').count(),2,name+' must show both core potential cards');
     assert.equal(await page.locator('#create .potential-static-inputs input').count(),3,name+' must show three editable physical traits');
     await checkVisual('creation','#create .potential-inputs');
-    await page.screenshot({path:'candidate-artifacts/'+name+'-creation.png',fullPage:true});
+    await page.screenshot({path:output+'/'+name+'-creation.png',fullPage:true});
     await page.locator('#create [name="name"]').fill('开发测试员');
     await page.locator('#create [name="heightCm"]').fill('182');
     await page.locator('#create [name="weightKg"]').fill('70');
@@ -44,7 +46,7 @@ try{
     const profile=await page.locator('.potential-profile').textContent();
     assert.match(profile,/182 cm/);assert.match(profile,/体质/);
     await checkVisual('character','.potential-profile');
-    await page.screenshot({path:'candidate-artifacts/'+name+'-character.png',fullPage:true});
+    await page.screenshot({path:output+'/'+name+'-character.png',fullPage:true});
 
     // Browser-only final-death fixture. Verified against the real engine's save validator.
     // This is NOT ordinary player progression and does not grant access to locked ghosts.
@@ -68,7 +70,7 @@ try{
     const taps=await page.locator('.potential-allocations button').evaluateAll(nodes=>nodes.map(n=>Math.round(n.getBoundingClientRect().height)));
     assert.ok(taps.every(n=>n>=44),name+' allocation buttons must meet 44px hit target');
     await checkVisual('death','.potential-death');
-    await page.screenshot({path:'candidate-artifacts/'+name+'-death.png',fullPage:true});
+    await page.screenshot({path:output+'/'+name+'-death.png',fullPage:true});
     await page.locator('[data-potential-allocate="mentalBase"]').click();
     const afterAllocate=await page.evaluate(()=>JSON.parse(localStorage.getItem('supernatural-era.prototype.v2')));
     assert.equal(afterAllocate.traits.mentalBase,60);
@@ -101,8 +103,8 @@ try{
     assert.equal(migration.backup.traits,undefined);
     assert.equal(migration.current.traits.constitution,2);
     assert.equal(migration.current.name,'第二轮角色');
-    await page.screenshot({path:'candidate-artifacts/'+name+'-next-life.png',fullPage:true});
-    await writeFile('candidate-artifacts/'+name+'-visual-metrics.json',JSON.stringify(evidence,null,2),'utf8');
+    await page.screenshot({path:output+'/'+name+'-next-life.png',fullPage:true});
+    await writeFile(output+'/'+name+'-visual-metrics.json',JSON.stringify(evidence,null,2),'utf8');
     console.log(name+': five-trait creation → character → grade/layout → allocation → next life: PASS');
     await context.close();
   }

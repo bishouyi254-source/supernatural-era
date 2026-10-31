@@ -1,0 +1,24 @@
+{
+  "workflow_runs": [
+    {
+      "id": 41163026756,
+      "name": "Character potential candidate",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 41,
+      "jobs_url": "https://api.github.com/repos/bishouyi254-source/supernatural-era/actions/runs/41163026756/jobs",
+      "logs_url": "https://api.github.com/repos/bishouyi254-source/supernatural-era/actions/runs/41163026756/logs",
+      "workflow_id": 401371792
+    },
+    {
+      "id": 41163026806,
+      "name": "G1-C candidate regression",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 12,
+      "jobs_url": "https://api.github.com/repos/bishouyi254-source/supernatural-era/actions/runs/41163026806/jobs",
+      "logs_url": "https://api.github.com/repos/bishouyi254-source/supernatural-era/actions/runs/41163026806/logs",
+      "workflow_id": 401343068
+    }
+  ]
+}

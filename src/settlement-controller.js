@@ -14,7 +14,7 @@ function boundedSession(session){
  while(new TextEncoder().encode(JSON.stringify(session)).length>120*1024&&session.log.length)session.log.shift();
  return session;
 }
-export function observeSettlement(before,after,action,usedId=null){
+export function observeSettlement(before,after,action,usedId=null,context=null){
  let meta=structuredClone(after.settlement||initialSettlement(after,{legacy:true}));
  meta.latestId=null;after.settlement=meta;
  let active=chapterSessionForSavedGame(meta.active,before)||sessionForSavedGame(meta.active,before);
@@ -35,7 +35,7 @@ export function observeSettlement(before,after,action,usedId=null){
  else{
   if(!active)active=allocate(meta,beginBattleSettlement(before,{resumed:true}));
   if(active){
-   const update=advanceBattleSettlement(active,before,after,action);active=update.session;
+   const update=advanceBattleSettlement(active,before,after,action,context);active=update.session;
    if(update.record){
     const resultCode=update.record.outcome==='objective'&&update.record.rewards.some(r=>r.kind==='实际驾驭')?'controlled':update.record.outcome;
     const record=sealHistoryRecord({...update.record,resultCode,startTick:active?.startedAt??meta.active?.startedAt??before.tick},meta.ownerId,meta.active?.encounterId||active?.encounterId||`${meta.ownerId}:${meta.nextEncounter-1}`);

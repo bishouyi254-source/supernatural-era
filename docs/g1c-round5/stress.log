@@ -1,0 +1,296 @@
+[
+  {
+    "ownership": [
+      "fire"
+    ],
+    "requested": 5,
+    "completed": 5,
+    "stop": "requested count reached"
+  },
+  {
+    "ownership": [
+      "fire"
+    ],
+    "requested": 10,
+    "completed": 10,
+    "stop": "requested count reached"
+  },
+  {
+    "ownership": [
+      "fire"
+    ],
+    "requested": 20,
+    "completed": 14,
+    "stop": "unavailable g1cp:fire:ignite"
+  },
+  {
+    "ownership": [
+      "wind"
+    ],
+    "requested": 5,
+    "completed": 5,
+    "stop": "requested count reached"
+  },
+  {
+    "ownership": [
+      "wind"
+    ],
+    "requested": 10,
+    "completed": 10,
+    "stop": "requested count reached"
+  },
+  {
+    "ownership": [
+      "wind"
+    ],
+    "requested": 20,
+    "completed": 14,
+    "stop": "unavailable g1cp:wind:raise"
+  },
+  {
+    "ownership": [
+      "press"
+    ],
+    "requested": 5,
+    "completed": 5,
+    "stop": "requested count reached"
+  },
+  {
+    "ownership": [
+      "press"
+    ],
+    "requested": 10,
+    "completed": 10,
+    "stop": "requested count reached"
+  },
+  {
+    "ownership": [
+      "press"
+    ],
+    "requested": 20,
+    "completed": 12,
+    "stop": "unavailable g1cp:press:fall"
+  },
+  {
+    "ownership": [
+      "fire",
+      "wind"
+    ],
+    "requested": 5,
+    "completed": 0,
+    "stop": "unavailable g1cp:wind:calm"
+  },
+  {
+    "ownership": [
+      "fire",
+      "wind"
+    ],
+    "requested": 10,
+    "completed": 0,
+    "stop": "unavailable g1cp:wind:calm"
+  },
+  {
+    "ownership": [
+      "fire",
+      "wind"
+    ],
+    "requested": 20,
+    "completed": 0,
+    "stop": "unavailable g1cp:wind:calm"
+  },
+  {
+    "ownership": [
+      "fire",
+      "wind"
+    ],
+    "requested": 5,
+    "completed": 5,
+    "stop": "requested count reached"
+  },
+  {
+    "ownership": [
+      "fire",
+      "wind"
+    ],
+    "requested": 10,
+    "completed": 10,
+    "stop": "requested count reached"
+  },
+  {
+    "ownership": [
+      "fire",
+      "wind"
+    ],
+    "requested": 20,
+    "completed": 20,
+    "stop": "requested count reached"
+  },
+  {
+    "ownership": [
+      "fire",
+      "press"
+    ],
+    "requested": 5,
+    "completed": 0,
+    "stop": "unavailable g1cp:press:lift"
+  },
+  {
+    "ownership": [
+      "fire",
+      "press"
+    ],
+    "requested": 10,
+    "completed": 0,
+    "stop": "unavailable g1cp:press:lift"
+  },
+  {
+    "ownership": [
+      "fire",
+      "press"
+    ],
+    "requested": 20,
+    "completed": 0,
+    "stop": "unavailable g1cp:press:lift"
+  },
+  {
+    "ownership": [
+      "fire",
+      "press"
+    ],
+    "requested": 5,
+    "completed": 5,
+    "stop": "requested count reached"
+  },
+  {
+    "ownership": [
+      "fire",
+      "press"
+    ],
+    "requested": 10,
+    "completed": 10,
+    "stop": "requested count reached"
+  },
+  {
+    "ownership": [
+      "fire",
+      "press"
+    ],
+    "requested": 20,
+    "completed": 20,
+    "stop": "requested count reached"
+  },
+  {
+    "ownership": [
+      "wind",
+      "press"
+    ],
+    "requested": 5,
+    "completed": 0,
+    "stop": "unavailable g1cp:press:lift"
+  },
+  {
+    "ownership": [
+      "wind",
+      "press"
+    ],
+    "requested": 10,
+    "completed": 0,
+    "stop": "unavailable g1cp:press:lift"
+  },
+  {
+    "ownership": [
+      "wind",
+      "press"
+    ],
+    "requested": 20,
+    "completed": 0,
+    "stop": "unavailable g1cp:press:lift"
+  },
+  {
+    "ownership": [
+      "wind",
+      "press"
+    ],
+    "requested": 5,
+    "completed": 5,
+    "stop": "requested count reached"
+  },
+  {
+    "ownership": [
+      "wind",
+      "press"
+    ],
+    "requested": 10,
+    "completed": 10,
+    "stop": "requested count reached"
+  },
+  {
+    "ownership": [
+      "wind",
+      "press"
+    ],
+    "requested": 20,
+    "completed": 20,
+    "stop": "requested count reached"
+  },
+  {
+    "ownership": [
+      "fire",
+      "wind",
+      "press"
+    ],
+    "requested": 5,
+    "completed": 0,
+    "stop": "unavailable g1cp:wind:calm"
+  },
+  {
+    "ownership": [
+      "fire",
+      "wind",
+      "press"
+    ],
+    "requested": 10,
+    "completed": 0,
+    "stop": "unavailable g1cp:wind:calm"
+  },
+  {
+    "ownership": [
+      "fire",
+      "wind",
+      "press"
+    ],
+    "requested": 20,
+    "completed": 0,
+    "stop": "unavailable g1cp:wind:calm"
+  },
+  {
+    "ownership": [
+      "fire",
+      "wind",
+      "press"
+    ],
+    "requested": 5,
+    "completed": 5,
+    "stop": "requested count reached"
+  },
+  {
+    "ownership": [
+      "fire",
+      "wind",
+      "press"
+    ],
+    "requested": 10,
+    "completed": 10,
+    "stop": "requested count reached"
+  },
+  {
+    "ownership": [
+      "fire",
+      "wind",
+      "press"
+    ],
+    "requested": 20,
+    "completed": 20,
+    "stop": "requested count reached"
+  }
+]

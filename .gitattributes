@@ -1,0 +1,3 @@
+# Keep raw evidence byte-exact so the recorded SHA256 manifest works on every OS.
+docs/g1c-round4/** -text
+docs/g1c-round5/** -text
