@@ -1,3 +1,5 @@
+import {g1dIntent,g1dEnemy,finishG1DContact} from './g1d.js';
+import {g1cEnemy,g1cIntent} from './g1c-production.js';
 import {g1bEnemy} from './g1b-production.js';
 import {mentalRuleBonus} from './character-potential.js';
 import {productionEnemy,productionIntent} from './g1a-production.js';
@@ -29,7 +31,7 @@ export function applyCombat(s,action,roundStarted=false){const c=s.combat,r=rule
  if(k.startsWith('ability:')||k.startsWith('focus:')||k.startsWith('cover:')||k==='combo'||k==='item'||k.startsWith('aid:'))delete c.bloodWard;
  if(k==='retreat'){s.scene='hub';s.combat=null;s.ward=0;s.journal.push('退出规则遭遇，现场、证据和消耗保留。');return {used};}
  if(k==='observe'){
-  if(s.g1b?.tablet.location==='tablet'){s.journal.push('意识在灵位内观察已知占据关系；推进敌方行动，不恢复身体控制或获取外部真名。');}else if(s.g1b?.world.actors.length){s.journal.push('隔离参与者观察：只记录该参与者明确暴露的身份和现场边界，不取得作为计时外壳的普通关卡线索。');}else if(c.nativeSchool){s.journal.push('观察已记录的七中声音迹象，不自动认证源头全部规则。');}else{
+  if(s.g1b?.tablet.location==='tablet'){s.journal.push('意识在灵位内观察已知占据关系；推进敌方行动，不恢复身体控制或获取外部真名。');}else if(s.g1c||s.g1d){s.journal.push('隔离参与者观察：不获取计时外壳的正式剧情线索。');}else if(s.g1b?.world.actors.length){s.journal.push('隔离参与者观察：只记录该参与者明确暴露的身份和现场边界，不取得作为计时外壳的普通关卡线索。');}else if(c.nativeSchool){s.journal.push('观察已记录的七中声音迹象，不自动认证源头全部规则。');}else{
   const e=events[c.eventId];s.knowledge[c.eventId]||={clues:[],hypotheses:{}};const known=s.knowledge[c.eventId];const clue=e.clues.find(v=>!known.clues.includes(v.id));
   if(clue){known.clues.push(clue.id);log('玩家','观察确认：'+clue.text);s.spirits.filter(g=>g.sourceId===c.eventId).forEach(g=>develop(g,5));}
   else log('玩家','已观察到全部现有证据；继续观察不重复获得开发度。');
@@ -75,20 +77,26 @@ export function resumeCombat(s){
 }
 function resolveEnemy(s,r,log,intent){const c=s.combat;
     if(g1bEnemy(s,r,log,intent))return;
-    if(s.g1a?.production){intent=productionIntent(s,r,intent);if(c.position==='exposed'&&!intent?.cancelled&&productionEnemy(s,intent)){log('对抗','专属规则拦截本次已证明适用的行动；未关押源头。');return;}}
+    // Resolve all typed source metadata before any defence changes effective damage.
+    intent=g1dIntent(s,r,intent);
+    intent=g1cIntent(s,r,intent);
+    if(g1dEnemy(s,r,intent,log)){finishG1DContact(s,r,intent,false);return;}
+    if(g1cEnemy(s,r,intent,log)){finishG1DContact(s,r,intent,false);return;}
+    if(s.g1a?.production){intent=productionIntent(s,r,intent);if(c.position==='exposed'&&!intent?.cancelled&&productionEnemy(s,intent)){finishG1DContact(s,r,intent,false);log('对抗','专属规则拦截本次已证明适用的行动；未关押源头。');return;}}
     intent=candidateIntent(s,r,intent);
-    if(c.position==='exposed'&&!intent?.cancelled&&candidateEnemy(s,intent)){log('对抗','【模拟候选】当前已验证作用拦截本次适用行动；其他固有灵异继续。');return;}
+    if(c.position==='exposed'&&!intent?.cancelled&&candidateEnemy(s,intent)){finishG1DContact(s,r,intent,false);log('对抗','【模拟候选】当前已验证作用拦截本次适用行动；其他固有灵异继续。');return;}
     log('灵异','源头按媒介条件结算，不因玩家点击数随机更换规则。');
    if(!intent?.cancelled&&c.position==='exposed'){
     const matching=c.wardMedium===r.medium||c.wardMedium==='all';const outcome=ruleContest(matching?c.wardWeight:0,intent?.weight??r.weight);
-    const rawDamage=outcome==='blocked'?0:outcome==='partial'?Math.ceil((intent?.damage??r.damage)/2):(intent?.damage??r.damage);
+    const rawDamage=outcome==='blocked'?0:outcome==='partial'?(intent?.g1dOriginalDamage!==undefined?Math.min(intent.damage,Math.ceil(intent.g1dOriginalDamage/2)):Math.ceil((intent?.damage??r.damage)/2)):(intent?.damage??r.damage);
     const damage=Math.max(0,rawDamage-(s.v1?.build==='mind'&&knowledgeState(s,c.eventId).level==='CONFIRMED'?8:0));
+    finishG1DContact(s,r,intent,outcome!=='blocked');
     if(matching&&c.wardMedium==='body'&&!intent?.simulation&&(!intent?.kind||intent.kind==='ordinary'))recordBloodContest(s,r,outcome,c.bloodWard);
     delete c.bloodWard;
     s.life=Math.max(0,s.life-damage);log('对抗','规则对抗：'+({blocked:'成功阻断',partial:'同权重部分阻断',failed:'未能阻断'}[outcome])+'，身体损伤'+damage+'。');
     c.wardWeight=0;c.wardMedium=null;
     if(s.life===0){s.systems.death='pending';log('致死','进入死亡待定。仅剩已拥有的反应资源可拦截；提交后不可普通复活。');}
-   }else log('灵异','未满足触发条件，不产生侵蚀。');
+   }else {finishG1DContact(s,r,intent,false);log('灵异','未满足触发条件，不产生侵蚀。');}
 
 }
 export function continueEyeReaction(s){

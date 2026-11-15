@@ -1,26 +1,40 @@
 {
-  "version": "0.24.6",
-  "edition": "g1b-production-mechanism-release",
-  "previousRelease": "ababb53ad411857e4ffbac0779f617f2174de810",
-  "acceptedMechanics": "1791730436c3fc9f09f0f2e399e71422ec935e70",
-  "ghostEye": "V6.5.1 unchanged",
+  "version": "0.24.8",
+  "edition": "rule-engine-maintenance-isolated-mechanics",
+  "previousRelease": "f4c326f0df1bf1a38052ac865f28b722a8f88664",
+  "acceptedRuntimeCandidate": "86c90267a0757ed8fb4123996dcf1c2f4f9f8ed9",
+  "fixCodeCommit": "0cf012b5f20c19877a2dac950b3c3f5dafbbbe1a",
   "saveFormat": 2,
-  "scope": "006 tablet, 007 caller, 008 smoke production mechanics and independent evidence growth. Ordinary acquisition remains locked. Missing return assistance, identity/hearing/facing/turning and geography qualifications remain explicitly isolated; no QA pages, artificial holders or GDD deployed. Initial balance/high tiers not finally frozen.",
-  "parameters": {
-    "bloodExposure": 10,
-    "shroudProtection": 6,
-    "shroudTime": 3
+  "ordinaryAcquisition009to014": false,
+  "candidateNumbers012to014Approved": false,
+  "formalSourceApprovalGranted": false,
+  "scope": "Runtime maintenance only; G1-C/G1-D ordinary acquisition remains locked. No QA pages, artificial holders, GDD or raw logs added. PR #3 history not merged.",
+  "localValidation": {
+    "node": {
+      "passed": 1375,
+      "failed": 0
+    },
+    "g1d": {
+      "passed": 51,
+      "failed": 0
+    },
+    "browser": {
+      "scenarios": 22,
+      "actions": 68,
+      "errors": 0
+    },
+    "remoteCI": "NOT_YET_TRIGGERED"
   },
   "files": [
+    {
+      "path": ".github/workflows/character-potential.yml",
+      "bytes": 2872,
+      "sha256": "e178aa792f5634f60e84a828cf7d91c37c12796c8181c73e2dd9e7527a0ff18b"
+    },
     {
       "path": ".nojekyll",
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    },
-    {
-      "path": "README.md",
-      "bytes": 2889,
-      "sha256": "fe77c2a888fdf779e30875d0b4adf88dea25caf6ad9f7ae08894e9471c4fc79f"
     },
     {
       "path": "assets/backpack/art-a.png",
@@ -1694,8 +1708,13 @@
     },
     {
       "path": "index.html",
-      "bytes": 1311,
-      "sha256": "cacea6257e280274d88836779f391c4c4f1f9f2f37fda60a467f6d1661c92200"
+      "bytes": 1394,
+      "sha256": "eb3266135e368f8c3ac17a90d06cf3b7bdfde4c2e714b749fe4f1a3cf157b292"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4784,
+      "sha256": "3783dfd4964a9163dbf1e482346ef3df8a9e5d2959fee02343e1148781e9ae4e"
     },
     {
       "path": "resonance/assets/approved/avatar.svg",
@@ -1984,8 +2003,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 83432,
-      "sha256": "72abb199fd4cd6a5c353f7f94f443c68372d5ceaa6d6b16961caaa21e6ccee8b"
+      "bytes": 86404,
+      "sha256": "8af9a7113623ef88b606de54a0c5f686fc54e8b058a76117cfb30190c266ab3c"
     },
     {
       "path": "src/audio-medium.js",
@@ -2041,6 +2060,21 @@
       "path": "src/chapter.js",
       "bytes": 9044,
       "sha256": "f0bb8624a9b20016369a9a59fccb907b683de7f72d7cdc770b1cdf9a991ec0b7"
+    },
+    {
+      "path": "src/character-potential-ui.js",
+      "bytes": 9253,
+      "sha256": "2392c6927de774fa9cb45d34f700ef0ec3a69a7c52d8248fec881df23c4589d0"
+    },
+    {
+      "path": "src/character-potential.css",
+      "bytes": 11099,
+      "sha256": "b46b75640da23cf49c6bc4990dc23a7c023e711e3c98519f059a56d6ab4de75e"
+    },
+    {
+      "path": "src/character-potential.js",
+      "bytes": 7454,
+      "sha256": "ea4ab50e48cd901f961e67f9afd9bba9872d5ecc1850a4e0f2b5b54c5e1c217e"
     },
     {
       "path": "src/city-crisis-model.js",
@@ -2109,8 +2143,8 @@
     },
     {
       "path": "src/combat-stage4-adapter.js",
-      "bytes": 10192,
-      "sha256": "473383f706b9fc07623074629234a7f0cd371bad2681606e9f0e8d5f92d21585"
+      "bytes": 12597,
+      "sha256": "57c5b5c02898ad4f09c08a3bcc27d3f16f9c9bf108f317be035bd9bd2e4b2c73"
     },
     {
       "path": "src/combat-stage4-ui.js",
@@ -2129,13 +2163,13 @@
     },
     {
       "path": "src/combat.js",
-      "bytes": 11618,
-      "sha256": "524652761e9faf76407446f28784289101edb01c322f30d76394a90411012fde"
+      "bytes": 12527,
+      "sha256": "aecbcd84384f6e4d9903dd7feb6d10f33907557ff2abd1590e19e8dee36c18e1"
     },
     {
       "path": "src/content.js",
-      "bytes": 11555,
-      "sha256": "b51ced429e5c0246996e1aa2adaccc8fb2cf7264ad22a3591ff6ba03a1dcad73"
+      "bytes": 13788,
+      "sha256": "3402a9e886fa06302217001ca70211f1c0a816eaa87e4a0fd275617afe0565c2"
     },
     {
       "path": "src/contract-case.js",
@@ -2174,8 +2208,8 @@
     },
     {
       "path": "src/engine.js",
-      "bytes": 32148,
-      "sha256": "854150853f1f3f557157caa1a2f9b4e21ebbfd06e19591b1ae290611051eb916"
+      "bytes": 34578,
+      "sha256": "2fecb9be60d15d6e8c42492961f81c2a7dffc0a6df91f08e49f9fd03fd3b412b"
     },
     {
       "path": "src/event-rules.js",
@@ -2256,6 +2290,41 @@
       "path": "src/g1b-view.js",
       "bytes": 1131,
       "sha256": "682cd8d80509f208276f9406c4164cd07817d9064d9649d4410aa0d730d72729"
+    },
+    {
+      "path": "src/g1c-consequences.js",
+      "bytes": 830,
+      "sha256": "9be2667f03575a9e801a2f12efa91aaf1bfbc42fb52c6b4e906ae7bf7b89f20b"
+    },
+    {
+      "path": "src/g1c-formal-source.js",
+      "bytes": 3104,
+      "sha256": "b19bf52a11cec70fde45e8521e9a66b1677f49dbb097f327711e3d760e1e11a3"
+    },
+    {
+      "path": "src/g1c-production.js",
+      "bytes": 22887,
+      "sha256": "394bdb809220fe336c6291d624e6666e32eeb231d15c49035a2e2c4f08de8fcd"
+    },
+    {
+      "path": "src/g1c-source-registry.js",
+      "bytes": 3493,
+      "sha256": "4fa4e30246196d80fcb381cd9072e8fe7b035b7705814ef2c8139c93328ee3ac"
+    },
+    {
+      "path": "src/g1c-view.js",
+      "bytes": 1785,
+      "sha256": "9a29837ca86d90faf28463e92d58dec98e6a10c02d34bf4d6554d0d8da9b9e01"
+    },
+    {
+      "path": "src/g1d-view.js",
+      "bytes": 1277,
+      "sha256": "40a4bdababb3496c83d24d8613b664e747ba9713c597d732760c321f3d85b37c"
+    },
+    {
+      "path": "src/g1d.js",
+      "bytes": 17560,
+      "sha256": "4d278028499993f3766c0fd43c9515ea612669ca30387e8d2562f7a2bb5f695c"
     },
     {
       "path": "src/gameplay-guide.js",
@@ -2379,8 +2448,8 @@
     },
     {
       "path": "src/progression.js",
-      "bytes": 10354,
-      "sha256": "58f8fb772b7cb93b5472b8f8eed15c7066513543b8fb31a747d9bdf45517282a"
+      "bytes": 10449,
+      "sha256": "26cb222102e3ca7f4340af5d69d4b8c3a565d818ece4826b18ddc3e5719ac72d"
     },
     {
       "path": "src/published-sidebar.css",
@@ -2439,8 +2508,8 @@
     },
     {
       "path": "src/rpg-workshop.js",
-      "bytes": 21784,
-      "sha256": "1fe88b4439da80d15b240a93081672291fa2a6edcac091600baeb69330398d31"
+      "bytes": 21962,
+      "sha256": "bcedc5b239f5322995d3bf2d4a4fca76dc1daf31885796a9763f42ff00cc73cb"
     },
     {
       "path": "src/rules.js",
@@ -2464,13 +2533,13 @@
     },
     {
       "path": "src/settlement-controller.js",
-      "bytes": 5207,
-      "sha256": "e6d8d7c0204ef741cdd9674c44994d67af3f9151b9f6d8bd1bdfdf63520d5f19"
+      "bytes": 5226,
+      "sha256": "e8c48436bcacffa2f0e20336feb85d2e4f2c91887f91fd2654dc86e0c2fca948"
     },
     {
       "path": "src/settlement-live-adapter.js",
-      "bytes": 11013,
-      "sha256": "cd0e45703516bcb8834f4533108c6e09dc382e28b0cdf0dc897e68692690b3ef"
+      "bytes": 11509,
+      "sha256": "3e25ac1cd26d728af4e3c109e69fde31277492155668493ee0e7fc7d717b7509"
     },
     {
       "path": "src/settlement-live.css",
@@ -2483,14 +2552,14 @@
       "sha256": "fe9144977f08ef1f671c1751eb10ffed2b51a06e77b9c97fa6e550411dfdf7c1"
     },
     {
-      "path": "src/settlement-ui/SettlementView.mjs",
-      "bytes": 8938,
-      "sha256": "5b35ef02cb64b3fd8682eb4e34726b5a6ea652cb067a3296b727167e799d9a6c"
-    },
-    {
       "path": "src/settlement-ui/settlement-data.mjs",
       "bytes": 4674,
       "sha256": "18d11dc1cd702209c2a326c52aa97ddabb4f34e89617646d223f8ff5884e948a"
+    },
+    {
+      "path": "src/settlement-ui/SettlementView.mjs",
+      "bytes": 8938,
+      "sha256": "5b35ef02cb64b3fd8682eb4e34726b5a6ea652cb067a3296b727167e799d9a6c"
     },
     {
       "path": "src/settlement-ui/styles.css",
@@ -2519,8 +2588,8 @@
     },
     {
       "path": "src/spirits.js",
-      "bytes": 7536,
-      "sha256": "c98b2216ef3f9ba14483c9654782d956d6b547a108ebfd8ceb4453a733bfd2f5"
+      "bytes": 7602,
+      "sha256": "1dc44368da021e634805fab8d273a6bba9b4df7f71dda373913678e5a7329902"
     },
     {
       "path": "src/style.css",
@@ -2746,6 +2815,16 @@
       "path": "src/x-archives.js",
       "bytes": 3264,
       "sha256": "a864b6932910edd64bfd901a71d86486748b9cf8d0c61095a46d5913721f12b0"
+    },
+    {
+      "path": "tests/character-potential.browser.mjs",
+      "bytes": 7177,
+      "sha256": "331d3d9a6c9e3c52995c3b6a6ab271a020128a3a390cd0a0bd78d64b309ab261"
+    },
+    {
+      "path": "tests/character-potential.test.mjs",
+      "bytes": 5612,
+      "sha256": "22feca4889207f0134d2be00822a14b0f53bc82055a1cdbc61e88ce4747dd1d5"
     },
     {
       "path": "world-map.html",
