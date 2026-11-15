@@ -13,7 +13,7 @@ on:
       - '.github/workflows/character-potential.yml'
 jobs:
   character-potential:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
       pull-requests: write
