@@ -1,40 +1,28 @@
 {
-  "version": "0.24.8",
-  "edition": "rule-engine-maintenance-isolated-mechanics",
-  "previousRelease": "f4c326f0df1bf1a38052ac865f28b722a8f88664",
-  "acceptedRuntimeCandidate": "86c90267a0757ed8fb4123996dcf1c2f4f9f8ed9",
-  "fixCodeCommit": "0cf012b5f20c19877a2dac950b3c3f5dafbbbe1a",
+  "version": "0.24.9",
+  "edition": "combat-growth-residential-challenge",
+  "previousRelease": "9464bc95e43b0e77ae0d56e0e36452f423ccabc9",
+  "acceptedRuntimeCandidate": "e8fc90dac9bb241ab09d30de13f7eb000369f335",
   "saveFormat": 2,
   "ordinaryAcquisition009to014": false,
   "candidateNumbers012to014Approved": false,
   "formalSourceApprovalGranted": false,
-  "scope": "Runtime maintenance only; G1-C/G1-D ordinary acquisition remains locked. No QA pages, artificial holders, GDD or raw logs added. PR #3 history not merged.",
-  "localValidation": {
-    "node": {
-      "passed": 1375,
-      "failed": 0
-    },
-    "g1d": {
-      "passed": 51,
-      "failed": 0
-    },
-    "browser": {
-      "scenarios": 22,
-      "actions": 68,
-      "errors": 0
-    },
-    "remoteCI": "NOT_YET_TRIGGERED"
-  },
+  "scope": "Five-node residential challenge, optional legacy investigation, state-based settlement and combat growth.",
   "files": [
     {
       "path": ".github/workflows/character-potential.yml",
-      "bytes": 2872,
-      "sha256": "e178aa792f5634f60e84a828cf7d91c37c12796c8181c73e2dd9e7527a0ff18b"
+      "bytes": 2871,
+      "sha256": "4b8506b41d14b40a5864e9ae1357e8d7cba858bd9729f17bc8300216746192e2"
     },
     {
       "path": ".nojekyll",
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5014,
+      "sha256": "2a8ca9b209f0b1618ad8f03d86810933eec349774abcc7e11c03c248155c41b9"
     },
     {
       "path": "assets/backpack/art-a.png",
@@ -1708,13 +1696,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 1394,
-      "sha256": "eb3266135e368f8c3ac17a90d06cf3b7bdfde4c2e714b749fe4f1a3cf157b292"
-    },
-    {
-      "path": "README.md",
-      "bytes": 4784,
-      "sha256": "3783dfd4964a9163dbf1e482346ef3df8a9e5d2959fee02343e1148781e9ae4e"
+      "bytes": 1430,
+      "sha256": "9b5de5fe0e80b5c88dabebd3d3973b6aee06f4765a8986c56bf8770eb99a9d5a"
     },
     {
       "path": "resonance/assets/approved/avatar.svg",
@@ -2003,8 +1986,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 86404,
-      "sha256": "8af9a7113623ef88b606de54a0c5f686fc54e8b058a76117cfb30190c266ab3c"
+      "bytes": 88197,
+      "sha256": "4cfa6fc72c817eaad6da3efb7e98937f18c45e3e7cca8c12a4d653d8aa64c8f0"
     },
     {
       "path": "src/audio-medium.js",
@@ -2208,8 +2191,8 @@
     },
     {
       "path": "src/engine.js",
-      "bytes": 34578,
-      "sha256": "2fecb9be60d15d6e8c42492961f81c2a7dffc0a6df91f08e49f9fd03fd3b412b"
+      "bytes": 35247,
+      "sha256": "7bd3689a14b686e0b8668b95b3e8b74a4c962b3168fe9b3fa10aa5a31ac6286a"
     },
     {
       "path": "src/event-rules.js",
@@ -2328,8 +2311,8 @@
     },
     {
       "path": "src/gameplay-guide.js",
-      "bytes": 12229,
-      "sha256": "d6803df58471a7b917beb58d893f3c8521baeb4c12d207ecfed473f244559017"
+      "bytes": 12819,
+      "sha256": "de9c7a9e3daf25af775a6db0211f5ab57ed2486a76646bb6981e1c073ca75bed"
     },
     {
       "path": "src/ghost-eye-v6.d.ts",
@@ -2462,6 +2445,21 @@
       "sha256": "9ae6bdea623bb9285d5390c53918a32c5f8f8ba8eacf33f241726aaef3ea1f90"
     },
     {
+      "path": "src/raid-view.js",
+      "bytes": 5600,
+      "sha256": "4f3fee50e7af15d1253290d290a003b69f409329820b63715789c6d529d2c02b"
+    },
+    {
+      "path": "src/raid.css",
+      "bytes": 1571,
+      "sha256": "e7c169938a25ee75fffc2330ef9906cbefe6ad6aff94f148180428aba98b7aba"
+    },
+    {
+      "path": "src/raid.js",
+      "bytes": 7573,
+      "sha256": "db80fd668553755cbb2061943e7b6a93178b72d0c1bcff4fe751ad6f27554d0b"
+    },
+    {
       "path": "src/regional-guide.js",
       "bytes": 11686,
       "sha256": "e1cb29bad3b0c29ac7225084d292a9fc95e571a038fc1db8d3bff3d7075106b6"
@@ -2552,14 +2550,14 @@
       "sha256": "fe9144977f08ef1f671c1751eb10ffed2b51a06e77b9c97fa6e550411dfdf7c1"
     },
     {
-      "path": "src/settlement-ui/settlement-data.mjs",
-      "bytes": 4674,
-      "sha256": "18d11dc1cd702209c2a326c52aa97ddabb4f34e89617646d223f8ff5884e948a"
-    },
-    {
       "path": "src/settlement-ui/SettlementView.mjs",
       "bytes": 8938,
       "sha256": "5b35ef02cb64b3fd8682eb4e34726b5a6ea652cb067a3296b727167e799d9a6c"
+    },
+    {
+      "path": "src/settlement-ui/settlement-data.mjs",
+      "bytes": 4674,
+      "sha256": "18d11dc1cd702209c2a326c52aa97ddabb4f34e89617646d223f8ff5884e948a"
     },
     {
       "path": "src/settlement-ui/styles.css",

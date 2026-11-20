@@ -1,3 +1,4 @@
+import {raidActions,applyRaid,advanceRaid,raidDuplicate,validRaid} from './raid.js';
 import {g1dAllowed,g1dAvailable,g1dFilter,prepareG1D,applyG1D,advanceG1D,g1dMaintenance,validG1D,g1dDuplicate} from './g1d.js';
 import {g1cStruggle,g1cBodyBlocked,g1cAllowed,g1cAvailable,g1cFilter,prepareG1C,applyG1C,advanceG1C,g1cMaintenance,validG1C} from './g1c-production.js';
 import {g1bAllowed,g1bAvailable,g1bFilter,prepareG1B,applyG1B,advanceG1B,observeG1B,g1bMaintenance,validG1B} from './g1b-production.js';
@@ -100,7 +101,7 @@ function existingAvailable(input){
  if(s.evolution.host.shellDestroyed&&s.evolution.host.integrity>5&&s.energy<3&&!s.evolution.encounter?.active&&!s.evolution.cascade&&s.systems.death==='alive')actions.push('evo:host:focus');
  actions.push(...hungryAvailable(s),...crisisAvailable(s),...mirrorAvailable(s),...regionalAvailable(s),...reunionAvailable(s),...schoolAvailable(s),...dachangAvailable(s),...mallAvailable(s),...socialAvailable(s),...villageAvailable(s),...dualAvailable(s));actions.push(...eyeAvailable(s));return [...new Set(actions)].filter(a=>{if(!socialAllows(s,a)||!dachangAllows(s,a))return false;if(s.school.started&&a.startsWith('chapter:')&&a!=='chapter:supply')return false;if(a==='evo:third:begin:door'&&!s.doorCase?.sealed)return false;if(a==='evo:third:begin:door'&&s.knowledge.door?.clues.length!==3)return false;if(s.combat?.eyeV6&&a==='ability')return false;const id=a.startsWith('practice:')?a.slice(9):a.startsWith('combat:ability:')?a.slice(15):null;if(id&&ruleBlocked(s,id))return false;if(a==='practice')return activeIds(s).includes(s.spirits[0]?.id)&&!ruleBlocked(s,s.spirits[0]?.id);if(a.startsWith('practice:'))return activeIds(s).includes(id);if(a==='rest'&&s.evolution.host.shellDestroyed)return false;if(a==='abandon'&&!s.spirits.some(g=>s.evolution.nodes[g.id]?.structure!=='STRUCTURAL'))return false;if(a.startsWith('abandon:')&&s.evolution.nodes[a.slice(8)]?.structure==='STRUCTURAL')return false;return true;});
 }
-export function available(input,context=null){
+function mechanismAvailable(input,context=null){
  if(!g1dAllowed(input,context)||!validG1D(input,context))return [];
  if(!g1bAllowed(input,context)||!validG1B(input,context)||!g1cAllowed(input,context)||!validG1C(input,context))return [];
  if(!productionAllowed(input,context))return [];
@@ -112,8 +113,15 @@ export function available(input,context=null){
  if(s.g1a?.production?.rope.actorId){const id=s.g1a.production.rope.actorId;legal=legal.filter(a=>!['ability','practice'].includes(a)&&!['combat:ability:','practice:','study:','abandon:'].some(p=>a===p+id));}
  return [...g1dFilter(s,[...g1bFilter(s,g1cFilter(s,[...legal,...(legal.includes('rest')?g1aAvailable(s):[]),...(s.combat||legal.includes('rest')?candidateAvailable(s,context):[]),...(s.combat||legal.includes('rest')||legal.includes('combat:start')?productionAvailable(s,context):[])])),...g1bAvailable(s,context),...g1cAvailable(s,context)]),...g1dAvailable(s,context)];
 }
+export function available(input,context=null){
+ const legal=mechanismAvailable(input,context);
+ if(!legal.length)return legal;
+ if(!validRaid(input))return [];
+ if(!g1dAllowed(input,context)||!g1cAllowed(input,context)||!g1bAllowed(input,context)||!productionAllowed(input,context)||g1cBodyBlocked(input,context))return legal;
+ return input.investigation&&input.systems&&input.evolution&&input.bus?raidActions(input,legal):legal;
+}
 export function act(input, action,context=null) {
-  if(g1dDuplicate(input,action,context))return input;
+  if(raidDuplicate(input,context)||g1dDuplicate(input,action,context))return input;
   if(input.g1c?.completed?.includes(context?.requestId))return input;
   if(input.g1b?.completed.includes(context?.requestId))return input;
   if(input.g1a?.production?.completed.includes(context?.requestId))return input;
@@ -138,7 +146,8 @@ export function act(input, action,context=null) {
   const mallCrisis=s.mall.active&&s.mall.phase==='CRISIS';
   const reunionCrisis=s.reunion.active&&['D','F'].includes(s.reunion.phase);
   const reunionWindow=s.reunion.active&&s.reunion.phase==='D'&&s.reunion.party.state==='TRAPPED';
-  if(action.startsWith('g1dp:')){candidateResult=applyG1D(s,action,context);usedId=candidateResult.used;if(s.combat)applyCombat(s,'combat:eye-action');}
+  if(action.startsWith('raid:'))applyRaid(s,action);
+  else if(action.startsWith('g1dp:')){candidateResult=applyG1D(s,action,context);usedId=candidateResult.used;if(s.combat)applyCombat(s,'combat:eye-action');}
   else if(action.startsWith('g1cp:')){candidateResult=applyG1C(s,action,context);usedId=candidateResult.used;if(s.combat)applyCombat(s,'combat:eye-action');}
   else if(action.startsWith('g1bp:')){candidateResult=applyG1B(s,action,context);usedId=candidateResult.used;if(s.combat)applyCombat(s,'combat:eye-action');}
   else if(action.startsWith('g1ap:')){candidateResult=applyProduction(s,action,context);usedId=candidateResult.used;if(s.combat)applyCombat(s,'combat:eye-action');}
@@ -273,13 +282,14 @@ export function act(input, action,context=null) {
   if(action==='death:commit')grantDeathReward(s);
   s.revision++;
   if(!eyeResult){s.ghostEyeV6.energySpent+=Math.max(0,before.energy-s.energy);s.ghostEyeV6.energyRestored+=Math.max(0,s.energy-before.energy);}
+  advanceRaid(before,s,action,usedId,context);
   s.actionReceipt=actionReceipt(before,s,action);
   s.journal = s.journal.slice(-100); return observeSettlement(before,s,action,usedId,context);
 }
 function systemAction(a){return ['second:','release:','abandon:','reaction:','death:','balance:','study:'].some(p=>a.startsWith(p));}
 
 export function validate(s,context=null) {
-  if(!validG1D(s,context)||!validG1B(s,context)||!validG1C(s,context))return false;
+  if(!validRaid(s)||!validG1D(s,context)||!validG1B(s,context)||!validG1C(s,context))return false;
   if(!s||!validPotential(s)||!validG1A(s)||!validCandidate(s,context)||!validProduction(s,context)||!validEyeV6(s)||!validReceipt(s)||!validSettlement(s))return false;
   if(s.spirits.some(g=>g.sourceId==='g1a-rope-candidate')&&!candidateEnabled(context)&&!(s.g1a?.production?.testOnly&&integrationAllowed(s,context)))return false;
   if(!s||!Array.isArray(s.spirits)||!Array.isArray(s.relations))return false;

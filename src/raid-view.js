@@ -1,0 +1,20 @@
+import {raidReady,raidNodes,raidLabels} from './raid.js';
+import {events} from './content.js';
+import {growthFor,hostState,revivalStage} from './spirits.js';
+const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const btn=(a,label)=>`<button data-raid-action="${esc(a)}">${esc(raidLabels[a]||label(a))}</button>`;
+export function raidView(s,legal,label){
+ const r=s.raid,c=s.combat,h=hostState(s),active=r?.status==='active';
+ const meters=`<div class="raid-meters"><span>身体 <b>${s.life}/100</b></span><span>能量 <b>${s.energy}/3</b></span><span>容器 <b>${s.bags}/2</b></span><span>符膜 <b>${s.systems.items.barrier}/2</b></span><span>负荷 <b>${h.effectiveBurden}/${h.hostCapacity}</b></span></div>`;
+ const spirits=s.spirits.map(g=>`<li>${esc(g.name)} · 开发 ${g.development}%（阶段 ${Math.floor(g.development/25)}） · 本趟实战调用 ${r?.mastery[g.id]||0} 次<br>复苏 ${g.revivalProgress.toFixed(2)}pp · ${revivalStage(g.revivalProgress)} · 再调用预计 ＋${growthFor(s,g,true).toFixed(2)}pp</li>`).join('');
+ let body='';
+ if(!active){
+  const x=r?.result;
+  body=`${x?`<section class="raid-result"><h3>${esc(x.ending)}</h3><p>${esc(x.world)}</p><p>现金 ＋${x.reward} · 封锁 ${r.contained}/2 · 运回物资 ${r.cargo}</p><p>身体 ${r.start.life} → ${x.after.life}；能量 ${r.start.energy} → ${x.after.energy}；容器 ${r.start.bags} → ${x.after.bags}；负荷 ${r.start.burden} → ${x.after.burden}</p>${x.after.spirits.map(g=>{const old=r.start.spirits.find(v=>v.id===g.id);return `<p>${esc(g.name)}：开发 ${old?.development??0} → ${g.development}%；复苏 ${old?.revival??0} → ${g.revival.toFixed(2)}pp</p>`;}).join('')}</section>`:''}<h3>住宅区 · 运输封锁</h3><p>接线室与熄灯楼道，五个短节点。对抗触发媒介、封锁路径、运回物资。普通人可使用容器与符膜；持鬼者使用自己的构筑。</p><p>选择改变暴露位置、物资和结局。三份有限运输委托，每趟最多现金120；不会掉落厉鬼。</p>${raidReady(s)?btn('raid:start',label):'<p>当前不能进入：需结束现有章节／危机，回到安全屋，并有剩余委托。原路线与存档继续保留。</p>'}${legal.includes('rest')?btn('rest',label):''}<details><summary>持续区域结果</summary>${r?.history.map(v=>`<p>委托${v.serial} · ${esc(v.ending)} · ${esc(v.world)}</p>`).join('')||'尚无运输结算'}</details>`;
+ }else{
+  const crisis=s.crisis||s.systems.death!=='alive';
+  const actions=legal.filter(a=>a.startsWith('raid:')||['combat:avoid','combat:item'].includes(a)||a==='combat:risk'&&!legal.includes('raid:contain'));
+  body=`<ol class="raid-nodes">${raidNodes.map((n,i)=>`<li ${r.node===i?'aria-current="step"':''}>${i<r.node?'✓ ':''}${esc(n)}</li>`).join('')}</ol><h3>${esc(raidNodes[r.node])}</h3>${c?`<div class="raid-arena"><section><strong>${esc(s.name)}</strong><p>${c.position==='safe'?'避险区 · 触发媒介已避开':'暴露区 · 敌方窗口可能伤害45'}</p></section><section><strong>${esc(events[c.eventId].spirit)}</strong><p>${c.eventId==='echo'?'听筒回应会建立接近媒介。保持沉默隔离通路。':'灯灭后回头建立追踪媒介。保持照明和影子分离。'}</p><label>源头行动窗口（不是生命值）<progress max="100" value="${c.sourceGauge}"></progress></label><p>已执行 ${c.turn} 个战斗行动 · 当前目标：维持避险并用黄金容器封锁路径</p></section></div><p>${c.turn<2?'封锁不可用：需要完成两个实际战斗行动窗口。':c.position!=='safe'?'封锁不可用：当前暴露，请先撤入避险区。':s.bags===0?'封锁不可用：没有黄金容器，可带回已有成果。':'封锁资格满足：保持避险位置，消耗容器1。'}</p>`:r.node===0?'<p>稳步进入不增加物资；抢运多一份物资，同时从暴露区开始战斗。不会自动执行高风险行动。</p>':r.node===2?'<p>只选一次：取符膜（最多2）或恢复能量与身体。复苏、负荷和持续后果不回退。</p>':'<p>两处运输路径封锁完成。提交取得全部运输报酬；提前撤离按已有成果结算。</p>'}<div class="raid-actions">${actions.map(a=>btn(a,label)).join('')}</div>${c?`<details open><summary>灵异能力 · 自选目标与实际代价</summary><p>当前目标为本次场景媒介；只显示引擎判定合法的调用。缺少来源、接触、真实域或其他资格时不会出现按钮。</p><div class="raid-skills">${legal.filter(a=>!actions.includes(a)).map(a=>btn(a,label)).join('')||'没有符合当前能量、冷却、媒介与持有条件的能力。'}</div></details>`:''}${crisis?'<p>危机已暂停挑战，请处理原有死亡／失控操作。</p>':''}<p>已封锁 ${r.contained}/2 · 当前物资 ${r.cargo} · 预计现金 ${r.cargo*40}</p>`;
+ }
+ return `<article class="raid"><span class="stamp">住宅区委托</span><h2>灵异挑战</h2>${meters}${body}<details ${spirits?'open':''}><summary>厉鬼构筑与实战成长</summary><ul>${spirits||'<li>当前是普通人；挑战不会强赠首鬼。</li>'}</ul><p>实际能力调用复用原开发度与阶段规则，潜质上限、独立复苏与宿主累计负荷照常结算。</p><button data-tab="技能工坊">调整构筑</button><button data-tab="背包与装备">装备与物品</button></details><details><summary>最近实际行动</summary><ol>${s.journal.slice(-6).map(x=>`<li>${esc(x)}</li>`).join('')}</ol></details><button data-tab="调查现场">可选旧调查路线</button></article>`;
+}

@@ -1,4 +1,6 @@
 import {g1bCost} from './g1b-production.js';
+import {g1cCost} from './g1c-production.js';
+import {g1dCost} from './g1d.js';
 import {productionCost} from './g1a-production-view.js';
 import {available,upgrade} from './engine.js';
 import {schoolSituation,schoolZones} from './school-model.js';
@@ -15,6 +17,11 @@ import {mirrorScene} from './mirror-guide.js';
 import {regionalScene} from './regional-guide.js';
 
 export function actionCost(s,a) {
+  if(a.startsWith('g1cp:'))return g1cCost(a);
+  if(a.startsWith('g1dp:'))return g1dCost(a);
+  if(a==='raid:rush')return '多取物资1；从暴露位置开始，敌方行动窗口可能造成身体损伤45。所有持鬼照常结算。';
+  if(a==='raid:contain')return '消耗黄金容器1；仅封锁当前运输路径，不授予源头所有权。';
+  if(a==='combat:risk')return '进入暴露位置并推进敌方窗口；可能受损45或进入死亡待定。防护与逐鬼复苏按实际规则结算。';
   if(a.startsWith('g1bp:'))return g1bCost(a);
   if(a.startsWith('g1ap:'))return productionCost(a);
   if(/^combat:(focus|cover):/.test(a)){const g=s.spirits.find(g=>g.id===a.slice(13));return '能量 '+(a.includes(':cover:')?2:1)+'；'+g.name+'预计复苏 +'+growthFor(s,g,true).toFixed(2)+'%；共用该鬼冷却3（本行动结束递减）；仅原创实例技巧。';}
